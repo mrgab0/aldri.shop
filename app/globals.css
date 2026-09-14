@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* TEMA CLARO: Blanco Puro con tipografía en Negro Tinta */
+  --foreground-rgb: 26, 26, 26;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  
+  --bg-main: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-main: #1A1A1A;
+}
+
+.dark {
+  /* TEMA OSCURO */
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 16, 21;
+  --background-end-rgb: 15, 16, 21;
+}
+
+/* Base Body Typography */
+body {
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: #0B0C10 !important;
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) .admin-panel-container {
+  background-color: #163422 !important;
+  box-shadow: 8px 8px 24px rgba(0,0,0,0.15) !important;
+}
+html.dark .admin-panel-container {
+  background-color: #0F1015 !important;
+}
+html.dark .admin-panel-container a {
+  background-color: #161822 !important;
+  box-shadow: inset -4px -4px 8px rgba(0,0,0,0.6), inset 4px 4px 8px rgba(255,255,255,0.08), 6px 6px 20px rgba(0,0,0,0.5) !important;
+}
+html.dark .admin-panel-container a:hover {
+  box-shadow: inset -6px -6px 12px rgba(0,0,0,0.7), inset 6px 6px 12px rgba(255,255,255,0.12), 8px 8px 28px rgba(0,0,0,0.6) !important;
+}
+html.dark .admin-logo-title {
+  color: #FFFFFF !important;
+}
+html.dark .admin-logo-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Letras negras en los botones del menú superior del Admin en modo claro */
+html:not(.dark) .admin-nav-links a,
+html:not(.dark) .admin-nav-links a span,
+html:not(.dark) .admin-nav-links a svg {
+  color: #000000 !important;
+}
+
+/* Tarjetas de Reseñas en Modo Claro: Forzar texto oscuro legible */
+html:not(.dark) .review-card-item .review-text {
+  color: #1e293b !important;
+}
+html:not(.dark) .review-card-item .review-author {
+  color: #0f172a !important;
+}
+html:not(.dark) .review-card-item .review-date {
+  color: #64748b !important;
+}
+
+/* Chatbot Asistente Virtual: Forzar fuentes negras y fondos nítidos en modo claro */
+html:not(.dark) .chatbot-bot-bubble {
+  color: #000000 !important;
+  background-color: #f1f5f9 !important;
+}
+html:not(.dark) .chatbot-chip-btn {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+html:not(.dark) .chatbot-chip-btn:hover {
+  color: #ffffff !important;
+  background-color: #163422 !important;
+}
+html:not(.dark) .chatbot-input {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+html:not(.dark) .chatbot-mini-preview {
+  color: #000000 !important;
+}
+
+/* Ajustes a los gradientes del Hero en modo claro */
+html:not(.dark) .from-\[\#fff8f7\] {
+  --tw-gradient-from: var(--bg-main) !important;
+}
+html:not(.dark) .to-\[\#fff8f7\] {
+  --tw-gradient-to: var(--bg-main) !important;
+}
+html:not(.dark) .via-\[\#faeae9\]\/50 {
+  --tw-gradient-via: rgba(255, 255, 255, 0.05) !important;
+}
+
+
+/* --- REGLAS GLOBALES DE TIPOGRAFÍA: NEGRO TINTA (#1A1A1A) EN MODO CLARO --- */
+
+html:not(.dark) h1:not(.preserve-color),
+html:not(.dark) h2:not(.preserve-color),
+html:not(.dark) h3:not(.preserve-color),
+html:not(.dark) h4:not(.preserve-color),
+html:not(.dark) h5:not(.preserve-color),
+html:not(.dark) h6:not(.preserve-color) {
+  color: #1A1A1A;
+}
+
+/* Reemplazo global de acentos vinotinto a Forest Green / Black */
+html:not(.dark) .text-\[\#8B0024\],
+html:not(.dark) .text-\[\#80273B\],
+html:not(.dark) .text-\[\#2a0002\],
+html:not(.dark) .text-\[\#2B0002\] {
+  color: #163422 !important;
+}
+
+html:not(.dark) .border-\[\#8B0024\],
+html:not(.dark) .border-\[\#80273B\] {
+  border-color: #163422 !important;
+}
+
+html:not(.dark) .bg-\[\#8B0024\],
+html:not(.dark) .bg-\[\#80273B\],
+html:not(.dark) .bg-\[\#2a0002\],
+html:not(.dark) .bg-\[\#2B0002\] {
+  background-color: #163422 !important;
+}
+
+html:not(.dark) .hover\:bg-\[\#8B0024\]:hover,
+html:not(.dark) .hover\:bg-\[\#80273B\]:hover {
+  background-color: #1B2E22 !important;
+}
+
+/* --- SECCIÓN NOSOTROS Y BLOG EDITORIAL: TIPOGRAFÍA 100% NEGRO PURO --- */
+.nosotros-page-root,
+.nosotros-page-root h1,
+.nosotros-page-root h2,
+.nosotros-page-root h3,
+.nosotros-page-root h4,
+.nosotros-page-root h5,
+.nosotros-page-root h6,
+.nosotros-page-root p,
+.nosotros-page-root strong,
+.nosotros-page-root span:not(.preserve-color),
+.nosotros-page-root li,
+.nosotros-page-root blockquote {
+  color: #000000 !important;
+}
+
+.nosotros-page-root .text-\[\#8B0024\],
+.nosotros-page-root a.text-\[\#8B0024\],
+html:not(.dark) .nosotros-page-root .text-\[\#8B0024\] {
+  color: #163422 !important;
+}
+
+/* --- FOOTER GLOBAL: TIPOGRAFÍA EN NEGRO PURO EN MODO CLARO --- */
+html:not(.dark) footer {
+  background-color: #FFFFFF !important;
+}
+html:not(.dark) footer,
+html:not(.dark) footer h1,
+html:not(.dark) footer h2,
+html:not(.dark) footer h3,
+html:not(.dark) footer h4,
+html:not(.dark) footer h5,
+html:not(.dark) footer h6,
+html:not(.dark) footer p,
+html:not(.dark) footer a,
+html:not(.dark) footer .footer-text {
+  color: #000000 !important;
+}
+
+html:not(.dark) footer .text-\[\#163422\] {
+  color: #163422 !important;
+}
+
+html.dark footer {
+  background-color: #0B0C10 !important;
+  color: #FFFFFF !important;
+}
+html.dark footer a {
+  color: #E2E8F0 !important;
+}
+
+/* --- COBERTURA COMPLETA DE MODO OSCURO (CLIENTE & ADMIN) --- */
+
+.dark main,
+.dark .bg-gray-100,
+.dark .bg-gray-200 {
+  background-color: #0F1015 !important;
+  color: #FFFFFF !important;
+}
+
+.dark .bg-white {
+  background-color: #181922 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+.dark .bg-\[\#F9F9F9\] {
+  background-color: #0F1015 !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-gray-50\/50,
+.dark .bg-gray-50\/80 {
+  background-color: #12131A !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Bordes en Modo Oscuro con Tono Dorado sutil */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: rgba(212, 175, 55, 0.15) !important;
+}
+
+/* Formularios y Tablas Admin */
+html:not(.dark) input:not([type="submit"]):not([type="button"]):not([type="hidden"]),
+html:not(.dark) textarea,
+html:not(.dark) select {
+  color: #000000 !important;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #12131A !important;
+  color: #FFFFFF !important;
+  border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+.dark table,
+.dark tr,
+.dark td,
+.dark th {
+  background-color: #181922 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark header {
+  background-color: rgba(24, 25, 34, 0.9) !important;
+  border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Script font and luxury styling from flor.zip */
+.font-script-custom {
+  font-family: var(--font-great-vibes), cursive;
+}
+.font-luxury-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+.letter-spacing-wide {
+  letter-spacing: 0.35em;
+}
+.map-pattern {
+  background-color: #f6f4f0;
+  background-image: 
+    radial-gradient(#dedad4 1.5px, transparent 1.5px),
+    linear-gradient(to right, #dedad4 1px, transparent 1px),
+    linear-gradient(to bottom, #dedad4 1px, #f6f4f0 1px);
+  background-size: 30px 30px, 120px 120px, 120px 120px;
+}
+

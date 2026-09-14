@@ -1,0 +1,137 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { Truck, MailCheck, Sparkles, Star } from "lucide-react";
+
+interface LuxuryHeroSectionProps {
+  siteConfig?: any;
+}
+
+export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig }) => {
+  const logoUrl = siteConfig?.logoUrl || "https://bonbonflowershouston.com/logo.png";
+  const catalogUrl = "/productos";
+
+  return (
+    <section className="relative overflow-hidden bg-white dark:bg-[#0F1015] py-12 md:py-20 lg:py-24 border-b border-stone-200 dark:border-gray-800 transition-colors duration-300 select-none">
+      {/* Elementos decorativos florales laterales con ligera rotación */}
+      <div className="absolute inset-0 flex justify-between items-center opacity-30 dark:opacity-20 pointer-events-none px-4 md:px-12 select-none overflow-hidden">
+        {/* Bouquet Izquierdo */}
+        <div className="w-56 md:w-80 transform -translate-x-10 rotate-[-6deg] hidden sm:block">
+          <img
+            alt="Bouquet Presentation Left"
+            className="rounded-3xl shadow-2xl w-full object-cover aspect-[3/4]"
+            src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=500&q=75&auto=format"
+          />
+        </div>
+        {/* Bouquet Derecho */}
+        <div className="w-56 md:w-80 transform translate-x-10 rotate-[6deg] hidden sm:block">
+          <img
+            alt="Bouquet Presentation Right"
+            className="rounded-3xl shadow-2xl w-full object-cover aspect-[3/4]"
+            src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=500&q=75&auto=format"
+          />
+        </div>
+      </div>
+
+      {/* Contenido Central Hero */}
+      <div className="relative max-w-4xl mx-auto text-center px-4 z-10">
+        
+        {/* Logotipo Oficial de Bonbon Flowers con aro dorado */}
+        <div className="flex justify-center mb-4">
+          <div className="relative group">
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-[#C5A059] via-[#163422] to-[#C5A059] rounded-full blur opacity-35 group-hover:opacity-65 transition duration-500" />
+            <img
+              src={logoUrl}
+              alt="Bonbon Flowers Houston"
+              width={96}
+              height={96}
+              className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-xl border-2 sm:border-4 border-[#C5A059] transform hover:scale-105 transition-transform duration-300 bg-white"
+            />
+          </div>
+        </div>
+
+        {/* Kicker de marca en tipografía dorada con tracking amplio */}
+        <p className="text-[#C5A059] dark:text-[#E6C98B] font-serif tracking-[0.25em] uppercase text-xs md:text-sm font-semibold mb-2">
+          Bonbon Flowers Houston
+        </p>
+
+        {/* Titular Principal Editorial con Script Cursivo en Verde Bosque y fuentes negras */}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-luxury-serif text-stone-900 dark:text-white leading-tight font-normal">
+          Flowers that <br className="hidden sm:block" />make them <br />
+          <span className="font-script-custom text-[#163422] dark:text-[#C5A059] text-6xl md:text-8xl lg:text-9xl block -mt-2 md:-mt-4">
+            feel loved ♡
+          </span>
+        </h1>
+
+        <p className="text-black dark:text-gray-300 text-sm md:text-base font-medium mt-3 mb-8 max-w-lg mx-auto">
+          Same day luxury flower delivery in Houston, TX &amp; surrounding areas.
+        </p>
+
+        {/* Fila de 4 Badges de Valor con estilo circular limpio y fuentes negras */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-8 text-black dark:text-white">
+          {/* Badge 1 */}
+          <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white dark:bg-[#181922] border border-stone-300 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 mb-2 rounded-full bg-stone-100 dark:bg-gray-800 flex items-center justify-center text-[#163422] dark:text-[#C5A059] border border-stone-200 dark:border-gray-700 shadow-sm">
+              <Truck size={18} />
+            </div>
+            <span className="text-xs font-black text-black dark:text-white text-center leading-snug">
+              Same Day<br />Delivery
+            </span>
+          </div>
+
+          {/* Badge 2 */}
+          <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white dark:bg-[#181922] border border-stone-300 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 mb-2 rounded-full bg-stone-100 dark:bg-gray-800 flex items-center justify-center text-[#163422] dark:text-[#C5A059] border border-stone-200 dark:border-gray-700 shadow-sm">
+              <MailCheck size={18} />
+            </div>
+            <span className="text-xs font-black text-black dark:text-white text-center leading-snug">
+              Personalized<br />Card Included
+            </span>
+          </div>
+
+          {/* Badge 3 */}
+          <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white dark:bg-[#181922] border border-stone-300 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 mb-2 rounded-full bg-stone-100 dark:bg-gray-800 flex items-center justify-center text-[#163422] dark:text-[#C5A059] border border-stone-200 dark:border-gray-700 shadow-sm">
+              <Sparkles size={18} />
+            </div>
+            <span className="text-xs font-black text-black dark:text-white text-center leading-snug">
+              Premium<br />Roses &amp; Flowers
+            </span>
+          </div>
+
+          {/* Badge 4 */}
+          <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white dark:bg-[#181922] border border-stone-300 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 mb-2 rounded-full bg-stone-100 dark:bg-gray-800 flex items-center justify-center text-[#C5A059] border border-stone-200 dark:border-gray-700 shadow-sm">
+              <Star size={18} fill="#C5A059" />
+            </div>
+            <span className="text-xs font-black text-black dark:text-white text-center leading-snug">
+              5-Star<br />Rated Boutique
+            </span>
+          </div>
+        </div>
+
+        {/* Botón CTA Principal en Verde Bosque de Lujo */}
+        <div className="mb-4">
+          <Link
+            href={catalogUrl}
+            className="inline-flex items-center justify-center bg-[#163422] hover:bg-[#1B2E22] text-white text-sm md:text-base font-bold tracking-wider px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+          >
+            <span>SHOP BEST SELLERS</span>
+            <span className="ml-2.5 w-6 h-6 rounded-full bg-white text-[#163422] inline-flex items-center justify-center text-xs font-black transition-transform group-hover:translate-x-0.5">
+              ›
+            </span>
+          </Link>
+        </div>
+
+        {/* Prueba social de estrellas */}
+        <div className="flex items-center justify-center space-x-1 text-xs sm:text-sm text-black dark:text-gray-300 font-medium">
+          <span className="text-amber-500 text-sm">★★★★★</span>
+          <span className="font-extrabold text-black dark:text-white ml-1">4.9/5</span>
+          <span>Based on 500+ happy customers in Houston</span>
+        </div>
+
+      </div>
+    </section>
+  );
+};
