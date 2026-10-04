@@ -82,58 +82,58 @@ export interface ISiteConfig extends Document {
 
 const SiteConfigSchema: Schema = new Schema({
   key: { type: String, required: true, unique: true, default: "global" },
-  heroTitle: { type: String, default: "Bonbon Flowers Houston" },
-  heroSlogan: { type: String, default: "Arreglos florales exclusivos y detalles de lujo diseñados para sorprender a quien más amas." },
-  heroButtonText: { type: String, default: "Explorar Colección" },
-  footerTitle: { type: String, default: "Bonbon Flowers Houston" },
-  footerSlogan: { type: String, default: "Boutique Digital de Alta Floristería • Houston, Texas" },
-  footerCopyright: { type: String, default: "© 2026 Bonbon Flowers Houston. Todos los derechos reservados." },
+  heroTitle: { type: String, default: "Aldri Shop" },
+  heroSlogan: { type: String, default: "Tu tienda online de productos digitales de alta demanda y novedades exclusivas en dropshipping." },
+  heroButtonText: { type: String, default: "Explorar Productos" },
+  footerTitle: { type: String, default: "Aldri Shop" },
+  footerSlogan: { type: String, default: "Innovación digital y productos exclusivos con envío directo a tu hogar." },
+  footerCopyright: { type: String, default: "© 2026 Aldri Shop. Todos los derechos reservados." },
 
   // Personalización del Home & Cuadrícula (Por defecto 3 columnas en escritorio = Preservación 100%)
   productColumnsDesktop: { type: Number, default: 3 },
   productColumnsMobile: { type: Number, default: 2 },
 
   // Identidad de Marca y Menú
-  logoUrl: { type: String, default: "https://bonbonflowershouston.com/logo.png" },
-  brandSlogan: { type: String, default: "Boutique Floral Digital • Houston, Texas" },
+  logoUrl: { type: String, default: "/logo.png" },
+  brandSlogan: { type: String, default: "Productos Digitales & Dropshipping Global" },
   menuHomeLabel: { type: String, default: "Inicio" },
-  menuCatalogLabel: { type: String, default: "Colección" },
+  menuCatalogLabel: { type: String, default: "Catálogo" },
   menuTrackingLabel: { type: String, default: "📦 Rastreo" },
   menuAboutLabel: { type: String, default: "Nosotros" },
   menuContactLabel: { type: String, default: "Contacto" },
-  primaryColor: { type: String, default: "#FF97A4" },
+  primaryColor: { type: String, default: "#6366F1" },
 
   // Redes Sociales en Cabecera
   enableHeaderSocials: { type: Boolean, default: true },
-  facebookUrl: { type: String, default: "https://www.facebook.com/bonbon.flowers.2025" },
-  instagramUrl: { type: String, default: "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ==" },
+  facebookUrl: { type: String, default: "https://facebook.com" },
+  instagramUrl: { type: String, default: "https://instagram.com" },
   tiktokUrl: { type: String, default: "https://tiktok.com" },
-  whatsappUrl: { type: String, default: "https://wa.me/13467392730" },
+  whatsappUrl: { type: String, default: "" },
 
   // Módulo Social Pre-Footer (Incrustados Instagram/TikTok)
   enableSocialFeed: { type: Boolean, default: true },
-  socialFeedTitle: { type: String, default: "Síguenos en Instagram @bonbonflowers__ 📸" },
+  socialFeedTitle: { type: String, default: "Síguenos en nuestras redes @aldrishop 🚀" },
   socialEmbedHtml: { type: String, default: "" },
 
   // Módulo de Reseñas / Opiniones & Trustpilot (Pre-Footer)
   enableReviewsSection: { type: Boolean, default: true },
-  reviewsTitle: { type: String, default: "Lo que dicen nuestros clientes en Houston ⭐⭐⭐⭐⭐" },
+  reviewsTitle: { type: String, default: "Lo que dicen nuestros clientes ⭐⭐⭐⭐⭐" },
   reviewsRatingScore: { type: String, default: "4.9 / 5.0" },
-  reviewsCountText: { type: String, default: "+180 Opiniones Verificadas" },
+  reviewsCountText: { type: String, default: "+250 Opiniones Verificadas" },
   trustpilotWidgetHtml: { type: String, default: "" },
 
   // Módulo de iFrames Personalizados
   enableCustomIframe: { type: Boolean, default: false },
-  customIframeTitle: { type: String, default: "Ubicación & Promociones Destacadas" },
+  customIframeTitle: { type: String, default: "Novedades & Promociones Destacadas" },
   customIframeHtml: { type: String, default: "" },
 
   // Módulo de Chatbot Inteligente Dialogflow CX
-  enableChatbot: { type: Boolean, default: true },
+  enableChatbot: { type: Boolean, default: false },
   dialogflowAgentId: { type: String, default: "" },
   dialogflowProjectId: { type: String, default: "" },
   dialogflowLocation: { type: String, default: "us-central1" },
   dialogflowLanguageCode: { type: String, default: "es" },
-  dialogflowChatTitle: { type: String, default: "Flor • Bonbon Flowers 🌸" },
+  dialogflowChatTitle: { type: String, default: "Asistente • Aldri Shop 🤖" },
 
   twoFactorMode: { type: String, default: "none" },
   twoFactorPin: { type: String, default: "" },
@@ -143,17 +143,17 @@ const SiteConfigSchema: Schema = new Schema({
   rescueOtpExpiresAt: { type: Date, default: null },
 
   // Campos SEO por defecto
-  seoTitle: { type: String, default: "Bonbon Flowers Houston | Boutique Digital de Alta Floristería" },
-  seoDescription: { type: String, default: "Floristería exclusiva con arreglos florales de lujo, rosas y detalles personalizados a domicilio con entrega express en Houston, TX." },
-  seoKeywords: { type: String, default: "floristeria, flores a domicilio, arreglos florales, rosas, ramos de flores, regalos, houston tx, bonbon flowers" },
-  ogImage: { type: String, default: "https://bonbonflowershouston.com/logo.png" },
+  seoTitle: { type: String, default: "Aldri Shop | Productos Digitales & Dropshipping" },
+  seoDescription: { type: String, default: "Descubre recursos digitales de entrega inmediata y productos seleccionados en tendencia con envío a tu puerta." },
+  seoKeywords: { type: String, default: "productos digitales, software, ebooks, cursos, dropshipping, compras online, aldri shop" },
+  ogImage: { type: String, default: "/logo.png" },
   googleSiteVerification: { type: String, default: "" },
   bingSiteVerification: { type: String, default: "" },
   googleAnalyticsId: { type: String, default: "" },
-  businessName: { type: String, default: "Bonbon Flowers" },
-  businessPhone: { type: String, default: "+1 (346) 739-2730" },
-  businessAddress: { type: String, default: "Houston, TX" },
-  businessCity: { type: String, default: "Houston, TX" },
+  businessName: { type: String, default: "Aldri Shop" },
+  businessPhone: { type: String, default: "" },
+  businessAddress: { type: String, default: "" },
+  businessCity: { type: String, default: "" },
 
   updatedAt: { type: Date, default: Date.now }
 });

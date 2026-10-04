@@ -53,12 +53,12 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Bonbon Flowers Houston",
-  description: "Boutique floral de lujo en Houston, TX con envíos a domicilio",
+  title: "Aldri Shop | Productos Digitales & Dropshipping",
+  description: "Tienda online de productos digitales de alta demanda y dropshipping con entrega garantizada.",
   manifest: "/manifest.json",
   icons: {
-    icon: "https://bonbonflowershouston.com/logo.png",
-    apple: "https://bonbonflowershouston.com/logo.png",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
 };
 
@@ -74,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${playfair.variable} ${montserrat.variable} ${plusJakarta.variable} ${manrope.variable} ${greatVibes.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="https://bonbonflowershouston.com/logo.png" />
+        <link rel="icon" href="/logo.png" />
         <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />

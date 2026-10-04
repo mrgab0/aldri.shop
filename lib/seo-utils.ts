@@ -1,9 +1,9 @@
 import { IProduct as Product } from "@/lib/models/Product";
 
 /**
- * Genera el script JSON-LD para un producto floral (Google Shopping & Rich Snippets).
+ * Genera el script JSON-LD para un producto (Google Shopping & Rich Snippets).
  */
-export function getProductSchema(product: Product, siteUrl: string = "https://bonbonflowershouston.com") {
+export function getProductSchema(product: Product, siteUrl: string = "https://aldri.shop") {
   const schema = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -21,8 +21,8 @@ export function getProductSchema(product: Product, siteUrl: string = "https://bo
         ? "https://schema.org/InStock" 
         : "https://schema.org/OutOfStock",
       "seller": {
-        "@type": "FlowerShop",
-        "name": "Bonbon Flowers Houston"
+        "@type": "OnlineStore",
+        "name": "Aldri Shop"
       }
     }
   };
@@ -31,23 +31,22 @@ export function getProductSchema(product: Product, siteUrl: string = "https://bo
 }
 
 /**
- * Genera el marcado JSON-LD de Negocio Local / Floristería para Google Maps.
+ * Genera el marcado JSON-LD de Tienda Online para Google.
  */
-export function getLocalBusinessSchema(config: any, siteUrl: string = "https://bonbonflowershouston.com") {
+export function getLocalBusinessSchema(config: any, siteUrl: string = "https://aldri.shop") {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "FlowerShop",
-    "name": config?.businessName || "Bonbon Flowers Houston",
+    "@type": "OnlineStore",
+    "name": config?.businessName || "Aldri Shop",
     "image": config?.ogImage || `${siteUrl}/logo.png`,
     "@id": siteUrl,
     "url": siteUrl,
-    "telephone": config?.businessPhone || "+1 (346) 739-2730",
+    "telephone": config?.businessPhone || "",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": config?.businessAddress || "Houston, TX",
-      "addressLocality": config?.businessCity || "Houston, TX",
-      "addressRegion": "TX",
+      "streetAddress": config?.businessAddress || "",
+      "addressLocality": config?.businessCity || "",
       "addressCountry": "US"
     },
     "openingHoursSpecification": {
@@ -61,8 +60,8 @@ export function getLocalBusinessSchema(config: any, siteUrl: string = "https://b
         "Saturday",
         "Sunday"
       ],
-      "opens": "08:00",
-      "closes": "20:00"
+      "opens": "00:00",
+      "closes": "23:59"
     }
   };
 
@@ -101,11 +100,11 @@ export function constructMetadata({
   image?: string;
   slug?: string;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bonbonflowershouston.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aldri.shop";
   const fullUrl = slug ? `${siteUrl}/${slug}` : siteUrl;
 
   return {
-    title: `${title} | Bonbon Flowers Houston`,
+    title: `${title} | Aldri Shop`,
     description,
     openGraph: {
       title,
