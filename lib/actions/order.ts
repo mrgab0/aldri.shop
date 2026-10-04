@@ -68,11 +68,17 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
   }
 
   if (!savedOrder) {
+    const hasDigital = (orderData.items || []).some((i: any) => i.productType === 'digital');
+    const hasDropship = (orderData.items || []).some((i: any) => i.productType === 'dropship');
+    const computedOrderType = orderData.orderType || (hasDigital && hasDropship ? 'hybrid' : (hasDropship ? 'dropship' : 'digital'));
+
     savedOrder = new Order({
       ...orderData,
-      orderId: "FFY-" + Math.floor(Math.random() * 100000) + "-1",
+      orderType: computedOrderType,
+      orderId: "ALDR-" + Math.floor(100000 + Math.random() * 900000) + "-1",
       items: orderData.items,
       total: orderData.total,
+      status: computedOrderType === 'digital' ? 'Completado' : 'Procesando',
       createdAt: new Date(),
     });
     await savedOrder.save();
@@ -106,7 +112,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
       console.error("Error enviando email SMTP: No se encontraron destinatarios válidos en ADMIN_EMAILS ni SMTP_USER.");
     } else {
       const transporter = getTransporter();
-      const sender = process.env.SMTP_USER ? `"Bonbon Flowers" <${process.env.SMTP_USER}>` : '"Bonbon Flowers"';
+      const sender = process.env.SMTP_USER ? `"Aldri Shop" <${process.env.SMTP_USER}>` : '"Aldri Shop"';
 
       // Destinatarios: Administradores y opcionalmente el cliente
       const recipients = [...adminEmails];
@@ -116,66 +122,56 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
       const toEmails = Array.from(new Set(recipients)).join(", ");
 
       const cleanPhoneDigits = (savedOrder.customerPhone || "").replace(/\D/g, "");
-      const waLink = cleanPhoneDigits ? `https://wa.me/${cleanPhoneDigits.length === 10 ? '1' + cleanPhoneDigits : cleanPhoneDigits}` : "https://wa.me/13467392730";
+      const waLink = cleanPhoneDigits ? `https://wa.me/${cleanPhoneDigits.length === 10 ? '1' + cleanPhoneDigits : cleanPhoneDigits}` : "";
 
-      const orderTotal = savedOrder.total || 0;
-      const deliveryFee = savedOrder.deliveryFee || 0;
-      const discountAmount = savedOrder.discountAmount || 0;
-      const taxAmount = savedOrder.taxAmount || 0;
-
-      const itemsSubtotal = (savedOrder.items || []).reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
-
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bonbonflowershouston.com";
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aldri.shop";
       const fallbackLogoUrl = `${siteUrl.replace(/\/$/, "")}/logo.png`;
 
       // Comprobar archivo del logo en el servidor de forma local para adjuntarlo inline (CID)
       const logoPath = path.join(process.cwd(), "public", "logo.png");
       const hasLogoFile = fs.existsSync(logoPath);
-      const logoSrc = hasLogoFile ? "cid:logo_image@bonbonflowers" : fallbackLogoUrl;
+      const logoSrc = hasLogoFile ? "cid:logo_image@aldrishop" : fallbackLogoUrl;
+      const orderTotal = savedOrder.total || 0;
+      const deliveryFee = savedOrder.deliveryFee || 0;
+      const discountAmount = savedOrder.discountAmount || 0;
+      const taxAmount = savedOrder.taxAmount || 0;
+      const itemsSubtotal = (savedOrder.items || []).reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
 
       const emailContent = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background: #ffffff;">
-          <div style="background-color: #FF97A4; padding: 20px 25px; text-align: center;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+          <div style="background-color: #6366F1; padding: 24px; text-align: center;">
             <table role="presentation" style="margin: 0 auto; border-collapse: collapse;">
               <tr>
                 <td style="vertical-align: middle; padding-right: 14px;">
-                  <img src="${logoSrc}" alt="Bonbon Flowers Logo" style="width: 46px; height: 46px; border-radius: 50%; border: 2px solid #ffffff; display: block; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" />
+                  <img src="${logoSrc}" alt="Aldri Shop Logo" style="width: 48px; height: 48px; border-radius: 8px; border: 2px solid #ffffff; display: block; object-fit: cover;" />
                 </td>
                 <td style="vertical-align: middle; text-align: left;">
-                  <h1 style="color: #ffffff; margin: 0; font-family: Georgia, serif; font-size: 24px; font-weight: bold; line-height: 1.1;">Bonbon Flowers Houston</h1>
-                  <p style="color: rgba(255,255,255,0.92); margin: 3px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-family: Arial, sans-serif; font-weight: bold;">Boutique Digital & Alta Floristería • Houston, TX</p>
+                  <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold; line-height: 1.1;">Aldri Shop</h1>
+                  <p style="color: rgba(255,255,255,0.9); margin: 3px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;">Productos Digitales & Dropshipping</p>
                 </td>
               </tr>
             </table>
           </div>
           
           <div style="padding: 25px;">
-            <h2 style="color: #1A1C1C;">¡Comprobante de Pedido / Receipt! 🌸</h2>
+            <h2 style="color: #0F172A; margin-top: 0;">¡Comprobante de Pedido / Receipt! 🚀</h2>
 
-            ${isConsolidatedWithin2Hours && originalOrder ? `
-              <div style="margin-bottom: 20px; padding: 14px; background-color: #f3e8ff; border-left: 4px solid #9333ea; border-radius: 8px;">
-                <strong style="color: #6b21a8; font-size: 13px;">📦 Nota de Envío Agrupado / Consolidado (< 2 horas):</strong><br>
-                <span style="font-size: 12px; color: #4c1d95; display: block; margin-top: 4px;">
-                  Esta compra fue realizada <strong>${minutesElapsed} min</strong> después de tu pedido previo (<strong>#${originalOrder.orderId}</strong>). Como tu primer pedido aún está en diseño en boutique, nuestros repartidores agruparán ambos paquetes en la misma ruta de entrega a tu ubicación.
-                </span>
-              </div>
-            ` : ''}
-            
-            <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <div style="background-color: #F8FAFC; padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #E2E8F0;">
               <p style="margin: 5px 0;"><strong>ID Pedido:</strong> ${savedOrder.orderId}</p>
+              <p style="margin: 5px 0;"><strong>Tipo de Pedido:</strong> ${savedOrder.orderType === 'digital' ? '💻 Descarga Digital' : (savedOrder.orderType === 'dropship' ? '📦 Envío Físico (Dropshipping)' : '⚡ Híbrido (Digital + Físico)')}</p>
               <p style="margin: 5px 0;"><strong>Cliente:</strong> ${savedOrder.customerName}</p>
-              <p style="margin: 5px 0;"><strong>Correo Electrónico:</strong> <a href="mailto:${savedOrder.customerEmail || ''}" style="color: #FF97A4; font-weight: bold;">${savedOrder.customerEmail || 'No especificado'}</a></p>
+              <p style="margin: 5px 0;"><strong>Correo Electrónico:</strong> <a href="mailto:${savedOrder.customerEmail || ''}" style="color: #6366F1; font-weight: bold;">${savedOrder.customerEmail || 'No especificado'}</a></p>
               <p style="margin: 5px 0;"><strong>Teléfono / WhatsApp:</strong> ${savedOrder.customerPhone}</p>
-              <p style="margin: 5px 0;"><strong>Opción de Entrega:</strong> ${savedOrder.deliveryMethod || orderData.deliveryMethod || "Envío a Domicilio"}</p>
-              <p style="margin: 5px 0;"><strong>Dirección de Entrega:</strong> ${savedOrder.address}</p>
-              ${savedOrder.distanceMiles ? `<p style="margin: 5px 0; color: #6b21a8; font-weight: bold;"><strong>📍 Distancia Calculada desde Boutique:</strong> ${savedOrder.distanceMiles} Millas</p>` : ''}
-              
-              ${savedOrder.cardMessage ? `
-                <div style="margin-top: 12px; padding: 12px; background-color: #fff0f3; border-left: 4px solid #ff97a4; border-radius: 6px;">
-                  <strong style="color: #b0004a; font-size: 13px;">💌 Tarjeta de Dedicatoria Impresa Incluida:</strong><br>
-                  <em style="color: #333333; font-size: 13px; display: block; margin-top: 4px;">"${savedOrder.cardMessage}"</em>
-                </div>
-              ` : ''}
+              <p style="margin: 5px 0;"><strong>Entrega:</strong> ${savedOrder.deliveryMethod || "Entrega Inmediata"}</p>
+              ${savedOrder.address && savedOrder.address !== "Entrega Digital" ? `<p style="margin: 5px 0;"><strong>Dirección de Entrega:</strong> ${savedOrder.address}</p>` : ''}
+              ${savedOrder.trackingNumber ? `<p style="margin: 5px 0; color: #10B981; font-weight: bold;"><strong>🚚 Número de Guía:</strong> ${savedOrder.trackingNumber} (${savedOrder.trackingCarrier || 'Transportadora'})</p>` : ''}
+            </div>
+
+            <div style="margin-bottom: 20px; text-align: center;">
+              <a href="${siteUrl}/rastreo?order=${savedOrder.orderId}" style="display: inline-block; background-color: #6366F1; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                Ver Estado y Descargas de mi Pedido 📥
+              </a>
+            </div>
 
               ${savedOrder.googleMapsUrl ? `
                 <div style="margin-top: 10px;">
@@ -295,6 +291,7 @@ export async function getOrderById(orderIdOrPhone: string) {
       $or: [
         { orderId: query },
         { customerPhone: { $regex: query, $options: "i" } },
+        { customerEmail: { $regex: query, $options: "i" } },
         { customerName: { $regex: query, $options: "i" } }
       ]
     }).lean();

@@ -18,7 +18,22 @@ export async function createProduct(formData: FormData) {
     const stock = parseInt(formData.get("stock") as string) || 0;
     const sku = formData.get("sku") as string || "";
     
-    // Nuevos campos
+    // Nuevos campos para Aldri Shop
+    const productType = (formData.get("productType") as string) || "digital";
+    const compareAtPrice = parseFloat(formData.get("compareAtPrice") as string) || 0;
+    
+    // Campos digitales
+    const digitalFileUrl = formData.get("digitalFileUrl") as string || "";
+    const digitalFileType = formData.get("digitalFileType") as string || "";
+    const digitalFileSize = formData.get("digitalFileSize") as string || "";
+    const digitalLicenseKey = formData.get("digitalLicenseKey") as string || "";
+
+    // Campos dropshipping
+    const supplierSku = formData.get("supplierSku") as string || "";
+    const supplierUrl = formData.get("supplierUrl") as string || "";
+    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || "7-12 días hábiles";
+    const shippingOrigin = formData.get("shippingOrigin") as string || "Almacén Internacional";
+
     const flowerCount = parseInt(formData.get("flowerCount") as string) || 0;
     const bouquetType = formData.get("bouquetType") as string || "";
     const badge = formData.get("badge") as string || "";
@@ -42,11 +57,27 @@ export async function createProduct(formData: FormData) {
     const newProduct = new Product({
       name,
       price,
+      compareAtPrice,
+      productType,
       category,
       description,
       images,
       stock,
       sku,
+      digitalAsset: {
+        fileUrl: digitalFileUrl,
+        fileSize: digitalFileSize,
+        fileType: digitalFileType,
+        downloadLimit: 10,
+        licenseKey: digitalLicenseKey
+      },
+      dropshipInfo: {
+        supplierSku,
+        supplierUrl,
+        estimatedDeliveryDays,
+        shippingOrigin,
+        weightKg: 0
+      },
       flowerCount,
       bouquetType,
       badge,
@@ -221,7 +252,22 @@ export async function updateProduct(id: string, formData: FormData) {
     const stock = parseInt(formData.get("stock") as string) || 0;
     const sku = formData.get("sku") as string || "";
     
-    // Nuevos campos
+    // Nuevos campos para Aldri Shop
+    const productType = (formData.get("productType") as string) || "digital";
+    const compareAtPrice = parseFloat(formData.get("compareAtPrice") as string) || 0;
+    
+    // Campos digitales
+    const digitalFileUrl = formData.get("digitalFileUrl") as string || "";
+    const digitalFileType = formData.get("digitalFileType") as string || "";
+    const digitalFileSize = formData.get("digitalFileSize") as string || "";
+    const digitalLicenseKey = formData.get("digitalLicenseKey") as string || "";
+
+    // Campos dropshipping
+    const supplierSku = formData.get("supplierSku") as string || "";
+    const supplierUrl = formData.get("supplierUrl") as string || "";
+    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || "7-12 días hábiles";
+    const shippingOrigin = formData.get("shippingOrigin") as string || "Almacén Internacional";
+
     const flowerCount = parseInt(formData.get("flowerCount") as string) || 0;
     const bouquetType = formData.get("bouquetType") as string || "";
     const badge = formData.get("badge") as string || "";
@@ -247,11 +293,27 @@ export async function updateProduct(id: string, formData: FormData) {
       {
         name,
         price,
+        compareAtPrice,
+        productType,
         category,
         description,
         images,
         stock,
         sku,
+        digitalAsset: {
+          fileUrl: digitalFileUrl,
+          fileSize: digitalFileSize,
+          fileType: digitalFileType,
+          downloadLimit: 10,
+          licenseKey: digitalLicenseKey
+        },
+        dropshipInfo: {
+          supplierSku,
+          supplierUrl,
+          estimatedDeliveryDays,
+          shippingOrigin,
+          weightKg: 0
+        },
         flowerCount,
         bouquetType,
         badge,

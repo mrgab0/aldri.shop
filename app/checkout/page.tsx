@@ -2,7 +2,7 @@
 
 import { useCart } from "@/components/shop/Cart/CartContext";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { createOrder } from "@/lib/actions/order";
 import { ShopHeader } from "@/components/shop/ShopHeader";
 import { DEFAULT_DELIVERY_OPTIONS, DeliveryOption } from "@/lib/deliveryOptions";
@@ -165,7 +165,12 @@ export default function CheckoutPage() {
     return Math.round(totalFee * 100) / 100;
   };
 
-  const deliveryFee = selectedDelivery ? calcOptionFee(selectedDelivery) : 0;
+  const isOnlyDigital = useMemo(() => {
+    if (cartItems.length === 0) return true;
+    return cartItems.every((item) => item.productType === 'digital');
+  }, [cartItems]);
+
+  const deliveryFee = isOnlyDigital ? 0 : (selectedDelivery ? calcOptionFee(selectedDelivery) : 0);
 
   // Total Final = Subtotal Imponible + Sales Tax (8.25%) + Envío
   const finalTotal = taxableSubtotal + taxAmount + deliveryFee;
@@ -203,7 +208,7 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    if (!selectedDelivery) {
+    if (!isOnlyDigital && !selectedDelivery) {
       alert("Por favor selecciona una Opción de Entrega para completar tu pedido.");
       return;
     }
@@ -211,16 +216,25 @@ export default function CheckoutPage() {
     setLoading(true);
 
     const data = new FormData(e.currentTarget);
+    const hasDigital = cartItems.some(i => i.productType === 'digital');
+    const hasDropship = cartItems.some(i => i.productType === 'dropship');
+    const computedOrderType = isOnlyDigital ? "digital" : (hasDigital && hasDropship ? "hybrid" : "dropship");
+
     const orderData = {
       customerName: data.get("name")?.toString() || "",
       customerEmail: data.get("email")?.toString() || "",
       customerPhone: data.get("phone")?.toString() || "",
-      address: deliveryLocation.address || data.get("address")?.toString() || address,
-      destLat: deliveryLocation.lat,
-      destLng: deliveryLocation.lng,
-      distanceMiles: deliveryLocation.distanceMiles,
-      googleMapsUrl: deliveryLocation.googleMapsUrl,
-      deliveryMethod: `${selectedDelivery.title} (${selectedDelivery.estimatedTimeLabel})`,
+      orderType: computedOrderType,
+      address: isOnlyDigital 
+        ? "Entrega Digital (Sin dirección física)" 
+        : (deliveryLocation.address || data.get("address")?.toString() || address || "Dirección de Envío"),
+      destLat: isOnlyDigital ? 0 : deliveryLocation.lat,
+      destLng: isOnlyDigital ? 0 : deliveryLocation.lng,
+      distanceMiles: isOnlyDigital ? 0 : deliveryLocation.distanceMiles,
+      googleMapsUrl: isOnlyDigital ? "" : deliveryLocation.googleMapsUrl,
+      deliveryMethod: isOnlyDigital 
+        ? "Descarga Digital Instantánea" 
+        : (selectedDelivery ? `${selectedDelivery.title} (${selectedDelivery.estimatedTimeLabel})` : "Envío a Domicilio"),
       deliveryFee: deliveryFee,
       couponCode: appliedCoupon ? appliedCoupon.code : "",
       discountAmount: discountAmount,
@@ -316,104 +330,106 @@ export default function CheckoutPage() {
                       className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
                       required 
                     />
-                    <DeliveryMapPicker
-                      initialAddress={address}
-                      onLocationChange={(locData) => {
-                        setAddress(locData.address);
-                        setDeliveryLocation(locData);
-                      }}
-                    />
+                    {isOnlyDigital ? (
+                      <div className="bg-indigo-50/80 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-200 dark:border-indigo-800 space-y-2 mt-2">
+                        <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-bold text-sm">
+                          <Sparkles size={16} />
+                          <span>⚡ Orden Digital • Entrega Instantánea 24/7</span>
+                        </div>
+                        <p className="text-xs text-indigo-900/80 dark:text-indigo-200/80 leading-relaxed font-medium">
+                          Tus productos se activarán inmediatamente después del pago. Recibirás los accesos y enlaces de descarga directamente en tu correo electrónico y en la pantalla de confirmación. No se requiere dirección física ni costos de envío.
+                        </p>
+                      </div>
+                    ) : (
+                      <DeliveryMapPicker
+                        initialAddress={address}
+                        onLocationChange={(locData) => {
+                          setAddress(locData.address);
+                          setDeliveryLocation(locData);
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
 
-                {/* 1.5 Mensaje para la Tarjeta de Dedicatoria Incluida */}
-                <div className="space-y-3 bg-pink-50/60 p-4 rounded-2xl border border-pink-100/80">
-                  <div className="flex justify-between items-center">
-                    <h2 className="text-xs font-bold uppercase tracking-wider text-[#FF97A4] flex items-center gap-1.5">
-                      <Heart size={14} className="text-[#FF97A4] fill-[#FF97A4]" /> Tarjeta de Dedicatoria Impresa (Gratis Incluida)
-                    </h2>
-                    <span className="bg-[#FF97A4] text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase">
-                      Incluido 🎁
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 font-medium leading-relaxed">
-                    Escribe a continuación el mensaje especial que deseas que imprimamos en la tarjeta de regalo de tu arreglo floral:
-                  </p>
-                  <textarea
-                    name="cardMessage"
-                    value={cardMessage}
-                    onChange={(e) => setCardMessage(e.target.value)}
-                    placeholder="Ej: ¡Feliz Cumpleaños María! Deseo que este día esté lleno de amor y alegría. Con todo mi cariño, Carlos. ❤️"
-                    className="w-full p-3.5 border border-pink-200 dark:border-pink-900/50 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#FF97A4] h-24 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder:text-gray-400"
-                  />
-                </div>
+                {!isOnlyDigital && (
+                  <>
+                    {/* Notas para el Envío */}
+                    <div className="space-y-3 bg-gray-50/60 dark:bg-gray-800/40 p-4 rounded-2xl border border-gray-200 dark:border-gray-700">
+                      <h2 className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                        Indicaciones para el Envío (Opcional)
+                      </h2>
+                      <textarea
+                        name="cardMessage"
+                        value={cardMessage}
+                        onChange={(e) => setCardMessage(e.target.value)}
+                        placeholder="Ej: Dejar en portería o instrucciones específicas para la entrega a domicilio."
+                        className="w-full p-3.5 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 h-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder:text-gray-400"
+                      />
+                    </div>
 
-                {/* 2. Selector de Opciones de Entrega */}
-                <div className="space-y-4 pt-2">
-                  <div className="flex justify-between items-center border-b pb-2">
-                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500">
-                      2. Opción y Horario de Entrega
-                    </h2>
-                    <span className="text-xs font-bold text-[#FF97A4]">{deliveryOptionsList.length} opciones disponibles</span>
-                  </div>
+                    {/* 2. Selector de Opciones de Entrega */}
+                    <div className="space-y-4 pt-2">
+                      <div className="flex justify-between items-center border-b pb-2">
+                        <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500">
+                          2. Opción de Envío Físico
+                        </h2>
+                        <span className="text-xs font-bold text-indigo-600">{deliveryOptionsList.length} opciones disponibles</span>
+                      </div>
 
-                  <div className="grid grid-cols-1 gap-2.5 max-h-[380px] overflow-y-auto pr-1">
-                    {deliveryOptionsList.map((option, index) => {
-                      const IconComponent = iconMap[option.iconName] || Truck;
-                      const isSelected = selectedDelivery ? ((selectedDelivery.id && selectedDelivery.id === option.id) || selectedDelivery.title === option.title) : false;
-                      const optionPrice = calcOptionFee(option);
+                      <div className="grid grid-cols-1 gap-2.5 max-h-[380px] overflow-y-auto pr-1">
+                        {deliveryOptionsList.map((option, index) => {
+                          const IconComponent = iconMap[option.iconName] || Truck;
+                          const isSelected = selectedDelivery ? ((selectedDelivery.id && selectedDelivery.id === option.id) || selectedDelivery.title === option.title) : false;
+                          const optionPrice = calcOptionFee(option);
 
-                      return (
-                        <label
-                          key={option.id || (option as any)._id || `delivery-${index}`}
-                          onClick={() => setSelectedDelivery(option)}
-                          className={`relative flex items-center justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all ${
-                            isSelected
-                              ? "border-[#FF97A4] bg-[#FF97A4]/5 shadow-sm"
-                              : "border-gray-100 hover:border-gray-200 bg-white"
-                          }`}
-                        >
-                          <div className="flex items-center gap-3.5">
-                            <div className={`p-2.5 rounded-xl ${isSelected ? "bg-[#FF97A4] text-white" : "bg-gray-100 text-gray-500"}`}>
-                              <IconComponent size={20} />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="font-bold text-sm text-[#1A1C1C]">{option.title}</span>
-                                {option.badge && (
-                                  <span className="bg-[#163422] text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-[#D4AF37]/50">
-                                    {option.badge}
-                                  </span>
-                                )}
+                          return (
+                            <label
+                              key={option.id || (option as any)._id || `delivery-${index}`}
+                              onClick={() => setSelectedDelivery(option)}
+                              className={`relative flex items-center justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all ${
+                                isSelected
+                                  ? "border-indigo-600 bg-indigo-50/30 dark:bg-indigo-950/20"
+                                  : "border-gray-100 dark:border-gray-800 hover:border-gray-200 bg-white dark:bg-gray-900"
+                              }`}
+                            >
+                              <div className="flex items-center gap-3.5">
+                                <div className={`p-2.5 rounded-xl ${isSelected ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-500"}`}>
+                                  <IconComponent size={20} />
+                                </div>
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-bold text-sm text-[#1A1C1C] dark:text-white">{option.title}</span>
+                                    {option.badge && (
+                                      <span className="bg-gray-900 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-indigo-400">
+                                        {option.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-gray-400 mt-0.5">{option.description}</p>
+                                  <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px]">
+                                    <span className="font-bold text-gray-500">
+                                      ⏱️ <strong className="text-gray-800 dark:text-gray-200">{option.estimatedTimeLabel}</strong>
+                                    </span>
+                                  </div>
+                                </div>
                               </div>
-                              <p className="text-xs text-gray-400 mt-0.5">{option.description}</p>
-                              <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px]">
-                                <span className="font-bold text-gray-500">
-                                  ⏱️ <strong className="text-gray-800">{option.estimatedTimeLabel}</strong>
+
+                              <div className="text-right flex-shrink-0 ml-3">
+                                <span suppressHydrationWarning className={`text-sm font-extrabold block ${optionPrice > 0 ? "text-indigo-600" : "text-green-600"}`}>
+                                  {optionPrice > 0 ? `+$${optionPrice.toFixed(2)} USD` : "Gratis"}
                                 </span>
-                                {isMounted && option.id !== "pickup" && option.pricePerMile > 0 && (
-                                  <span suppressHydrationWarning className="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded-md border border-purple-100">
-                                    📍 {deliveryLocation?.distanceMiles || 0} mi × ${option.pricePerMile.toFixed(2)}/mi
-                                  </span>
+                                {isSelected && (
+                                  <CheckCircle2 size={18} className="text-indigo-600 ml-auto mt-1" />
                                 )}
                               </div>
-                            </div>
-                          </div>
-
-                          <div className="text-right flex-shrink-0 ml-3">
-                            <span suppressHydrationWarning className={`text-sm font-extrabold block ${optionPrice > 0 ? "text-[#FF97A4]" : "text-green-600"}`}>
-                              {optionPrice > 0 ? `+$${optionPrice.toFixed(2)} USD` : "Gratis"}
-                            </span>
-                            {isSelected && (
-                              <CheckCircle2 size={18} className="text-[#FF97A4] ml-auto mt-1" />
-                            )}
-                          </div>
-                        </label>
-                      );
-                    })}
-                  </div>
-                </div>
-
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </>
+                )}
                 {/* 3. Información de Pago */}
                 <div className="space-y-4 pt-2">
                   <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500 border-b pb-2">

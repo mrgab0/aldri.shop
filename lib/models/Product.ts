@@ -1,5 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+export type ProductType = 'digital' | 'dropship';
+
 // Interface para el Producto
 export interface IProduct extends Document {
   name: string;
@@ -7,9 +9,27 @@ export interface IProduct extends Document {
   sku?: string;
   description: string;
   price: number;
+  compareAtPrice?: number;
+  productType: ProductType;
   images: string[];
   stock: number;
   category: string;
+  // Campos específicos de Productos Digitales
+  digitalAsset?: {
+    fileUrl?: string;
+    fileSize?: string;
+    fileType?: string;
+    downloadLimit?: number;
+    licenseKey?: string;
+  };
+  // Campos específicos de Dropshipping
+  dropshipInfo?: {
+    supplierSku?: string;
+    supplierUrl?: string;
+    estimatedDeliveryDays?: string;
+    shippingOrigin?: string;
+    weightKg?: number;
+  };
   flowerType?: string;
   dimensions?: string;
   careInstructions?: string;
@@ -32,9 +52,25 @@ const ProductSchema: Schema = new Schema({
   sku: { type: String, default: "" },
   description: { type: String, required: true },
   price: { type: Number, required: true },
+  compareAtPrice: { type: Number, default: 0 },
+  productType: { type: String, enum: ['digital', 'dropship'], default: 'digital' },
   images: [{ type: String }],
   stock: { type: Number, default: 0 },
   category: { type: String, required: true },
+  digitalAsset: {
+    fileUrl: { type: String, default: "" },
+    fileSize: { type: String, default: "" },
+    fileType: { type: String, default: "" },
+    downloadLimit: { type: Number, default: 10 },
+    licenseKey: { type: String, default: "" }
+  },
+  dropshipInfo: {
+    supplierSku: { type: String, default: "" },
+    supplierUrl: { type: String, default: "" },
+    estimatedDeliveryDays: { type: String, default: "7-12 días hábiles" },
+    shippingOrigin: { type: String, default: "Almacén Internacional" },
+    weightKg: { type: Number, default: 0 }
+  },
   flowerType: { type: String, default: "" },
   dimensions: { type: String, default: "" },
   careInstructions: { type: String, default: "" },
@@ -50,6 +86,8 @@ const ProductSchema: Schema = new Schema({
   },
   createdAt: { type: Date, default: Date.now }
 });
+
+ProductSchema.index({ productType: 1, isActive: 1 });
 
 // Índices de Base de Datos para Consultas Ultrarrápidas y Menor Consumo de RAM (slug ya es único en el esquema)
 ProductSchema.index({ category: 1, isActive: 1 });

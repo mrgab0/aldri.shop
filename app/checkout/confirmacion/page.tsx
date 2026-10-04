@@ -21,32 +21,30 @@ export default async function ConfirmacionPage({
         <div className="bg-green-100 p-4 rounded-full text-green-600 mb-6 animate-bounce mx-auto w-20">
           <CheckCircle2 size={48} />
         </div>
-        <h2 className="text-3xl font-bold text-[#1A1C1C] mb-2">¡Compra Finalizada! 🌹</h2>
+        <h2 className="text-3xl font-bold text-[#1A1C1C] mb-2">¡Compra Finalizada con Éxito! 🚀</h2>
         <p className="text-gray-500 mb-6">
-          Pronto recibirás tu pedido. Gracias por elegir Bonbon Flowers Houston.
+          Gracias por confiar en <strong>Aldri Shop</strong>. Hemos procesado tu orden y enviado una copia del comprobante a tu correo.
         </p>
         
-        <div className="bg-gray-50 p-4 rounded-xl mb-8">
-            <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Número de Pedido</p>
-            <p className="text-2xl font-mono font-bold text-[#D81B60]">{orderId}</p>
+        <div className="bg-gray-50 p-4 rounded-xl mb-6">
+            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Número de Pedido</p>
+            <p className="text-2xl font-mono font-bold text-indigo-600">{orderId}</p>
         </div>
 
         {order && <OrderSummary items={order.items} />}
 
-        <div className="flex flex-col gap-4">
-          <a 
-            href={`https://wa.me/13467392730?text=Hola!%20He%20finalizado%20mi%20pedido%20${orderId}.%20Quisiera%20confirmar%20los%20detalles.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-600 transition-all"
+        <div className="flex flex-col gap-3 mt-6">
+          <Link 
+            href={`/rastreo?order=${orderId}`}
+            className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md"
           >
-            <MessageCircle size={20} /> Contactar por WhatsApp
-          </a>
+            📦 Ver Estado del Pedido y Descargas
+          </Link>
           <Link 
             href="/"
-            className="flex items-center justify-center gap-2 bg-[#1A1C1C] text-white px-6 py-3 rounded-xl font-bold hover:bg-black transition-all"
+            className="flex items-center justify-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 rounded-xl font-bold hover:bg-gray-200 transition-all"
           >
-            <Home size={20} /> Volver al Inicio
+            <Home size={18} /> Volver a la Tienda
           </Link>
         </div>
       </div>

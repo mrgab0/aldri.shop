@@ -15,6 +15,7 @@ interface ProductCardProps {
   badge?: string;
   image: string;
   secondaryImage?: string;
+  productType?: 'digital' | 'dropship';
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -25,7 +26,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   category,
   badge,
   image,
-  secondaryImage
+  secondaryImage,
+  productType = 'digital'
 }) => {
   const { addToCart } = useCart();
   const t = useTranslations("common");
@@ -52,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         onDragStart={(e) => e.preventDefault()}
         className="block relative select-none"
       >
-        {/* Contenedor de Imagen con Zoom suave y preservación completa del arreglo floral */}
+        {/* Contenedor de Imagen con Zoom suave */}
         <div className="relative aspect-square overflow-hidden bg-[#FAFAF9] dark:bg-[#15161E] p-2.5 flex items-center justify-center">
           <img
             src={optimizedMainImage}
@@ -78,9 +80,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           
-          {/* Badge Flotante estilo Categoría */}
-          <div className="absolute top-3 left-3">
-            <span className="bg-white dark:bg-gray-900 text-[#163422] dark:text-[#C5A059] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider border border-stone-300 dark:border-gray-700 shadow-md">
+          {/* Badge Flotante de Tipo de Producto */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1">
+            <span className={`text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md border ${
+              productType === 'digital'
+                ? "bg-indigo-600 text-white border-indigo-400"
+                : "bg-emerald-600 text-white border-emerald-400"
+            }`}>
+              {productType === 'digital' ? '⚡ Descarga Digital' : '📦 Dropshipping'}
+            </span>
+            <span className="bg-white/95 dark:bg-gray-900/90 text-gray-800 dark:text-gray-200 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-gray-200 dark:border-gray-700 shadow-sm w-fit">
               {category}
             </span>
           </div>
@@ -88,8 +97,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Insignia / Badge Personalizada */}
           {badge && (
             <div className="absolute top-3 right-3">
-              <span className="bg-[#163422] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md border border-[#D4AF37] flex items-center gap-1">
-                <Sparkles size={10} className="text-[#D4AF37]" />
+              <span className="bg-gray-950 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md border border-amber-400 flex items-center gap-1">
+                <Sparkles size={10} className="text-amber-400" />
                 {badge}
               </span>
             </div>

@@ -143,53 +143,79 @@ export const ProductDetail = ({ product }: { product: any }) => {
               {/* CAJA VISUAL DE ESPECIFICACIONES */}
               <div className="bg-gray-50/80 dark:bg-[#12131A] rounded-2xl p-5 border border-gray-100 dark:border-gray-800 space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                  <Sparkles size={14} className="text-[#FF97A4]" /> Especificaciones del Diseño
+                  <Sparkles size={14} className="text-indigo-500" /> Especificaciones del Producto
                 </h3>
 
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  {product.flowerCount ? (
-                    <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
-                      <div className="p-2 bg-[#FF97A4]/10 text-[#FF97A4] rounded-lg">
-                        <Flower2 size={16} />
+                  {product.productType === 'digital' ? (
+                    <>
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-indigo-500/10 text-indigo-500 rounded-lg">
+                          <Package size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Tipo</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">
+                            {product.digitalAsset?.fileType || "Producto Digital"}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-gray-400 block text-[10px] uppercase font-bold">Flores</span>
-                        <span className="font-bold text-gray-800 dark:text-gray-200">{product.flowerCount} Rosas Frescas</span>
-                      </div>
-                    </div>
-                  ) : null}
 
-                  {product.bouquetType ? (
-                    <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
-                      <div className="p-2 bg-[#FF97A4]/10 text-[#FF97A4] rounded-lg">
-                        <Package size={16} />
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-indigo-500/10 text-indigo-500 rounded-lg">
+                          <Truck size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Entrega</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">⚡ Descarga Inmediata</span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-gray-400 block text-[10px] uppercase font-bold">Presentación</span>
-                        <span className="font-bold text-gray-800 dark:text-gray-200 capitalize">{product.bouquetType}</span>
+
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-indigo-500/10 text-indigo-500 rounded-lg">
+                          <ShieldCheck size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Acceso</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">24/7 de por vida</span>
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    </>
+                  ) : (
+                    <>
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
+                          <Package size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Logística</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">Envío Directo</span>
+                        </div>
+                      </div>
 
-                  <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
-                    <div className="p-2 bg-[#FF97A4]/10 text-[#FF97A4] rounded-lg">
-                      <Truck size={16} />
-                    </div>
-                    <div>
-                      <span className="text-gray-400 block text-[10px] uppercase font-bold">Entrega</span>
-                      <span className="font-bold text-gray-800 dark:text-gray-200">Mismo Día Disponible</span>
-                    </div>
-                  </div>
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
+                          <Truck size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Tiempo Estimado</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">
+                            {product.dropshipInfo?.estimatedDeliveryDays || "7-12 días hábiles"}
+                          </span>
+                        </div>
+                      </div>
 
-                  <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
-                    <div className="p-2 bg-[#FF97A4]/10 text-[#FF97A4] rounded-lg">
-                      <ShieldCheck size={16} />
-                    </div>
-                    <div>
-                      <span className="text-gray-400 block text-[10px] uppercase font-bold">Garantía</span>
-                      <span className="font-bold text-gray-800 dark:text-gray-200">Flores 100% Frescas</span>
-                    </div>
-                  </div>
+                      <div className="bg-white dark:bg-[#181922] p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center gap-2.5">
+                        <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
+                          <ShieldCheck size={16} />
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block text-[10px] uppercase font-bold">Garantía</span>
+                          <span className="font-bold text-gray-800 dark:text-gray-200">Rastreo Incluido</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 

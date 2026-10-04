@@ -17,18 +17,19 @@ interface CatalogClientProps {
 export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogClientProps) {
   const t = useTranslations("Catalog");
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState<"all" | "products" | "addons">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "digital" | "dropship" | "addons">("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc">("featured");
   const { addToCart } = useCart();
   const [addedAddonId, setAddedAddonId] = useState<string | null>(null);
 
-  // Normalizar items combinados (Arreglos + Adicionales)
+  // Normalizar items combinados (Productos + Adicionales)
   const combinedItems = useMemo(() => {
     const productsFormatted = initialProducts.map((p) => ({
       ...p,
       itemType: "product",
-      displayCategory: p.category || "Flores",
+      productType: p.productType || "digital",
+      displayCategory: p.category || "General",
     }));
 
     const addonsFormatted = initialAddons.map((a) => ({
@@ -55,7 +56,8 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
     return combinedItems
       .filter((item) => {
         // Filtro por Tab
-        if (activeTab === "products" && item.itemType !== "product") return false;
+        if (activeTab === "digital" && (item.itemType !== "product" || item.productType !== "digital")) return false;
+        if (activeTab === "dropship" && (item.itemType !== "product" || item.productType !== "dropship")) return false;
         if (activeTab === "addons" && item.itemType !== "addon") return false;
 
         // Filtro por Búsqueda
@@ -63,7 +65,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
           searchTerm === "" ||
           item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.displayCategory?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.flowerType?.toLowerCase().includes(searchTerm.toLowerCase());
+          item.description?.toLowerCase().includes(searchTerm.toLowerCase());
 
         // Filtro por Categoría
         const matchCategory =
@@ -110,38 +112,50 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
             </p>
           </div>
 
-          {/* TAB SWITCHER: Todos | Arreglos | Adicionales */}
-          <div className="flex justify-center gap-2 max-w-md mx-auto p-1.5 bg-gray-200/70 rounded-full">
+          {/* TAB SWITCHER: Todos | Digitales | Dropshipping | Adicionales */}
+          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 bg-gray-200/70 rounded-full">
             <button
               onClick={() => { setActiveTab("all"); setSelectedCategory("all"); }}
-              className={`flex-1 py-2.5 px-4 rounded-full text-xs font-extrabold transition-all text-center ${
+              className={`flex-1 min-w-[90px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
                 activeTab === "all"
                   ? "bg-black text-white shadow-md"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              {t('allTab')} ({combinedItems.length})
+              Todos ({combinedItems.length})
             </button>
             <button
-              onClick={() => { setActiveTab("products"); setSelectedCategory("all"); }}
-              className={`flex-1 py-2.5 px-4 rounded-full text-xs font-extrabold transition-all text-center ${
-                activeTab === "products"
-                  ? "bg-[#163422] text-white shadow-md"
+              onClick={() => { setActiveTab("digital"); setSelectedCategory("all"); }}
+              className={`flex-1 min-w-[110px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+                activeTab === "digital"
+                  ? "bg-indigo-600 text-white shadow-md"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              {t('flowersTab')} ({initialProducts.length})
+              ⚡ Digitales ({combinedItems.filter(i => i.productType === 'digital').length})
             </button>
             <button
-              onClick={() => { setActiveTab("addons"); setSelectedCategory("all"); }}
-              className={`flex-1 py-2.5 px-4 rounded-full text-xs font-extrabold transition-all text-center ${
-                activeTab === "addons"
-                  ? "bg-purple-600 text-white shadow-md"
+              onClick={() => { setActiveTab("dropship"); setSelectedCategory("all"); }}
+              className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+                activeTab === "dropship"
+                  ? "bg-emerald-600 text-white shadow-md"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              {t('addonsTab')} ({initialAddons.length})
+              📦 Dropship ({combinedItems.filter(i => i.productType === 'dropship').length})
             </button>
+            {initialAddons.length > 0 && (
+              <button
+                onClick={() => { setActiveTab("addons"); setSelectedCategory("all"); }}
+                className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+                  activeTab === "addons"
+                    ? "bg-purple-600 text-white shadow-md"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                Extras ({initialAddons.length})
+              </button>
+            )}
           </div>
 
           {/* PANEL DE BÚSQUEDA Y FILTROS */}
@@ -252,6 +266,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                         price={item.price}
                         category={item.category}
                         badge={item.badge}
+                        productType={item.productType}
                         image={item.images[0] || "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800"}
                       />
                     );

@@ -16,6 +16,7 @@ export interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  productType?: 'digital' | 'dropship';
   addons?: AddonItemSelection[];
 }
 
@@ -34,12 +35,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('flower_cart');
+    const savedCart = localStorage.getItem('aldri_cart') || localStorage.getItem('flower_cart');
     if (savedCart) setCartItems(JSON.parse(savedCart));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('flower_cart', JSON.stringify(cartItems));
+    localStorage.setItem('aldri_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
