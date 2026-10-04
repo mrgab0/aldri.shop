@@ -52,10 +52,12 @@ export default function InventarioAdmin() {
     await toggleProductStatus(id, newStatus);
   }
 
+  const [typeFilter, setTypeFilter] = useState<"all" | "digital" | "dropship">("all");
+
   // Obtener lista de categorías únicas para el filtro
   const categories = ["all", ...Array.from(new Set(products.map((p) => p.category).filter(Boolean)))];
 
-  // Filtrar productos en tiempo real por búsqueda, categoría y estado
+  // Filtrar productos en tiempo real por búsqueda, categoría, estado y tipo
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       (product.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -70,7 +72,12 @@ export default function InventarioAdmin() {
       (statusFilter === "active" && product.isActive !== false) ||
       (statusFilter === "pre_aggregation" && product.isActive === false);
 
-    return matchesSearch && matchesCategory && matchesStatus;
+    const matchesType =
+      typeFilter === "all" ||
+      (typeFilter === "digital" && product.productType !== "dropship") ||
+      (typeFilter === "dropship" && product.productType === "dropship");
+
+    return matchesSearch && matchesCategory && matchesStatus && matchesType;
   });
 
   const preAggregationCount = products.filter((p) => p.isActive === false).length;
@@ -100,8 +107,8 @@ export default function InventarioAdmin() {
         </div>
       </div>
 
-      {/* Barra de Filtros por Estado */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      {/* Barra de Filtros por Estado y Tipo */}
+      <div className="flex flex-wrap items-center gap-2 pb-1">
         <button
           onClick={() => setStatusFilter("all")}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
@@ -134,7 +141,42 @@ export default function InventarioAdmin() {
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-          Pre-Agregados / Pausados ⏸️ ({preAggregationCount})
+          Pausados ⏸️ ({preAggregationCount})
+        </button>
+
+        <div className="h-4 w-px bg-gray-300 mx-1 hidden sm:block" />
+
+        <button
+          onClick={() => setTypeFilter("all")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            typeFilter === "all"
+              ? "bg-stone-800 text-white shadow-sm"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Todos
+        </button>
+
+        <button
+          onClick={() => setTypeFilter("digital")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 ${
+            typeFilter === "digital"
+              ? "bg-indigo-600 text-white shadow-sm"
+              : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
+          }`}
+        >
+          ⚡ Digitales
+        </button>
+
+        <button
+          onClick={() => setTypeFilter("dropship")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 ${
+            typeFilter === "dropship"
+              ? "bg-emerald-600 text-white shadow-sm"
+              : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+          }`}
+        >
+          📦 Dropshipping
         </button>
       </div>
 
@@ -186,6 +228,7 @@ export default function InventarioAdmin() {
                 onClick={() => {
                   setSearchTerm("");
                   setSelectedCategory("all");
+                  setTypeFilter("all");
                 }}
                 className="text-xs text-[#FF97A4] font-bold hover:underline"
               >
@@ -200,7 +243,7 @@ export default function InventarioAdmin() {
                 <tr className="border-b bg-gray-50/50 text-gray-400 uppercase text-[10px] font-bold tracking-wider">
                   <th className="p-4">Producto</th>
                   <th className="p-4">SKU</th>
-                  <th className="p-4">Categoría / Insignia</th>
+                  <th className="p-4">Categoría / Tipo</th>
                   <th className="p-4">Precio</th>
                   <th className="p-4">Stock</th>
                   <th className="p-4 text-right">Acciones</th>
@@ -224,9 +267,20 @@ export default function InventarioAdmin() {
                           </div>
                           <div>
                             <span className="font-bold text-[#1A1C1C] block">{product.name}</span>
-                            {product.flowerCount ? (
-                              <span className="text-[11px] text-gray-400">{product.flowerCount} Rosas / {product.bouquetType || 'Arreglo'}</span>
-                            ) : null}
+                            <div className="flex items-center gap-1.5 mt-0.5">
+                              {product.productType === "dropship" ? (
+                                <span className="inline-flex items-center text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                  📦 Dropship
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                  ⚡ Digital
+                                </span>
+                              )}
+                              {product.flowerCount ? (
+                                <span className="text-[10px] text-gray-400">{product.flowerCount} u.</span>
+                              ) : null}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -247,7 +301,14 @@ export default function InventarioAdmin() {
                       </td>
 
                       {/* Precio */}
-                      <td className="p-4 font-bold text-[#FF97A4]">${product.price.toFixed(2)}</td>
+                      <td className="p-4">
+                        <span className="font-bold text-[#FF97A4] block">${product.price.toFixed(2)}</span>
+                        {product.compareAtPrice && product.compareAtPrice > product.price ? (
+                          <span className="text-[11px] text-gray-400 line-through">
+                            ${product.compareAtPrice.toFixed(2)}
+                          </span>
+                        ) : null}
+                      </td>
 
                       {/* Stock / Estado */}
                       <td className="p-4">

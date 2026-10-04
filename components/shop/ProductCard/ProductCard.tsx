@@ -11,6 +11,7 @@ interface ProductCardProps {
   name: string;
   slug: string;
   price: number;
+  compareAtPrice?: number;
   category: string;
   badge?: string;
   image: string;
@@ -23,6 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   name,
   slug,
   price,
+  compareAtPrice,
   category,
   badge,
   image,
@@ -127,13 +129,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <div className="flex justify-between items-center pt-2.5 border-t border-gray-100 dark:border-gray-800/80 mt-auto">
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-gray-400 block font-semibold">From</span>
-            <span className="text-base sm:text-lg font-bold text-stone-900 dark:text-white font-serif">${price.toFixed(2)} USD</span>
+            <span className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-gray-400 block font-semibold">Precio</span>
+            <div className="flex items-baseline gap-1.5 flex-wrap">
+              <span className="text-base sm:text-lg font-bold text-stone-900 dark:text-white font-serif">${price.toFixed(2)} USD</span>
+              {compareAtPrice && compareAtPrice > price ? (
+                <span className="text-xs text-stone-400 dark:text-gray-500 line-through">
+                  ${compareAtPrice.toFixed(2)}
+                </span>
+              ) : null}
+            </div>
           </div>
 
           <button 
-            onClick={() => addToCart({ id, name, price, image })}
-            className="bg-[#163422] hover:bg-[#1B2E22] text-white px-3 sm:px-3.5 py-2 rounded-lg active:scale-95 transition-all duration-300 font-bold text-xs shadow-sm flex items-center gap-1.5 hover:scale-105"
+            onClick={() => addToCart({ id, name, price, image, productType })}
+            className="bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 px-3 sm:px-3.5 py-2 rounded-lg active:scale-95 transition-all duration-300 font-bold text-xs shadow-sm flex items-center gap-1.5 hover:scale-105"
             title="Añadir al Carrito"
           >
             <ShoppingBag size={13} />

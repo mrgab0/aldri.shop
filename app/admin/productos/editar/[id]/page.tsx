@@ -75,6 +75,19 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
             <Package size={18} className="text-[#FF97A4]" /> Información General
           </h2>
 
+          {/* SELECCIÓN DE TIPO DE PRODUCTO */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Tipo de Producto *</label>
+            <select
+              name="productType"
+              defaultValue={product.productType || "digital"}
+              className="p-3 border rounded-xl bg-white dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium"
+            >
+              <option value="digital">⚡ Producto Digital (Descarga / Licencia / Acceso)</option>
+              <option value="dropship">📦 Dropshipping (Envío Físico con Seguimiento)</option>
+            </select>
+          </div>
+
           <ProductNameSkuInputs
             initialName={product.name}
             initialSku={product.sku || ""}
@@ -87,7 +100,7 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
               <input
                 name="category"
                 defaultValue={product.category}
-                placeholder="Bestseller"
+                placeholder="Software, Moda, Gadgets"
                 className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] dark:bg-gray-900 dark:text-white"
                 required
               />
@@ -100,7 +113,7 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
               <input
                 name="badge"
                 defaultValue={product.badge || ""}
-                placeholder="Ej: Bestseller 🌟, ¡Nuevo!, Edición Limitada"
+                placeholder="Ej: Bestseller 🌟, ¡Nuevo!, Oferta"
                 className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] dark:bg-gray-900 dark:text-white"
               />
             </div>
@@ -111,7 +124,7 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
             <textarea
               name="description"
               defaultValue={product.description}
-              placeholder="Detalles sobre el diseño floral..."
+              placeholder="Detalles sobre el producto, características y modo de uso..."
               className="p-3 border rounded-xl h-28 focus:outline-none focus:ring-2 focus:ring-[#FF97A4] dark:bg-gray-900 dark:text-white"
               required
             />
@@ -124,9 +137,9 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
             <DollarSign size={18} className="text-[#FF97A4]" /> Precio y Disponibilidad
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Precio ($ USD) *</label>
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Precio Actual ($ USD) *</label>
               <div className="relative">
                 <span className="absolute left-3.5 top-3 text-gray-400 font-bold">$</span>
                 <input
@@ -134,9 +147,24 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
                   type="number"
                   step="0.01"
                   defaultValue={product.price}
-                  placeholder="85.00"
+                  placeholder="49.99"
                   className="p-3 pl-8 border rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-bold text-gray-800 dark:bg-gray-900 dark:text-white"
                   required
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Precio Original ($ USD)</label>
+              <div className="relative">
+                <span className="absolute left-3.5 top-3 text-gray-400 font-bold">$</span>
+                <input
+                  name="compareAtPrice"
+                  type="number"
+                  step="0.01"
+                  defaultValue={product.compareAtPrice || ""}
+                  placeholder="79.99"
+                  className="p-3 pl-8 border rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-gray-300 text-gray-500 dark:bg-gray-900 dark:text-gray-400 line-through"
                 />
               </div>
             </div>
@@ -147,9 +175,99 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
                 name="stock"
                 type="number"
                 defaultValue={product.stock || 0}
-                placeholder="10"
+                placeholder="100"
                 className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] dark:bg-gray-900 dark:text-white"
                 required
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN DIGITAL: Archivo y Licencia */}
+        <div className="bg-white dark:bg-[#12131A] p-6 rounded-2xl shadow-sm border border-indigo-100 dark:border-indigo-950 space-y-4">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 border-b pb-3 border-indigo-100 dark:border-indigo-950">
+            ⚡ Configuración de Descarga Digital
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">URL del Archivo / Enlace de Descarga</label>
+              <input
+                name="digitalFileUrl"
+                defaultValue={product.digitalAsset?.fileUrl || ""}
+                placeholder="https://drive.google.com/... o enlace de descarga directa"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono text-xs dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Formato / Tipo de Archivo</label>
+              <input
+                name="digitalFileType"
+                defaultValue={product.digitalAsset?.fileType || ""}
+                placeholder="Ej: ZIP, PDF, Preset, Licencia, Software"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Tamaño del Archivo</label>
+              <input
+                name="digitalFileSize"
+                defaultValue={product.digitalAsset?.fileSize || ""}
+                placeholder="Ej: 150 MB, 1.2 GB"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Clave de Licencia o Código de Activación (Opcional)</label>
+              <input
+                name="digitalLicenseKey"
+                defaultValue={product.digitalAsset?.licenseKey || ""}
+                placeholder="Ej: ALDR-KEY-XXXX-XXXX"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono text-xs dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN DROPSHIPPING: Proveedor y Logística */}
+        <div className="bg-white dark:bg-[#12131A] p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-950 space-y-4">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 flex items-center gap-2 border-b pb-3 border-emerald-100 dark:border-emerald-950">
+            📦 Configuración de Dropshipping y Proveedor
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">SKU del Proveedor</label>
+              <input
+                name="supplierSku"
+                defaultValue={product.dropshipInfo?.supplierSku || ""}
+                placeholder="Ej: CJ-182948-US"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 font-mono text-xs dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Origen del Envío</label>
+              <input
+                name="shippingOrigin"
+                defaultValue={product.dropshipInfo?.shippingOrigin || "Almacén Internacional"}
+                placeholder="Ej: USA Warehouse, China Express"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">URL del Producto en Proveedor (Privado de Gestión)</label>
+              <input
+                name="supplierUrl"
+                defaultValue={product.dropshipInfo?.supplierUrl || ""}
+                placeholder="https://aliexpress.com/item/... o enlace a CJ Dropshipping"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 text-xs font-mono dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Tiempo Estimado de Entrega</label>
+              <input
+                name="estimatedDeliveryDays"
+                defaultValue={product.dropshipInfo?.estimatedDeliveryDays || "7-12 días hábiles"}
+                placeholder="Ej: 7-12 días hábiles con tracking"
+                className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 dark:bg-gray-900 dark:text-white"
               />
             </div>
           </div>
@@ -163,10 +281,10 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
           <ImageUploader defaultImages={product.images || []} maxImages={7} />
         </div>
 
-        {/* SECCIÓN 4: Especificaciones Florales */}
+        {/* SECCIÓN 4: Características Clave */}
         <div className="bg-white dark:bg-[#12131A] p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2 border-b pb-3 border-gray-100 dark:border-gray-800">
-            <Flower2 size={18} className="text-[#FF97A4]" /> Especificaciones del Arreglo
+            <Flower2 size={18} className="text-[#FF97A4]" /> Características del Producto
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

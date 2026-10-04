@@ -69,16 +69,16 @@ export default async function Home() {
         />
       )}
 
-      {/* Vitrina "MOST LOVED" en cuadrícula de 5 columnas (Diseño exacto de flor.zip) */}
+      {/* Vitrina "TENDENCIAS & DESTACADOS" en cuadrícula de 5 columnas */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 z-20 relative select-none" data-purpose="product-collection">
         
-        {/* Título de Sección con interletreado dorado y estilo de alta floristería */}
+        {/* Título de Sección con interletreado dorado */}
         <div className="text-center mb-12">
           <h2 className="text-xl md:text-2xl font-serif text-[#C5A059] tracking-[0.35em] uppercase font-semibold">
-            M O S T &nbsp; L O V E D
+            T E N D E N C I A S &nbsp; &amp; &nbsp; D E S T A C A D O S
           </h2>
           <p className="text-xs uppercase tracking-widest text-stone-500 dark:text-gray-400 mt-2 font-medium">
-            Handcrafted Luxury Bouquets &amp; Arrangements • Houston, TX
+            Digital Goods &bull; Instant Downloads &bull; Trending Dropship Selection
           </p>
         </div>
 
@@ -92,6 +92,8 @@ export default async function Home() {
                 name={product.name}
                 slug={product.slug}
                 price={product.price}
+                compareAtPrice={product.compareAtPrice}
+                productType={product.productType || "digital"}
                 category={product.category}
                 badge={product.badge}
                 image={product.images && product.images.length > 0 ? product.images[0] : ""}
@@ -111,19 +113,19 @@ export default async function Home() {
             href="/productos"
             className="inline-block bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 text-xs font-semibold tracking-widest uppercase px-10 py-3.5 transition-all duration-300 rounded-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
           >
-            View all collection
+            Ver Todo el Catálogo
           </Link>
         </div>
       </section>
 
-      {/* Sección de Ubicación y Cobertura en Houston (Mapa estilizado y tarjeta flotante de flor.zip) */}
+      {/* Sección de Cobertura Global y Entrega Inmediata */}
       <StoreLocationSection
-        phone="(346) 739-2730"
-        email="contacto@bonbonflowershouston.com"
-        whatsappUrl="https://wa.me/13467392730?text=Hola!%20Quisiera%20pedir%20flores%20en%20Houston."
+        phone={siteConfig?.phone || "+1 (800) ALDRI-SHOP"}
+        email={siteConfig?.supportEmail || "soporte@aldri.shop"}
+        whatsappUrl={siteConfig?.whatsappUrl || "https://wa.me/?text=Hola!%20Quisiera%20información%20sobre%20aldri.shop"}
       />
 
-      {/* Secciones de Reseñas y Feed de Instagram */}
+      {/* Secciones de Reseñas y Redes Sociales */}
       <SocialAndReviewsSection
         enableReviews={siteConfig?.enableReviewsSection !== false}
         reviewsTitle={siteConfig?.reviewsTitle}
@@ -131,9 +133,9 @@ export default async function Home() {
         countText={siteConfig?.reviewsCountText}
         trustpilotWidgetHtml={siteConfig?.trustpilotWidgetHtml}
         enableSocialFeed={siteConfig?.enableSocialFeed !== false}
-        socialTitle={siteConfig?.socialFeedTitle || "Síguenos en Instagram 📸"}
+        socialTitle={siteConfig?.socialFeedTitle || "Síguenos en Redes 🚀"}
         embedHtml={siteConfig?.socialEmbedHtml}
-        instagramUrl={siteConfig?.instagramUrl || "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ=="}
+        instagramUrl={siteConfig?.instagramUrl || "https://www.instagram.com/"}
       />
 
       {/* Footer de Lujo */}

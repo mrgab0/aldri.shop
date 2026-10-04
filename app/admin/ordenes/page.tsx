@@ -62,11 +62,11 @@ export default function AdminOrdenesPage() {
 
   const createWhatsAppNotifyUrl = (order: any) => {
     const phone = (order.customerPhone || "").replace(/\D/g, "");
-    const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://bonbonflowershouston.com";
+    const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://aldri.shop";
     const trackUrl = `${siteUrl}/rastreo`;
     const statusText = order.status || "En Proceso";
 
-    const msg = `¡Hola ${order.customerName}! 🌹 Te notificamos de Bonbon Flowers Houston que tu pedido *${order.orderId}* ha sido actualizado a estado: *${statusText}* ✨\n\nPuedes rastrear el avance en tiempo real aquí: ${trackUrl}`;
+    const msg = `¡Hola ${order.customerName}! 🚀 Te notificamos de Aldri Shop que tu orden *${order.orderId}* ha sido actualizada a estado: *${statusText}* ✨\n\nPuedes rastrear el estado y acceder a tus descargas aquí: ${trackUrl}`;
 
     return phone ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
   };
@@ -371,9 +371,29 @@ export default function AdminOrdenesPage() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b pb-4 border-gray-100 dark:border-gray-800">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-[#1A1C1C] dark:text-white bg-pink-50 dark:bg-pink-950/60 px-2.5 py-0.5 rounded-lg border border-pink-200 dark:border-pink-900/50">
+                      <span className="font-mono font-bold text-sm text-[#1A1C1C] dark:text-white bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-0.5 rounded-lg border border-indigo-200 dark:border-indigo-900/50">
                         {order.orderId}
                       </span>
+                      {order.orderType === "digital" && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
+                          ⚡ Digital
+                        </span>
+                      )}
+                      {order.orderType === "dropship" && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                          📦 Dropship
+                        </span>
+                      )}
+                      {order.orderType === "hybrid" && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                          🔄 Híbrido
+                        </span>
+                      )}
+                      {order.trackingNumber && (
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                          Guía: {order.trackingCarrier ? `${order.trackingCarrier} - ` : ""}{order.trackingNumber}
+                        </span>
+                      )}
                       <span className="text-xs text-gray-400 font-medium flex items-center gap-1">
                         <Calendar size={12} />
                         {new Date(order.createdAt).toLocaleString("es-MX", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}

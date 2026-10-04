@@ -8,38 +8,35 @@ interface TrustAnnouncementBarProps {
 }
 
 export const TrustAnnouncementBar: React.FC<TrustAnnouncementBarProps> = ({
-  phone = "(346) 739-2730"
+  phone = "+1 (800) ALDRI-SHOP"
 }) => {
   const cleanPhone = phone.replace(/[^\d+]/g, "");
 
   return (
     <div className="w-full z-40 relative">
-      {/* Barra superior de anuncios estilo boutique de flor.zip */}
-      <aside className="bg-[#163422] text-white text-xs md:text-sm font-medium py-2 px-4 text-center tracking-wide flex justify-center items-center">
-        <a
-          className="hover:underline flex items-center gap-1.5 transition-opacity hover:opacity-95 font-semibold"
-          href={`tel:${cleanPhone || "+13467392730"}`}
-        >
-          <Phone size={13} className="inline-block animate-pulse text-[#E6C98B]" />
-          <span>SAME DAY DELIVERY HOUSTON {phone}</span>
-          <span className="inline-block transition-transform group-hover:translate-x-1 font-bold text-[#E6C98B]">→</span>
-        </a>
+      {/* Barra superior de anuncios estilo Aldri Shop */}
+      <aside className="bg-stone-900 dark:bg-stone-950 text-white text-xs md:text-sm font-medium py-2 px-4 text-center tracking-wide flex justify-center items-center border-b border-white/10">
+        <div className="flex items-center gap-2 font-semibold">
+          <span className="inline-block animate-pulse text-[#E6C98B]">⚡</span>
+          <span>DESCARGA DIGITAL INMEDIATA 24/7 &bull; ENVÍOS DROPSHIPPING CON SEGUIMIENTO</span>
+          <span className="hidden sm:inline-block transition-transform group-hover:translate-x-1 font-bold text-[#E6C98B]">→</span>
+        </div>
       </aside>
 
       {/* Barra de 3 compromisos de servicio / Trust Bar */}
-      <section className="bg-[#1B2E22] text-white py-2.5 px-4 text-xs font-semibold tracking-wider border-t border-black/10 shadow-inner">
+      <section className="bg-stone-800 dark:bg-[#12131A] text-white py-2.5 px-4 text-xs font-semibold tracking-wider border-t border-black/10 shadow-inner">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center sm:justify-around items-center gap-y-2 gap-x-6 uppercase text-[11px] sm:text-xs">
           <div className="flex items-center space-x-2">
+            <span className="text-[#E6C98B] shrink-0 text-sm">⚡</span>
+            <span className="tracking-wide">DESCARGA DIGITAL INSTANTÁNEA</span>
+          </div>
+          <div className="flex items-center space-x-2">
             <Truck className="w-4 h-4 text-[#E6C98B] shrink-0" />
-            <span className="tracking-wide">SAME DAY DELIVERY HOUSTON</span>
+            <span className="tracking-wide">DROPSHIPPING CON NÚMERO DE GUÍA</span>
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="w-4 h-4 text-[#E6C98B] shrink-0" />
-            <span className="tracking-wide">ORDER BEFORE 1 PM FOR SAME-DAY DELIVERY</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <MapPin className="w-4 h-4 text-[#E6C98B] shrink-0" />
-            <span className="tracking-wide">PROUDLY SERVING HOUSTON METROPLEX</span>
+            <span className="tracking-wide">SOPORTE Y ACCESO 24/7 GARANTIZADO</span>
           </div>
         </div>
       </section>

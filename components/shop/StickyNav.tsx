@@ -36,10 +36,10 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
   }, []);
 
   const enableSocials = siteConfig?.enableHeaderSocials !== false;
-  const instagramUrl = siteConfig?.instagramUrl || "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ==";
-  const facebookUrl = siteConfig?.facebookUrl || "https://www.facebook.com/bonbon.flowers.2025";
-  const tiktokUrl = siteConfig?.tiktokUrl || "https://tiktok.com";
-  const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/13467392730";
+  const instagramUrl = siteConfig?.instagramUrl || "https://www.instagram.com/";
+  const facebookUrl = siteConfig?.facebookUrl || "https://www.facebook.com/";
+  const tiktokUrl = siteConfig?.tiktokUrl || "https://tiktok.com/";
+  const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/";
 
   const navLinks = [
     { href: "/", label: t('home') },
@@ -61,23 +61,19 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
       >
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 xl:gap-6 relative">
           
-          {/* LADO IZQUIERDO: Logo de Bonbon Flowers 2 VECES MÁS GRANDE */}
+          {/* LADO IZQUIERDO: Logo de Aldri Shop */}
           <div className="flex items-center gap-4 py-2 flex-shrink-0 relative z-10">
             <Link href="/" className="flex items-center gap-3.5 group flex-shrink-0">
-              {/* Contenedor del Logo duplicado en tamaño (w-20 sm:w-24 = 80px a 96px) */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 sm:border-4 border-[#D4AF37]/70 shadow-xl group-hover:scale-105 group-active:scale-95 transition-transform bg-white flex-shrink-0">
-                <img
-                  src={siteConfig?.logoUrl || "https://bonbonflowershouston.com/logo.png"}
-                  alt="Bonbon Flowers Logo"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#D4AF37]/70 shadow-lg group-hover:scale-105 group-active:scale-95 transition-transform bg-stone-900 flex items-center justify-center text-white font-serif font-black text-lg">
+                <span className="text-[#E6C98B]">A</span>
+                <span className="text-indigo-400">S</span>
               </div>
               <div className="hidden sm:flex flex-col">
                 <span className="font-serif font-black text-xl sm:text-2xl text-stone-900 dark:text-white tracking-tight flex-shrink-0 leading-tight">
-                  Bonbon <span className="text-[#163422] dark:text-[#C5A059]">Flowers</span>
+                  Aldri <span className="text-indigo-600 dark:text-[#C5A059]">Shop</span>
                 </span>
                 <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] dark:text-[#E6C98B]">
-                  Houston, Texas
+                  Digital &amp; Dropshipping
                 </span>
               </div>
             </Link>

@@ -19,8 +19,8 @@ export function Footer({ siteConfig }: FooterProps) {
     }
   };
 
-  const instagramUrl = siteConfig?.instagramUrl || "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ==";
-  const facebookUrl = siteConfig?.facebookUrl || "https://www.facebook.com/bonbon.flowers.2025";
+  const instagramUrl = siteConfig?.instagramUrl || "https://www.instagram.com/";
+  const facebookUrl = siteConfig?.facebookUrl || "https://www.facebook.com/";
 
   return (
     <footer className="bg-white dark:bg-[#0B0C10] text-black dark:text-gray-300 pt-14 pb-8 border-t border-stone-200 dark:border-gray-800 text-xs transition-colors duration-300 select-none">
@@ -32,38 +32,36 @@ export function Footer({ siteConfig }: FooterProps) {
           {/* Horarios de Operación */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <img
-                src={siteConfig?.logoUrl || "https://bonbonflowershouston.com/logo.png"}
-                alt="Bonbon Flowers Logo"
-                className="w-8 h-8 rounded-full object-cover border border-[#C5A059]"
-              />
+              <div className="w-8 h-8 rounded-full bg-stone-900 border border-[#C5A059] flex items-center justify-center text-white font-bold text-xs font-serif">
+                AS
+              </div>
               <h3 className="font-black text-black dark:text-white text-xs uppercase tracking-wider font-serif">
-                Hours of operation
+                Aldri Shop &bull; Atención &amp; Entrega
               </h3>
             </div>
-            <p className="text-black dark:text-gray-300 leading-relaxed text-xs font-medium">
-              Monday to Friday: 9 AM - 6 PM<br />
-              Saturday: 10 AM - 3 PM<br />
-              Sunday: Special event &amp; advance orders delivery
+            <p className="text-stone-700 dark:text-gray-300 leading-relaxed text-xs font-medium">
+              ⚡ <strong>Descargas Digitales:</strong> Disponibles de forma inmediata 24/7/365 en todo el mundo.<br />
+              📦 <strong>Envíos Dropshipping:</strong> Procesamiento en 24-48h con carrier y tracking internacional.<br />
+              💬 <strong>Soporte al Cliente:</strong> Lunes a Sábado de 9:00 AM a 6:00 PM.
             </p>
-            <p className="mt-3 text-[11px] text-[#163422] dark:text-[#C5A059] font-bold tracking-wide">
-              Houston, TX &amp; Metro Area • Same Day Delivery Available
+            <p className="mt-3 text-[11px] text-indigo-700 dark:text-[#C5A059] font-bold tracking-wide">
+              Distribución Global Digital &amp; Física
             </p>
           </div>
 
           {/* Formulario de Suscripción */}
           <div>
             <h3 className="font-black text-black dark:text-white text-xs uppercase tracking-wider mb-3 font-serif">
-              Subscribe to our emails
+              Suscríbete a nuestro boletín
             </h3>
-            <p className="text-black dark:text-gray-300 text-xs mb-3 font-medium">
-              Be the first to know about new seasonal floral collections and exclusive promotions.
+            <p className="text-stone-700 dark:text-gray-300 text-xs mb-3 font-medium">
+              Recibe notificaciones de nuevos activos digitales, ofertas especiales y productos dropshipping en tendencia.
             </p>
 
             {emailSubscribed ? (
               <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-lg text-xs font-bold border border-emerald-200">
                 <CheckCircle2 size={16} />
-                <span>¡Gracias por suscribirte a Bonbon Flowers!</span>
+                <span>¡Gracias por suscribirte a Aldri Shop!</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 max-w-md">
@@ -75,7 +73,7 @@ export function Footer({ siteConfig }: FooterProps) {
                   id="footer-email"
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="Tu correo electrónico"
                   required
                   className="w-full px-3.5 py-2.5 bg-white dark:bg-[#15161F] border border-stone-400 dark:border-gray-700 text-xs text-black dark:text-white placeholder-stone-500 focus:outline-none focus:border-black dark:focus:border-gray-400 rounded-sm font-medium"
                 />
@@ -83,7 +81,7 @@ export function Footer({ siteConfig }: FooterProps) {
                   type="submit"
                   className="bg-black hover:bg-stone-800 dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors shrink-0 rounded-sm"
                 >
-                  Subscribe
+                  Suscribirse
                 </button>
               </form>
             )}
@@ -94,8 +92,8 @@ export function Footer({ siteConfig }: FooterProps) {
                 href={facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook Bonbon Flowers"
-                className="hover:text-[#163422] dark:hover:text-white transition-colors p-1"
+                aria-label="Facebook"
+                className="hover:text-indigo-600 dark:hover:text-white transition-colors p-1"
               >
                 <Facebook size={18} />
               </a>
@@ -103,8 +101,8 @@ export function Footer({ siteConfig }: FooterProps) {
                 href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram Bonbon Flowers"
-                className="hover:text-[#163422] dark:hover:text-white transition-colors p-1"
+                aria-label="Instagram"
+                className="hover:text-indigo-600 dark:hover:text-white transition-colors p-1"
               >
                 <Instagram size={18} />
               </a>
@@ -155,24 +153,24 @@ export function Footer({ siteConfig }: FooterProps) {
         {/* Copyright y Enlaces Legales en Negro Puro */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-y-2 text-[11px] text-black dark:text-gray-300 text-center font-medium">
           <span>
-            © {new Date().getFullYear()}, Bonbon Flowers Houston. All rights reserved.
+            © {new Date().getFullYear()}, Aldri Shop. Todos los derechos reservados.
           </span>
           <span className="hidden sm:inline mx-2 text-stone-400">·</span>
           <div className="flex flex-wrap justify-center gap-x-2 text-black dark:text-gray-200">
-            <Link className="text-black dark:text-gray-200 hover:text-[#163422] font-semibold hover:underline" href="/contacto">
-              Contact
+            <Link className="text-black dark:text-gray-200 hover:text-indigo-600 dark:hover:text-[#C5A059] font-semibold hover:underline" href="/contacto">
+              Contacto
             </Link>
             <span className="text-stone-400">·</span>
-            <Link className="text-black dark:text-gray-200 hover:text-[#163422] font-semibold hover:underline" href="/nosotros">
-              About Us
+            <Link className="text-black dark:text-gray-200 hover:text-indigo-600 dark:hover:text-[#C5A059] font-semibold hover:underline" href="/nosotros">
+              Nosotros
             </Link>
             <span className="text-stone-400">·</span>
-            <Link className="text-black dark:text-gray-200 hover:text-[#163422] font-semibold hover:underline" href="/productos">
-              All Flowers
+            <Link className="text-black dark:text-gray-200 hover:text-indigo-600 dark:hover:text-[#C5A059] font-semibold hover:underline" href="/productos">
+              Catálogo
             </Link>
             <span className="text-stone-400">·</span>
-            <Link className="text-black dark:text-gray-200 hover:text-[#163422] font-semibold hover:underline" href="/rastreo">
-              Order Tracking
+            <Link className="text-black dark:text-gray-200 hover:text-indigo-600 dark:hover:text-[#C5A059] font-semibold hover:underline" href="/rastreo">
+              Rastreo y Descargas
             </Link>
           </div>
         </div>

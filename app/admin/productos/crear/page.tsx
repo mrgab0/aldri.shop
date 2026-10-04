@@ -36,6 +36,14 @@ export default function CrearProductoPage() {
     loadData();
   }, [duplicateId]);
 
+  const [selectedProductType, setSelectedProductType] = useState<string>("digital");
+
+  useEffect(() => {
+    if (initialData?.productType) {
+      setSelectedProductType(initialData.productType);
+    }
+  }, [initialData]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -66,7 +74,7 @@ export default function CrearProductoPage() {
             <p className="text-xs text-gray-400">
               {duplicateId
                 ? `Creando una copia basada en "${initialData?.name || 'producto'}"`
-                : "Completa los detalles de tu nuevo arreglo o producto floral"}
+                : "Completa los detalles de tu nuevo producto digital o dropshipping"}
             </p>
           </div>
         </div>
@@ -83,11 +91,51 @@ export default function CrearProductoPage() {
         successData ? "opacity-0 scale-95 pointer-events-none absolute inset-0" : "opacity-100 scale-100"
       }`}>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* SECCIÓN 1: Información Básica */}
+          {/* SECCIÓN 1: Información Básica y Tipo de Producto */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
             <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2 border-b pb-3">
               <Package size={18} className="text-[#FF97A4]" /> Información General
             </h2>
+
+            {/* SELECCIÓN DE TIPO DE PRODUCTO */}
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-bold text-gray-700">Tipo de Producto *</label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedProductType("digital")}
+                  className={`p-3.5 rounded-xl border-2 flex flex-col items-center gap-1.5 transition-all text-center ${
+                    selectedProductType === "digital"
+                      ? "border-indigo-600 bg-indigo-50/60 text-indigo-900 shadow-sm"
+                      : "border-gray-200 hover:border-gray-300 text-gray-600"
+                  }`}
+                >
+                  <span className="text-sm font-bold flex items-center gap-1.5">
+                    ⚡ Descarga Digital
+                  </span>
+                  <span className="text-[11px] text-gray-500">
+                    Archivos, licencias, cursos o software
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedProductType("dropship")}
+                  className={`p-3.5 rounded-xl border-2 flex flex-col items-center gap-1.5 transition-all text-center ${
+                    selectedProductType === "dropship"
+                      ? "border-emerald-600 bg-emerald-50/60 text-emerald-900 shadow-sm"
+                      : "border-gray-200 hover:border-gray-300 text-gray-600"
+                  }`}
+                >
+                  <span className="text-sm font-bold flex items-center gap-1.5">
+                    📦 Dropshipping Físico
+                  </span>
+                  <span className="text-[11px] text-gray-500">
+                    Envío físico con tracking y carrier
+                  </span>
+                </button>
+              </div>
+              <input type="hidden" name="productType" value={selectedProductType} />
+            </div>
 
             <ProductNameSkuInputs
               key={initialData?._id || duplicateId || "new"}
@@ -101,7 +149,7 @@ export default function CrearProductoPage() {
                 <input
                   name="category"
                   defaultValue={initialData?.category || ""}
-                  placeholder="Ej: Bestsellers, Ramos de Rosas, Cajas Deluxe"
+                  placeholder="Ej: Software, Plantillas, Gadgets, Moda"
                   className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                   required
                 />
@@ -114,7 +162,7 @@ export default function CrearProductoPage() {
                 <input
                   name="badge"
                   defaultValue={initialData?.badge || ""}
-                  placeholder="Ej: Bestseller 🌟, ¡Nuevo!, Edición Limitada"
+                  placeholder="Ej: Bestseller 🌟, ¡Nuevo!, Oferta Especial"
                   className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                 />
               </div>
@@ -125,7 +173,7 @@ export default function CrearProductoPage() {
               <textarea
                 name="description"
                 defaultValue={initialData?.description || ""}
-                placeholder="Escribe una descripción detallada sobre las flores, el diseño y la presentación..."
+                placeholder="Escribe una descripción completa sobre el producto, características, beneficios y modo de uso..."
                 className="p-3 border rounded-xl h-28 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                 required
               />
@@ -138,19 +186,34 @@ export default function CrearProductoPage() {
               <DollarSign size={18} className="text-[#FF97A4]" /> Precio y Disponibilidad
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-700">Precio ($ USD) *</label>
+                <label className="text-xs font-bold text-gray-700">Precio Actual ($ USD) *</label>
                 <div className="relative">
                   <span className="absolute left-3.5 top-3 text-gray-400 font-bold">$</span>
                   <input
                     name="price"
                     type="number"
                     step="0.01"
-                    placeholder="85.00"
+                    placeholder="49.99"
                     defaultValue={initialData?.price || ""}
                     className="p-3 pl-8 border rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-bold text-gray-800"
                     required
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-gray-700">Precio Original / Antes ($ USD)</label>
+                <div className="relative">
+                  <span className="absolute left-3.5 top-3 text-gray-400 font-bold">$</span>
+                  <input
+                    name="compareAtPrice"
+                    type="number"
+                    step="0.01"
+                    placeholder="79.99"
+                    defaultValue={initialData?.compareAtPrice || ""}
+                    className="p-3 pl-8 border rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-gray-300 text-gray-600 line-through"
                   />
                 </div>
               </div>
@@ -160,14 +223,105 @@ export default function CrearProductoPage() {
                 <input
                   name="stock"
                   type="number"
-                  placeholder="10"
-                  defaultValue={initialData?.stock || "10"}
+                  placeholder="999"
+                  defaultValue={initialData?.stock ?? 100}
                   className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                   required
                 />
               </div>
             </div>
           </div>
+
+          {/* SECCIÓN CONFIGURACIÓN ESPECÍFICA (DIGITAL VS DROPSHIPPING) */}
+          {selectedProductType === "digital" ? (
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-indigo-100 space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-indigo-700 flex items-center gap-2 border-b pb-3 border-indigo-100">
+                ⚡ Entrega y Archivos Digitales
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-xs font-bold text-gray-700">URL del Archivo / Enlace de Descarga Directa</label>
+                  <input
+                    name="digitalFileUrl"
+                    defaultValue={initialData?.digitalAsset?.fileUrl || ""}
+                    placeholder="https://drive.google.com/... o enlace a S3 / Cloud / ZIP"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono text-xs"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-gray-700">Formato del Archivo</label>
+                  <input
+                    name="digitalFileType"
+                    defaultValue={initialData?.digitalAsset?.fileType || ""}
+                    placeholder="Ej: ZIP, PDF, MP4, Preset, Software"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-gray-700">Tamaño del Archivo</label>
+                  <input
+                    name="digitalFileSize"
+                    defaultValue={initialData?.digitalAsset?.fileSize || ""}
+                    placeholder="Ej: 45 MB, 1.2 GB"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-xs font-bold text-gray-700">Clave de Licencia o Código de Activación (Opcional)</label>
+                  <input
+                    name="digitalLicenseKey"
+                    defaultValue={initialData?.digitalAsset?.licenseKey || ""}
+                    placeholder="Ej: ALDR-KEY-XXXX-XXXX"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono text-xs"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-emerald-100 space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-2 border-b pb-3 border-emerald-100">
+                📦 Logística y Proveedor de Dropshipping
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-gray-700">SKU del Proveedor</label>
+                  <input
+                    name="supplierSku"
+                    defaultValue={initialData?.dropshipInfo?.supplierSku || ""}
+                    placeholder="Ej: CJ-182948-US"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 font-mono text-xs"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-gray-700">Origen del Envío</label>
+                  <input
+                    name="shippingOrigin"
+                    defaultValue={initialData?.dropshipInfo?.shippingOrigin || "Almacén Internacional"}
+                    placeholder="Ej: USA Warehouse, China Express, Europa"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-xs font-bold text-gray-700">URL del Producto en Proveedor (Privado de Gestión)</label>
+                  <input
+                    name="supplierUrl"
+                    defaultValue={initialData?.dropshipInfo?.supplierUrl || ""}
+                    placeholder="https://aliexpress.com/item/... o enlace a CJ Dropshipping / Zendrop"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 text-xs font-mono"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-xs font-bold text-gray-700">Tiempo Estimado de Entrega</label>
+                  <input
+                    name="estimatedDeliveryDays"
+                    defaultValue={initialData?.dropshipInfo?.estimatedDeliveryDays || "7-12 días hábiles"}
+                    placeholder="Ej: 7-12 días hábiles con carrier tracked"
+                    className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* SECCIÓN 3: Carga de Imágenes con ImageKit */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
@@ -177,40 +331,11 @@ export default function CrearProductoPage() {
             <ImageUploader defaultImages={initialData?.images || []} maxImages={7} />
           </div>
 
-          {/* SECCIÓN 4: Especificaciones Florales */}
+          {/* SECCIÓN 4: Características Clave */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
             <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2 border-b pb-3">
-              <Flower2 size={18} className="text-[#FF97A4]" /> Especificaciones del Arreglo
+              <Sparkles size={18} className="text-[#FF97A4]" /> Características Destacadas
             </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-700">Cantidad de Rosas / Flores</label>
-                <input
-                  name="flowerCount"
-                  type="number"
-                  defaultValue={initialData?.flowerCount || ""}
-                  placeholder="Ej: 12, 24, 50"
-                  className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-700">Tipo de Presentación / Bouquet</label>
-                <select
-                  name="bouquetType"
-                  defaultValue={initialData?.bouquetType || "ramo"}
-                  className="p-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium"
-                >
-                  <option value="ramo">Ramo de Mano</option>
-                  <option value="box">Box / Caja Deluxe</option>
-                  <option value="florero">Arreglo en Florero de Vidrio</option>
-                  <option value="premium">Edición Especial Premium</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Constructor de Viñetas / Puntos Clave */}
             <FeatureListBuilder initialFeatures={initialData?.features || []} />
           </div>
 
