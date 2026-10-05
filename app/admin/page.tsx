@@ -21,7 +21,7 @@ export default function AdminPage() {
     <div className="bg-white/50 dark:bg-[#0F1015] p-8 rounded-[3rem] border border-white/40 dark:border-gray-800 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)] dark:shadow-none space-y-8 backdrop-blur-xl admin-panel-container">
       <div className="text-center md:text-left mb-6">
         <h2 className="text-3xl font-black text-white tracking-tight">Bienvenido al Panel Administrador</h2>
-        <p className="text-sm font-semibold text-pink-100 dark:text-gray-400 mt-2">Gestiona los pedidos, envíos, productos, banners, estadísticas, ofertas y SEO de tu floristería de forma interactiva.</p>
+        <p className="text-sm font-semibold text-pink-100 dark:text-gray-400 mt-2">Gestiona los pedidos, descargas, envíos dropshipping, productos, estadísticas y SEO de Aldri Shop de forma interactiva.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

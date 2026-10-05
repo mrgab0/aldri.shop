@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Sparkles, Gift, Flame, ArrowRight, Star, Clock, Gem } from "lucide-react";
+import { Download, Sparkles, Truck, ShieldCheck, ArrowRight, Laptop, Headphones, Compass, FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface MegaMenuDropdownProps {
@@ -14,44 +14,44 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
 
   if (!isOpen) return null;
 
-  const occasions = [
-    { name: "Amor & Aniversario", href: "/productos?cat=amor", icon: Heart, badge: "Popular" },
-    { name: "Cumpleaños Felices", href: "/productos?cat=cumpleanos", icon: Sparkles },
-    { name: "Agradecimiento & Amistad", href: "/productos?cat=agradecimiento", icon: Star },
-    { name: "Condolencias & Respeto", href: "/productos?cat=condolencias", icon: Clock },
+  const digitalCategories = [
+    { name: "Plantillas Notion Pro", href: "/productos?cat=notion", icon: FileText, badge: "Popular" },
+    { name: "LUTs & Presets Cinematográficos", href: "/productos?cat=luts", icon: Sparkles },
+    { name: "Licencias de Software & VPN", href: "/productos?cat=licencias", icon: ShieldCheck, badge: "Top" },
+    { name: "Kits de Productividad & Diseño", href: "/productos?cat=productividad", icon: Laptop },
   ];
 
-  const styles = [
-    { name: "Rosas Premium Ecuatorianas", href: "/productos?cat=rosas", icon: Gem, badge: "Top" },
-    { name: "Cajas Velvet de Lujo", href: "/productos?cat=cajas", icon: Gift },
-    { name: "Bouquets Silvestres Mixtos", href: "/productos?cat=bouquets", icon: Sparkles },
-    { name: "Arreglos Gigantes VIP", href: "/productos?cat=vip", icon: Flame, badge: "HOT" },
+  const dropshippingCategories = [
+    { name: "Accesorios EDC & Multiherramientas", href: "/productos?cat=edc", icon: Compass, badge: "Trending" },
+    { name: "Audio Hi-Fi & Auriculares", href: "/productos?cat=audio", icon: Headphones },
+    { name: "Desk Setup & Estaciones de Carga", href: "/productos?cat=desk", icon: Laptop, badge: "HOT" },
+    { name: "Gadgets de Viaje & Organización", href: "/productos?cat=gadgets", icon: Truck },
   ];
 
-  const addOns = [
-    { name: "Chocolates Gourmet", href: "/productos?cat=adicionales", tag: "Dulce" },
-    { name: "Globos con Helio Personalizados", href: "/productos?cat=adicionales", tag: "Nuevo" },
-    { name: "Peluches Gigantes", href: "/productos?cat=adicionales" },
-    { name: "Tarjetas Caligrafiadas", href: "/productos?cat=adicionales", tag: "Gratis" },
+  const services = [
+    { name: "Descarga Inmediata 24/7", href: "/rastreo", tag: "Instantáneo" },
+    { name: "Seguimiento 17Track en Vivo", href: "/rastreo", tag: "Global" },
+    { name: "Garantía de Reembolso", href: "/nosotros", tag: "Seguro" },
+    { name: "Soporte Técnico Directo", href: "/contacto", tag: "24h" },
   ];
 
   return (
     <div 
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[92vw] max-w-5xl bg-white/95 dark:bg-[#12131A]/95 backdrop-blur-2xl rounded-3xl border border-[#D4AF37]/30 dark:border-gray-800 shadow-[0_20px_50px_rgba(42,0,2,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 z-50 transition-all duration-300 animate-in fade-in slide-in-from-top-3"
+      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[92vw] max-w-5xl bg-white/95 dark:bg-[#12131A]/95 backdrop-blur-2xl rounded-3xl border border-[#D4AF37]/30 dark:border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 z-50 transition-all duration-300 animate-in fade-in slide-in-from-top-3"
       onMouseLeave={onClose}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         
-        {/* Columna 1: Ocasiones */}
+        {/* Columna 1: Activos Digitales */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <Heart size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <Download size={16} className="text-[#163422] dark:text-[#C5A059]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
-              Por Ocasión
+              Activos Digitales
             </h4>
           </div>
           <ul className="space-y-2.5">
-            {occasions.map((item, idx) => {
+            {digitalCategories.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <li key={idx}>
@@ -76,16 +76,16 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
           </ul>
         </div>
 
-        {/* Columna 2: Estilos & Ramos */}
+        {/* Columna 2: Dropshipping & Gadgets */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <Gem size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <Truck size={16} className="text-[#163422] dark:text-[#C5A059]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
-              Estilo Floral
+              Dropshipping Tech
             </h4>
           </div>
           <ul className="space-y-2.5">
-            {styles.map((item, idx) => {
+            {dropshippingCategories.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <li key={idx}>
@@ -110,23 +110,23 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
           </ul>
         </div>
 
-        {/* Columna 3: Adicionales & Extras */}
+        {/* Columna 3: Servicios & Compromiso */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <Gift size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <ShieldCheck size={16} className="text-[#163422] dark:text-[#C5A059]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
-              Complementos
+              Garantías Aldri
             </h4>
           </div>
           <ul className="space-y-2.5">
-            {addOns.map((item, idx) => (
+            {services.map((item, idx) => (
               <li key={idx}>
                 <Link 
                   href={item.href}
                   onClick={onClose}
                   className="flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#163422] dark:hover:text-[#C5A059] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
                 >
-                  <span>🌸 {item.name}</span>
+                  <span>⚡ {item.name}</span>
                   {item.tag && (
                     <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
                       {item.tag}
@@ -142,13 +142,13 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
         <div className="relative rounded-2xl overflow-hidden group bg-gradient-to-br from-[#163422] to-[#1B2E22] p-5 text-white flex flex-col justify-between shadow-lg border border-[#D4AF37]/30">
           <div className="relative z-10 space-y-2">
             <span className="inline-block bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest text-[#C5A059]">
-              ✨ Edición Especial
+              ⚡ Pack Destacado
             </span>
             <h5 className="font-serif font-bold text-base leading-snug">
-              Ramos de 100 Rosas Rojas de Lujo
+              Creator OS & LUTs Cinematográficos
             </h5>
             <p className="text-[11px] text-stone-200 font-medium">
-              Entrega express el mismo día en todo Houston.
+              Licencia comercial completa y descarga instantánea.
             </p>
           </div>
 

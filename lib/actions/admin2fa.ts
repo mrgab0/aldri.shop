@@ -33,8 +33,8 @@ function getTransporter() {
 // Helper para generar URL QR limpia y escaneable por Google Authenticator / Authy / iOS
 async function buildTotpQrData(secretBase32: string) {
   const cleanSecret = secretBase32.trim().replace(/\s+/g, "").toUpperCase();
-  const label = "BonbonFlowers:Admin";
-  const issuer = "BonbonFlowers";
+  const label = "AldriShop:Admin";
+  const issuer = "AldriShop";
   
   const otpauthUrl = `otpauth://totp/${encodeURIComponent(label)}?secret=${cleanSecret}&issuer=${encodeURIComponent(issuer)}`;
   const qrCodeUrl = await QRCode.toDataURL(otpauthUrl, {
@@ -231,12 +231,12 @@ export async function sendEmergencyRescueOtpAction() {
     );
 
     const transporter = getTransporter();
-    const sender = process.env.SMTP_USER ? `"Bonbon Flowers Security" <${process.env.SMTP_USER}>` : '"Bonbon Flowers Security"';
+    const sender = process.env.SMTP_USER ? `"Aldri Shop Security" <${process.env.SMTP_USER}>` : '"Aldri Shop Security"';
 
     const emailContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background: #ffffff;">
         <div style="background-color: #1A1C1C; padding: 25px; text-align: center;">
-          <h1 style="color: #FF97A4; margin: 0; font-family: Georgia, serif; font-size: 24px;">Bonbon Flowers Houston</h1>
+          <h1 style="color: #C5A059; margin: 0; font-family: sans-serif; font-size: 24px;">Aldri Shop</h1>
           <p style="color: #ffffff; margin: 5px 0 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Recuperación de Emergencia del Panel Admin</p>
         </div>
         
@@ -246,7 +246,7 @@ export async function sendEmergencyRescueOtpAction() {
             Has solicitado un acceso de emergencia al Panel Administrador por problemas con tu contraseña o código 2FA. Usa el siguiente código único de verificación:
           </p>
           
-          <div style="background-color: #fdf2f7; border: 2px dashed #FF97A4; padding: 20px; border-radius: 12px; margin: 25px 0; display: inline-block;">
+          <div style="background-color: #f8fafc; border: 2px dashed #C5A059; padding: 20px; border-radius: 12px; margin: 25px 0; display: inline-block;">
             <span style="font-size: 36px; font-weight: 900; letter-spacing: 8px; color: #1A1C1C; font-family: monospace;">${rescueOtp}</span>
           </div>
 
@@ -257,7 +257,7 @@ export async function sendEmergencyRescueOtpAction() {
         </div>
         
         <div style="background-color: #f9f9f9; padding: 15px; text-align: center; border-top: 1px solid #eee; font-size: 11px; color: #aaa;">
-          Bonbon Flowers Security System • Houston, TX
+          Aldri Shop Security System • aldri.shop
         </div>
       </div>
     `;
@@ -265,7 +265,7 @@ export async function sendEmergencyRescueOtpAction() {
     await transporter.sendMail({
       from: sender,
       to: adminEmails.join(", "),
-      subject: `🔑 Código de Rescate 2FA: ${rescueOtp} - Bonbon Flowers Admin`,
+      subject: `🔑 Código de Rescate 2FA: ${rescueOtp} - Aldri Shop Admin`,
       html: emailContent,
     });
 

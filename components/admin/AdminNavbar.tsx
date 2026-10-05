@@ -108,12 +108,12 @@ export function AdminNavbar({ logoutAction }: AdminNavbarProps) {
           
           <div className="flex items-center gap-2.5">
             <Link href="/admin" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#FF97A4] overflow-hidden flex items-center justify-center bg-pink-50 dark:bg-pink-950/40 shadow-sm group-hover:scale-105 transition-transform flex-shrink-0">
-                <img src="https://bonbonflowershouston.com/logo.png" alt="Bonbon Flowers Logo" className="w-full h-full object-cover" />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#C5A059] overflow-hidden flex items-center justify-center bg-stone-900 text-white font-bold text-xs font-serif shadow-sm group-hover:scale-105 transition-transform flex-shrink-0">
+                AS
               </div>
               <div>
-                <span className="font-serif font-black text-sm sm:text-base text-[#1A1C1C] dark:!text-white block leading-tight group-hover:text-[#FF97A4] transition-colors">
-                  Bonbon Flowers
+                <span className="font-serif font-black text-sm sm:text-base text-[#1A1C1C] dark:!text-white block leading-tight group-hover:text-[#C5A059] transition-colors">
+                  Aldri Shop
                 </span>
                 <span className="text-[9px] font-bold text-gray-500 dark:!text-white/80 uppercase tracking-widest block">
                   Panel de Administración

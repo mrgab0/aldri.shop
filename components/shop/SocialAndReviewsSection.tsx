@@ -44,9 +44,9 @@ export function SocialAndReviewsSection({
   countText,
   trustpilotWidgetHtml,
   enableSocialFeed = true,
-  socialTitle = "Instagram @bonbonflowers__ 📸",
+  socialTitle = "Instagram @aldri.shop 📸",
   embedHtml,
-  instagramUrl = "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ==",
+  instagramUrl = "https://www.instagram.com/aldri.shop",
 }: SocialAndReviewsSectionProps) {
   const t = useTranslations("Reviews");
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -142,38 +142,38 @@ export function SocialAndReviewsSection({
   const instagramPosts = [
     {
       id: "post1",
-      image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&auto=format&fit=crop&q=80",
-      caption: "El lujo de regalar rosas frescas rojas seleccionadas a mano. 🌹 #BonbonFlowers #HoustonTx",
-      likes: 248,
-      comments: 18,
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80",
+      caption: "Optimiza tu flujo de trabajo diario con nuestras plantillas Notion Pro. ⚡💻 #AldriShop #DigitalAssets #Productivity",
+      likes: 342,
+      comments: 28,
     },
     {
       id: "post2",
-      image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=800&auto=format&fit=crop&q=80",
-      caption: "Girasoles y lirios que iluminan cualquier espacio. 🌻✨ #BoutiqueFloral #HoustonEvents",
-      likes: 194,
-      comments: 12,
+      image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=80",
+      caption: "LUTs cinematográficos para creadores de contenido y videógrafos exigentes. 🎬✨ #VideoEditing #LUTs #Presets",
+      likes: 289,
+      comments: 19,
     },
     {
       id: "post3",
-      image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&auto=format&fit=crop&q=80",
-      caption: "Orquídeas blancas imperiales para expresar distinción y elegancia. 🤍 #Orquideas",
-      likes: 312,
-      comments: 24,
+      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+      caption: "Minimalismo y durabilidad: accesorios de tecnología y gadgets EDC seleccionados. 🛠️ #EverydayCarry #EDC #AldriShop",
+      likes: 412,
+      comments: 35,
     },
     {
       id: "post4",
-      image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800&auto=format&fit=crop&q=80",
-      caption: "Caja Deluxe de rosas rosadas y hortensias. El detalle perfecto para enamorar. 💕",
-      likes: 410,
-      comments: 31,
+      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+      caption: "Audio de alta fidelidad con cancelación activa para tus sesiones de trabajo profundo. 🎧⚡ #TechStyle #Gadgets",
+      likes: 510,
+      comments: 42,
     },
     {
       id: "post5",
-      image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=800&auto=format&fit=crop&q=80",
-      caption: "Felicidad en tonos pasteles con nuestro bouquet de tulipanes holandeses. 🌷",
-      likes: 285,
-      comments: 15,
+      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=80",
+      caption: "Estación de carga rápida y accesorios para tu desk setup ideal. 🔋💻 #DeskSetup #AldriShop",
+      likes: 375,
+      comments: 22,
     },
   ];
 
@@ -274,7 +274,7 @@ export function SocialAndReviewsSection({
               {/* Pie con Nota de Confianza */}
               <div className="pt-2 text-center border-t border-gray-100 dark:border-gray-800">
                 <span className="text-xs font-bold text-gray-600 dark:text-gray-300">
-                  ⭐⭐⭐⭐⭐ Calificación promedio de 4.9 basada en clientes de Houston & alrededores.
+                  ⭐⭐⭐⭐⭐ Calificación promedio de 4.9 basada en clientes de todo el mundo.
                 </span>
               </div>
             </div>
@@ -295,7 +295,7 @@ export function SocialAndReviewsSection({
                         Instagram Live Feed
                         <Sparkles size={12} className="text-[#163422] dark:text-[#C5A059]" />
                       </h4>
-                      <p className="text-[11px] text-gray-600 dark:text-gray-300 font-semibold">@bonbonflowers__</p>
+                      <p className="text-[11px] text-gray-600 dark:text-gray-300 font-semibold">@aldri.shop</p>
                     </div>
                   </div>
 

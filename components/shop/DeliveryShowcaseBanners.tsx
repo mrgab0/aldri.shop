@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Truck, Sparkles, ArrowRight, ShieldCheck, Clock, MapPin, MessageCircle } from "lucide-react";
+import { Download, Sparkles, ArrowRight, ShieldCheck, Globe, Truck, MessageCircle } from "lucide-react";
 
 export function DeliveryShowcaseBanners() {
   return (
@@ -12,27 +12,27 @@ export function DeliveryShowcaseBanners() {
         {/* Grilla de 2 Banners Grandes Paralelos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          {/* BANNER 1: Demostración de Entrega & Chofer Privado en Houston */}
+          {/* BANNER 1: Descargas Digitales Instantáneas & Licencias */}
           <div className="group relative rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[480px] flex flex-col justify-between p-8 sm:p-10 text-white shadow-2xl border border-white/10">
             {/* Imagen de Fondo con Overlay Oscuro Gradiente */}
             <div className="absolute inset-0 z-0">
               <img
-                src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=1200&auto=format&fit=crop&q=80"
-                alt="Entrega de Ramos Bonbon Flowers Houston"
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&auto=format&fit=crop&q=80"
+                alt="Descargas Digitales Aldri Shop"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40" />
             </div>
 
             {/* Badges Superiores */}
             <div className="relative z-10 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 bg-emerald-500/90 text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md">
-                <Truck size={13} />
-                <span>Entrega Garantizada</span>
+                <Download size={13} />
+                <span>Descarga Inmediata</span>
               </span>
               <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white border border-white/30">
-                <MapPin size={12} />
-                <span>Houston & Alrededores</span>
+                <Sparkles size={12} />
+                <span>Acceso 24/7 / Licencias</span>
               </span>
             </div>
 
@@ -40,56 +40,56 @@ export function DeliveryShowcaseBanners() {
             <div className="relative z-10 space-y-4 max-w-lg">
               <div className="space-y-2">
                 <span className="text-[#E6C98B] text-xs font-black uppercase tracking-[0.2em] block">
-                  Experiencia VIP a Domicilio
+                  Catálogo Digital Premium
                 </span>
-                <h3 className="font-serif font-black text-3xl sm:text-4xl leading-tight tracking-tight">
-                  Flores Frescas Entregadas en Tiempo Récord
+                <h3 className="font-serif font-black text-3xl sm:text-4xl leading-tight tracking-tight text-white">
+                  Archivos & Licencias Listos al Instante
                 </h3>
                 <p className="text-sm text-gray-200 font-medium leading-relaxed">
-                  Choferes privados dedicados para que tus ramos lleguen hidratados, impecables y con tarjeta caligrafiada personalizada.
+                  Plantillas Notion Pro, LUTs cinematográficos y licencias oficiales con entrega automatizada por correo electrónico inmediatamente tras tu compra.
                 </p>
               </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <Link
-                  href="/rastreo"
+                  href="/productos"
                   className="inline-flex items-center gap-2 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-xl active:scale-95"
                 >
-                  <span>Rastrear Pedido 📦</span>
+                  <span>Ver Catálogo Digital</span>
                   <ArrowRight size={14} />
                 </Link>
 
                 <Link
-                  href="/productos"
+                  href="/rastreo"
                   className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-5 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-white/30"
                 >
-                  <span>Ver Catálogo</span>
+                  <span>Mis Compras</span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* BANNER 2: Diseños Personalizados, Eventos & Ramos Monumentales */}
+          {/* BANNER 2: Dropshipping Global & Gadgets Seleccionados */}
           <div className="group relative rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[480px] flex flex-col justify-between p-8 sm:p-10 text-white shadow-2xl border border-white/10">
             {/* Imagen de Fondo con Overlay */}
             <div className="absolute inset-0 z-0">
               <img
-                src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1200&auto=format&fit=crop&q=80"
-                alt="Arreglos Florales Personalizados"
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=80"
+                alt="Dropshipping Gadgets Aldri Shop"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40" />
             </div>
 
             {/* Badges Superiores */}
             <div className="relative z-10 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 bg-[#163422] text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md border border-[#D4AF37]/50">
-                <Sparkles size={13} className="text-[#D4AF37]" />
-                <span>Boutique de Lujo</span>
+                <Truck size={13} className="text-[#D4AF37]" />
+                <span>Dropshipping Global</span>
               </span>
               <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white border border-white/30">
-                <ShieldCheck size={12} />
-                <span>100% Personalizable</span>
+                <Globe size={12} />
+                <span>Tracking Internacional</span>
               </span>
             </div>
 
@@ -97,32 +97,32 @@ export function DeliveryShowcaseBanners() {
             <div className="relative z-10 space-y-4 max-w-lg">
               <div className="space-y-2">
                 <span className="text-[#E6C98B] text-xs font-black uppercase tracking-[0.2em] block">
-                  Alta Floristería
+                  Gadgets & Hardware Curado
                 </span>
-                <h3 className="font-serif font-black text-3xl sm:text-4xl leading-tight tracking-tight">
-                  Diseños Exclusivos Creados a Tu Medida
+                <h3 className="font-serif font-black text-3xl sm:text-4xl leading-tight tracking-tight text-white">
+                  Envíos Verificados con Seguimiento 17Track
                 </h3>
                 <p className="text-sm text-gray-200 font-medium leading-relaxed">
-                  ¿Tienes una idea única para un aniversario, propuesta o evento? Nuestras maestras floristas convierten tus sentimientos en arte floral.
+                  Conectamos con proveedores internacionales certificados para despachar tecnología y accesorios EDC directo a tu dirección con código de rastreo en vivo.
                 </p>
               </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <a
-                  href="https://wa.me/13467392730?text=Hola%20Bonbon%20Flowers,%20deseo%20un%20arreglo%20floral%20personalizado"
+                  href="https://wa.me/13467392730?text=Hola%20Aldri%20Shop,%20deseo%20informaci%C3%B3n%20sobre%20un%20producto"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-xl active:scale-95"
                 >
                   <MessageCircle size={15} />
-                  <span>Hablar con Florista</span>
+                  <span>Soporte por WhatsApp</span>
                 </a>
 
                 <Link
-                  href="/productos"
+                  href="/rastreo"
                   className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-5 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-white/30"
                 >
-                  <span>Explorar Ramos</span>
+                  <span>Rastrear Envío</span>
                 </Link>
               </div>
             </div>

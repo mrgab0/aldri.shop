@@ -68,11 +68,11 @@ export default function CrearAdicionalPage() {
                 name="category"
                 className="p-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-purple-400 font-medium"
               >
-                <option value="Chocolates & Dulces">Chocolates & Dulces</option>
-                <option value="Peluches & Globos">Peluches & Globos</option>
-                <option value="Personalización & Tarjetas">Personalización & Tarjetas</option>
-                <option value="Decoración & Lazos">Decoración (Mariposas/Lazos)</option>
-                <option value="Colores & Papeles">Colores de Flores / Empaque</option>
+                <option value="Licencias & Software">Licencias & Software Adicional</option>
+                <option value="Kits & Extensiones">Kits & Extensiones</option>
+                <option value="Personalización & Notas">Personalización & Notas Especiales</option>
+                <option value="Accesorios & Cables">Accesorios & Cables</option>
+                <option value="Colores & Variantes">Colores / Variantes / Formato</option>
                 <option value="Otros">Otros Complementos</option>
               </select>
             </div>
@@ -102,9 +102,9 @@ export default function CrearAdicionalPage() {
               onChange={(e) => setType(e.target.value)}
               className="p-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-purple-400 font-medium"
             >
-              <option value="checkbox">Selección Simple (Checkbox / Agregar producto)</option>
-              <option value="select">Opciones Múltiples (Color de rosas, tipo de papel, etc.)</option>
-              <option value="text">Mensaje de Texto Personalizado (Mensaje de Tarjeta / Dedicatoria)</option>
+              <option value="checkbox">Selección Simple (Checkbox / Agregar complemento)</option>
+              <option value="select">Opciones Múltiples (Variantes, colores, formatos, etc.)</option>
+              <option value="text">Mensaje o Instrucción Personalizada</option>
             </select>
           </div>
 

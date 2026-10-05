@@ -6,16 +6,16 @@ import { revalidatePath } from "next/cache";
 
 const DEFAULT_SITE_CONFIG = {
   key: "global",
-  heroTitle: "Bonbon Flowers Houston",
-  heroSlogan: "Arreglos florales exclusivos y detalles de lujo diseñados para sorprender a quien más amas.",
+  heroTitle: "Aldri Shop",
+  heroSlogan: "Activos digitales de alta productividad y productos dropshipping en tendencia con envíos directos internacionales.",
   heroButtonText: "Explorar Colección",
-  footerTitle: "Bonbon Flowers Houston",
-  footerSlogan: "Boutique Digital de Alta Floristería • Houston, Texas",
-  footerCopyright: "© 2026 Bonbon Flowers Houston. Todos los derechos reservados.",
+  footerTitle: "Aldri Shop",
+  footerSlogan: "Tienda Oficial de Activos Digitales & Dropshipping Global",
+  footerCopyright: "© 2026 Aldri Shop. Todos los derechos reservados.",
   productColumnsDesktop: 3,
   productColumnsMobile: 2,
-  logoUrl: "https://bonbonflowershouston.com/logo.png",
-  brandSlogan: "Boutique Floral Digital • Houston, Texas",
+  logoUrl: "https://aldri.shop/logo.png",
+  brandSlogan: "Digital Assets & Curated Hardware",
   menuHomeLabel: "Inicio",
   menuCatalogLabel: "Colección",
   menuTrackingLabel: "📦 Rastreo",
@@ -23,17 +23,17 @@ const DEFAULT_SITE_CONFIG = {
   menuContactLabel: "Contacto",
   primaryColor: "#FF97A4",
   enableHeaderSocials: true,
-  facebookUrl: "https://www.facebook.com/bonbon.flowers.2025",
-  instagramUrl: "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ==",
+  facebookUrl: "https://www.facebook.com/aldrishop",
+  instagramUrl: "https://www.instagram.com/aldri.shop",
   tiktokUrl: "https://tiktok.com",
   whatsappUrl: "https://wa.me/13467392730",
   enableSocialFeed: true,
-  socialFeedTitle: "Síguenos en Instagram @bonbonflowers__ 📸",
+  socialFeedTitle: "Síguenos en Instagram @aldri.shop 📸",
   socialEmbedHtml: "",
   enableReviewsSection: true,
-  reviewsTitle: "Lo que dicen nuestros clientes en Houston ⭐⭐⭐⭐⭐",
+  reviewsTitle: "Lo que dicen nuestros clientes en todo el mundo ⭐⭐⭐⭐⭐",
   reviewsRatingScore: "4.9 / 5.0",
-  reviewsCountText: "+180 Opiniones Verificadas",
+  reviewsCountText: "+500 Opiniones Verificadas",
   trustpilotWidgetHtml: "",
   enableCustomIframe: false,
   customIframeTitle: "Ubicación & Promociones Destacadas",
@@ -43,7 +43,7 @@ const DEFAULT_SITE_CONFIG = {
   dialogflowProjectId: "",
   dialogflowLocation: "us-central1",
   dialogflowLanguageCode: "es",
-  dialogflowChatTitle: "Flor • Bonbon Flowers 🌸"
+  dialogflowChatTitle: "Aldri • Asistente Virtual ⚡"
 };
 
 export async function getSiteConfig() {
@@ -96,7 +96,7 @@ export async function updateSiteConfig(formData: FormData) {
       : (prev.productColumnsMobile || 2);
 
     // Identidad y Menú
-    const logoUrl = getValue("logoUrl", "https://bonbonflowershouston.com/logo.png");
+    const logoUrl = getValue("logoUrl", "https://aldri.shop/logo.png");
     const brandSlogan = getValue("brandSlogan", DEFAULT_SITE_CONFIG.brandSlogan);
     const menuHomeLabel = getValue("menuHomeLabel", DEFAULT_SITE_CONFIG.menuHomeLabel);
     const menuCatalogLabel = getValue("menuCatalogLabel", DEFAULT_SITE_CONFIG.menuCatalogLabel);
@@ -135,7 +135,7 @@ export async function updateSiteConfig(formData: FormData) {
     const dialogflowProjectId = getValue("dialogflowProjectId", "");
     const dialogflowLocation = getValue("dialogflowLocation", "us-central1");
     const dialogflowLanguageCode = getValue("dialogflowLanguageCode", "es");
-    const dialogflowChatTitle = getValue("dialogflowChatTitle", "Bonbon Flowers Virtual Assistant 🌸");
+    const dialogflowChatTitle = getValue("dialogflowChatTitle", "Aldri • Asistente Virtual ⚡");
 
     await SiteConfig.findOneAndUpdate(
       { key: "global" },

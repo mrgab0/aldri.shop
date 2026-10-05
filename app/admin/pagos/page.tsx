@@ -144,7 +144,7 @@ export default function AdminPagosPage() {
                     <input
                       name="holderName"
                       defaultValue={cfg.holderName || ""}
-                      placeholder="Ej: Bonbon Flowers Houston"
+                      placeholder="Ej: Aldri Shop"
                       className="p-3 border rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                     />
                   </div>
@@ -158,7 +158,7 @@ export default function AdminPagosPage() {
                       <input
                         name="accountDetail"
                         defaultValue={cfg.accountDetail || ""}
-                        placeholder={m.id === "zelle" ? "pagos@bonbonflowershouston.com" : m.id === "cashapp" ? "$BonbonFlowers" : "pagos@bonbonflowershouston.com"}
+                        placeholder={m.id === "zelle" ? "pagos@aldri.shop" : m.id === "cashapp" ? "$AldriShop" : "pagos@aldri.shop"}
                         className="p-3 border rounded-xl text-xs font-bold text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                       />
                     </div>

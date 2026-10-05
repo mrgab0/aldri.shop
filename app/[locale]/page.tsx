@@ -78,7 +78,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
             M O S T &nbsp; L O V E D
           </h2>
           <p className="text-xs uppercase tracking-widest text-stone-500 dark:text-gray-400 mt-2 font-medium">
-            Handcrafted Luxury Bouquets &amp; Arrangements • Houston, TX
+            Digital Assets &amp; Premium Dropshipping Worldwide
           </p>
         </div>
 
@@ -116,11 +116,11 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
         </div>
       </section>
 
-      {/* Sección de Ubicación y Cobertura en Houston (Mapa estilizado y tarjeta flotante de flor.zip) */}
+      {/* Sección de Ubicación y Cobertura Global */}
       <StoreLocationSection
-        phone="(346) 739-2730"
-        email="contacto@bonbonflowershouston.com"
-        whatsappUrl="https://wa.me/13467392730?text=Hola!%20Quisiera%20pedir%20flores%20en%20Houston."
+        phone="+1 (800) ALDRI-SHOP"
+        email="soporte@aldri.shop"
+        whatsappUrl="https://wa.me/13467392730?text=Hola!%20Quisiera%20consultar%20sobre%20Aldri%20Shop."
       />
 
       {/* Secciones de Reseñas y Feed de Instagram */}
@@ -133,7 +133,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
         enableSocialFeed={siteConfig?.enableSocialFeed !== false}
         socialTitle={siteConfig?.socialFeedTitle || "Síguenos en Instagram 📸"}
         embedHtml={siteConfig?.socialEmbedHtml}
-        instagramUrl={siteConfig?.instagramUrl || "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ=="}
+        instagramUrl={siteConfig?.instagramUrl || "https://www.instagram.com/aldri.shop"}
       />
 
       {/* Footer de Lujo */}

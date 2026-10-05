@@ -117,11 +117,11 @@ export function Footer({ siteConfig }: FooterProps) {
             AMEX
           </span>
           {/* Apple Pay */}
-          <span className="inline-flex items-center justify-center px-2.5 py-1 bg-white dark:bg-gray-900 border border-stone-300 dark:border-gray-700 rounded text-[10px] font-black !text-black dark:!text-white shadow-sm" style={{ color: '#000000' }}>
+          <span className="inline-flex items-center justify-center px-2.5 py-1 bg-white dark:bg-gray-900 border border-stone-300 dark:border-gray-700 rounded text-[10px] font-black text-black dark:text-white shadow-sm">
             Pay
           </span>
           {/* Google Pay */}
-          <span className="inline-flex items-center justify-center px-2.5 py-1 bg-white dark:bg-gray-900 border border-stone-300 dark:border-gray-700 rounded text-[10px] font-black !text-black dark:!text-white shadow-sm" style={{ color: '#000000' }}>
+          <span className="inline-flex items-center justify-center px-2.5 py-1 bg-white dark:bg-gray-900 border border-stone-300 dark:border-gray-700 rounded text-[10px] font-black text-black dark:text-white shadow-sm">
             G Pay
           </span>
           {/* Mastercard */}

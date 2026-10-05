@@ -184,7 +184,7 @@ export default function AdminConfiguracionPage() {
             </div>
 
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Elige cómo deseas que se organicen las tarjetas de flores en la portada. Puedes mantener la vista estándar de 3 columnas o ampliarla a 4 o 5 columnas para abarcar todo el ancho de pantalla.
+              Elige cómo deseas que se organicen las tarjetas de productos en la portada. Puedes mantener la vista estándar de 3 columnas o ampliarla a 4 o 5 columnas para abarcar todo el ancho de pantalla.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
@@ -352,7 +352,7 @@ export default function AdminConfiguracionPage() {
                 <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Lema del Footer</label>
                 <input
                   name="footerSlogan"
-                  defaultValue={config.footerSlogan || "Boutique Digital de Alta Floristería • Houston, Texas"}
+                  defaultValue={config.footerSlogan || "Tienda Oficial de Activos Digitales & Dropshipping Global"}
                   className="p-3.5 border rounded-2xl text-xs font-medium dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
                   required
                 />
@@ -362,7 +362,7 @@ export default function AdminConfiguracionPage() {
                 <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Texto de Derechos Reservados (Copyright)</label>
                 <input
                   name="footerCopyright"
-                  defaultValue={config.footerCopyright || "© 2026 Bonbon Flowers Houston. Todos los derechos reservados."}
+                  defaultValue={config.footerCopyright || "© 2026 Aldri Shop. Todos los derechos reservados."}
                   className="p-3.5 border rounded-2xl text-xs font-medium dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
                   required
                 />

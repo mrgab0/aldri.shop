@@ -184,7 +184,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
               ` : ''}
             </div>
 
-            <h3 style="color: #1A1C1C; border-bottom: 2px solid #FF97A4; padding-bottom: 5px;">Detalle de Productos & Adicionales de esta Compra:</h3>
+            <h3 style="color: #1A1C1C; border-bottom: 2px solid #6366F1; padding-bottom: 5px;">Detalle de Productos de esta Compra:</h3>
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
               ${savedOrder.items.map((item: any) => `
                 <tr>
@@ -192,12 +192,12 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
                     <strong>${item.name}</strong><br>
                     <small>Cantidad: ${item.quantity}</small>
                     ${item.addons && item.addons.length > 0 ? `
-                      <div style="margin-top: 6px; padding: 8px; background: #fff0f3; border-left: 3px solid #ff97a4; border-radius: 4px;">
-                        <strong style="color: #b0004a; font-size: 11px;">Adicionales Seleccionados:</strong><br>
+                      <div style="margin-top: 6px; padding: 8px; background: #f8fafc; border-left: 3px solid #6366f1; border-radius: 4px;">
+                        <strong style="color: #4f46e5; font-size: 11px;">Complementos Seleccionados:</strong><br>
                         ${item.addons.map((a: any) => `
                           <div style="font-size: 11px; margin-top: 3px; color: #333;">
                             ✨ <strong>${a.name || a.value}</strong> ${a.price ? `(+$${a.price.toFixed(2)})` : ''}
-                            ${a.customText ? `<div style="color: #d81b60; font-style: italic; font-weight: bold; margin-left: 10px;">💬 Texto / Dedicatoria: "${a.customText}"</div>` : ''}
+                            ${a.customText ? `<div style="color: #4f46e5; font-style: italic; font-weight: bold; margin-left: 10px;">💬 Nota / Instrucción: "${a.customText}"</div>` : ''}
                           </div>
                         `).join('')}
                       </div>
@@ -211,7 +211,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
             {/* Desglose Fiscal e Impuestos Transparente */}
             <div style="background-color: #fafafa; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 13px;">
               <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Subtotal Arreglos & Adicionales:</span>
+                <span>Subtotal Productos:</span>
                 <strong>$${itemsSubtotal.toFixed(2)} USD</strong>
               </div>
               ${savedOrder.couponCode ? `
@@ -226,15 +226,15 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
               </div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Costo de Envío:</span>
-                <strong style="color: #FF97A4;">${deliveryFee > 0 ? `+$${deliveryFee.toFixed(2)} USD` : "Gratis / Incluido"}</strong>
+                <strong style="color: #6366F1;">${deliveryFee > 0 ? `+$${deliveryFee.toFixed(2)} USD` : "Gratis / Incluido"}</strong>
               </div>
               <div style="border-top: 1px solid #ddd; padding-top: 8px; margin-top: 8px; display: flex; justify-content: space-between; font-size: 16px;">
                 <strong>TOTAL FINAL PAGADO EN ESTA ORDEN:</strong>
-                <strong style="color: #FF97A4;">$${orderTotal.toFixed(2)} USD</strong>
+                <strong style="color: #6366F1;">$${orderTotal.toFixed(2)} USD</strong>
               </div>
             </div>
 
-            <div style="padding: 15px; background: #fdf2f7; border-radius: 8px; margin-bottom: 20px;">
+            <div style="padding: 15px; background: #f8fafc; border-radius: 8px; margin-bottom: 20px;">
               <p style="margin: 5px 0;"><strong>Método de Pago:</strong> ${savedOrder.paymentMethod}</p>
               <p style="margin: 5px 0;"><strong>Referencia de Transacción:</strong> ${savedOrder.paymentRef}</p>
             </div>
@@ -249,7 +249,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
           </div>
           
           <div style="background-color: #1A1C1C; color: white; padding: 15px; text-align: center; font-size: 12px;">
-            <p style="margin: 0;">Bonbon Flowers Houston • Boutique Digital</p>
+            <p style="margin: 0;">Aldri Shop • Activos Digitales & Dropshipping</p>
           </div>
         </div>
       `;
@@ -266,7 +266,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
           {
             filename: "logo.png",
             path: logoPath,
-            cid: "logo_image@bonbonflowers",
+            cid: "logo_image@aldrishop",
           },
         ];
       }

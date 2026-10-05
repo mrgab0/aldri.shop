@@ -30,15 +30,15 @@ export const ShopHeader = () => {
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4 xl:gap-6 relative">
           {/* Logo Presionable hacia el Home */}
           <Link href="/" className="flex items-center gap-3 group flex-shrink-0 relative z-10">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#D4AF37]/50 shadow-md group-hover:scale-105 group-active:scale-95 transition-transform bg-white p-0.5 flex-shrink-0">
-              <img src="https://bonbonflowershouston.com/logo.png" alt="Bonbon Flowers Logo" className="w-full h-full object-cover rounded-full" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#D4AF37]/50 shadow-md group-hover:scale-105 group-active:scale-95 transition-transform bg-stone-900 p-0.5 flex-shrink-0 flex items-center justify-center text-white font-serif font-black text-sm">
+              AS
             </div>
             <div className="hidden xl:block flex-shrink-0">
-              <span className="text-lg font-serif font-black text-stone-900 dark:text-white tracking-tight group-hover:text-[#163422] transition-colors block">
-                Bonbon <span className="text-[#163422] dark:text-[#C5A059]">Flowers</span>
+              <span className="text-lg font-serif font-black text-stone-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-[#C5A059] transition-colors block">
+                Aldri <span className="text-indigo-600 dark:text-[#C5A059]">Shop</span>
               </span>
-              <span className="text-[9px] uppercase tracking-widest text-slate-500 font-bold block -mt-0.5">
-                Boutique Floral • Houston, TX
+              <span className="text-[9px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold block -mt-0.5">
+                Digital &amp; Dropshipping
               </span>
             </div>
           </Link>

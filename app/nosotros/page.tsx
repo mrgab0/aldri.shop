@@ -5,12 +5,12 @@ import { Metadata } from "next";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Nosotros & Blog Floral | Bonbon Flowers Houston",
-  description: "Conoce la historia de Bonbon Flowers Houston en Houston, TX. Arreglos florales de lujo, ramos buchones y guías de cuidado de flores.",
+  title: "Nosotros & Blog | Aldri Shop",
+  description: "Conoce Aldri Shop: Tu plataforma global de activos digitales y productos dropshipping en tendencia con envíos garantizados.",
   openGraph: {
-    title: "Nosotros & Blog Floral | Bonbon Flowers Houston",
-    description: "Boutique floral de lujo en Houston, Texas. Descubre nuestra historia y blog floral.",
-    images: ["https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1200"]
+    title: "Nosotros & Blog | Aldri Shop",
+    description: "Plataforma de confianza para descargas instantáneas y gadgets dropshipping de alta calidad.",
+    images: ["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200"]
   }
 };
 

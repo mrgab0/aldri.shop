@@ -6,69 +6,57 @@ import { revalidatePath } from "next/cache";
 
 const SEED_POSTS: Partial<IPost>[] = [
   {
-    title: "Guía de Flores en Houston: Los Mejores Arreglos para Aniversario y Amor",
-    slug: "guia-flores-aniversario-houston",
-    excerpt: "Descubre cómo elegir el arreglo floral perfecto para celebrar aniversarios y ocasiones románticas en Houston, Texas con entrega el mismo día.",
-    mainImage: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1200&auto=format&fit=crop&q=80",
+    title: "Guía Definitiva: Cómo Maximizar tu Productividad con Plantillas de Notion Pro",
+    slug: "guia-productividad-plantillas-notion-pro",
+    excerpt: "Descubre cómo organizar proyectos, hábitos y finanzas personales utilizando sistemas modulares de Notion diseñados para alto rendimiento.",
+    mainImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&auto=format&fit=crop&q=80",
     published: true,
     createdAt: new Date("2026-02-14T10:00:00Z"),
-    content: `## Celebrar el Amor con la Elegancia de Bonbon Flowers
+    content: `## Potencia tu Productividad con las Plantillas de Aldri Shop
 
-En **Bonbon Flowers Houston**, entendemos que cada aniversario y fecha romántica cuenta una historia única. Encontrar el ramo adecuado no se trata solo de elegir flores bonitas, sino de transmitir emociones genuinas que queden grabadas en el corazón de esa persona especial.
+En **Aldri Shop**, sabemos que un sistema de trabajo desorganizado cuesta tiempo valioso. Nuestras plantillas de Notion están construidas para eliminar el caos mental y estructurar tu día con claridad absoluta.
 
-### 🌹 Los Arreglos Más Solicitados para Aniversarios
+### ⚡ ¿Por qué usar sistemas Notion en lugar de apps dispersas?
 
-1. **Ramos Buchones de Rosas Rojas:** Un clásico imponente que representa la pasión eterna. Disponibles desde 50 hasta más de 200 rosas premium de tallo largo.
-2. **Cajas de Lujo con Rosas & Chocolates:** Presentación sofisticada en cajas redondas o de corazón, combinadas con chocolates finos Ferrero Rocher y toques dorados.
-3. **Arreglos Mixtos con Orquídeas y Lirios:** Ideales para quienes buscan un diseño vanguardista, aromático y duradero.
+1. **Centralización Total:** Conecta tareas, bases de datos de clientes, finanzas y seguimiento de hábitos en un solo panel de control.
+2. **Personalización Ilimitada:** Adapta cada vista a tus necesidades exactas (Kanban, Calendario, Tablas y Galerías).
+3. **Descarga Inmediata:** Al adquirir tu plantilla en Aldri Shop, recibes acceso instantáneo con videotutorial de duplicación y configuración paso a paso.
 
-### 🚚 Envíos Express y Entrega el Mismo Día en Houston
-Ofrecemos servicio de entrega puntual a domicilio en **Houston, Pearland, Sugar Land, Katy, Cypress y The Woodlands**. Todos nuestros arreglos son confeccionados a mano por floristas expertos minutos antes de su despacho para garantizar frescura absoluta.
-
-> **💡 Consejo de Florista:** Si deseas personalizar tu dedicatoria o añadir globos con helio y peluches gigantes, puedes solicitarlo directamente en nuestra tienda o por WhatsApp.`
+> **💡 Consejo Pro:** Empieza registrando tus 3 prioridades diarias cada mañana antes de revisar correos o notificaciones.`
   },
   {
-    title: "Cómo Cuidar tus Rosas Frescas para que Duren Más Días: Consejos Profesionales",
-    slug: "como-cuidar-rosas-frescas-guia",
-    excerpt: "Aprende los secretos de los floristas profesionales de Bonbon Flowers para extender la vida y frescura de tus ramos de rosas en casa.",
-    mainImage: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&auto=format&fit=crop&q=80",
+    title: "Color Grading Cinematográfico: Secretos para Usar LUTs en tus Videos",
+    slug: "color-grading-cinematografico-guia-luts",
+    excerpt: "Aprende a transformar el estilo visual de tus videos con paquetes de LUTs profesionales compatibles con Premiere Pro, DaVinci Resolve y Final Cut.",
+    mainImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&auto=format&fit=crop&q=80",
     published: true,
     createdAt: new Date("2026-02-20T12:00:00Z"),
-    content: `## Maximiza la Belleza de tu Ramo Floral
+    content: `## Eleva la Calidad Visual de tu Contenido Audiovisual
 
-Recibir un arreglo de **Bonbon Flowers** es una experiencia mágica. Para que tus rosas se mantengan firmes, radiantes y fragantes durante más de una semana, sigue estos sencillos cuidados profesionales:
+El color transmite emociones antes que las palabras. Un buen etalonaje o corrección de color diferencia una producción amateur de una pieza cinematográfica.
 
-### 1. El Corte en Diagonal es Clave
-Antes de colocar las flores en el florero, corta aproximadamente 2 cm del tallo en un ángulo de **45 grados**. Utiliza tijeras afiladas o una navaja limpia. Este corte diagonal permite que los tallos absorban agua con mayor facilidad.
+### 🎬 Consejos para Aplicar LUTs con Éxito
 
-### 2. Agua Limpia y Fresca a Diario
-- Cambia el agua del florero cada **24 a 48 horas**.
-- Asegúrate de que no queden hojas sumergidas en el agua, ya que aceleran la proliferación de bacterias.
-
-### 3. Ubicación Perfecta
-Mantén tu arreglo en un lugar fresco, lejos de la luz solar directa, corrientes de aire acondicionado fuerte o fuentes de calor como electrodomésticos.
-
-### 4. Hidratación en Espuma Floral (Oasis)
-Si tu arreglo viene en caja o base con espuma floral, vierte media taza de agua fresca en el centro de la base cada 2 días para mantener la humedad constante.`
+1. **Corrige la Exposición y Balance de Blancos Primero:** Antes de aplicar un LUT creativo, ajusta los niveles básicos de sombras, altas luces y temperatura de color.
+2. **Controla la Intensidad:** En lugar de aplicar el LUT al 100%, pruébalo al 60%-80% para un resultado orgánico y natural.
+3. **Licencia Comercial Incluida:** Todos los paquetes de LUTs de **Aldri Shop** incluyen derechos de uso comercial para videos de YouTube, publicidad y redes sociales.`
   },
   {
-    title: "Ramos Buchones y Cajas de Rosas de Lujo: La Gran Tendencia Floral en Texas",
-    slug: "ramos-buchones-rosas-lujo-texas",
-    excerpt: "Conoce por qué los ramos buchones y las cajas florales personalizadas se han convertido en el regalo favorito en eventos y celebraciones.",
-    mainImage: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=1200&auto=format&fit=crop&q=80",
+    title: "Envíos Dropshipping: Cómo Rastrear tu Paquete Internacional con 17Track",
+    slug: "envios-dropshipping-rastreo-tiempo-real",
+    excerpt: "Conoce el paso a paso del proceso logístico y cómo consultar en vivo la ubicación y estado de entrega de tus gadgets favoritos.",
+    mainImage: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=80",
     published: true,
     createdAt: new Date("2026-03-01T15:00:00Z"),
-    content: `## El Arte de Regalar a lo Grande
+    content: `## Transparencia y Seguridad en Envíos Internacionales
 
-Los **ramos buchones** han revolucionado la floristería contemporánea en Texas. Su estructura circular perfecta, el volumen imponente de flores seleccionadas y los detalles ornamentales como coronas brillantes, mariposas decorativas y papel coreano satinado los convierten en verdaderas obras de arte.
+En **Aldri Shop**, trabajamos con proveedores certificados y empresas transportistas globales para asegurar que cada producto físico llegue en perfecto estado.
 
-### ¿Por qué Elegir un Ramo Buchón de Bonbon Flowers?
+### 📦 ¿Cómo funciona el seguimiento de tu orden?
 
-- **Rosas de Calidad de Exportación:** Cada botón floral es inspeccionado cuidadosamente para garantizar pétalos firmes y apertura uniforme.
-- **Presentación Impecable:** Acabados con lazos de seda, perlas y dedicatorias exclusivas.
-- **Impacto Visual Inolvidable:** Es el detalle definitivo para cumpleaños, propuestas de matrimonio, graduaciones y celebraciones de quinceañeras.
-
-Descubre nuestra colección completa en nuestro catálogo online o comunícate directamente con nosotros en Houston, TX.`
+- **Procesamiento y Control de Calidad (24-48h):** Cada artículo es verificado antes de su embalaje.
+- **Asignación de Guía Internacional:** Te proporcionamos un número de tracking oficial compatible con 17Track, Yanwen, YunExpress o carriers locales (USPS / Correo local).
+- **Rastreo en Tiempo Real:** Puedes ingresar a nuestra sección de **Rastreo** con tu ID de pedido para ver actualizaciones satelitales paso a paso.`
   }
 ];
 

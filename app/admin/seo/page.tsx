@@ -34,14 +34,14 @@ export default function AdminSeoPage() {
     const { data } = await getSiteConfig();
     if (data) {
       setConfig(data);
-      setTitle(data.seoTitle || "Bonbon Flowers Houston | Boutique Digital de Alta Floristería");
-      setDescription(data.seoDescription || "Floristería exclusiva con arreglos florales de lujo, rosas y detalles personalizados a domicilio con entrega express en Houston, TX.");
-      setKeywords(data.seoKeywords || "floristeria, flores a domicilio, arreglos florales, rosas, ramos de flores, regalos, houston tx, bonbon flowers");
-      setOgImage(data.ogImage || "https://bonbonflowershouston.com/logo.png");
+      setTitle(data.seoTitle || "Aldri Shop | Activos Digitales & Dropshipping Global");
+      setDescription(data.seoDescription || "Tienda oficial de activos digitales, plantillas Notion, LUTs cinematográficos y productos dropshipping en tendencia.");
+      setKeywords(data.seoKeywords || "activos digitales, notion templates, luts, software, dropshipping, gadgets, edc, aldri shop");
+      setOgImage(data.ogImage || "https://aldri.shop/logo.png");
       setGoogleVerification(data.googleSiteVerification || "");
       setBingVerification(data.bingSiteVerification || "");
       setAnalyticsId(data.googleAnalyticsId || "");
-      setBusinessName(data.businessName || "Bonbon Flowers");
+      setBusinessName(data.businessName || "Aldri Shop");
       setBusinessPhone(data.businessPhone || "+1 (346) 739-2730");
       setBusinessAddress(data.businessAddress || "Houston, TX");
       setBusinessCity(data.businessCity || "Houston, TX");
@@ -152,7 +152,7 @@ export default function AdminSeoPage() {
                     name="seoTitle"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Ej: Bonbon Flowers Houston | Boutique Digital de Alta Floristería"
+                    placeholder="Ej: Aldri Shop | Activos Digitales & Dropshipping Global"
                     className="p-3 border rounded-2xl text-xs font-bold text-[#1A1C1C] dark:text-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     required
                   />
@@ -182,7 +182,7 @@ export default function AdminSeoPage() {
                     name="seoKeywords"
                     value={keywords}
                     onChange={(e) => setKeywords(e.target.value)}
-                    placeholder="Ej: floristeria, flores a domicilio, arreglos florales, rosas"
+                    placeholder="Ej: activos digitales, notion templates, luts, gadgets, edc, dropshipping"
                     className="p-3 border rounded-2xl text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-gray-900 border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                 </div>
@@ -211,7 +211,7 @@ export default function AdminSeoPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Nombre de la Floristería</label>
+                  <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Nombre de la Tienda / Negocio</label>
                   <input
                     name="businessName"
                     value={businessName}
@@ -286,14 +286,14 @@ export default function AdminSeoPage() {
 
                 <div className="p-4 bg-gray-50 dark:bg-gray-900/80 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-1">
                   <div className="flex items-center gap-2 text-[11px] text-gray-600 dark:text-gray-400">
-                    <span className="w-4 h-4 rounded-full bg-pink-100 text-[#FF97A4] flex items-center justify-center font-bold text-[9px]">B</span>
-                    <span>https://bonbonflowershouston.com</span>
+                    <span className="w-4 h-4 rounded-full bg-[#163422] text-white flex items-center justify-center font-bold text-[9px]">A</span>
+                    <span>https://aldri.shop</span>
                   </div>
                   <h3 className="text-sm font-bold text-blue-700 dark:text-blue-400 hover:underline cursor-pointer leading-snug">
-                    {title || "Bonbon Flowers Houston | Boutique Digital de Alta Floristería"}
+                    {title || "Aldri Shop | Activos Digitales & Dropshipping Global"}
                   </h3>
                   <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
-                    {description || "Floristería exclusiva con arreglos florales de lujo, rosas y detalles personalizados a domicilio con entrega express en Houston, TX."}
+                    {description || "Tienda oficial de activos digitales, plantillas Notion, LUTs cinematográficos y productos dropshipping en tendencia."}
                   </p>
                 </div>
               </div>
@@ -311,7 +311,7 @@ export default function AdminSeoPage() {
                     </div>
                   )}
                   <div className="px-1 space-y-0.5">
-                    <span className="text-[10px] text-emerald-400 font-bold uppercase block">BONBONFLOWERSHOUSTON.COM</span>
+                    <span className="text-[10px] text-emerald-400 font-bold uppercase block">ALDRI.SHOP</span>
                     <h4 className="text-xs font-bold text-white leading-snug line-clamp-1">{title}</h4>
                     <p className="text-[11px] text-emerald-200/80 line-clamp-2 leading-tight">{description}</p>
                   </div>

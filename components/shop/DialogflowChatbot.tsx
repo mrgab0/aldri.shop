@@ -22,12 +22,12 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
   const [messages, setMessages] = useState<Array<{ sender: "bot" | "user"; text: string; options?: Array<{ label: string; action: () => void }> }>>([
     {
       sender: "bot",
-      text: "¡Hola! 🌸 Bienvenido a Bonbon Flowers Houston. Soy Flor, tu asesora floral. ¿Cómo puedo ayudarte hoy?",
+      text: "¡Hola! 👋 Bienvenido a Aldri Shop. Soy Aldri, tu asistente virtual. ¿Cómo puedo ayudarte hoy?",
       options: [
-        { label: "🌹 Ver Ramos Populares", action: () => handleSendOption("Quiero ver los ramos más vendidos") },
+        { label: "⚡ Descargas Digitales", action: () => handleSendOption("¿Cómo funcionan las descargas digitales?") },
         { label: "📦 Rastrear un Pedido", action: () => handleSendOption("¿Cómo puedo rastrear mi pedido?") },
-        { label: "🚚 Zonas de Entrega & Horarios", action: () => handleSendOption("¿Cuáles son las zonas y tiempos de entrega?") },
-        { label: "💬 Hablar con una Florista", action: () => handleSendOption("Deseo atención personalizada con una florista") },
+        { label: "💻 Catálogo de Productos", action: () => handleSendOption("Quiero ver los productos más populares") },
+        { label: "💬 Soporte por WhatsApp", action: () => handleSendOption("Deseo contactar con soporte por WhatsApp") },
       ]
     }
   ]);
@@ -40,7 +40,7 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
   const projectId = siteConfig?.dialogflowProjectId;
   const location = siteConfig?.dialogflowLocation || "us-central1";
   const languageCode = siteConfig?.dialogflowLanguageCode || "es";
-  const chatTitle = siteConfig?.dialogflowChatTitle || "Flor • Bonbon Flowers 🌸";
+  const chatTitle = siteConfig?.dialogflowChatTitle || "Aldri • Aldri Shop ✨";
   const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/13467392730";
 
   const isRealDialogflowConfigured = Boolean(agentId && projectId && agentId.trim() !== "" && projectId.trim() !== "");
@@ -151,14 +151,14 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
             <div className="w-[90vw] sm:w-[380px] h-[520px] max-h-[80vh] bg-white/95 dark:bg-[#12131A]/95 backdrop-blur-2xl rounded-3xl border border-[#D4AF37]/30 dark:border-gray-800 shadow-[0_20px_60px_rgba(42,0,2,0.3)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden mb-4 transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
               
               {/* Encabezado del Chat Expandido */}
-              <div className="bg-gradient-to-r from-[#163422] via-[#1B2E22] to-[#163422] p-4 text-white flex items-center justify-between shadow-md flex-shrink-0">
+              <div className="bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900 p-4 text-white flex items-center justify-between shadow-md flex-shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full border border-[#D4AF37]/60 overflow-hidden bg-white p-0.5 shadow-sm flex items-center justify-center">
-                    <img src="https://bonbonflowershouston.com/logo.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
+                  <div className="w-10 h-10 rounded-full border border-[#D4AF37]/60 overflow-hidden bg-stone-900 shadow-sm flex items-center justify-center text-white font-serif font-black text-sm">
+                    AS
                   </div>
                   <div>
                     <h4 className="font-serif font-black text-sm leading-tight flex items-center gap-1.5">
-                      <span>Flor</span>
+                      <span>Aldri</span>
                       <Sparkles size={13} className="text-[#D4AF37]" />
                     </h4>
                     <span className="text-[10px] font-bold text-emerald-300 flex items-center gap-1">
@@ -191,7 +191,7 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
               </div>
 
               {/* Área de Mensajes */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs chatbot-messages-area">
+              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs chatbot-messages-area bg-[#FDFCF8] dark:bg-[#0d0e14]">
                 {messages.map((msg, index) => (
                   <div
                     key={index}
@@ -200,8 +200,8 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
                     <div
                       className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed font-medium ${
                         msg.sender === "user"
-                          ? "bg-[#163422] text-white rounded-br-none shadow-sm"
-                          : "bg-gray-100 dark:bg-gray-800/90 text-black dark:text-gray-100 rounded-bl-none border border-gray-200/80 dark:border-gray-700 shadow-sm chatbot-bot-bubble"
+                          ? "bg-stone-900 text-white rounded-br-none shadow-sm"
+                          : "bg-gray-100 dark:bg-gray-800/90 text-stone-900 dark:text-gray-100 rounded-bl-none border border-gray-200/80 dark:border-gray-700 shadow-sm chatbot-bot-bubble"
                       }`}
                     >
                       {msg.text}
@@ -214,7 +214,7 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
                           <button
                             key={i}
                             onClick={opt.action}
-                            className="bg-white dark:bg-stone-800 text-black dark:text-emerald-300 border border-gray-300 dark:border-stone-700 hover:bg-[#163422] hover:text-white dark:hover:bg-[#163422] dark:hover:text-white px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition-all shadow-xs active:scale-95 text-left chatbot-chip-btn"
+                            className="bg-white dark:bg-stone-800 text-stone-900 dark:text-white border border-gray-300 dark:border-stone-700 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-700 px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition-all shadow-xs active:scale-95 text-left chatbot-chip-btn"
                           >
                             {opt.label}
                           </button>
@@ -226,7 +226,7 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
                     {msg.sender === "bot" && (
                       <div className="mt-2.5">
                         <a
-                          href={`${whatsappUrl}?text=${encodeURIComponent("¡Hola Bonbon Flowers! 🌸 Vengo desde el Asistente Virtual y deseo una consulta floral personalizada.")}`}
+                          href={`${whatsappUrl}?text=${encodeURIComponent("¡Hola Aldri Shop! 👋 Vengo desde el Asistente Virtual y deseo asistencia personalizada.")}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white px-3.5 py-2 rounded-xl text-[11px] font-black shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 border border-white/20"
@@ -241,9 +241,9 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
 
                 {isTyping && (
                   <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl w-16 text-gray-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce"></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce [animation-delay:0.2s]"></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce [animation-delay:0.4s]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.4s]"></span>
                   </div>
                 )}
                 <div ref={messagesEndRef} />
@@ -256,12 +256,12 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escribe un mensaje..."
-                  className="flex-1 bg-gray-100 dark:bg-gray-800/80 text-black dark:text-white px-4 py-2.5 rounded-full text-xs outline-none focus:ring-2 focus:ring-[#163422]/40 dark:focus:ring-emerald-500/40"
+                  className="flex-1 bg-gray-100 dark:bg-gray-800/80 text-stone-900 dark:text-white px-4 py-2.5 rounded-full text-xs outline-none focus:ring-2 focus:ring-indigo-500/40"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="w-9 h-9 rounded-full bg-[#163422] hover:bg-[#1B2E22] text-white flex items-center justify-center disabled:opacity-40 disabled:hover:bg-[#163422] transition-all shadow-sm active:scale-95"
+                  className="w-9 h-9 rounded-full bg-stone-900 hover:bg-black text-white flex items-center justify-center disabled:opacity-40 transition-all shadow-sm active:scale-95"
                 >
                   <Send size={15} />
                 </button>
@@ -278,32 +278,32 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
               {/* Cabecera del Mini-Chat */}
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-gray-100 dark:border-gray-800">
                 <div className="flex items-center gap-2.5">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D4AF37]/60 bg-white p-0.5 shadow-xs flex-shrink-0">
-                    <img src="https://bonbonflowershouston.com/logo.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D4AF37]/60 bg-stone-900 p-0.5 shadow-xs flex-shrink-0 flex items-center justify-center text-white font-serif font-black text-xs">
+                    AS
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-white"></span>
                   </div>
                   <div className="leading-tight">
                     <h5 className="font-serif font-black text-xs text-stone-900 dark:text-white flex items-center gap-1">
-                      <span>Flor</span>
+                      <span>Aldri</span>
                       <Sparkles size={11} className="text-[#D4AF37]" />
                     </h5>
                     <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
-                      En línea 24/7 🌸
+                      En línea 24/7 ⚡
                     </span>
                   </div>
                 </div>
 
-                <div className="p-1.5 bg-[#163422] text-white rounded-full group-hover:scale-110 transition-transform shadow-sm">
+                <div className="p-1.5 bg-stone-900 text-white rounded-full group-hover:scale-110 transition-transform shadow-sm">
                   <Maximize2 size={13} />
                 </div>
               </div>
 
               {/* Burbuja Preview del Mini-Chat */}
               <div className="py-2.5 text-slate-800 dark:text-gray-200">
-                <div className="p-2.5 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-[11px] leading-relaxed font-medium chatbot-mini-preview text-black dark:text-gray-100">
+                <div className="p-2.5 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-[11px] leading-relaxed font-medium chatbot-mini-preview text-stone-900 dark:text-white">
                   {messages.length > 0 && messages[messages.length - 1].sender === "bot"
                     ? messages[messages.length - 1].text.slice(0, 75) + "..."
-                    : "¡Hola! 🌸 ¿Cómo puedo ayudarte hoy con tus flores?"}
+                    : "¡Hola! 👋 ¿En qué te puedo asesorar hoy?"}
                 </div>
               </div>
 

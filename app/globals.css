@@ -93,6 +93,27 @@ html:not(.dark) .chatbot-mini-preview {
   color: #000000 !important;
 }
 
+html.dark .chatbot-bot-bubble {
+  color: #FFFFFF !important;
+  background-color: #1a1b24 !important;
+}
+html.dark .chatbot-chip-btn {
+  color: #FFFFFF !important;
+  background-color: #181922 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html.dark .chatbot-chip-btn:hover {
+  color: #FFFFFF !important;
+  background-color: #272838 !important;
+}
+html.dark .chatbot-input {
+  color: #FFFFFF !important;
+  background-color: #1c1d28 !important;
+}
+html.dark .chatbot-mini-preview {
+  color: #FFFFFF !important;
+}
+
 /* Ajustes a los gradientes del Hero en modo claro */
 html:not(.dark) .from-\[\#fff8f7\] {
   --tw-gradient-from: var(--bg-main) !important;
@@ -141,26 +162,121 @@ html:not(.dark) .hover\:bg-\[\#80273B\]:hover {
   background-color: #1B2E22 !important;
 }
 
-/* --- SECCIÓN NOSOTROS Y BLOG EDITORIAL: TIPOGRAFÍA 100% NEGRO PURO --- */
-.nosotros-page-root,
-.nosotros-page-root h1,
-.nosotros-page-root h2,
-.nosotros-page-root h3,
-.nosotros-page-root h4,
-.nosotros-page-root h5,
-.nosotros-page-root h6,
-.nosotros-page-root p,
-.nosotros-page-root strong,
-.nosotros-page-root span:not(.preserve-color),
-.nosotros-page-root li,
-.nosotros-page-root blockquote {
+/* --- SECCIÓN NOSOTROS Y BLOG EDITORIAL: TIPOGRAFÍA EN MODO CLARO Y OSCURO --- */
+html:not(.dark) .nosotros-page-root,
+html:not(.dark) .nosotros-page-root h1,
+html:not(.dark) .nosotros-page-root h2,
+html:not(.dark) .nosotros-page-root h3,
+html:not(.dark) .nosotros-page-root h4,
+html:not(.dark) .nosotros-page-root h5,
+html:not(.dark) .nosotros-page-root h6,
+html:not(.dark) .nosotros-page-root p,
+html:not(.dark) .nosotros-page-root strong,
+html:not(.dark) .nosotros-page-root span:not(.preserve-color),
+html:not(.dark) .nosotros-page-root li,
+html:not(.dark) .nosotros-page-root blockquote {
   color: #000000 !important;
+}
+
+html.dark .nosotros-page-root,
+html.dark .nosotros-page-root h1,
+html.dark .nosotros-page-root h2,
+html.dark .nosotros-page-root h3,
+html.dark .nosotros-page-root h4,
+html.dark .nosotros-page-root h5,
+html.dark .nosotros-page-root h6,
+html.dark .nosotros-page-root p,
+html.dark .nosotros-page-root strong,
+html.dark .nosotros-page-root span:not(.preserve-color),
+html.dark .nosotros-page-root li,
+html.dark .nosotros-page-root blockquote {
+  color: #FFFFFF !important;
 }
 
 .nosotros-page-root .text-\[\#8B0024\],
 .nosotros-page-root a.text-\[\#8B0024\],
 html:not(.dark) .nosotros-page-root .text-\[\#8B0024\] {
   color: #163422 !important;
+}
+
+/* --- GARANTÍA DE TIPOGRAFÍA BLANCA INMEDIATA EN MODO OSCURO --- */
+html.dark,
+html.dark body {
+  background-color: #0B0C10 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: #FFFFFF !important;
+}
+
+/* Forzar que todos los textos oscuros cambien a blanco brillante en modo oscuro */
+html.dark .text-black,
+html.dark .text-stone-950,
+html.dark .text-stone-900,
+html.dark .text-stone-800,
+html.dark .text-gray-950,
+html.dark .text-gray-900,
+html.dark .text-gray-800,
+html.dark .text-slate-950,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-zinc-950,
+html.dark .text-zinc-900,
+html.dark .text-zinc-800,
+html.dark .text-neutral-950,
+html.dark .text-neutral-900,
+html.dark .text-neutral-800,
+html.dark .text-\[\#1A1A1A\],
+html.dark .text-\[\#1A1C1C\],
+html.dark .text-\[\#111827\],
+html.dark .text-\[\#163422\],
+html.dark .text-\[\#2B0002\],
+html.dark .text-\[\#2a0002\],
+html.dark .text-\[\#8B0024\],
+html.dark .text-\[\#80273B\] {
+  color: #FFFFFF !important;
+}
+
+html.dark .text-stone-700,
+html.dark .text-gray-700,
+html.dark .text-slate-700,
+html.dark .text-zinc-700,
+html.dark .text-neutral-700 {
+  color: #E2E8F0 !important;
+}
+
+html.dark .text-stone-600,
+html.dark .text-gray-600,
+html.dark .text-slate-600,
+html.dark .text-zinc-600,
+html.dark .text-neutral-600,
+html.dark .text-stone-500,
+html.dark .text-gray-500,
+html.dark .text-slate-500 {
+  color: #CBD5E1 !important;
+}
+
+/* Anular inline styles negros/oscuros cuando dark mode esté activo */
+html.dark [style*="color: #000000"],
+html.dark [style*="color:#000000"],
+html.dark [style*="color: #000"],
+html.dark [style*="color:#000"],
+html.dark [style*="color: black"],
+html.dark [style*="color:black"],
+html.dark [style*="color: rgb(0, 0, 0)"],
+html.dark [style*="color:rgb(0,0,0)"],
+html.dark [style*="color: #1A1A1A"],
+html.dark [style*="color: #1a1a1a"],
+html.dark [style*="color: #1A1C1C"],
+html.dark [style*="color: #1a1c1c"],
+html.dark [style*="color: #163422"] {
+  color: #FFFFFF !important;
 }
 
 /* --- FOOTER GLOBAL: TIPOGRAFÍA EN NEGRO PURO EN MODO CLARO --- */

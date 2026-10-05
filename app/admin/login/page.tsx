@@ -107,7 +107,7 @@ export default function AdminLoginPage() {
               </div>
               <h1 className="text-2xl font-serif font-black text-[#1A1C1C]">Acceso al Panel Admin</h1>
               <p className="text-xs text-gray-400 font-medium">
-                Ingresa la contraseña de administración para gestionar tu boutique
+                Ingresa la contraseña de administración para gestionar tu tienda Aldri Shop
               </p>
             </div>
 
@@ -140,7 +140,7 @@ export default function AdminLoginPage() {
                   </button>
                 </div>
                 <p className="text-[11px] text-gray-400 italic text-right pt-0.5">
-                  Contraseña inicial: <strong className="text-gray-600">flores2026</strong>
+                  Contraseña inicial: <strong className="text-gray-600">aldri2026</strong>
                 </p>
               </div>
 

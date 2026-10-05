@@ -289,27 +289,27 @@ export default async function EditarProductoPage({ params }: { params: Promise<{
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Cantidad de Rosas / Flores</label>
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Cantidad / Unidades / Versión</label>
               <input
                 name="flowerCount"
                 type="number"
                 defaultValue={product.flowerCount || ""}
-                placeholder="Ej: 12, 24, 50"
+                placeholder="Ej: 1, 10, 50"
                 className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] dark:bg-gray-900 dark:text-white"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Tipo de Presentación / Bouquet</label>
+              <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Tipo de Entrega / Modalidad</label>
               <select
                 name="bouquetType"
-                defaultValue={product.bouquetType || "ramo"}
+                defaultValue={product.bouquetType || "digital"}
                 className="p-3 border rounded-xl bg-white dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium"
               >
-                <option value="ramo">Ramo de Mano</option>
-                <option value="box">Box / Caja Deluxe</option>
-                <option value="florero">Arreglo en Florero de Vidrio</option>
-                <option value="premium">Edición Especial Premium</option>
+                <option value="digital">Descarga Digital Instantánea</option>
+                <option value="licencia">Licencia Digital Certificada</option>
+                <option value="dropship">Envío Dropshipping con Tracking</option>
+                <option value="fisico">Hardware / Accesorio Físico</option>
               </select>
             </div>
           </div>

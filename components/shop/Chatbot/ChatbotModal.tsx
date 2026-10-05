@@ -16,66 +16,66 @@ interface Message {
 const I18N_CONTENT = {
   es: {
     quickQuestions: [
-      "🌸 Ver arreglos de cumpleaños",
-      "🌹 Ramos de rosas románticos",
-      "🚚 ¿Cómo funciona el delivery en Houston?",
-      "💍 Arreglos para aniversarios"
+      "⚡ ¿Cómo descargo mi producto digital?",
+      "📦 ¿Cómo rastreo mi pedido dropshipping?",
+      "💻 Plantillas Notion & Presets disponibles",
+      "💳 Métodos de pago aceptados"
     ],
     previewTickers: [
-      "¿Buscas flores hoy? Te ayudo a elegir 🌸",
-      "🚚 Delivery el mismo día en Houston",
-      "🌹 Rosas de lujo y arreglos exclusivos",
-      "💬 Consulta precios y disponibilidad aquí"
+      "¿Buscas productos digitales o en tendencia? ⚡",
+      "📦 Descargas instantáneas y dropshipping global",
+      "💳 Pagos seguros con Visa, PayPal y Zelle",
+      "💬 Consulta dudas y disponibilidad aquí"
     ],
-    welcomeMessage: "¡Hola! 🌸 Soy **Flor**, tu asesora floral en **Bonbon Flowers Houston**.\n\n¿Para qué ocasión especial estás buscando flores hoy?",
-    resetMessage: "¡Hola de nuevo! 🌸 Te saluda Flor, ¿en qué te puedo ayudar hoy?",
-    errorMessage: "🌸 Hubo un pequeño inconveniente de conexión. Puedes escribirnos directo a nuestro WhatsApp [+1 346 739 2730](https://wa.me/13467392730) para asistirte de inmediato.",
+    welcomeMessage: "¡Hola! 👋 Soy **Aldri**, tu asistente virtual en **Aldri Shop**.\n\n¿En qué te puedo asesorar hoy? Tenemos productos digitales de descarga inmediata y artículos en tendencia con envío rastreado.",
+    resetMessage: "¡Hola de nuevo! 👋 Te saluda Aldri, ¿en qué te puedo ayudar hoy?",
+    errorMessage: "Hubo un pequeño inconveniente de conexión. Puedes escribirnos directo a nuestro WhatsApp [+1 346 739 2730](https://wa.me/13467392730) para asistirte de inmediato.",
     defaultErrorResponse: "Disculpa, no pude procesar tu solicitud. Por favor intenta nuevamente.",
-    advisorRole: "FLOR • ASESORA FLORAL",
+    advisorRole: "ALDRI • ASISTENTE VIRTUAL",
     liveBadge: "EN LÍNEA",
-    headerStatus: "Asesora Floral • En línea 🌸",
-    ariaOpen: "Abrir chat con Flor - Bonbon Flowers",
+    headerStatus: "Asistente Virtual • En línea ⚡",
+    ariaOpen: "Abrir chat con Aldri - Aldri Shop",
     ariaRestart: "Reiniciar chat",
     ariaClose: "Cerrar chat",
     ariaSend: "Enviar mensaje",
     searchingCatalog: "Escribiendo respuesta...",
     popularQuestions: "Consultas populares:",
     inputPlaceholder: "Escribe tu consulta aquí...",
-    poweredBy: "Flor • Bonbon Flowers",
+    poweredBy: "Aldri • Aldri Shop",
   },
   en: {
     quickQuestions: [
-      "🌸 View birthday arrangements",
-      "🌹 Romantic rose bouquets",
-      "🚚 How does Houston delivery work?",
-      "💍 Anniversary floral designs"
+      "⚡ How do I download my digital product?",
+      "📦 How do I track my dropshipping order?",
+      "💻 Notion templates & Presets available",
+      "💳 Accepted payment methods"
     ],
     previewTickers: [
-      "Looking for flowers today? I'll help you choose 🌸",
-      "🚚 Same-day delivery in Houston",
-      "🌹 Luxury roses & exclusive arrangements",
-      "💬 Check prices & availability here"
+      "Looking for digital goods or trending tech? ⚡",
+      "📦 Instant downloads & global tracked dropshipping",
+      "💳 Secure checkout with Visa, PayPal & Zelle",
+      "💬 Check products & questions here"
     ],
-    welcomeMessage: "Hello! 🌸 I'm **Flor**, your floral advisor at **Bonbon Flowers Houston**.\n\nWhat special occasion are you looking for flowers for today?",
-    resetMessage: "Hello again! 🌸 Flor here, how can I help you today?",
-    errorMessage: "🌸 There was a brief connection issue. You can message us directly on WhatsApp [+1 346 739 2730](https://wa.me/13467392730) for instant assistance.",
+    welcomeMessage: "Hello! 👋 I'm **Aldri**, your virtual assistant at **Aldri Shop**.\n\nHow can I help you today? We offer instant digital downloads and trending products with global tracking.",
+    resetMessage: "Hello again! 👋 Aldri here, how can I assist you today?",
+    errorMessage: "There was a brief connection issue. You can message us directly on WhatsApp [+1 346 739 2730](https://wa.me/13467392730) for instant assistance.",
     defaultErrorResponse: "Sorry, I couldn't process your request. Please try again.",
-    advisorRole: "FLOR • FLORAL ADVISOR",
+    advisorRole: "ALDRI • VIRTUAL ASSISTANT",
     liveBadge: "ONLINE",
-    headerStatus: "Floral Advisor • Online 🌸",
-    ariaOpen: "Chat with Flor - Bonbon Flowers",
+    headerStatus: "Virtual Assistant • Online ⚡",
+    ariaOpen: "Chat with Aldri - Aldri Shop",
     ariaRestart: "Restart chat",
     ariaClose: "Close chat",
     ariaSend: "Send message",
     searchingCatalog: "Typing a response...",
     popularQuestions: "Popular questions:",
     inputPlaceholder: "Type your message here...",
-    poweredBy: "Flor • Bonbon Flowers",
+    poweredBy: "Aldri • Aldri Shop",
   }
 };
 
-const CHAT_STORAGE_KEY = "bonbon_chat_history_v2";
-const LEGACY_STORAGE_KEYS = ["gf_chat_history_v1", "florist_chat_history", "chat_history"];
+const CHAT_STORAGE_KEY = "aldri_chat_history_v1";
+const LEGACY_STORAGE_KEYS = ["bonbon_chat_history_v2", "gf_chat_history_v1", "florist_chat_history", "chat_history"];
 const CHAT_STORAGE_TTL = 24 * 60 * 60 * 1000; // 24 horas
 
 export const ChatbotModal = () => {
@@ -354,12 +354,8 @@ export const ChatbotModal = () => {
             
             {/* Thumbnail / Portada estilo Mini-Player */}
             <div className="relative flex-shrink-0">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-[#D4AF37] shadow-sm relative group-hover:scale-105 transition-transform duration-300 bg-[#163422]">
-                <img
-                  src="https://bonbonflowershouston.com/logo.png"
-                  alt="Flor - Asesora Bonbon Flowers"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-[#D4AF37] shadow-sm relative group-hover:scale-105 transition-transform duration-300 bg-stone-900 flex items-center justify-center text-white font-serif font-black text-sm">
+                AS
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0.5 right-0.5">
                   <Sparkles size={11} className="text-[#D4AF37] animate-pulse" />
@@ -376,7 +372,7 @@ export const ChatbotModal = () => {
             {/* Texto y Ticker Dinámico estilo Mini-Player */}
             <div className="flex flex-col text-left overflow-hidden min-w-[155px] sm:min-w-[200px]">
               <div className="flex items-center gap-1.5 leading-none mb-1">
-                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-black dark:text-pink-400">
+                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-stone-900 dark:text-white">
                   {content.advisorRole}
                 </span>
                 <span className="flex items-center gap-0.5 text-[8px] bg-green-100 dark:bg-green-950/60 text-green-900 dark:text-green-300 font-extrabold px-1.5 py-0.5 rounded-full">
@@ -389,7 +385,7 @@ export const ChatbotModal = () => {
               <div className="h-4 overflow-hidden relative">
                 <p 
                   key={tickerIndex} 
-                  className="text-[11px] sm:text-xs font-bold text-black dark:text-gray-200 truncate animate-in fade-in slide-in-from-bottom-2 duration-300"
+                  className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white truncate animate-in fade-in slide-in-from-bottom-2 duration-300"
                 >
                   {content.previewTickers[tickerIndex]}
                 </p>
@@ -397,7 +393,7 @@ export const ChatbotModal = () => {
             </div>
 
             {/* Botón Acción Mini-Player (Ícono de Chat / Play) */}
-            <div className="flex-shrink-0 bg-[#163422] text-white p-2 rounded-xl shadow-md hover:bg-[#1B2E22] transition-colors flex items-center justify-center">
+            <div className="flex-shrink-0 bg-stone-900 dark:bg-[#181922] text-white p-2 rounded-xl shadow-md hover:bg-black transition-colors flex items-center justify-center border border-stone-800">
               <MessageSquare size={16} className="text-white group-hover:scale-110 transition-transform" />
             </div>
 
@@ -410,19 +406,17 @@ export const ChatbotModal = () => {
         <div className="fixed bottom-4 sm:bottom-6 right-3 sm:right-6 z-50 w-[94vw] sm:w-[410px] h-[560px] max-h-[85vh] bg-white dark:bg-[#12131a] rounded-3xl shadow-[0px_20px_50px_rgba(0,0,0,0.35)] border-2 border-[#D4AF37]/50 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           
           {/* Header del Chatbot */}
-          <div className="bg-gradient-to-r from-[#163422] via-[#1B2E22] to-[#163422] text-white px-4 py-3.5 flex items-center justify-between border-b border-[#D4AF37]/40 shadow-md">
+          <div className="bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900 text-white px-4 py-3.5 flex items-center justify-between border-b border-[#D4AF37]/40 shadow-md">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <img
-                  src="https://bonbonflowershouston.com/logo.png"
-                  alt="Bonbon Flowers"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-[#D4AF37]"
-                />
-                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[#163422]"></span>
+                <div className="w-10 h-10 rounded-full border-2 border-[#D4AF37] bg-stone-900 flex items-center justify-center text-white font-serif font-black text-sm">
+                  AS
+                </div>
+                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-stone-900"></span>
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-sm text-white">Flor</span>
+                  <span className="font-bold text-sm text-white">Aldri</span>
                   <span className="text-[9px] bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]/40 px-1.5 py-0.2 rounded font-black tracking-wider">IA</span>
                 </div>
                 <span className="text-[11px] text-stone-200 font-medium flex items-center gap-1">

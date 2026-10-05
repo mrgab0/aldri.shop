@@ -6,16 +6,16 @@ import { ShopHeader } from "@/components/shop/ShopHeader";
 import { Footer } from "@/components/shop/Footer";
 import {
   Sparkles,
-  Heart,
+  Zap,
   Truck,
   ShieldCheck,
   Calendar,
   ArrowRight,
   MessageCircle,
   BookOpen,
-  MapPin,
+  Globe,
   Clock,
-  Gift
+  ShoppingBag
 } from "lucide-react";
 
 interface NosotrosClientProps {
@@ -28,9 +28,9 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
 
   const tags = [
     { id: "all", label: "Todos los Artículos" },
-    { id: "guias", label: "Guías Florales" },
-    { id: "aniversarios", label: "Aniversarios & Amor" },
-    { id: "cuidados", label: "Cuidado de Flores" }
+    { id: "productividad", label: "Productividad" },
+    { id: "tecnologia", label: "Tecnología & Gadgets" },
+    { id: "recursos", label: "Recursos Digitales" }
   ];
 
   const filteredPosts = initialPosts.filter((post) => {
@@ -44,84 +44,84 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
   });
 
   return (
-    <div className="min-h-screen bg-[#FDFBF9] dark:bg-[#0B0C10] text-black dark:text-black flex flex-col transition-colors duration-300">
+    <div className="min-h-screen bg-[#FDFBF9] dark:bg-[#0B0C10] text-stone-900 dark:text-white flex flex-col transition-colors duration-300">
       <ShopHeader />
 
       <main className="nosotros-page-root flex-1">
         
-        {/* HERO EDITORIAL: HISTORIA DE BONBON FLOWERS HOUSTON */}
-        <section className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#fff0ef]/60 via-transparent to-transparent dark:from-[#181922]/60 dark:via-transparent dark:to-transparent border-b border-[#D4AF37]/20">
+        {/* HERO EDITORIAL: HISTORIA DE ALDRI SHOP */}
+        <section className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-indigo-50/50 via-transparent to-transparent dark:from-[#181922]/60 dark:via-transparent dark:to-transparent border-b border-[#D4AF37]/20">
           <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center space-y-4">
               
               {/* Kicker */}
-              <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-black dark:text-black border border-[#D4AF37]/40 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-sm">
-                <Sparkles size={13} className="text-[#163422]" />
-                <span>Boutique Floral & Storytelling</span>
+              <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-white border border-[#D4AF37]/40 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-sm">
+                <Sparkles size={13} className="text-indigo-600 dark:text-[#C5A059]" />
+                <span>Innovación Digital &amp; Curaduría Global</span>
               </div>
 
               {/* Título Principal */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-black !text-black dark:!text-black tracking-tight leading-tight" style={{ color: '#000000' }}>
-                Detalles que Enamoran
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-black text-stone-900 dark:text-white tracking-tight leading-tight">
+                Herramientas Digitales &amp; Gadgets en Tendencia
               </h1>
 
               {/* Resumen de Historia */}
-              <p className="text-base sm:text-lg text-black dark:text-black leading-relaxed font-medium pt-2">
-                En <strong className="font-bold text-black dark:text-black">Bonbon Flowers Houston</strong>, nacimos en Houston, Texas con un solo propósito: transformar cada sentimiento en una obra de arte floral inolvidable. Seleccionamos las rosas y flores más frescas de exportación para confeccionar ramos buchones, cajas de lujo y arreglos exclusivos que celebran la vida, el amor y los momentos que perduran.
+              <p className="text-base sm:text-lg text-stone-700 dark:text-gray-300 leading-relaxed font-medium pt-2">
+                En <strong className="font-bold text-stone-900 dark:text-white">Aldri Shop</strong>, nacimos para conectar a creadores, emprendedores y entusiastas del lifestyle moderno con activos digitales de alto rendimiento (plantillas Notion, presets, LUTs, guías) y productos dropshipping en tendencia internacional con entrega garantizada y rastreo en tiempo real.
               </p>
 
-              <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold text-black dark:text-black pt-2">
-                <span className="flex items-center gap-1 text-black dark:text-black">
-                  <MapPin size={15} className="text-[#163422]" /> Houston, TX
+              <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold text-stone-700 dark:text-gray-300 pt-2">
+                <span className="flex items-center gap-1 text-stone-900 dark:text-white">
+                  <Globe size={15} className="text-indigo-600 dark:text-[#C5A059]" /> Cobertura Internacional
                 </span>
-                <span className="text-black dark:text-black">•</span>
-                <span className="flex items-center gap-1 text-black dark:text-black">
-                  <Clock size={15} className="text-stone-700" /> Entrega el Mismo Día
+                <span>•</span>
+                <span className="flex items-center gap-1 text-stone-900 dark:text-white">
+                  <Zap size={15} className="text-amber-500" /> Descargas Inmediatas 24/7
                 </span>
-                <span className="text-black dark:text-black">•</span>
-                <span className="flex items-center gap-1 text-black dark:text-black">
-                  <Heart size={15} className="text-[#163422]" /> Floristas Expertos
+                <span>•</span>
+                <span className="flex items-center gap-1 text-stone-900 dark:text-white">
+                  <Truck size={15} className="text-emerald-500" /> Tracking 17Track Global
                 </span>
               </div>
 
             </div>
 
-            {/* 3 PILARES DE LA BOUTIQUE */}
+            {/* 3 PILARES DE ALDRI SHOP */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-14">
               
               <div className="bg-white/80 dark:bg-[#181922]/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/25 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg hover:-translate-y-1 transition-all">
-                <div className="w-12 h-12 rounded-2xl bg-stone-100 dark:bg-stone-800 text-[#163422] dark:text-emerald-400 flex items-center justify-center mb-4 shadow-sm border border-stone-200 dark:border-stone-700">
-                  <Heart size={24} />
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 shadow-sm border border-indigo-100 dark:border-indigo-900/50">
+                  <Zap size={24} />
                 </div>
-                <h3 className="font-serif font-black text-lg !text-black dark:!text-black mb-2" style={{ color: '#000000' }}>
-                  Frescura Incomparable
+                <h3 className="font-serif font-black text-lg text-stone-900 dark:text-white mb-2">
+                  Descarga Instantánea
                 </h3>
-                <p className="text-xs text-black dark:text-black leading-relaxed font-medium">
-                  Rosas y follajes seleccionados a mano todos los días para asegurar pétalos firmes, colores vibrantes y una duración prolongada.
+                <p className="text-xs text-stone-600 dark:text-gray-300 leading-relaxed font-medium">
+                  Acceso inmediato a tus archivos digitales, licencias y enlaces seguros justo al completar tu orden, 24 horas al día, 365 días al año.
                 </p>
               </div>
 
-              <div className="bg-white/80 dark:bg-[#181922]/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/25 shadow-[0_4px_20px_rgba(42,0,2,0.05)] hover:shadow-lg hover:-translate-y-1 transition-all">
-                <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 flex items-center justify-center mb-4 shadow-sm border border-purple-100 dark:border-purple-900/50">
-                  <Sparkles size={24} />
+              <div className="bg-white/80 dark:bg-[#181922]/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/25 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg hover:-translate-y-1 transition-all">
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 shadow-sm border border-amber-100 dark:border-amber-900/50">
+                  <ShieldCheck size={24} />
                 </div>
-                <h3 className="font-serif font-black text-lg !text-black dark:!text-black mb-2" style={{ color: '#000000' }}>
-                  Diseño de Alta Floristería
+                <h3 className="font-serif font-black text-lg text-stone-900 dark:text-white mb-2">
+                  Curaduría &amp; Garantía Total
                 </h3>
-                <p className="text-xs text-black dark:text-black leading-relaxed font-medium">
-                  Ramos buchones de impacto, coronas brillantes, mariposas decorativas, cajas redondas de lujo y dedicatorias exclusivas en cada pedido.
+                <p className="text-xs text-stone-600 dark:text-gray-300 leading-relaxed font-medium">
+                  Seleccionamos únicamente artículos probados con alta satisfacción de compra, especificaciones reales y soporte técnico permanente.
                 </p>
               </div>
 
-              <div className="bg-white/80 dark:bg-[#181922]/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/25 shadow-[0_4px_20px_rgba(42,0,2,0.05)] hover:shadow-lg hover:-translate-y-1 transition-all">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mb-4 shadow-sm border border-emerald-100 dark:border-emerald-900/50">
+              <div className="bg-white/80 dark:bg-[#181922]/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/25 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg hover:-translate-y-1 transition-all">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 shadow-sm border border-emerald-100 dark:border-emerald-900/50">
                   <Truck size={24} />
                 </div>
-                <h3 className="font-serif font-black text-lg !text-black dark:!text-black mb-2" style={{ color: '#000000' }}>
-                  Envíos y Puntualidad
+                <h3 className="font-serif font-black text-lg text-stone-900 dark:text-white mb-2">
+                  Rastreo Internacional
                 </h3>
-                <p className="text-xs text-black dark:text-black leading-relaxed font-medium">
-                  Cobertura puntual en Houston, Pearland y zonas metropolitanas con seguimiento en vivo de tu envío.
+                <p className="text-xs text-stone-600 dark:text-gray-300 leading-relaxed font-medium">
+                  Monitoreo satelital y carrier internacional punto a punto compatible con 17Track, USPS, DHL y FedEx desde nuestra sección de rastreo.
                 </p>
               </div>
 
@@ -130,22 +130,22 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
           </div>
         </section>
 
-        {/* SECCIÓN BLOG EDITORIAL & CONSEJOS FLORALES */}
+        {/* SECCIÓN BLOG EDITORIAL & CONSEJOS */}
         <section className="py-16 md:py-20">
           <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             
             {/* Cabecera del Blog */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-black dark:text-black px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider">
-                  <BookOpen size={14} className="text-[#163422]" />
-                  <span>Blog & Consejos Florales</span>
+                <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider">
+                  <BookOpen size={14} className="text-indigo-600 dark:text-[#C5A059]" />
+                  <span>Blog &amp; Consejos de Productividad</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-serif font-black !text-black dark:!text-black" style={{ color: '#000000' }}>
-                  Historias, Guías y Tendencias
+                <h2 className="text-3xl sm:text-4xl font-serif font-black text-stone-900 dark:text-white">
+                  Guías, Tendencias y Recursos Tech
                 </h2>
-                <p className="text-sm text-black dark:text-black font-semibold max-w-xl">
-                  Aprende a elegir y cuidar tus flores con los consejos de nuestros floristas profesionales en Texas.
+                <p className="text-sm text-stone-600 dark:text-gray-300 font-semibold max-w-xl">
+                  Aprende a optimizar tus flujos de trabajo con nuestras guías especializadas y análisis de productos.
                 </p>
               </div>
 
@@ -157,8 +157,8 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
                     onClick={() => setSelectedTag(tag.id)}
                     className={`px-4 py-2 rounded-full text-xs font-black transition-all whitespace-nowrap border ${
                       selectedTag === tag.id
-                        ? "bg-[#163422] text-white border-[#163422] shadow-sm"
-                        : "bg-white dark:bg-white text-black dark:text-black border-gray-300 dark:border-gray-300 hover:bg-gray-100"
+                        ? "bg-stone-900 dark:bg-white text-white dark:text-stone-950 border-stone-900 dark:border-white shadow-sm"
+                        : "bg-white dark:bg-[#181922] text-stone-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
                     }`}
                   >
                     {tag.label}
@@ -170,7 +170,7 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
             {/* GRID DE POSTS */}
             {filteredPosts.length === 0 ? (
               <div className="text-center py-16 bg-white dark:bg-[#181922] rounded-3xl border border-gray-200 dark:border-gray-800 p-8">
-                <p className="text-sm font-bold text-black dark:text-black">No hay artículos en esta categoría en este momento.</p>
+                <p className="text-sm font-bold text-stone-700 dark:text-gray-300">No hay artículos en esta categoría en este momento.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -182,14 +182,14 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
                     {/* Imagen del Post */}
                     <Link href={`/nosotros/${post.slug}`} className="relative h-56 overflow-hidden block bg-gray-100 dark:bg-gray-800">
                       <img
-                        src={post.mainImage || "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800"}
+                        src={post.mainImage || "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800"}
                         alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-[#1A1C1C]/80 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-                          Boutique Floral
+                        <span className="bg-stone-900/80 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                          Aldri Insights
                         </span>
                       </div>
                     </Link>
@@ -197,20 +197,20 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
                     {/* Contenido de la Tarjeta */}
                     <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2.5">
-                        <div className="flex items-center gap-2 text-[11px] text-black dark:text-black font-bold">
-                          <Calendar size={13} className="text-[#163422]" />
+                        <div className="flex items-center gap-2 text-[11px] text-stone-600 dark:text-gray-400 font-bold">
+                          <Calendar size={13} className="text-indigo-600 dark:text-[#C5A059]" />
                           <span>{new Date(post.createdAt || Date.now()).toLocaleDateString("es-ES", { month: "short", day: "numeric", year: "numeric" })}</span>
                           <span>•</span>
                           <span>3 min de lectura</span>
                         </div>
 
                         <Link href={`/nosotros/${post.slug}`}>
-                          <h3 className="font-serif font-black text-lg !text-black dark:!text-black group-hover:text-[#163422] transition-colors line-clamp-2 leading-snug" style={{ color: '#000000' }}>
+                          <h3 className="font-serif font-black text-lg text-stone-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-[#C5A059] transition-colors line-clamp-2 leading-snug">
                             {post.title}
                           </h3>
                         </Link>
 
-                        <p className="text-xs text-black dark:text-black line-clamp-3 leading-relaxed font-medium">
+                        <p className="text-xs text-stone-600 dark:text-gray-300 line-clamp-3 leading-relaxed font-medium">
                           {post.excerpt || post.content?.slice(0, 140)}
                         </p>
                       </div>
@@ -219,10 +219,10 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
                       <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
                         <Link
                           href={`/nosotros/${post.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-black text-black dark:text-black hover:text-[#163422] group-hover:translate-x-1 transition-transform"
+                          className="inline-flex items-center gap-1.5 text-xs font-black text-stone-900 dark:text-white hover:text-indigo-600 dark:hover:text-[#C5A059] group-hover:translate-x-1 transition-transform"
                         >
                           <span>Leer Artículo Completo</span>
-                          <ArrowRight size={14} className="text-[#163422]" />
+                          <ArrowRight size={14} className="text-indigo-600 dark:text-[#C5A059]" />
                         </Link>
                       </div>
                     </div>
@@ -234,25 +234,25 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
           </div>
         </section>
 
-        {/* CTA FINAL DE COMPRA / COTIZACIÓN */}
+        {/* CTA FINAL DE COMPRA */}
         <section className="py-14 bg-gradient-to-r from-stone-100 via-stone-50 to-stone-100 dark:from-[#181922] dark:via-[#161822] dark:to-[#181922] border-t border-[#D4AF37]/20">
           <div className="max-w-4xl mx-auto px-4 text-center space-y-5">
-            <h2 className="text-3xl sm:text-4xl font-serif font-black !text-black dark:!text-black" style={{ color: '#000000' }}>
-              ¿Deseas Sorprender con un Arreglo Personalizado?
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-stone-900 dark:text-white">
+              ¿Listo para Potenciar Tu Productividad &amp; Estilo?
             </h2>
-            <p className="text-sm text-black dark:text-black max-w-xl mx-auto font-medium leading-relaxed">
-              Conoce nuestro catálogo con entregas en Houston, TX o comunícate directamente con nuestros floristas para diseñar un ramo a tu medida.
+            <p className="text-sm text-stone-600 dark:text-gray-300 max-w-xl mx-auto font-medium leading-relaxed">
+              Explora nuestro catálogo de activos digitales con descarga instantánea y gadgets con envío y seguimiento internacional garantizado.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
               <Link
                 href="/productos"
-                className="bg-[#163422] hover:bg-[#1B2E22] text-white px-7 py-3.5 rounded-full font-black text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
+                className="bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 px-7 py-3.5 rounded-full font-black text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
               >
-                <Gift size={16} />
-                <span>Explorar Catálogo de Flores</span>
+                <ShoppingBag size={16} />
+                <span>Explorar Catálogo</span>
               </Link>
               <a
-                href="https://wa.me/13467392730?text=¡Hola!%20Leí%20su%20página%20de%20Nosotros%20y%20quisiera%20cotizar%20un%20arreglo%20floral%20personalizado."
+                href="https://wa.me/13467392730?text=¡Hola!%20Leí%20su%20página%20de%20Nosotros%20en%20Aldri%20Shop%20y%20quisiera%20más%20información."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3.5 rounded-full font-black text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"

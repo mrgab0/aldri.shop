@@ -79,11 +79,11 @@ export default async function EditarAdicionalPage({ params }: { params: Promise<
                 defaultValue={addon.category || "Otros"}
                 className="p-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-purple-400 font-medium"
               >
-                <option value="Chocolates & Dulces">Chocolates & Dulces</option>
-                <option value="Peluches & Globos">Peluches & Globos</option>
-                <option value="Personalización & Tarjetas">Personalización & Tarjetas</option>
-                <option value="Decoración & Lazos">Decoración (Mariposas/Lazos)</option>
-                <option value="Colores & Papeles">Colores de Flores / Empaque</option>
+                <option value="Licencias & Software">Licencias & Software Adicional</option>
+                <option value="Kits & Extensiones">Kits & Extensiones</option>
+                <option value="Personalización & Notas">Personalización & Notas Especiales</option>
+                <option value="Accesorios & Cables">Accesorios & Cables</option>
+                <option value="Colores & Variantes">Colores / Variantes / Formato</option>
                 <option value="Otros">Otros Complementos</option>
               </select>
             </div>
@@ -112,9 +112,9 @@ export default async function EditarAdicionalPage({ params }: { params: Promise<
               defaultValue={addon.type || "checkbox"}
               className="p-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-purple-400 font-medium"
             >
-              <option value="checkbox">Selección Simple (Checkbox / Agregar producto)</option>
-              <option value="select">Opciones Múltiples (Color de rosas, tipo de papel, etc.)</option>
-              <option value="text">Mensaje de Texto Personalizado (Mensaje de Tarjeta / Dedicatoria)</option>
+              <option value="checkbox">Selección Simple (Checkbox / Agregar complemento)</option>
+              <option value="select">Opciones Múltiples (Variantes, colores, formatos, etc.)</option>
+              <option value="text">Mensaje o Instrucción Personalizada</option>
             </select>
           </div>
 
@@ -126,7 +126,7 @@ export default async function EditarAdicionalPage({ params }: { params: Promise<
             <input
               name="options"
               defaultValue={addon.options ? addon.options.join(", ") : ""}
-              placeholder="Ej: Rojas, Rosadas, Blancas, Amarillas"
+              placeholder="Ej: Negro, Titanio, Plata, Azul"
               className="p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white"
             />
           </div>
@@ -139,7 +139,7 @@ export default async function EditarAdicionalPage({ params }: { params: Promise<
           </h2>
           <SingleImageUploader
             currentImage={addon.image || ""}
-            label="Foto del Bombón, Peluche o Adicional"
+            label="Foto del Producto o Complemento"
           />
         </div>
 

@@ -128,7 +128,7 @@ export default function AdminEstadisticasPage() {
           <div className="text-3xl font-extrabold text-[#1A1C1C] dark:text-white">
             {data?.totalProductViews || 0}
           </div>
-          <p className="text-[11px] text-gray-400 font-medium">Clicks en detalles de flores</p>
+          <p className="text-[11px] text-gray-400 font-medium">Clicks en detalles de productos</p>
         </div>
 
         {/* KPI 3: Carritos Abandonados */}
@@ -299,7 +299,7 @@ export default function AdminEstadisticasPage() {
         <div className="bg-white dark:bg-[#12131A] p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm space-y-4">
           <div className="flex items-center gap-2 border-b pb-3 border-gray-100 dark:border-gray-800">
             <TrendingUp size={18} className="text-purple-600" />
-            <h2 className="font-bold text-sm text-[#1A1C1C] dark:text-white">Top 5 Flores Más Consultadas</h2>
+            <h2 className="font-bold text-sm text-[#1A1C1C] dark:text-white">Top 5 Productos Más Consultados</h2>
           </div>
 
           <div className="space-y-3">

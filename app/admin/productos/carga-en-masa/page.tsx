@@ -37,27 +37,24 @@ import {
   RefreshCw
 } from "lucide-react";
 
-const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || "public_GgPCFA7xTepF28l1+/AnLhlwqec=";
+const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || "public_jdvouw9gy/nUSbY/3M4cpnm2mCY=";
 
 const CATEGORIES = [
-  "Rosas de Lujo",
-  "Bouquets & Cajas",
-  "Heart Boxes",
-  "Flores Amarillas",
-  "Cumpleaños",
-  "Aniversario",
-  "Infantiles",
-  "Condolencias",
+  "Notion Templates",
+  "LUTs & Presets",
+  "Software & Licencias",
+  "Accesorios EDC",
+  "Desk Setup",
+  "Gadgets & Tech",
+  "Audio Hi-Fi",
   "General"
 ];
 
 const BOUQUET_TYPES = [
-  "Ramo Royal",
-  "Caja Estilo Dior",
-  "Heart Box",
-  "Arreglo en Jarrón",
-  "Bouquet Especial",
-  "Caja Cuadrada de Rosas"
+  "Descarga Inmediata (Digital)",
+  "Licencia Oficial",
+  "Envío Dropshipping Internacional",
+  "Hardware Físico"
 ];
 
 const FLOWER_COUNT_OPTIONS = [0, 12, 18, 24, 36, 50, 100, 200];
@@ -266,9 +263,9 @@ export default function CargaEnMasaAdmin() {
                   id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
                   name: extractedName,
                   price: 50,
-                  category: "Rosas de Lujo",
+                  category: "Notion Templates",
                   isCustomCategory: false,
-                  description: "Hermoso arreglo elaborado con flores frescas de la más alta calidad en Bonbon Flowers.",
+                  description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
                   stock: 10,
                   images: [imageUrl],
                   badge: "",
@@ -363,9 +360,9 @@ export default function CargaEnMasaAdmin() {
       id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       name: "Producto Importado por URL",
       price: 50,
-      category: "Rosas de Lujo",
+      category: "Notion Templates",
       isCustomCategory: false,
-      description: "Hermoso arreglo elaborado con flores frescas de la más alta calidad en Bonbon Flowers.",
+      description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
       stock: 10,
       images: [manualUrl.trim()],
       badge: "",
@@ -380,13 +377,13 @@ export default function CargaEnMasaAdmin() {
   const handleAddBlankCard = () => {
     const newItem: UploadDraftItem = {
       id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-      name: "Nuevo Arreglo Floral",
-      price: 50,
-      category: "Rosas de Lujo",
+      name: "Nuevo Producto Aldri Shop",
+      price: 29,
+      category: "Notion Templates",
       isCustomCategory: false,
-      description: "Hermoso arreglo elaborado con flores frescas de la más alta calidad en Bonbon Flowers.",
-      stock: 10,
-      images: ["https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800"],
+      description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
+      stock: 50,
+      images: ["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800"],
       badge: "",
       flowerCount: 0,
       bouquetType: "",
@@ -760,7 +757,7 @@ export default function CargaEnMasaAdmin() {
                     type="url"
                     value={manualUrl}
                     onChange={(e) => setManualUrl(e.target.value)}
-                    placeholder="https://ik.imagekit.io/4ub2sqhjx/products/rosas.jpg"
+                    placeholder="https://ik.imagekit.io/ufpz9hfbm/products/sample.jpg"
                     className="w-full p-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0024]"
                   />
                 </div>

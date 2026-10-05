@@ -1,10 +1,10 @@
 {
   "Index": {
-    "title": "Bonbon Flowers Houston",
-    "description": "We transform the art of gifting into a modern boutique experience. Vibrant designs that breathe sophistication.",
+    "title": "Aldri Shop",
+    "description": "High-productivity digital assets with instant downloads and trending dropshipping gadgets with international tracked shipping.",
     "exploreButton": "Explore Collection",
     "premiumSelection": "Premium Selection",
-    "ourFlowers": "Our Flowers",
+    "ourFlowers": "Our Products",
     "viewCatalog": "View full catalog",
     "noProducts": "No products available at the moment."
   },
@@ -28,13 +28,13 @@
     "added": "Added!"
   },
   "Catalog": {
-    "headerBadge": "🌸 Full Catalog & Addons",
+    "headerBadge": "⚡ Digital Catalog & Gadgets",
     "headerTitle": "Explore Our Entire Collection",
-    "headerDesc": "Discover signature floral arrangements and add special details like chocolates, balloons, teddy bears, and butterflies to craft the perfect gift.",
+    "headerDesc": "Discover Notion templates, cinematic LUT packs, software licenses, and trending hardware gadgets with worldwide tracked delivery.",
     "allTab": "🌐 All Items",
-    "flowersTab": "🌹 Flowers",
-    "addonsTab": "✨ Addons",
-    "searchPlaceholder": "Search bouquets, roses, chocolates, balloons...",
+    "flowersTab": "💻 Digital",
+    "addonsTab": "📦 Hardware & EDC",
+    "searchPlaceholder": "Search templates, LUTs, gadgets, licenses...",
     "sortBy": "Sort by:",
     "featured": "Featured 🌟",
     "priceLowHigh": "Price: Low to High ($)",
@@ -51,23 +51,23 @@
     "added": "Added!"
   },
   "ProductDetail": {
-    "includesTitle": "What's included in this arrangement?",
-    "addonsTitle": "Complete your Gift (Optional)",
-    "descriptionTitle": "Details & Description",
+    "includesTitle": "What's included in this product?",
+    "addonsTitle": "Recommended Addons (Optional)",
+    "descriptionTitle": "Details & Specifications",
     "addToCart": "Add to Cart",
     "addedToCart": "Added to Cart! ✓",
-    "flowerCount": "Flowers",
-    "bouquetType": "Presentation",
-    "inStock": "In Stock & available for delivery",
+    "flowerCount": "Format / Type",
+    "bouquetType": "Delivery Mode",
+    "inStock": "In Stock - Instant Download / Ships in 24h",
     "backToCatalog": "Back to Catalog",
-    "customMessage": "Optional custom message",
+    "customMessage": "Optional custom notes or instructions",
     "selectOptions": "Select options"
   },
   "Cart": {
-    "title": "Your Gift Cart",
+    "title": "Your Shopping Cart",
     "emptyTitle": "Your cart is empty",
-    "emptyDesc": "Explore our floral collection and add unique arrangements or special addons.",
-    "exploreBtn": "Explore Collection",
+    "emptyDesc": "Explore our catalog and add digital assets or trending dropshipping products.",
+    "exploreBtn": "Explore Catalog",
     "subtotal": "Subtotal",
     "checkoutBtn": "Proceed to Checkout",
     "addonsLabel": "Included addons"
@@ -76,11 +76,11 @@
     "title": "Complete Your Order",
     "subtitle": "Enter delivery details and select your preferred payment method.",
     "deliveryInfo": "Delivery Information",
-    "recipientName": "Recipient Full Name",
+    "recipientName": "Full Name",
     "recipientPhone": "Contact Phone Number",
-    "address": "Full Delivery Address",
-    "deliveryDate": "Desired Delivery Date",
-    "cardMessage": "Gift Card Custom Message",
+    "address": "Full Shipping Address (or Email for downloads)",
+    "deliveryDate": "Estimated Delivery Date",
+    "cardMessage": "Delivery Notes or Custom Instructions",
     "paymentMethod": "Payment Method",
     "orderSummary": "Order Summary",
     "subtotal": "Subtotal",
@@ -90,38 +90,38 @@
     "applyCoupon": "Apply",
     "discount": "Coupon Discount",
     "placeOrder": "Confirm & Place Order",
-    "manualVerificationNote": "Manual payment verification. Upon confirmation, you will see payment instructions on screen & WhatsApp."
+    "manualVerificationNote": "Secure payment verification. Upon confirmation, you will receive instructions on screen, email & WhatsApp."
   },
   "Reviews": {
     "badge": "100% Verified Reviews",
-    "title": "What Our Houston Customers Say ⭐⭐⭐⭐⭐",
+    "title": "What Our Global Customers Say ⭐⭐⭐⭐⭐",
     "score": "4.9 / 5.0",
-    "countText": "+180 Verified Reviews",
+    "countText": "+500 Verified Reviews",
     "verifiedPurchase": "Verified Purchase",
-    "rev1": "Simply spectacular! The bouquet of red roses arrived flawless in under 45 minutes. My husband was thrilled with the custom printed card.",
-    "rev1Name": "Carolina M.",
-    "rev1Location": "Houston, TX (77087)",
+    "rev1": "Outstanding Notion template! Completed payment and received the duplicate link with the setup walkthrough within seconds.",
+    "rev1Name": "Carlos M.",
+    "rev1Location": "Madrid, Spain",
     "rev1Date": "2 days ago",
-    "rev2": "Same-day delivery service was outstanding. The app autocompleted my address in 1 second using fingerprint. Highly recommended!",
+    "rev2": "The cinematic LUTs pack instantly elevated my YouTube color grading. Super helpful support team over WhatsApp.",
     "rev2Name": "Alejandro V.",
-    "rev2Location": "Katy / West Houston",
+    "rev2Location": "Mexico City",
     "rev2Date": "4 days ago",
-    "rev3": "Top quality fresh flowers and the presentation in the boutique pink box looks super elegant. The best flower delivery service in Houston.",
+    "rev3": "The EDC titanium gear arrived right on time with full 17Track updates. Top notch build quality!",
     "rev3Name": "Mariana R.",
-    "rev3Location": "The Woodlands, TX",
+    "rev3Location": "Miami, FL",
     "rev3Date": "1 week ago"
   },
   "Footer": {
-    "address1": "Houston, TX",
-    "address2": "Same-Day Delivery",
-    "boutique": "Digital Boutique",
-    "copyright": "© 2026 Bonbon Flowers Houston. All rights reserved.",
+    "address1": "Global Fulfillment",
+    "address2": "Instant Downloads & Dropshipping",
+    "boutique": "Digital Platform",
+    "copyright": "© 2026 Aldri Shop. All rights reserved.",
     "accept": "We accept:",
-    "cards": "Visa • MC • Amex • Discover"
+    "cards": "Visa • MC • Amex • Discover • PayPal • Zelle"
   },
   "WhatsApp": {
-    "message": "Hi! I'd like more information.",
+    "message": "Hi! I'd like more information regarding Aldri Shop.",
     "vip": "VIP Support",
-    "consultation": "Floral Consultation"
+    "consultation": "Aldri Shop Consultation"
   }
 }

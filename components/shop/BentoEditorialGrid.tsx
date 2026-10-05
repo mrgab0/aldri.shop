@@ -21,51 +21,51 @@ interface BentoEditorialGridProps {
 export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
   const t = useTranslations("Index");
 
-  // Fallbacks elegantes por si la DB tiene menos productos
+  // Fallbacks elegantes para activos digitales y dropshipping
   const p0 = products[0] || {
-    name: "Ramo Buchón de 100 Rosas",
-    slug: "buchon-bouquet-of-100-roses",
-    price: 290,
-    image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=900&q=85&auto=format",
+    name: "Sistema Notion Pro: Ultimate Creator OS",
+    slug: "sistema-notion-pro-ultimate-creator-os",
+    price: 29,
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=85&auto=format",
   };
   const p1 = products[1] || {
-    name: "Buchón de Rosas Blancas",
-    slug: "buchon-bouquet-of-white-roses",
-    price: 75,
-    image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=600&q=85&auto=format",
+    name: "Pack LUTs Cinematográficos 8K",
+    slug: "pack-luts-cinematograficos-8k",
+    price: 19,
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=85&auto=format",
   };
   const p2 = products[2] || {
-    name: "Buchón de Rosas Amarillas",
-    slug: "buchon-yellow-rose-bouquet",
-    price: 75,
-    image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=85&auto=format",
+    name: "Organizador EDC de Titanio",
+    slug: "organizador-edc-de-titanio",
+    price: 34,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=85&auto=format",
   };
   const p3 = products[3] || {
-    name: "Ramo Tricolor Exclusivo",
-    slug: "tricolor-bouquet",
-    price: 120,
-    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=700&q=85&auto=format",
+    name: "Estación de Carga 3-en-1 Rápida",
+    slug: "estacion-de-carga-3-en-1-rapida",
+    price: 45,
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&q=85&auto=format",
   };
 
   const getImg = (p: BentoProduct) => {
     if (p.image) return p.image;
     if (p.images && p.images.length > 0) return p.images[0];
-    return "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80&auto=format";
+    return "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80&auto=format";
   };
 
   return (
     <section className="container mx-auto px-4 sm:px-6 py-14 sm:py-20 relative z-20">
-      {/* Encabezado Editorial estilo Botanical Romance */}
+      {/* Encabezado Editorial */}
       <div className="text-center mb-10 sm:mb-14">
         <span className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] inline-flex items-center gap-1.5 mb-2">
           <Sparkles size={13} className="text-[#D4AF37]" />
           Nuestra Colección
         </span>
         <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-white tracking-tight">
-          Arreglos Florales de Autor
+          Activos Digitales & Gadgets Curados
         </h2>
         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto mt-3 font-medium">
-          Diseños artesanales de alta floristería pensados para despertar emociones inolvidables.
+          Selección premium de herramientas digitales con descarga inmediata y productos físicos con tracking verificado.
         </p>
       </div>
 
@@ -171,7 +171,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex justify-between items-end">
             <div>
               <span className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest block mb-1">
-                Destacado Floral
+                Destacado Aldri Shop
               </span>
               <h4 className="text-xl sm:text-2xl font-serif font-bold text-white mb-1">
                 {p3.name}
@@ -184,32 +184,32 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
               href={`/productos/${p3.slug}`}
               className="px-4 py-2 rounded-xl bg-[#D4AF37] text-stone-900 font-bold text-xs uppercase tracking-wider hover:bg-white transition-all shadow-md"
             >
-              Ver Arreglo
+              Ver Producto
             </Link>
           </div>
         </div>
 
         {/* 5. Tarjeta Editorial de Pedidos Especiales (6 columnas x 1 fila) */}
-        <div className="md:col-span-6 md:row-span-1 bg-stone-50 dark:from-[#181922] dark:via-[#1c1d27] dark:to-[#12131A] rounded-2xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border-2 border-dashed border-[#D4AF37]/50 min-h-[260px] relative overflow-hidden">
+        <div className="md:col-span-6 md:row-span-1 bg-stone-50 dark:bg-[#181922] rounded-2xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border-2 border-dashed border-[#D4AF37]/50 min-h-[260px] relative overflow-hidden">
           <div className="w-12 h-12 rounded-full bg-[#D4AF37]/15 dark:bg-[#D4AF37]/25 flex items-center justify-center mb-3 text-[#745b0f] dark:text-[#ffdf92] shadow-sm">
             <Sparkles size={24} className="text-[#D4AF37]" />
           </div>
           
           <h4 className="text-2xl font-serif font-bold text-stone-900 dark:text-white mb-2">
-            Pedidos Especiales & Eventos
+            Licencias Empresariales & Pedidos a Medida
           </h4>
           <p className="text-xs sm:text-sm text-stone-700 dark:text-gray-300 max-w-md mb-5 leading-relaxed font-medium">
-            Creamos diseños florales personalizados a tu gusto y presupuesto para bodas, aniversarios y momentos inolvidables.
+            ¿Necesitas licencias comerciales por volumen para tu agencia o asesoría sobre especificaciones de hardware? Te atendemos de inmediato.
           </p>
 
           <a
-            href="https://wa.me/13467392730?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20arreglo%20floral%20personalizado"
+            href="https://wa.me/13467392730?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20licencias%20o%20productos%20de%20Aldri%20Shop"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#163422] hover:bg-[#1B2E22] text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:scale-105 active:scale-95 border border-[#D4AF37]/60"
           >
             <MessageCircle size={15} className="text-[#D4AF37]" />
-            <span>Cotizar por WhatsApp</span>
+            <span>Consultar por WhatsApp</span>
           </a>
         </div>
       </div>
