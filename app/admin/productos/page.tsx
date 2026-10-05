@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { deleteProduct, toggleProductStatus } from "@/lib/actions/product";
-import { Plus, Search, Edit3, Copy, Trash2, Tag, Package, Image as ImageIcon, Loader2, Pause, Play, Layers } from "lucide-react";
+import { Plus, Search, Edit3, Copy, Trash2, Tag, Package, Image as ImageIcon, Loader2, Pause, Play, Layers, Sparkles } from "lucide-react";
 
 export default function InventarioAdmin() {
   const [products, setProducts] = useState<any[]>([]);
@@ -11,10 +11,30 @@ export default function InventarioAdmin() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [statusFilter, setStatusFilter] = useState<"all" | "active" | "pre_aggregation">("all");
   const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  async function handleSeedProducts() {
+    if (!confirm("¿Deseas poblar o actualizar el catálogo con los 8 productos oficiales de muestra (4 Digitales + 4 Dropshipping)?")) return;
+    setSeeding(true);
+    try {
+      const res = await fetch("/api/admin/seed", { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message);
+        await fetchProducts();
+      } else {
+        alert("Error al cargar productos: " + data.error);
+      }
+    } catch (e: any) {
+      alert("Error en la petición: " + e.message);
+    } finally {
+      setSeeding(false);
+    }
+  }
 
   async function fetchProducts() {
     setLoading(true);
@@ -92,17 +112,25 @@ export default function InventarioAdmin() {
           <p className="text-xs text-gray-400">Total: {products.length} productos registrados</p>
         </div>
         <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+          <button
+            onClick={handleSeedProducts}
+            disabled={seeding}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-full font-bold text-sm transition-colors shadow-md flex items-center gap-2 disabled:bg-gray-400"
+            title="Cargar productos de demostración digitales y dropshipping"
+          >
+            <Sparkles size={18} /> {seeding ? "Cargando..." : "Cargar Catálogo Inicial"}
+          </button>
           <Link
             href="/admin/productos/carga-en-masa"
             className="bg-[#1A1C1C] text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-black transition-colors shadow-md flex items-center gap-2"
           >
-            <Layers size={18} /> Crear Productos en Masa
+            <Layers size={18} /> Carga en Masa
           </Link>
           <Link
             href="/admin/productos/crear"
             className="bg-[#FF97A4] text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#B0004A] transition-colors shadow-md flex items-center gap-2"
           >
-            <Plus size={18} /> Crear Nuevo Producto
+            <Plus size={18} /> Crear Producto
           </Link>
         </div>
       </div>

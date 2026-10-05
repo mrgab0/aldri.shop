@@ -227,11 +227,21 @@ export default function RastreoPedidoPage() {
                     <p className="text-xs font-bold text-gray-900 dark:text-white">
                       Número de Guía: <span className="font-mono bg-white dark:bg-gray-900 px-2 py-0.5 rounded border border-emerald-200">{order.trackingNumber}</span>
                     </p>
-                    {order.trackingUrl && (
-                      <a href={order.trackingUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-emerald-600 underline mt-1 inline-block">
-                        Rastrear paquete en portal oficial →
-                      </a>
-                    )}
+                    {(() => {
+                      const effectiveUrl = order.trackingUrl || `https://www.17track.net/es/track?nums=${encodeURIComponent(order.trackingNumber)}`;
+                      return (
+                        <div className="pt-1">
+                          <a
+                            href={effectiveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-200 bg-emerald-100/80 dark:bg-emerald-900/60 px-3.5 py-1.5 rounded-xl border border-emerald-300 dark:border-emerald-700 shadow-sm transition-all hover:scale-105"
+                          >
+                            <span>Rastrear en Tiempo Real (17Track / Carrier) 🌐 →</span>
+                          </a>
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
 
