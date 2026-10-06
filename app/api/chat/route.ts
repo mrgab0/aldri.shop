@@ -28,7 +28,7 @@ export async function POST(req: Request) {
           : `\nContexto de Cliente Recurrente:\n${customerName ? `- Nombre del cliente: ${customerName}\n` : ''}${lastOrderId ? `- Último pedido registrado: ${lastOrderId}\n` : ''}- Nota: Si saludas o das la bienvenida al cliente, puedes llamarlo cordialmente por su nombre (ej: "¡Hola de nuevo, ${customerName}! 👋"). Solo haz referencia al ID de orden si pregunta por su pedido o rastreo.\n`)
       : '';
 
-    const apiKey = process.env.GEMINI_API_KEY || "AIzaSyDAOAr8fz6tKq1pxwSdtOZXkidZuNevcZE";
+    const apiKey = process.env.GEMINI_API_KEY;
 
     // 1. Obtener catálogo, opciones de entrega y configuración de la tienda para nutrir el contexto
     await dbConnect();
@@ -129,7 +129,12 @@ Reglas estrictas de conversación:
     }));
 
     // 4. Llamar a la API de Gemini con modelos compatibles de Google AI
-    const modelsToTry = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-flash-latest', 'gemini-3.7-flash'];
+    const modelsToTry = [
+      'gemini-flash-lite-latest',
+      'gemini-3.7-flash',
+      'gemini-2.5-flash',
+      'gemini-flash-latest'
+    ];
     let aiResponseText = "";
     let lastError: any = null;
 
