@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     await dbConnect();
     const [products, deliveryRes, { data: siteConfig }] = await Promise.all([
       Product.find({ isActive: { $ne: false } })
-        .select('name price slug category description productType badge')
+        .select('_id name price slug category description productType badge images')
         .limit(30)
         .lean(),
       getDeliveryOptions(),
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     ]);
 
     const productCatalogSummary = (products && products.length > 0)
-      ? products.map((p: any) => `- ${p.name} ($${p.price} USD) [Tipo: ${p.productType === 'digital' ? 'Descarga Digital' : 'Producto Físico'}] [Categoría: ${p.category || 'General'}] [Enlace: /productos/${p.slug}]: ${p.description ? p.description.slice(0, 100) : ''}`).join('\n')
+      ? products.map((p: any) => `- ID: "${p._id}" | Nombre: "${p.name}" | Precio: $${p.price} USD | Tipo: ${p.productType === 'digital' ? 'Descarga Digital' : 'Producto Físico'} | Foto: "${p.images?.[0] || '/logo.png'}" | Enlace: /productos/${p.slug} | Descripción: ${p.description ? p.description.slice(0, 100) : ''}`).join('\n')
       : (isEn ? "There are currently no products listed in the online catalog." : "No hay productos listados actualmente en el catálogo online.");
 
     const whatsappPhone = "+1 346 739 2730";
@@ -83,7 +83,13 @@ Conversational Guidelines (STRICT):
 3. If the customer asks about order status or how to access their digital files, guide them to [Track My Order / Downloads](/rastreo) with their Order ID.
 4. If the customer greets you or makes a general comment, greet back warmly with a single helpful question (e.g. "Hi! 👋 Welcome to Aldri Shop. Are you looking for digital downloads or trending tech gadgets today?"). Do NOT dump links immediately on a simple greeting.
 5. When recommending products, suggest only 1 or 2 top choices from the catalog with their exact link: [Product Name](/productos/slug) ($XX USD).
-6. Completeness: ALWAYS complete all sentences properly with punctuation. Never leave a sentence half-cut.`
+6. Completeness: ALWAYS complete all sentences properly with punctuation. Never leave a sentence half-cut.
+7. LIVE CART BUILDING CAPABILITY (VERY IMPORTANT):
+- If the customer asks if you can prepare/build an order without specifying the item (e.g. "I have an order can you prepare it?", "can you build my order?"), enthusiastically confirm that you can prepare and build their cart immediately, and ask which product(s) from the catalog they'd like you to add.
+- If the customer specifies which product they want to buy, order, prepare, or add to cart (e.g. "prepare an order for the charger", "add the notion template to cart", "I want to buy X"), warmly confirm that you have added it to their cart, mention the price, and invite them to proceed to checkout.
+- MANDATORILY, whenever you add products to the cart, append at the VERY END of your message the structured block:
+<<<CART_ACTION: {"items": [{"id": "<productId>", "name": "<exactName>", "price": <numericPrice>, "quantity": 1, "image": "<imageUrl>", "productType": "<digital or dropship>"}]}>>>
+- Never output the <<<CART_ACTION>>> block if the customer did not ask to buy, prepare, or add products.`
       : `Eres "Aldri", el asistente virtual experto, ágil y cercano de "Aldri Shop" (aldri.shop).
 Tu objetivo es asesorar a los clientes de forma 100% natural, amigable y humana, como un asesor de tecnología y productos digitales en WhatsApp.
 ${clientContextSnippet}
@@ -113,7 +119,13 @@ Reglas estrictas de conversación:
 4. Si el cliente solo te saluda, salúdalo con entusiasmo y hazle una sola pregunta sencilla (ej: "¡Hola! 👋 Qué gusto saludarte. ¿Buscas algún producto digital o gadget en tendencia hoy?"). NUNCA envíes enlaces de golpe en un saludo inicial.
 5. Cuando el cliente pregunte por recomendaciones, sugiere SOLO 1 o 2 opciones ideales del catálogo con su enlace directo: [Nombre del Producto](/productos/slug) ($XX USD).
 6. Mensajes Completos: Completa SIEMPRE todas tus oraciones y pensamientos con su punto final.
-7. Comentarios abiertos o fuera de contexto: Si el usuario escribe comentarios curiosos, divertidos, nombres ficticios o preguntas no relacionadas (ej: 'el rey loco'), responde con simpatía, ingenio y buen humor (1 o 2 oraciones breves), y guíalo con amabilidad a preguntarte sobre lo que busca en la tienda (productos digitales y gadgets virales).`;
+7. Comentarios abiertos o fuera de contexto: Si el usuario escribe comentarios curiosos, divertidos, nombres ficticios o preguntas no relacionadas (ej: 'el rey loco'), responde con simpatía, ingenio y buen humor (1 o 2 oraciones breves), y guíalo con amabilidad a preguntarte sobre lo que busca en la tienda (productos digitales y gadgets virales).
+8. CAPACIDAD DE ARMAR EL CARRITO DE COMPRAS EN VIVO (MUY IMPORTANTE):
+- Si el cliente te dice que tiene un pedido o pregunta si se lo puedes preparar pero NO menciona el producto (ejemplo: "tengo un pedido lo puedes preparar?", "prepárame un pedido", "quiero comprar"), responde con entusiasmo confirmando que por supuesto tú mismo puedes prepararle y armarle su pedido en el carrito al instante, y pregúntale qué producto o artículo de la tienda desea que le agregue hoy.
+- Si el cliente indica el producto que quiere comprar, pedir, preparar o agregar (ejemplos: "prepárame un pedido del cargador magnético", "agrega la plantilla de notion al carrito", "quiero comprar 2 auriculares", "añade X a mi pedido"), confirma cordialmente que lo has agregado a su carrito, menciona el precio e invítalo a pasar al checkout o consultar si necesita algo más.
+- Y OBLIGATORIAMENTE, cuando agregues productos al carrito, debes incluir al FINAL de tu respuesta (en una línea separada) el siguiente bloque estructurado:
+<<<CART_ACTION: {"items": [{"id": "<ID del producto>", "name": "<Nombre exacto>", "price": <precio numérico>, "quantity": <cantidad entero>, "image": "<url de la foto>", "productType": "<digital o dropship>"}]}>>>
+- NUNCA incluyas el bloque <<<CART_ACTION>>> si el cliente solo está preguntando información o no ha solicitado comprar/preparar el pedido.`;
 
     // 3. Formatear historial de conversación para Gemini API
     const formattedContents = messages.map((m: { role: string; text: string }) => ({
@@ -170,6 +182,24 @@ Reglas estrictas de conversación:
       ? `👋 Hello! I'd be happy to assist you. You can browse all our items in the [Product Catalog](/productos) or reach out directly on [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) for real-time support. ✨`
       : `👋 ¡Hola! Con mucho gusto te asesoro. Puedes ver todos nuestros productos en el [Catálogo de Productos](/productos) o contactarnos directo por [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) para ayudarte de inmediato. ✨`);
 
+    // Extraer bloque de acción de carrito si existe
+    let cleanResponseText = finalResponseText;
+    let cartItems: any[] = [];
+
+    const cartActionMatch = finalResponseText.match(/<<<CART_ACTION:\s*(\{[\s\S]*?\})\s*>>>/);
+    if (cartActionMatch) {
+      try {
+        const parsed = JSON.parse(cartActionMatch[1]);
+        if (parsed.items && Array.isArray(parsed.items)) {
+          cartItems = parsed.items;
+        }
+        cleanResponseText = finalResponseText.replace(cartActionMatch[0], "").trim();
+      } catch (parseErr) {
+        console.warn("No se pudo parsear CART_ACTION:", parseErr);
+        cleanResponseText = finalResponseText.replace(/<<<CART_ACTION:[\s\S]*?>>>/, "").trim();
+      }
+    }
+
     // 5. Persistencia y Minería de Conversación / Leads en Base de Datos
     try {
       const fullHistory = [
@@ -178,7 +208,7 @@ Reglas estrictas de conversación:
           text: m.text,
           timestamp: new Date()
         })),
-        { role: "model" as const, text: finalResponseText, timestamp: new Date() }
+        { role: "model" as const, text: cleanResponseText, timestamp: new Date() }
       ];
 
       // Analizar texto de usuarios en busca de teléfono, email y nombres
@@ -205,8 +235,8 @@ Reglas estrictas de conversación:
         });
       }
 
-      // Scoring comercial automático
-      let intentScore: "hot" | "warm" | "cold" = "cold";
+      // Si armó carrito, es un lead caliente (hot) garantizado
+      let intentScore: "hot" | "warm" | "cold" = cartItems.length > 0 ? "hot" : "cold";
       if (extractedPhone || extractedEmail) {
         intentScore = "hot";
       } else if (
@@ -235,7 +265,10 @@ Reglas estrictas de conversación:
       console.warn("Aviso: No se pudo guardar la conversación en ChatLead:", saveErr);
     }
 
-    return NextResponse.json({ text: finalResponseText });
+    return NextResponse.json({ 
+      text: cleanResponseText,
+      cartItems: cartItems.length > 0 ? cartItems : undefined
+    });
 
   } catch (error: any) {
     console.error("Error en Chatbot API:", error);

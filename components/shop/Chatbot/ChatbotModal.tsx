@@ -1,16 +1,25 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Sparkles, RefreshCw, PhoneCall, ExternalLink, Bot, ChevronRight, MessageSquare } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, RefreshCw, PhoneCall, ExternalLink, Bot, ChevronRight, MessageSquare, CheckCircle2, ShoppingBag, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import { useCart } from '@/components/shop/Cart/CartContext';
 
 interface Message {
   id: string;
   role: 'user' | 'model';
   text: string;
   timestamp: string;
+  cartItems?: Array<{
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+    productType?: 'digital' | 'dropship';
+  }>;
 }
 
 const I18N_CONTENT = {
@@ -100,6 +109,7 @@ export const ChatbotModal = () => {
 
   const content = currentLocale === "en" ? I18N_CONTENT.en : I18N_CONTENT.es;
 
+  const { addToCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -264,11 +274,25 @@ export const ChatbotModal = () => {
         await new Promise(resolve => setTimeout(resolve, targetDelay - elapsed));
       }
 
+      // Si el bot preparó o agregó productos al carrito, agregarlos automáticamente en CartContext
+      if (data.cartItems && Array.isArray(data.cartItems) && data.cartItems.length > 0) {
+        data.cartItems.forEach((item: any) => {
+          addToCart({
+            id: item.id || `item_${Date.now()}`,
+            name: item.name,
+            price: Number(item.price) || 0,
+            image: item.image || "/logo.png",
+            productType: item.productType || "dropship"
+          });
+        });
+      }
+
       const modelMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: 'model',
         text: data.text || content.defaultErrorResponse,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        cartItems: data.cartItems && data.cartItems.length > 0 ? data.cartItems : undefined
       };
 
       setMessages(prev => [...prev, modelMsg]);
@@ -469,6 +493,51 @@ export const ChatbotModal = () => {
                     }`}
                   >
                     {renderFormattedText(m.text)}
+
+                    {/* Tarjeta de Carrito / Pedido Preparado */}
+                    {m.cartItems && m.cartItems.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-2.5">
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                          <CheckCircle2 size={13} className="flex-shrink-0" />
+                          <span>
+                            {currentLocale === 'en' ? 'Item added to your cart:' : '¡Agregado a tu carrito con éxito!'}
+                          </span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {m.cartItems.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center gap-2.5 p-2 rounded-xl bg-gray-50 dark:bg-stone-900 border border-gray-200/80 dark:border-stone-800"
+                            >
+                              <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-stone-200 dark:bg-stone-800 flex-shrink-0">
+                                <img
+                                  src={item.image || "/logo.png"}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-[11px] font-bold text-gray-900 dark:text-white truncate">
+                                  {item.name}
+                                </p>
+                                <p className="text-[10px] text-gray-500 dark:text-gray-400 font-mono">
+                                  ${Number(item.price).toFixed(2)} USD {item.quantity > 1 ? `x ${item.quantity}` : ''}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <Link
+                          href="/checkout"
+                          onClick={() => setIsOpen(false)}
+                          className="w-full mt-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 active:scale-98 transition-all"
+                        >
+                          <ShoppingBag size={13} />
+                          <span>{currentLocale === 'en' ? 'Proceed to Checkout 💳' : 'Ir a Pagar / Checkout 💳'}</span>
+                          <ArrowRight size={13} />
+                        </Link>
+                      </div>
+                    )}
                   </div>
                   <span className="text-[10px] text-gray-400 mt-1 px-1">{m.timestamp}</span>
                 </div>
