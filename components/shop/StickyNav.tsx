@@ -42,10 +42,8 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
   const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/";
 
   const navLinks = [
-    { href: "/", label: t('home') },
     { href: "/productos", label: t('catalog'), isMega: true },
     { href: "/rastreo", label: t('tracking') },
-    { href: "/nosotros", label: t('about') },
     { href: "/contacto", label: t('contact') },
     { href: "/checkout", label: t('cart') }
   ];

@@ -17,10 +17,8 @@ export const ShopHeader = () => {
   const t = useTranslations("nav");
 
   const navLinks = [
-    { href: "/", label: t('home') },
     { href: "/productos", label: t('catalog') },
     { href: "/rastreo", label: t('tracking') },
-    { href: "/nosotros", label: t('about') },
     { href: "/contacto", label: t('contact') }
   ];
 
