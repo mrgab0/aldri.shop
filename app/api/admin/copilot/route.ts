@@ -79,7 +79,7 @@ CAPACIDADES Y ROLES:
 3. Proponer estrategias comerciales, ofertas flash y productos en tendencia de dropshipping o digitales para maximizar las conversiones de la primera semana.
 4. Responde con tono profesional, ejecutivo, sintético y con datos concretos (usa viñetas y formato Markdown legible).`;
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY || "AIzaSyDAOAr8fz6tKq1pxwSdtOZXkidZuNevcZE";
     if (!apiKey) {
       return NextResponse.json({
         text: `📊 **Resumen del Negocio (Sin API Key configurada):**\n- Órdenes totales: **${totalOrders}**\n- Productos activos: **${totalProducts}**\n- Leads capturados: **${recentLeads.length}**\n\n*Nota: Configura GEMINI_API_KEY en tu entorno para habilitar respuestas conversacionales avanzadas con Gemini.*`

@@ -28,7 +28,7 @@ export async function POST(req: Request) {
           : `\nContexto de Cliente Recurrente:\n${customerName ? `- Nombre del cliente: ${customerName}\n` : ''}${lastOrderId ? `- Último pedido registrado: ${lastOrderId}\n` : ''}- Nota: Si saludas o das la bienvenida al cliente, puedes llamarlo cordialmente por su nombre (ej: "¡Hola de nuevo, ${customerName}! 👋"). Solo haz referencia al ID de orden si pregunta por su pedido o rastreo.\n`)
       : '';
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY || "AIzaSyDAOAr8fz6tKq1pxwSdtOZXkidZuNevcZE";
 
     // 1. Obtener catálogo, opciones de entrega y configuración de la tienda para nutrir el contexto
     await dbConnect();
@@ -64,6 +64,8 @@ Full Business & Website Knowledge:
   * WhatsApp & Chat: [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) or message us directly.
   * About Us & Blog: [About Us & Guides](/nosotros) (our story, productivity workflows, and tech guides).
   * Checkout & Payment: [Cart & Checkout](/checkout) (we accept Visa, Mastercard, Amex, PayPal, Zelle, Apple Pay, and Google Pay).
+- Gift Cards & Store Credit:
+  * If the customer asks if we have gift cards, answer warmly that yes, we offer custom digital gift cards for any amount. Let them know they can arrange one immediately via [📲 WhatsApp](${whatsappUrl}) or via the [Contact Page](/contacto).
 - Delivery & Fulfillment:
   * Digital Products: 100% instant delivery via on-screen link, email, and [Track My Order](/rastreo).
   * Physical Products: Fast processing with official international tracking numbers (17Track, USPS, DHL, FedEx).
@@ -91,6 +93,8 @@ Conocimiento Completo del Sitio Web y Negocio:
   * WhatsApp y Asistencia: [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}).
   * Nosotros y Guías: [Nosotros & Consejos](/nosotros) (nuestra propuesta, guías de productividad y novedades).
   * Carrito y Checkout: [Carrito & Pago](/checkout) (aceptamos Visa, Mastercard, Amex, PayPal, Zelle, Apple Pay y Google Pay).
+- Tarjetas de Regalo & Saldo:
+  * Si el cliente pregunta si vendemos tarjetas de regalo (gift cards), responde cordialmente que sí las emitimos en formato digital con saldo personalizado para cualquier monto. Indícale que puede coordinarla al instante por [📲 WhatsApp](${whatsappUrl}) o solicitándola en [Contacto](/contacto).
 - Logística y Entregas:
   * Productos Digitales: Entrega inmediata 24/7/365 en pantalla, correo y en [Rastrear Mi Pedido](/rastreo).
   * Productos Físicos: Procesamiento rápido con guía y rastreo oficial internacional (17Track, carriers globales).
