@@ -15,18 +15,18 @@ export async function generateMetadata({
 
   if (!res.success || !res.data) {
     return {
-      title: "Artículo no encontrado | Bonbon Flowers Houston",
-      description: "El artículo solicitado no fue encontrado en Bonbon Flowers."
+      title: "Artículo no encontrado | Aldri Shop",
+      description: "El artículo solicitado no fue encontrado en Aldri Shop."
     };
   }
 
   const post = res.data;
 
   return {
-    title: `${post.title} | Bonbon Flowers Houston`,
+    title: `${post.title} | Aldri Shop`,
     description: post.excerpt || post.title,
     openGraph: {
-      title: `${post.title} | Bonbon Flowers`,
+      title: `${post.title} | Aldri Shop`,
       description: post.excerpt || post.title,
       type: "article",
       publishedTime: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,

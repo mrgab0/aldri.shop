@@ -42,6 +42,12 @@ const NAV_ITEMS = [
     badgeColor: "bg-indigo-100 dark:bg-indigo-950/80 text-indigo-950 dark:text-indigo-200 border-indigo-300 dark:border-indigo-800/80 hover:bg-indigo-200"
   },
   {
+    href: "/admin/leads",
+    label: "Leads & Chatbot",
+    icon: "🔥",
+    badgeColor: "bg-red-100 dark:bg-red-950/80 text-red-950 dark:text-red-200 border-red-300 dark:border-red-800/80 hover:bg-red-200"
+  },
+  {
     href: "/admin/adicionales",
     label: "Adicionales",
     icon: "✨",

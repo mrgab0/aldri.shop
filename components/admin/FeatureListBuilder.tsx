@@ -13,8 +13,8 @@ export function FeatureListBuilder({ initialFeatures = [] }: { initialFeatures?:
     initialFeatures.length > 0
       ? initialFeatures
       : [
-          { label: "Flor Principal", value: "Rosas de Invernadero" },
-          { label: "Empaque", value: "Caja Deluxe de Regalo" },
+          { label: "Formato / Compatibilidad", value: "Acceso Inmediato 24/7" },
+          { label: "Garantía & Soporte", value: "Soporte Oficial Aldri Shop" },
         ]
   );
 

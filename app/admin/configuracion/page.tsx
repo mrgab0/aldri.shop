@@ -278,21 +278,21 @@ export default function AdminConfiguracionPage() {
             {/* Sección Logo & Subida de Imagen */}
             <div className="bg-white dark:bg-[#12131A] p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm space-y-4">
               <div className="flex items-center gap-2.5 border-b pb-3 border-gray-100 dark:border-gray-800">
-                <ImageIcon size={20} className="text-[#FF97A4]" />
+                <ImageIcon size={20} className="text-indigo-600" />
                 <h2 className="font-serif font-black text-lg text-[#1A1C1C] dark:text-white">Imagen del Logo Principal</h2>
               </div>
               <SingleImageUploader
-                currentImage={config.logoUrl || "https://bonbonflowershouston.com/logo.png"}
-                label="Logo de Bonbon Flowers (Boutique Floral)"
+                currentImage={config.logoUrl || "/logo.png"}
+                label="Logo de Aldri Shop"
               />
-              <input type="hidden" name="logoUrl" value={config.logoUrl || "https://bonbonflowershouston.com/logo.png"} />
+              <input type="hidden" name="logoUrl" value={config.logoUrl || "/logo.png"} />
             </div>
 
             {/* Sección Lemas del Home & Footer */}
             <div className="bg-white dark:bg-[#12131A] p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm space-y-5">
               <div className="flex items-center gap-2.5 border-b pb-3 border-gray-100 dark:border-gray-800">
-                <Type size={20} className="text-[#FF97A4]" />
-                <h2 className="font-serif font-black text-lg text-[#1A1C1C] dark:text-white">Lemas y Encabezados de la Boutique</h2>
+                <Type size={20} className="text-indigo-600" />
+                <h2 className="font-serif font-black text-lg text-[#1A1C1C] dark:text-white">Lemas y Encabezados de Aldri Shop</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -300,8 +300,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Título Principal en Portada</label>
                   <input
                     name="heroTitle"
-                    defaultValue={config.heroTitle || "Bonbon Flowers Houston"}
-                    className="p-3.5 border rounded-2xl text-sm font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
+                    defaultValue={config.heroTitle || "Aldri Shop"}
+                    className="p-3.5 border rounded-2xl text-sm font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-600"
                     required
                   />
                 </div>
@@ -310,8 +310,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Lema Secundario de Cabecera</label>
                   <input
                     name="brandSlogan"
-                    defaultValue={config.brandSlogan || "Boutique Floral Digital • Houston, Texas"}
-                    className="p-3.5 border rounded-2xl text-sm font-medium dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
+                    defaultValue={config.brandSlogan || "Activos Digitales & Dropshipping Global"}
+                    className="p-3.5 border rounded-2xl text-sm font-medium dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-600"
                   />
                 </div>
               </div>
@@ -320,8 +320,8 @@ export default function AdminConfiguracionPage() {
                 <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Eslogan del Home (Párrafo Hero)</label>
                 <textarea
                   name="heroSlogan"
-                  defaultValue={config.heroSlogan || "Arreglos florales exclusivos y detalles de lujo diseñados para sorprender a quien más amas."}
-                  className="p-3.5 border rounded-2xl text-xs h-20 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
+                  defaultValue={config.heroSlogan || "Herramientas digitales curadas con descarga instantánea y productos en tendencia con seguimiento internacional."}
+                  className="p-3.5 border rounded-2xl text-xs h-20 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-600"
                   required
                 />
               </div>
@@ -331,8 +331,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Texto del Botón Hero (CTA)</label>
                   <input
                     name="heroButtonText"
-                    defaultValue={config.heroButtonText || "Explorar Colección"}
-                    className="p-3.5 border rounded-2xl text-xs font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
+                    defaultValue={config.heroButtonText || "Explorar Catálogo"}
+                    className="p-3.5 border rounded-2xl text-xs font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-600"
                     required
                   />
                 </div>
@@ -341,8 +341,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Nombre en Pie de Página (Footer)</label>
                   <input
                     name="footerTitle"
-                    defaultValue={config.footerTitle || "Bonbon Flowers Houston"}
-                    className="p-3.5 border rounded-2xl text-xs font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-[#FF97A4]"
+                    defaultValue={config.footerTitle || "Aldri Shop"}
+                    className="p-3.5 border rounded-2xl text-xs font-bold dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-600"
                     required
                   />
                 </div>
@@ -543,8 +543,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">URL de Instagram</label>
                   <input
                     name="instagramUrl"
-                    defaultValue={config.instagramUrl || "https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ=="}
-                    placeholder="https://www.instagram.com/bonbonflowers__?stkn=MXBnc3hsbHVlM3psMQ=="
+                    defaultValue={config.instagramUrl || "https://www.instagram.com/aldrishopp"}
+                    placeholder="https://www.instagram.com/aldrishopp"
                     className="p-3 border rounded-xl text-xs font-medium dark:bg-gray-900 dark:text-white"
                   />
                 </div>
@@ -553,8 +553,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">URL de Facebook</label>
                   <input
                     name="facebookUrl"
-                    defaultValue={config.facebookUrl || "https://www.facebook.com/bonbon.flowers.2025"}
-                    placeholder="https://www.facebook.com/bonbon.flowers.2025"
+                    defaultValue={config.facebookUrl || "https://www.facebook.com/aldrishopp"}
+                    placeholder="https://www.facebook.com/aldrishopp"
                     className="p-3 border rounded-xl text-xs font-medium dark:bg-gray-900 dark:text-white"
                   />
                 </div>
@@ -563,8 +563,8 @@ export default function AdminConfiguracionPage() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300">URL de TikTok</label>
                   <input
                     name="tiktokUrl"
-                    defaultValue={config.tiktokUrl || "https://tiktok.com"}
-                    placeholder="https://tiktok.com/@bonbonflowers__"
+                    defaultValue={config.tiktokUrl || "https://tiktok.com/@aldrishopp"}
+                    placeholder="https://tiktok.com/@aldrishopp"
                     className="p-3 border rounded-xl text-xs font-medium dark:bg-gray-900 dark:text-white"
                   />
                 </div>
@@ -754,7 +754,7 @@ export default function AdminConfiguracionPage() {
                 <input
                   name="dialogflowProjectId"
                   defaultValue={config.dialogflowProjectId || ""}
-                  placeholder="ej. bonbon-flowers-bot-12345"
+                  placeholder="ej. aldri-shop-bot-12345"
                   className="p-3.5 border rounded-xl text-xs font-mono dark:bg-gray-900 dark:text-white"
                 />
               </div>
@@ -789,8 +789,8 @@ export default function AdminConfiguracionPage() {
                 </label>
                 <input
                   name="dialogflowChatTitle"
-                  defaultValue={config.dialogflowChatTitle || "Bonbon Flowers Virtual Assistant 🌸"}
-                  placeholder="Bonbon Flowers Virtual Assistant 🌸"
+                  defaultValue={config.dialogflowChatTitle || "Aldri Shop Virtual Assistant ⚡"}
+                  placeholder="Aldri Shop Virtual Assistant ⚡"
                   className="p-3.5 border rounded-xl text-xs font-bold dark:bg-gray-900 dark:text-white"
                 />
               </div>

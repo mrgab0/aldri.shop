@@ -24,7 +24,7 @@ export function SocialFeedSection({
             {title}
           </h2>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Descubre nuestros últimos diseños florales y momentos especiales capturados en redes sociales.
+            Descubre nuestros últimos productos y novedades en tendencia capturados en redes sociales.
           </p>
         </div>
 

@@ -50,28 +50,35 @@ const CATEGORIES = [
   "General"
 ];
 
-const BOUQUET_TYPES = [
-  "Descarga Inmediata (Digital)",
-  "Licencia Oficial",
-  "Envío Dropshipping Internacional",
-  "Hardware Físico"
+const PRODUCT_TYPES = [
+  { value: "digital", label: "⚡ Descarga Digital (Archivos/Licencia)" },
+  { value: "dropship", label: "📦 Dropshipping (Envío Físico)" }
 ];
 
-const FLOWER_COUNT_OPTIONS = [0, 12, 18, 24, 36, 50, 100, 200];
-const BADGES = ["", "Bestsellers", "Luxury", "Popular!", "Oferta", "Nuevo"];
+const LOGISTICS_TYPES = [
+  "Descarga Inmediata (Digital 24/7)",
+  "Licencia Oficial Instantánea",
+  "Envío Dropshipping Internacional (7-12 días)",
+  "Envío Dropshipping Express (3-6 días)"
+];
+
+const BADGES = ["", "Bestsellers", "Popular!", "Oferta 🔥", "Nuevo 🚀", "Top Rated"];
 
 interface UploadDraftItem {
   id: string;
   name: string;
   price: number;
+  compareAtPrice?: number;
+  productType: "digital" | "dropship";
   category: string;
   isCustomCategory?: boolean;
   description: string;
   stock: number;
   images: string[];
   badge: string;
-  flowerCount: number;
-  bouquetType: string;
+  bouquetType: string; // Modalidad de entrega
+  supplierUrl?: string;
+  supplierSku?: string;
 }
 
 interface UploadQueueItem {
@@ -103,11 +110,11 @@ export default function CargaEnMasaAdmin() {
   const [updatingBatchId, setUpdatingBatchId] = useState<string | null>(null);
 
   // Batch Editor Inputs for Step 2
-  const [batchCategory, setBatchCategory] = useState("Rosas de Lujo");
-  const [batchFlowerCount, setBatchFlowerCount] = useState<number>(24);
-  const [batchBouquetType, setBatchBouquetType] = useState("Ramo Royal");
-  const [batchPrice, setBatchPrice] = useState<number>(85);
-  const [batchStock, setBatchStock] = useState<number>(15);
+  const [batchCategory, setBatchCategory] = useState("Gadgets & Tech");
+  const [batchProductType, setBatchProductType] = useState<"digital" | "dropship">("dropship");
+  const [batchBouquetType, setBatchBouquetType] = useState("Envío Dropshipping Internacional (7-12 días)");
+  const [batchPrice, setBatchPrice] = useState<number>(49.99);
+  const [batchStock, setBatchStock] = useState<number>(50);
   const [batchBadge, setBatchBadge] = useState("Bestsellers");
   const [batchAddons, setBatchAddons] = useState<string[]>([]);
 
@@ -147,7 +154,7 @@ export default function CargaEnMasaAdmin() {
     let clean = filename.replace(/\.[^/.]+$/, "");
     clean = clean.replace(/[-_]/g, " ");
     clean = clean.replace(/\b\w/g, (char) => char.toUpperCase());
-    return clean.trim() || "Arreglo Floral Exclusivo";
+    return clean.trim() || "Producto Aldri Shop";
   };
 
   // Manejador de selección múltiple de archivos con subida concurrente y tokens individuales
@@ -262,15 +269,16 @@ export default function CargaEnMasaAdmin() {
                 const newItem: UploadDraftItem = {
                   id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
                   name: extractedName,
-                  price: 50,
-                  category: "Notion Templates",
+                  price: 49.99,
+                  compareAtPrice: 79.99,
+                  productType: "dropship",
+                  category: "Gadgets & Tech",
                   isCustomCategory: false,
-                  description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
-                  stock: 10,
+                  description: "Producto curado de alta calidad con garantía y entrega asegurada por Aldri Shop.",
+                  stock: 50,
                   images: [imageUrl],
-                  badge: "",
-                  flowerCount: 0,
-                  bouquetType: "",
+                  badge: "Bestsellers",
+                  bouquetType: "Envío Dropshipping Internacional (7-12 días)",
                 };
 
                 setDraftItems((prev) => [...prev, newItem]);
@@ -359,15 +367,16 @@ export default function CargaEnMasaAdmin() {
     const newItem: UploadDraftItem = {
       id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       name: "Producto Importado por URL",
-      price: 50,
-      category: "Notion Templates",
+      price: 39.99,
+      compareAtPrice: 69.99,
+      productType: "dropship",
+      category: "Gadgets & Tech",
       isCustomCategory: false,
-      description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
-      stock: 10,
+      description: "Producto en tendencia curado con la garantía de calidad de Aldri Shop.",
+      stock: 50,
       images: [manualUrl.trim()],
-      badge: "",
-      flowerCount: 0,
-      bouquetType: "",
+      badge: "Popular!",
+      bouquetType: "Envío Dropshipping Internacional (7-12 días)",
     };
     setDraftItems((prev) => [...prev, newItem]);
     setManualUrl("");
@@ -378,15 +387,16 @@ export default function CargaEnMasaAdmin() {
     const newItem: UploadDraftItem = {
       id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       name: "Nuevo Producto Aldri Shop",
-      price: 29,
+      price: 29.99,
+      compareAtPrice: 59.99,
+      productType: "digital",
       category: "Notion Templates",
       isCustomCategory: false,
-      description: "Producto digital o físico curado con la garantía de calidad de Aldri Shop.",
-      stock: 50,
+      description: "Activo digital o producto en tendencia con la garantía de calidad de Aldri Shop.",
+      stock: 999,
       images: ["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800"],
-      badge: "",
-      flowerCount: 0,
-      bouquetType: "",
+      badge: "Nuevo 🚀",
+      bouquetType: "Descarga Inmediata (Digital 24/7)",
     };
     setDraftItems((prev) => [...prev, newItem]);
   };
@@ -406,16 +416,17 @@ export default function CargaEnMasaAdmin() {
       const payload = draftItems.map((it) => ({
         name: it.name,
         price: it.price,
+        compareAtPrice: it.compareAtPrice || 0,
+        productType: it.productType,
         category: it.category,
         description: it.description,
         images: it.images,
         stock: it.stock,
         badge: it.badge,
-        flowerCount: it.flowerCount,
         bouquetType: it.bouquetType,
       }));
 
-      const res = await createBulkProducts(payload, false); // publishImmediately = false
+      const res = await createBulkProducts(payload as any, false); // publishImmediately = false
       if (res.success) {
         setDraftItems([]);
         setUploadQueue([]);
@@ -468,7 +479,7 @@ export default function CargaEnMasaAdmin() {
     try {
       const res = await updateBulkBatch(ids, {
         category: batchCategory,
-        flowerCount: batchFlowerCount,
+        productType: batchProductType,
         bouquetType: batchBouquetType,
         price: batchPrice,
         stock: batchStock,
@@ -931,38 +942,34 @@ export default function CargaEnMasaAdmin() {
                         )}
                       </div>
 
-                      {/* Bloques de Atributos: Rosas, Tipo Bouquet e Insignia */}
+                      {/* Bloques de Atributos: Tipo de Producto, Logística / Entrega e Insignia */}
                       <div className="grid grid-cols-3 gap-2 pt-1 border-t border-gray-100">
                         <div>
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
-                            <Flower2 size={10} className="text-pink-600" /> Rosas
+                            <Package size={10} className="text-indigo-600" /> Tipo
                           </label>
                           <select
-                            value={item.flowerCount}
-                            onChange={(e) => handleUpdateDraftItem(item.id, "flowerCount", parseInt(e.target.value) || 0)}
-                            className="w-full p-1.5 border rounded-xl text-xs font-bold bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8B0024]"
+                            value={item.productType}
+                            onChange={(e) => handleUpdateDraftItem(item.id, "productType", e.target.value as "digital" | "dropship")}
+                            className="w-full p-1.5 border rounded-xl text-xs font-bold bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                           >
-                            {FLOWER_COUNT_OPTIONS.map((fc) => (
-                              <option key={fc} value={fc}>
-                                {fc === 0 ? "General" : `${fc} u.`}
-                              </option>
-                            ))}
+                            <option value="digital">⚡ Digital</option>
+                            <option value="dropship">📦 Dropship</option>
                           </select>
                         </div>
 
                         <div>
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">
-                            Estilo
+                            Logística
                           </label>
                           <select
                             value={item.bouquetType}
                             onChange={(e) => handleUpdateDraftItem(item.id, "bouquetType", e.target.value)}
                             className="w-full p-1.5 border rounded-xl text-xs font-semibold bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8B0024]"
                           >
-                            <option value="">Sin definir</option>
-                            {BOUQUET_TYPES.map((bt) => (
-                              <option key={bt} value={bt}>
-                                {bt}
+                            {LOGISTICS_TYPES.map((lt) => (
+                              <option key={lt} value={lt}>
+                                {lt}
                               </option>
                             ))}
                           </select>
@@ -1145,37 +1152,37 @@ export default function CargaEnMasaAdmin() {
                         </select>
                       </div>
 
-                      {/* Cantidad de Rosas */}
+                      {/* Tipo de Producto */}
                       <div>
                         <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1">
-                          <Flower2 size={10} className="text-pink-600" /> Cant. Rosas
+                          <Package size={10} className="text-indigo-600" /> Tipo
                         </label>
                         <select
-                          value={batchFlowerCount}
-                          onChange={(e) => setBatchFlowerCount(parseInt(e.target.value) || 0)}
-                          className="w-full p-2 border rounded-xl text-xs font-bold bg-white focus:outline-none focus:ring-2 focus:ring-[#8B0024]"
+                          value={batchProductType}
+                          onChange={(e) => setBatchProductType(e.target.value as "digital" | "dropship")}
+                          className="w-full p-2 border rounded-xl text-xs font-bold bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600"
                         >
-                          {FLOWER_COUNT_OPTIONS.map((count) => (
-                            <option key={count} value={count}>
-                              {count === 0 ? "Sin definir" : `${count} Rosas`}
+                          {PRODUCT_TYPES.map((pt) => (
+                            <option key={pt.value} value={pt.value}>
+                              {pt.label}
                             </option>
                           ))}
                         </select>
                       </div>
 
-                      {/* Tipo de Bouquet */}
+                      {/* Modalidad de Entrega */}
                       <div>
                         <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">
-                          Tipo Bouquet
+                          Logística
                         </label>
                         <select
                           value={batchBouquetType}
                           onChange={(e) => setBatchBouquetType(e.target.value)}
                           className="w-full p-2 border rounded-xl text-xs font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-[#8B0024]"
                         >
-                          {BOUQUET_TYPES.map((bt) => (
-                            <option key={bt} value={bt}>
-                              {bt}
+                          {LOGISTICS_TYPES.map((lt) => (
+                            <option key={lt} value={lt}>
+                              {lt}
                             </option>
                           ))}
                         </select>

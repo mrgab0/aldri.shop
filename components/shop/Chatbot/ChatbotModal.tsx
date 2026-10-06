@@ -218,7 +218,14 @@ export const ChatbotModal = () => {
 
     try {
       let clientContext: { customerName?: string; lastOrderId?: string } = {};
+      let sessionId = "";
       try {
+        sessionId = localStorage.getItem("aldri_chat_session_id") || "";
+        if (!sessionId) {
+          sessionId = "sess_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+          localStorage.setItem("aldri_chat_session_id", sessionId);
+        }
+
         const customerName = localStorage.getItem("customerName") || "";
         const lastOrderId = localStorage.getItem("lastOrderId") || "";
         if (customerName || lastOrderId) {
@@ -238,6 +245,7 @@ export const ChatbotModal = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          sessionId,
           messages: apiHistory,
           locale: currentLocale,
           clientContext: Object.keys(clientContext).length > 0 ? clientContext : undefined
@@ -248,7 +256,7 @@ export const ChatbotModal = () => {
       const data = await res.json();
 
       // Simular delay humano de digitación (1.2s - 1.8s proporcional al texto)
-      // mientras se mantiene visible la animación de "Flor está escribiendo..."
+      // mientras se mantiene visible la animación de "Aldri está escribiendo..."
       const responseLen = (data.text || "").length || 60;
       const targetDelay = Math.min(2000, Math.max(1200, responseLen * 12));
       const elapsed = Date.now() - startTime;

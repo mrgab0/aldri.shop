@@ -20,7 +20,7 @@ export async function loginAdminAction(formData: FormData) {
 
   const expectedPassword = getAdminPassword();
 
-  if (password.trim() === expectedPassword.trim() || password.trim() === "aldri2026" || password.trim() === "flores2026") {
+  if (password.trim() === expectedPassword.trim() || password.trim() === "aldri2026") {
     // Consultar si el 2FA está activo
     await dbConnect();
     const config: any = await SiteConfig.findOne({ key: "global" }).lean();

@@ -50,7 +50,7 @@ export function FlashSaleCollectionsSection() {
             Colección Boutique 2026
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 font-medium">
-            Diseños florales contemporáneos con descuentos exclusivos por tiempo limitado.
+            Gadgets de vanguardia y recursos digitales de alto impacto con descuentos exclusivos.
           </p>
         </div>
 

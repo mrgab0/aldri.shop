@@ -113,8 +113,8 @@ export const ProductDetail = ({ product }: { product: any }) => {
               
               {/* Titular y Precio Dinámico */}
               <div>
-                <span className="text-[#163422] dark:text-[#C5A059] text-xs font-black uppercase tracking-[0.2em] block mb-1">
-                  Arreglo Floral Exclusivo
+                <span className="text-indigo-600 dark:text-[#C5A059] text-xs font-black uppercase tracking-[0.2em] block mb-1">
+                  {product.category || "Colección Oficial Aldri Shop"}
                 </span>
                 <h1 className="text-3xl md:text-4xl font-serif font-black text-[#1A1C1C] dark:text-white leading-tight mb-3">
                   {product.name}

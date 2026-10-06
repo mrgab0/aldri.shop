@@ -29,10 +29,10 @@ export default function AdminEstadisticasPage() {
     const itemsText = (cart.cartItems || [])
       .map((item: any) => `• ${item.name} ($${item.price})`)
       .join("\n");
-    const productName = cart.productName || (cart.cartItems && cart.cartItems[0] ? cart.cartItems[0].name : "tu arreglo floral");
+    const productName = cart.productName || (cart.cartItems && cart.cartItems[0] ? cart.cartItems[0].name : "tu producto seleccionado");
 
     const message = encodeURIComponent(
-      `¡Hola ${cart.customerName || ""}! 🌹 Notamos que estabas interesado en ${productName} en Bonbon Flowers Houston.\n\n${itemsText ? `Tus items:\n${itemsText}\n\n` : ""}¿Te gustaría completar tu pedido hoy? Estamos listos para preparar tu entrega especial a domicilio. ✨`
+      `¡Hola ${cart.customerName || ""}! ⚡ Notamos que dejaste ${productName} en tu carrito de Aldri Shop.\n\n${itemsText ? `Tus productos:\n${itemsText}\n\n` : ""}¿Te gustaría completar tu pedido hoy? Tenemos despacho inmediato y soporte 24/7 listo para ayudarte. ✨`
     );
 
     return phone ? `https://wa.me/${phone}?text=${message}` : `https://wa.me/?text=${message}`;
@@ -194,7 +194,7 @@ export default function AdminEstadisticasPage() {
               <tbody className="divide-y divide-gray-100 dark:divide-gray-800/60 font-medium">
                 {data.abandonedCarts.map((cart: any, index: number) => {
                   const items = cart.cartItems || [];
-                  const mainName = cart.productName || (items[0] ? items[0].name : "Arreglo Floral");
+                  const mainName = cart.productName || (items[0] ? items[0].name : "Producto Aldri Shop");
                   const itemPrice = items.reduce((sum: number, i: any) => sum + (i.price || 0), 0) || cart.price || 0;
 
                   return (

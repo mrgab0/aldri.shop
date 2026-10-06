@@ -10,17 +10,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: isEn
-      ? "About Us & Floral Blog | Bonbon Flowers Houston"
-      : "Nosotros & Blog Floral | Bonbon Flowers Houston",
+      ? "About Us | Aldri Shop - Digital Products & Global Dropshipping"
+      : "Nosotros | Aldri Shop - Productos Digitales & Dropshipping Global",
     description: isEn
-      ? "Discover the story of Bonbon Flowers in Houston, TX. Luxury rose bouquets, flower care guides, and romantic anniversary arrangements."
-      : "Conoce la historia de Bonbon Flowers en Houston, TX. Arreglos florales de lujo, guías de cuidado de rosas y ramos para aniversarios.",
+      ? "Learn about Aldri Shop: our story, instant digital product delivery, and global tracked dropshipping essentials."
+      : "Conoce más sobre Aldri Shop: nuestra historia, entrega inmediata de activos digitales y productos dropshipping en tendencia con seguimiento global.",
     openGraph: {
-      title: isEn ? "About Us | Bonbon Flowers" : "Nosotros & Blog Floral | Bonbon Flowers",
+      title: isEn ? "About Us | Aldri Shop" : "Nosotros | Aldri Shop",
       description: isEn
-        ? "Luxury floral boutique in Houston, Texas. Discover our story and floral blog."
-        : "Boutique floral de lujo en Houston, Texas. Descubre nuestra historia y blog floral.",
-      images: ["https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1200"]
+        ? "Curated digital tools & trending dropshipping products. Instant access & global shipping."
+        : "Herramientas digitales curadas y productos dropshipping en tendencia. Acceso instantáneo y envíos globales.",
+      images: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200"]
     }
   };
 }

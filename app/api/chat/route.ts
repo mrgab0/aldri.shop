@@ -3,13 +3,15 @@ import dbConnect from '@/lib/db';
 import { Product } from '@/lib/models/Product';
 import { getSiteConfig } from '@/lib/actions/siteConfig';
 import { getDeliveryOptions } from '@/lib/actions/delivery';
+import { ChatLead } from '@/lib/models/ChatLead';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   try {
-    const { messages, locale = 'es', clientContext } = await req.json();
+    const { sessionId: rawSessionId, messages, locale = 'es', clientContext } = await req.json();
     const isEn = locale === 'en';
+    const sessionId = rawSessionId || `anon_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ 
@@ -160,18 +162,76 @@ Reglas estrictas de conversación:
       }
     }
 
-    if (!aiResponseText) {
-      if (isEn) {
-        return NextResponse.json({
-          text: `👋 Hello! I'd be happy to assist you. You can browse all our items in the [Product Catalog](/productos) or reach out directly on [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) for real-time support. ✨`
+    const finalResponseText = aiResponseText || (isEn
+      ? `👋 Hello! I'd be happy to assist you. You can browse all our items in the [Product Catalog](/productos) or reach out directly on [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) for real-time support. ✨`
+      : `👋 ¡Hola! Con mucho gusto te asesoro. Puedes ver todos nuestros productos en el [Catálogo de Productos](/productos) o contactarnos directo por [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) para ayudarte de inmediato. ✨`);
+
+    // 5. Persistencia y Minería de Conversación / Leads en Base de Datos
+    try {
+      const fullHistory = [
+        ...messages.map((m: any) => ({
+          role: m.role === "user" ? ("user" as const) : ("model" as const),
+          text: m.text,
+          timestamp: new Date()
+        })),
+        { role: "model" as const, text: finalResponseText, timestamp: new Date() }
+      ];
+
+      // Analizar texto de usuarios en busca de teléfono, email y nombres
+      const allUserTexts = messages
+        .filter((m: any) => m.role === "user")
+        .map((m: any) => m.text)
+        .join(" ");
+
+      // Regex para teléfono (mínimo 7 a 15 dígitos con prefijos posibles)
+      const phoneMatch = allUserTexts.match(/(?:\+?\d{1,4}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}/);
+      const extractedPhone = phoneMatch ? phoneMatch[0].trim() : "";
+
+      // Regex para email
+      const emailMatch = allUserTexts.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+      const extractedEmail = emailMatch ? emailMatch[0].trim().toLowerCase() : "";
+
+      // Detección de productos interesados
+      const interestedProducts: string[] = [];
+      if (products && products.length > 0) {
+        products.forEach((p: any) => {
+          if (p.name && allUserTexts.toLowerCase().includes(p.name.toLowerCase())) {
+            interestedProducts.push(p.name);
+          }
         });
       }
-      return NextResponse.json({
-        text: `👋 ¡Hola! Con mucho gusto te asesoro. Puedes ver todos nuestros productos en el [Catálogo de Productos](/productos) o contactarnos directo por [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) para ayudarte de inmediato. ✨`
-      });
+
+      // Scoring comercial automático
+      let intentScore: "hot" | "warm" | "cold" = "cold";
+      if (extractedPhone || extractedEmail) {
+        intentScore = "hot";
+      } else if (
+        /comprar|precio|envío|costo|pagar|orden|descuento|tarjeta|paypal|buy|price|shipping|checkout/i.test(
+          allUserTexts
+        )
+      ) {
+        intentScore = "warm";
+      }
+
+      await ChatLead.findOneAndUpdate(
+        { sessionId },
+        {
+          $set: {
+            conversation: fullHistory,
+            intentScore,
+            ...(customerName ? { customerName } : {}),
+            ...(extractedPhone ? { customerPhone: extractedPhone } : {}),
+            ...(extractedEmail ? { customerEmail: extractedEmail } : {}),
+            ...(interestedProducts.length > 0 ? { interestedProducts } : {})
+          }
+        },
+        { upsert: true, new: true }
+      );
+    } catch (saveErr) {
+      console.warn("Aviso: No se pudo guardar la conversación en ChatLead:", saveErr);
     }
 
-    return NextResponse.json({ text: aiResponseText });
+    return NextResponse.json({ text: finalResponseText });
 
   } catch (error: any) {
     console.error("Error en Chatbot API:", error);

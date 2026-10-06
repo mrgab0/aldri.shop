@@ -19,9 +19,6 @@ const CustomIframeSection = dynamic(
   { ssr: true }
 );
 
-const AnimatedButterflies = dynamic(
-  () => import("@/components/shop/AnimatedButterflies").then((m) => m.AnimatedButterflies)
-);
 
 const Footer = dynamic(
   () => import("@/components/shop/Footer").then((m) => m.Footer),

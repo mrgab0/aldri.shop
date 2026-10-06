@@ -10,7 +10,8 @@ import {
   Ticket, 
   CreditCard, 
   Search, 
-  Settings 
+  Settings,
+  Users 
 } from "lucide-react";
 
 export default function AdminPage() {
@@ -43,6 +44,11 @@ export default function AdminPage() {
             <style>{`@keyframes dash { to { stroke-dashoffset: 0; } }`}</style>
           </div>
           <span className="text-sm tracking-wide">Estadísticas & Carritos</span>
+        </Link>
+
+        <Link href="/admin/leads" className={`${clayBase} bg-red-600`}>
+          <Users className={`${iconBase} group-hover:scale-125 group-hover:drop-shadow-lg`} strokeWidth={1.5} />
+          <span className="text-sm tracking-wide">Leads & Chatbot Marketing</span>
         </Link>
         
         <Link href="/admin/sliders" className={`${clayBase} bg-[#FF97A4]`}>

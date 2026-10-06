@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 /**
  * InstallPrompt: Registra silenciosamente el Service Worker para la PWA
- * sin mostrar avisos flotantes molestos que obstruyan el chatbot Flor.
+ * sin mostrar avisos flotantes molestos que obstruyan el chatbot Aldri.
  */
 export function InstallPrompt() {
   const pathname = usePathname();

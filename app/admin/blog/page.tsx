@@ -214,7 +214,7 @@ export default function AdminBlogPage() {
             Blogger & Redacción de Artículos
           </h1>
           <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mt-1 font-medium">
-            Crea y administra publicaciones para la sección <span className="font-bold text-[#8B0024] dark:text-pink-300">/nosotros</span>. Estos artículos impulsan el posicionamiento de Bonbon Flowers Houston en Google.
+            Crea y administra publicaciones para la sección <span className="font-bold text-indigo-600 dark:text-indigo-400">/nosotros</span>. Estos artículos impulsan el tráfico orgánico y SEO de Aldri Shop.
           </p>
         </div>
 
@@ -222,10 +222,10 @@ export default function AdminBlogPage() {
         <div className="flex items-center gap-2.5 flex-wrap">
           <button
             onClick={() => setIsAiModalOpen(true)}
-            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 hover:opacity-95 text-white px-4 py-2.5 rounded-xl font-black text-xs shadow-md transition-all active:scale-95"
+            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:opacity-95 text-white px-4 py-2.5 rounded-xl font-black text-xs shadow-md transition-all active:scale-95"
           >
             <Sparkles size={16} />
-            <span>Asistente IA Bonbon ✨</span>
+            <span>Asistente IA Aldri ✨</span>
           </button>
 
           <button
@@ -303,8 +303,8 @@ export default function AdminBlogPage() {
                       .replace(/^-+|-+$/g, "");
                     setFormData({ ...formData, title, slug: editingId ? formData.slug : slug });
                   }}
-                  placeholder="Ej: Los Mejores Arreglos Florales para Aniversario en Houston"
-                  className="w-full p-3.5 border rounded-2xl text-sm font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
+                  placeholder="Ej: Los 10 Mejores Gadgets EDC y Plantillas de Productividad 2026"
+                  className="w-full p-3.5 border rounded-2xl text-sm font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                   required
                 />
               </div>
@@ -318,8 +318,8 @@ export default function AdminBlogPage() {
                   type="text"
                   value={formData.slug}
                   onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                  placeholder="ej: mejores-arreglos-aniversario-houston"
-                  className="w-full p-3.5 border rounded-2xl text-sm font-mono text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
+                  placeholder="ej: mejores-gadgets-edc-productividad-2026"
+                  className="w-full p-3.5 border rounded-2xl text-sm font-mono text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                   required
                 />
               </div>
@@ -519,7 +519,7 @@ export default function AdminBlogPage() {
         </div>
       )}
 
-      {/* MODAL DEL ASISTENTE IA BONBON */}
+      {/* MODAL DEL ASISTENTE IA ALDRI */}
       {isAiModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-white dark:bg-[#181922] w-full max-w-2xl rounded-3xl border border-purple-200 dark:border-gray-800 shadow-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
@@ -532,10 +532,10 @@ export default function AdminBlogPage() {
                 </div>
                 <div>
                   <h3 className="font-serif font-black text-lg text-gray-900 dark:!text-white">
-                    Asistente IA Bonbon ✨
+                    Asistente IA Aldri ✨
                   </h3>
                   <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                    Generador automático de artículos optimizados para SEO floral con Google Gemini
+                    Generador automático de artículos de alta conversión para Aldri Shop con Google Gemini
                   </p>
                 </div>
               </div>
@@ -551,13 +551,13 @@ export default function AdminBlogPage() {
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <label className="text-xs font-black uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                  ¿De qué tema, arreglo o producto deseas el post? *
+                  ¿De qué tema, producto o gadget deseas el post? *
                 </label>
                 <textarea
                   value={aiPrompt}
                   onChange={(e) => setAiPrompt(e.target.value)}
                   rows={3}
-                  placeholder="Ej: Ramos de 100 rosas rojas para aniversario de bodas en Houston, Cómo cuidar tulipanes en casa, Tendencias florales para cumpleaños..."
+                  placeholder="Ej: Comparativa de los mejores accesorios de escritorio minimalistas, Cómo organizar tus finanzas con Notion en 2026, Guía de compra para gadgets EDC..."
                   className="w-full p-3.5 border rounded-2xl text-sm font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
               </div>

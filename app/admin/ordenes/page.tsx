@@ -416,18 +416,18 @@ export default function AdminOrdenesPage() {
                   <div className="flex flex-wrap items-center gap-2 w-full md:w-auto justify-between md:justify-end">
                     {/* Selector de Estado */}
                     <select
-                      value={order.status || (isPickup ? "En diseño" : "Confirmado")}
+                      value={order.status || (isPickup ? "Procesando" : "Confirmado")}
                       onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
                       disabled={updatingId === order.orderId}
-                      className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-1.5 text-xs font-bold text-[#1A1C1C] dark:text-white focus:ring-2 focus:ring-[#FF97A4] focus:outline-none"
+                      className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-1.5 text-xs font-bold text-[#1A1C1C] dark:text-white focus:ring-2 focus:ring-indigo-600 focus:outline-none"
                     >
-                      <option value="Confirmado">🕒 Confirmado</option>
-                      <option value="En diseño">🌸 En diseño floral</option>
+                      <option value="Confirmado">🕒 Confirmado / Pagado</option>
+                      <option value="Procesando con proveedor">⚙️ Procesando con proveedor</option>
                       <option value="En espera de despacho">📦 En espera de despacho</option>
-                      <option value="En camino">🚚 En camino a ubicación</option>
-                      <option value="Listo para retirar">🏪 Listo para retirar en boutique</option>
+                      <option value="En tránsito internacional">✈️ En tránsito internacional</option>
+                      <option value="En camino">🚚 En reparto final</option>
+                      <option value="Completado / Descargado">⚡ Acceso / Descarga enviada</option>
                       <option value="Entregado">✅ Entregado exitosamente</option>
-                      <option value="Retirado">✅ Retirado por cliente</option>
                     </select>
 
                     {/* Botón Modificar Venta (2FA) */}
@@ -463,7 +463,7 @@ export default function AdminOrdenesPage() {
                   </div>
                 </div>
 
-                {/* Fila 2: Dirección, Dedicatoria y Arreglos Florales */}
+                {/* Fila 2: Dirección, Notas y Productos de la Orden */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   {/* Dirección / GPS / Tarjeta de Dedicatoria */}
                   <div className="p-3.5 bg-gray-50 dark:bg-gray-900/60 rounded-2xl space-y-2 border border-gray-100 dark:border-gray-800">
@@ -502,7 +502,7 @@ export default function AdminOrdenesPage() {
                   {/* Arreglos de la Orden con Adicionales y Tax Resaltado */}
                   <div className="p-3.5 bg-gray-50 dark:bg-gray-900/60 rounded-2xl space-y-2 border border-gray-100 dark:border-gray-800">
                     <div className="flex justify-between items-center text-[10px] font-bold uppercase text-gray-400 tracking-wider">
-                      <span>Arreglos Florales ({order.items?.length || 0})</span>
+                      <span>Productos de la Orden ({order.items?.length || 0})</span>
                       <div className="text-right">
                         <span className="text-emerald-600 dark:text-emerald-400 font-extrabold text-xs block">${(order.total || 0).toFixed(2)} USD</span>
                         {order.taxAmount ? (
@@ -855,17 +855,17 @@ export default function AdminOrdenesPage() {
 
             {/* ÁREA IMPRIMIBLE DE LA FACTURA */}
             <div id="invoice-print-area" className="bg-white text-gray-900 p-6 rounded-2xl border border-gray-200 space-y-6 text-xs">
-              {/* Encabezado Oficial Boutique */}
-              <div className="flex justify-between items-start border-b-2 border-pink-200 pb-5">
+              {/* Encabezado Oficial Aldri Shop */}
+              <div className="flex justify-between items-start border-b-2 border-indigo-200 pb-5">
                 <div>
-                  <h1 className="text-2xl font-serif font-extrabold text-[#1A1C1C] tracking-tight">Bonbon Flowers Houston</h1>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#FF97A4]">High Floral Design Boutique</p>
-                  <p className="text-gray-500 text-[11px] mt-1">Houston, Texas & Metropolitan Areas</p>
-                  <p className="text-gray-500 text-[11px]">Tel / WhatsApp: +1 (346) 739-2730</p>
+                  <h1 className="text-2xl font-serif font-extrabold text-[#1A1C1C] tracking-tight">Aldri Shop</h1>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-indigo-600">Digital Goods & Global Dropshipping</p>
+                  <p className="text-gray-500 text-[11px] mt-1">Soporte y Distribución Global • aldri.shop</p>
+                  <p className="text-gray-500 text-[11px]">WhatsApp: +1 (346) 739-2730</p>
                 </div>
 
                 <div className="text-right space-y-1">
-                  <div className="inline-block bg-pink-50 border border-pink-200 px-3 py-1 rounded-xl text-pink-600 font-mono font-bold text-sm">
+                  <div className="inline-block bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-xl text-indigo-600 font-mono font-bold text-sm">
                     {invoiceLang === "es" ? "FACTURA #" : "INVOICE #"} {invoiceOrder.orderId}
                   </div>
                   <p className="text-gray-500 font-medium text-[11px]">
@@ -914,7 +914,7 @@ export default function AdminOrdenesPage() {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b-2 border-gray-200 bg-gray-100 text-gray-600 uppercase text-[10px] font-bold text-left">
-                      <th className="py-2 px-3">{invoiceLang === "es" ? "Descripción de Arreglo / Ítem" : "Item Description"}</th>
+                      <th className="py-2 px-3">{invoiceLang === "es" ? "Descripción del Producto / Ítem" : "Item Description"}</th>
                       <th className="py-2 px-3 text-center">{invoiceLang === "es" ? "Cant." : "Qty"}</th>
                       <th className="py-2 px-3 text-right">{invoiceLang === "es" ? "Precio Unit." : "Unit Price"}</th>
                       <th className="py-2 px-3 text-right">{invoiceLang === "es" ? "Subtotal" : "Subtotal"}</th>
@@ -983,10 +983,10 @@ export default function AdminOrdenesPage() {
               <div className="border-t pt-4 text-center text-[10px] text-gray-400 space-y-1">
                 <p className="font-bold text-gray-600">
                   {invoiceLang === "es"
-                    ? "¡Gracias por elegir a Bonbon Flowers Houston para regalar sonrisas!"
-                    : "Thank you for choosing Bonbon Flowers Houston for your special moments!"}
+                    ? "¡Gracias por comprar en Aldri Shop!"
+                    : "Thank you for shopping at Aldri Shop!"}
                 </p>
-                <p>Bonbon Flowers Houston • Houston, Texas • bonbonflowershouston.com</p>
+                <p>Aldri Shop • Global Dropshipping & Digital Assets • aldri.shop</p>
               </div>
             </div>
           </div>

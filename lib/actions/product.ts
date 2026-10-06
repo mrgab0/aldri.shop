@@ -101,6 +101,8 @@ export async function createBulkProducts(
   productsData: Array<{
     name: string;
     price: number;
+    compareAtPrice?: number;
+    productType?: "digital" | "dropship";
     category: string;
     description?: string;
     images: string[];
@@ -110,6 +112,8 @@ export async function createBulkProducts(
     flowerCount?: number;
     bouquetType?: string;
     addons?: string[];
+    supplierSku?: string;
+    supplierUrl?: string;
   }>,
   publishImmediately: boolean = false
 ) {
@@ -123,7 +127,7 @@ export async function createBulkProducts(
     const batchCreatedAt = new Date();
 
     const preparedProducts = await Promise.all(productsData.map(async (item) => {
-      const name = item.name.trim() || "Producto Sin Nombre";
+      const name = item.name.trim() || "Producto Aldri Shop";
       const baseSlug = slugify(name);
       const randomSuffix = Math.floor(Math.random() * 10000);
       const existingProduct = await Product.findOne({ slug: baseSlug });
@@ -132,22 +136,37 @@ export async function createBulkProducts(
         : baseSlug;
 
       const cleanedNameAlpha = name.replace(/[^a-zA-Z0-9]/g, "").substring(0, 4).toUpperCase();
-      const generatedSku = `SKU-${cleanedNameAlpha || 'PROD'}-${randomSuffix}`;
+      const generatedSku = `ALDR-${cleanedNameAlpha || 'PROD'}-${randomSuffix}`;
       const sku = item.sku && item.sku.trim() !== "" ? item.sku.trim() : generatedSku;
+      const productType = item.productType || "dropship";
 
       return {
         name,
         price: typeof item.price === 'number' && !isNaN(item.price) ? item.price : 0,
+        compareAtPrice: typeof item.compareAtPrice === 'number' ? item.compareAtPrice : 0,
+        productType,
         category: item.category?.trim() || "General",
         description: item.description?.trim() || `Excelente producto ${name} con la máxima calidad y garantía de Aldri Shop.`,
-        images: item.images && item.images.length > 0 ? item.images : ["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800"],
-        stock: typeof item.stock === 'number' && !isNaN(item.stock) ? item.stock : 10,
+        images: item.images && item.images.length > 0 ? item.images : ["https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800"],
+        stock: typeof item.stock === 'number' && !isNaN(item.stock) ? item.stock : 50,
         sku,
         slug,
         flowerCount: item.flowerCount || 0,
         bouquetType: item.bouquetType || "",
         badge: item.badge || "",
         addons: item.addons || [],
+        dropshipInfo: {
+          supplierSku: item.supplierSku || "",
+          supplierUrl: item.supplierUrl || "",
+          estimatedDeliveryDays: "7-12 días hábiles",
+          shippingOrigin: "Almacén Internacional"
+        },
+        digitalAsset: {
+          fileUrl: "",
+          fileSize: "",
+          fileType: "ZIP / Archivo Digital",
+          downloadLimit: 10
+        },
         isActive: publishImmediately,
         createdAt: batchCreatedAt
       };
@@ -167,9 +186,11 @@ export async function updateBulkBatch(
   productIds: string[],
   updates: {
     category?: string;
+    productType?: "digital" | "dropship";
     flowerCount?: number;
     bouquetType?: string;
     price?: number;
+    compareAtPrice?: number;
     stock?: number;
     badge?: string;
     description?: string;
@@ -184,9 +205,11 @@ export async function updateBulkBatch(
 
     const updateFields: any = {};
     if (updates.category !== undefined && updates.category.trim() !== "") updateFields.category = updates.category.trim();
+    if (updates.productType !== undefined) updateFields.productType = updates.productType;
     if (updates.flowerCount !== undefined && updates.flowerCount >= 0) updateFields.flowerCount = updates.flowerCount;
     if (updates.bouquetType !== undefined && updates.bouquetType.trim() !== "") updateFields.bouquetType = updates.bouquetType.trim();
     if (updates.price !== undefined && updates.price >= 0) updateFields.price = updates.price;
+    if (updates.compareAtPrice !== undefined && updates.compareAtPrice >= 0) updateFields.compareAtPrice = updates.compareAtPrice;
     if (updates.stock !== undefined && updates.stock >= 0) updateFields.stock = updates.stock;
     if (updates.badge !== undefined) updateFields.badge = updates.badge;
     if (updates.description !== undefined && updates.description.trim() !== "") updateFields.description = updates.description.trim();

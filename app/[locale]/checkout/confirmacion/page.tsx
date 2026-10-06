@@ -21,9 +21,9 @@ export default async function ConfirmacionPage({
         <div className="bg-green-100 p-4 rounded-full text-green-600 mb-6 animate-bounce mx-auto w-20">
           <CheckCircle2 size={48} />
         </div>
-        <h2 className="text-3xl font-bold text-[#1A1C1C] mb-2">¡Compra Finalizada! 🌹</h2>
+        <h2 className="text-3xl font-bold text-[#1A1C1C] mb-2">¡Compra Finalizada! ⚡</h2>
         <p className="text-gray-500 mb-6">
-          Pronto recibirás tu pedido. Gracias por elegir Bonbon Flowers Houston.
+          Pronto recibirás la confirmación de tu pedido. Gracias por elegir Aldri Shop.
         </p>
         
         <div className="bg-gray-50 p-4 rounded-xl mb-8">
