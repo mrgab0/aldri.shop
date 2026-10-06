@@ -89,7 +89,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? "bg-indigo-600 text-white border-indigo-400"
                 : "bg-emerald-600 text-white border-emerald-400"
             }`}>
-              {productType === 'digital' ? '⚡ Descarga Digital' : '📦 Dropshipping'}
+              {productType === 'digital' ? '⚡ Descarga Digital' : '📦 Envío Físico'}
             </span>
             <span className="bg-white/95 dark:bg-gray-900/90 text-gray-800 dark:text-gray-200 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-gray-200 dark:border-gray-700 shadow-sm w-fit">
               {category}

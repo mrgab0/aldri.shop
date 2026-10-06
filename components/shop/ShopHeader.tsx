@@ -38,7 +38,7 @@ export const ShopHeader = () => {
                 Aldri <span className="text-indigo-600 dark:text-[#C5A059]">Shop</span>
               </span>
               <span className="text-[9px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold block -mt-0.5">
-                Digital &amp; Dropshipping
+                Digital &amp; Lifestyle Tech
               </span>
             </div>
           </Link>

@@ -73,7 +73,7 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
                   Aldri <span className="text-indigo-600 dark:text-[#C5A059]">Shop</span>
                 </span>
                 <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] dark:text-[#E6C98B]">
-                  Digital &amp; Dropshipping
+                  Digital &amp; Lifestyle Tech
                 </span>
               </div>
             </Link>

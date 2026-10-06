@@ -17,13 +17,13 @@ const I18N_CONTENT = {
   es: {
     quickQuestions: [
       "⚡ ¿Cómo descargo mi producto digital?",
-      "📦 ¿Cómo rastreo mi pedido dropshipping?",
+      "📦 ¿Cómo rastreo mi pedido?",
       "💻 Plantillas Notion & Presets disponibles",
       "💳 Métodos de pago aceptados"
     ],
     previewTickers: [
       "¿Buscas productos digitales o en tendencia? ⚡",
-      "📦 Descargas instantáneas y dropshipping global",
+      "📦 Descargas instantáneas y envíos con seguimiento global",
       "💳 Pagos seguros con Visa, PayPal y Zelle",
       "💬 Consulta dudas y disponibilidad aquí"
     ],
@@ -46,13 +46,13 @@ const I18N_CONTENT = {
   en: {
     quickQuestions: [
       "⚡ How do I download my digital product?",
-      "📦 How do I track my dropshipping order?",
+      "📦 How do I track my order?",
       "💻 Notion templates & Presets available",
       "💳 Accepted payment methods"
     ],
     previewTickers: [
       "Looking for digital goods or trending tech? ⚡",
-      "📦 Instant downloads & global tracked dropshipping",
+      "📦 Instant downloads & tracked global delivery",
       "💳 Secure checkout with Visa, PayPal & Zelle",
       "💬 Check products & questions here"
     ],

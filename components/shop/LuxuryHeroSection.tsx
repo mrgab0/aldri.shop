@@ -55,7 +55,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
 
         {/* Titular Principal */}
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-luxury-serif text-stone-900 dark:text-white leading-tight font-normal">
-          Digital Products &amp; <br className="hidden sm:block" />Dropshipping Essentials <br />
+          Digital Products &amp; <br className="hidden sm:block" />Modern Essentials <br />
           <span className="font-script-custom text-indigo-700 dark:text-[#C5A059] text-6xl md:text-8xl lg:text-9xl block -mt-2 md:-mt-4">
             elevate your lifestyle ♡
           </span>
@@ -83,7 +83,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
               <Truck size={18} />
             </div>
             <span className="text-xs font-black text-black dark:text-white text-center leading-snug">
-              Dropshipping<br />Rastreado
+              Envíos Globales<br />Rastreados
             </span>
           </div>
 

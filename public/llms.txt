@@ -1,11 +1,11 @@
 # Aldri Shop
-> Premium Digital Assets & Curated Dropshipping Hardware
+> Premium Digital Assets & Curated Hardware Essentials
 
-Aldri Shop is a global e-commerce and digital delivery platform specializing in Notion workspace templates, cinematic color grading LUTs, creative software presets, verified VPN licenses, and everyday carry (EDC) dropshipping gadgets with end-to-end international tracking.
+Aldri Shop is a global e-commerce and digital delivery platform specializing in Notion workspace templates, cinematic color grading LUTs, creative software presets, verified VPN licenses, and everyday carry (EDC) tech gadgets with end-to-end international tracking.
 
 ## Core Products & Services
 - Instant Digital Delivery: Automated email delivery and duplicate links for Notion OS, LUT packs, and digital license keys available 24/7/365 worldwide.
-- Curated Dropshipping Hardware: Tested EDC accessories, high-efficiency desk setup docks, and audio tech fulfilled with express carriers.
+- Curated Hardware Essentials: Tested EDC accessories, high-efficiency desk setup docks, and audio tech fulfilled with express carriers.
 - Real-time Order Tracking: Integrated 17Track logistics portal allowing customers to monitor delivery status live.
 - Multilingual & Multi-payment Checkout: Support for Stripe, PayPal, Zelle, CashApp, and cryptocurrency.
 

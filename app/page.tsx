@@ -75,7 +75,7 @@ export default async function Home() {
             T E N D E N C I A S &nbsp; &amp; &nbsp; D E S T A C A D O S
           </h2>
           <p className="text-xs uppercase tracking-widest text-stone-500 dark:text-gray-400 mt-2 font-medium">
-            Digital Goods &bull; Instant Downloads &bull; Trending Dropship Selection
+            Digital Goods &bull; Instant Downloads &bull; Trending Hardware Selection
           </p>
         </div>
 

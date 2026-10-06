@@ -1,7 +1,7 @@
 {
   "Index": {
     "title": "Aldri Shop",
-    "description": "High-productivity digital assets with instant downloads and trending dropshipping gadgets with international tracked shipping.",
+    "description": "High-productivity digital assets with instant downloads and trending tech essentials with international tracked shipping.",
     "exploreButton": "Explore Collection",
     "premiumSelection": "Premium Selection",
     "ourFlowers": "Our Products",
@@ -66,7 +66,7 @@
   "Cart": {
     "title": "Your Shopping Cart",
     "emptyTitle": "Your cart is empty",
-    "emptyDesc": "Explore our catalog and add digital assets or trending dropshipping products.",
+    "emptyDesc": "Explore our catalog and add digital assets or trending tech products.",
     "exploreBtn": "Explore Catalog",
     "subtotal": "Subtotal",
     "checkoutBtn": "Proceed to Checkout",
@@ -113,7 +113,7 @@
   },
   "Footer": {
     "address1": "Global Fulfillment",
-    "address2": "Instant Downloads & Dropshipping",
+    "address2": "Instant Downloads & Tracked Shipping",
     "boutique": "Digital Platform",
     "copyright": "© 2026 Aldri Shop. All rights reserved.",
     "accept": "We accept:",

@@ -7,10 +7,10 @@ import { revalidatePath } from "next/cache";
 const DEFAULT_SITE_CONFIG = {
   key: "global",
   heroTitle: "Aldri Shop",
-  heroSlogan: "Activos digitales de alta productividad y productos dropshipping en tendencia con envíos directos internacionales.",
+  heroSlogan: "Activos digitales de alta productividad y novedades tecnológicas exclusivas con envíos directos internacionales.",
   heroButtonText: "Explorar Colección",
   footerTitle: "Aldri Shop",
-  footerSlogan: "Tienda Oficial de Activos Digitales & Dropshipping Global",
+  footerSlogan: "Tienda Oficial de Activos Digitales & Gadgets Globales",
   footerCopyright: "© 2026 Aldri Shop. Todos los derechos reservados.",
   productColumnsDesktop: 3,
   productColumnsMobile: 2,

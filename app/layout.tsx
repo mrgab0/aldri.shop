@@ -53,8 +53,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Aldri Shop | Productos Digitales & Dropshipping",
-  description: "Tienda online de productos digitales de alta demanda y dropshipping con entrega garantizada.",
+  title: "Aldri Shop | Productos Digitales & Gadgets en Tendencia",
+  description: "Tienda online de productos digitales de alta productividad y novedades tecnológicas con entrega internacional garantizada.",
   manifest: "/manifest.json",
   icons: {
     icon: "/logo.png",

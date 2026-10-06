@@ -83,7 +83,7 @@ export interface ISiteConfig extends Document {
 const SiteConfigSchema: Schema = new Schema({
   key: { type: String, required: true, unique: true, default: "global" },
   heroTitle: { type: String, default: "Aldri Shop" },
-  heroSlogan: { type: String, default: "Tu tienda online de productos digitales de alta demanda y novedades exclusivas en dropshipping." },
+  heroSlogan: { type: String, default: "Tu tienda online de productos digitales de alta demanda y novedades exclusivas con envío internacional." },
   heroButtonText: { type: String, default: "Explorar Productos" },
   footerTitle: { type: String, default: "Aldri Shop" },
   footerSlogan: { type: String, default: "Innovación digital y productos exclusivos con envío directo a tu hogar." },
@@ -95,7 +95,7 @@ const SiteConfigSchema: Schema = new Schema({
 
   // Identidad de Marca y Menú
   logoUrl: { type: String, default: "/logo.png" },
-  brandSlogan: { type: String, default: "Productos Digitales & Dropshipping Global" },
+  brandSlogan: { type: String, default: "Productos Digitales & Lifestyle Tech Global" },
   menuHomeLabel: { type: String, default: "Inicio" },
   menuCatalogLabel: { type: String, default: "Catálogo" },
   menuTrackingLabel: { type: String, default: "📦 Rastreo" },
@@ -143,9 +143,9 @@ const SiteConfigSchema: Schema = new Schema({
   rescueOtpExpiresAt: { type: Date, default: null },
 
   // Campos SEO por defecto
-  seoTitle: { type: String, default: "Aldri Shop | Productos Digitales & Dropshipping" },
+  seoTitle: { type: String, default: "Aldri Shop | Productos Digitales & Gadgets en Tendencia" },
   seoDescription: { type: String, default: "Descubre recursos digitales de entrega inmediata y productos seleccionados en tendencia con envío a tu puerta." },
-  seoKeywords: { type: String, default: "productos digitales, software, ebooks, cursos, dropshipping, compras online, aldri shop" },
+  seoKeywords: { type: String, default: "productos digitales, software, ebooks, cursos, gadgets, tecnología, compras online, aldri shop" },
   ogImage: { type: String, default: "/logo.png" },
   googleSiteVerification: { type: String, default: "" },
   bingSiteVerification: { type: String, default: "" },

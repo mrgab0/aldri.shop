@@ -34,7 +34,7 @@ export const InquiryModal = ({ isOpen, onClose }: InquiryModalProps) => {
 
         <div className="space-y-2 text-center py-2">
           <p className="text-xs text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
-            ¿Tienes dudas sobre una descarga digital, licencias o el rastreo de tu paquete dropshipping? Chatea en directo con nosotros.
+            ¿Tienes dudas sobre una descarga digital, licencias o el rastreo de tu paquete con seguimiento? Chatea en directo con nosotros.
           </p>
         </div>
 

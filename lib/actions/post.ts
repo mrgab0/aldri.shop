@@ -42,8 +42,8 @@ El color transmite emociones antes que las palabras. Un buen etalonaje o correcc
 3. **Licencia Comercial Incluida:** Todos los paquetes de LUTs de **Aldri Shop** incluyen derechos de uso comercial para videos de YouTube, publicidad y redes sociales.`
   },
   {
-    title: "Envíos Dropshipping: Cómo Rastrear tu Paquete Internacional con 17Track",
-    slug: "envios-dropshipping-rastreo-tiempo-real",
+    title: "Envíos Internacionales: Cómo Rastrear tu Paquete en Tiempo Real con 17Track",
+    slug: "envios-internacionales-rastreo-tiempo-real",
     excerpt: "Conoce el paso a paso del proceso logístico y cómo consultar en vivo la ubicación y estado de entrega de tus gadgets favoritos.",
     mainImage: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=80",
     published: true,

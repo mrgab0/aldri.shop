@@ -78,7 +78,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
             M O S T &nbsp; L O V E D
           </h2>
           <p className="text-xs uppercase tracking-widest text-stone-500 dark:text-gray-400 mt-2 font-medium">
-            Digital Assets &amp; Premium Dropshipping Worldwide
+            Digital Assets &amp; Premium Hardware Worldwide
           </p>
         </div>
 

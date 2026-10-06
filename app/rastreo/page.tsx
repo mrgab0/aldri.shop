@@ -215,11 +215,11 @@ export default function RastreoPedidoPage() {
                   </div>
                 )}
 
-                {/* Guía de Seguimiento de Dropshipping */}
+                {/* Guía de Seguimiento de Envío Físico */}
                 {order.trackingNumber && (
                   <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 space-y-1.5">
                     <span className="text-[10px] font-black uppercase text-emerald-700 dark:text-emerald-300 tracking-wider block">
-                      🚚 Información de Envío (Dropshipping):
+                      🚚 Información de Envío (Producto Físico):
                     </span>
                     <p className="text-xs font-bold text-gray-900 dark:text-white">
                       Transportadora: <span className="text-emerald-600">{order.trackingCarrier || 'Paquetería Exprés'}</span>

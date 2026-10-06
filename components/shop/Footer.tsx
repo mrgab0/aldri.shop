@@ -41,7 +41,7 @@ export function Footer({ siteConfig }: FooterProps) {
             </div>
             <p className="text-stone-700 dark:text-gray-300 leading-relaxed text-xs font-medium">
               ⚡ <strong>Descargas Digitales:</strong> Disponibles de forma inmediata 24/7/365 en todo el mundo.<br />
-              📦 <strong>Envíos Dropshipping:</strong> Procesamiento en 24-48h con carrier y tracking internacional.<br />
+              📦 <strong>Envíos Físicos:</strong> Procesamiento en 24-48h con carrier y tracking internacional.<br />
               💬 <strong>Soporte al Cliente:</strong> Lunes a Sábado de 9:00 AM a 6:00 PM.
             </p>
             <p className="mt-3 text-[11px] text-indigo-700 dark:text-[#C5A059] font-bold tracking-wide">
@@ -55,7 +55,7 @@ export function Footer({ siteConfig }: FooterProps) {
               Suscríbete a nuestro boletín
             </h3>
             <p className="text-stone-700 dark:text-gray-300 text-xs mb-3 font-medium">
-              Recibe notificaciones de nuevos activos digitales, ofertas especiales y productos dropshipping en tendencia.
+              Recibe notificaciones de nuevos activos digitales, ofertas especiales y gadgets en tendencia.
             </p>
 
             {emailSubscribed ? (

@@ -142,7 +142,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              📦 Dropship ({combinedItems.filter(i => i.productType === 'dropship').length})
+              📦 Físicos ({combinedItems.filter(i => i.productType === 'dropship').length})
             </button>
             {initialAddons.length > 0 && (
               <button

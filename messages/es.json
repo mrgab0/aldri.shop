@@ -1,7 +1,7 @@
 {
   "Index": {
     "title": "Aldri Shop",
-    "description": "Activos digitales de alta productividad con descarga instantánea y gadgets dropshipping en tendencia con seguimiento internacional.",
+    "description": "Activos digitales de alta productividad con descarga instantánea y gadgets en tendencia con seguimiento internacional.",
     "exploreButton": "Explorar Catálogo",
     "premiumSelection": "Selección Premium",
     "ourFlowers": "Nuestros Productos",
@@ -66,7 +66,7 @@
   "Cart": {
     "title": "Tu Carrito de Compras",
     "emptyTitle": "Tu carrito está vacío",
-    "emptyDesc": "Explora nuestro catálogo y añade activos digitales o productos dropshipping en tendencia.",
+    "emptyDesc": "Explora nuestro catálogo y añade activos digitales o artículos en tendencia.",
     "exploreBtn": "Explorar Catálogo",
     "subtotal": "Subtotal",
     "checkoutBtn": "Proceder al Pago",
@@ -113,7 +113,7 @@
   },
   "Footer": {
     "address1": "Distribución Global",
-    "address2": "Descargas Inmediatas & Dropshipping",
+    "address2": "Descargas Inmediatas & Envíos con Seguimiento",
     "boutique": "Plataforma Digital",
     "copyright": "© 2026 Aldri Shop. Todos los derechos reservados.",
     "accept": "Aceptamos:",

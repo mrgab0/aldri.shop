@@ -147,7 +147,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
                 </td>
                 <td style="vertical-align: middle; text-align: left;">
                   <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold; line-height: 1.1;">Aldri Shop</h1>
-                  <p style="color: rgba(255,255,255,0.9); margin: 3px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;">Productos Digitales & Dropshipping</p>
+                  <p style="color: rgba(255,255,255,0.9); margin: 3px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;">Productos Digitales & Lifestyle Tech</p>
                 </td>
               </tr>
             </table>
@@ -158,7 +158,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
 
             <div style="background-color: #F8FAFC; padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #E2E8F0;">
               <p style="margin: 5px 0;"><strong>ID Pedido:</strong> ${savedOrder.orderId}</p>
-              <p style="margin: 5px 0;"><strong>Tipo de Pedido:</strong> ${savedOrder.orderType === 'digital' ? '💻 Descarga Digital' : (savedOrder.orderType === 'dropship' ? '📦 Envío Físico (Dropshipping)' : '⚡ Híbrido (Digital + Físico)')}</p>
+              <p style="margin: 5px 0;"><strong>Tipo de Pedido:</strong> ${savedOrder.orderType === 'digital' ? '💻 Descarga Digital' : (savedOrder.orderType === 'dropship' ? '📦 Envío Físico (Internacional con Tracking)' : '⚡ Híbrido (Digital + Físico)')}</p>
               <p style="margin: 5px 0;"><strong>Cliente:</strong> ${savedOrder.customerName}</p>
               <p style="margin: 5px 0;"><strong>Correo Electrónico:</strong> <a href="mailto:${savedOrder.customerEmail || ''}" style="color: #6366F1; font-weight: bold;">${savedOrder.customerEmail || 'No especificado'}</a></p>
               <p style="margin: 5px 0;"><strong>Teléfono / WhatsApp:</strong> ${savedOrder.customerPhone}</p>
@@ -249,7 +249,7 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
           </div>
           
           <div style="background-color: #1A1C1C; color: white; padding: 15px; text-align: center; font-size: 12px;">
-            <p style="margin: 0;">Aldri Shop • Activos Digitales & Dropshipping</p>
+            <p style="margin: 0;">Aldri Shop • Activos Digitales & Gadgets Globales</p>
           </div>
         </div>
       `;

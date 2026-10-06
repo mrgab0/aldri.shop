@@ -62,7 +62,7 @@ export function ContactFormClient() {
               Ponte en Contacto con Nosotros
             </h1>
             <p className="text-stone-600 dark:text-gray-300 text-sm md:text-base font-medium leading-relaxed">
-              ¿Tienes alguna consulta sobre una descarga digital, un pedido dropshipping o una alianza comercial? Estamos listos para ayudarte.
+              ¿Tienes alguna consulta sobre una descarga digital, un pedido físico o una alianza comercial? Estamos listos para ayudarte.
             </p>
           </div>
 

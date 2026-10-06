@@ -18,7 +18,7 @@ export const TrustAnnouncementBar: React.FC<TrustAnnouncementBarProps> = ({
       <aside className="bg-stone-900 dark:bg-stone-950 text-white text-xs md:text-sm font-medium py-2 px-4 text-center tracking-wide flex justify-center items-center border-b border-white/10">
         <div className="flex items-center gap-2 font-semibold">
           <span className="inline-block animate-pulse text-[#E6C98B]">⚡</span>
-          <span>DESCARGA DIGITAL INMEDIATA 24/7 &bull; ENVÍOS DROPSHIPPING CON SEGUIMIENTO</span>
+          <span>DESCARGA DIGITAL INMEDIATA 24/7 &bull; ENVÍOS INTERNACIONALES CON SEGUIMIENTO</span>
           <span className="hidden sm:inline-block transition-transform group-hover:translate-x-1 font-bold text-[#E6C98B]">→</span>
         </div>
       </aside>
@@ -32,7 +32,7 @@ export const TrustAnnouncementBar: React.FC<TrustAnnouncementBarProps> = ({
           </div>
           <div className="flex items-center space-x-2">
             <Truck className="w-4 h-4 text-[#E6C98B] shrink-0" />
-            <span className="tracking-wide">DROPSHIPPING CON NÚMERO DE GUÍA</span>
+            <span className="tracking-wide">ENVÍOS CON SEGUIMIENTO EN VIVO</span>
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="w-4 h-4 text-[#E6C98B] shrink-0" />

@@ -76,12 +76,12 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
           </ul>
         </div>
 
-        {/* Columna 2: Dropshipping & Gadgets */}
+        {/* Columna 2: Hardware & Gadgets */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
             <Truck size={16} className="text-[#163422] dark:text-[#C5A059]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
-              Dropshipping Tech
+              Gadgets &amp; Hardware
             </h4>
           </div>
           <ul className="space-y-2.5">

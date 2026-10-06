@@ -67,7 +67,7 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
 
               {/* Resumen de Historia */}
               <p className="text-base sm:text-lg text-stone-700 dark:text-gray-300 leading-relaxed font-medium pt-2">
-                En <strong className="font-bold text-stone-900 dark:text-white">Aldri Shop</strong>, nacimos para conectar a creadores, emprendedores y entusiastas del lifestyle moderno con activos digitales de alto rendimiento (plantillas Notion, presets, LUTs, guías) y productos dropshipping en tendencia internacional con entrega garantizada y rastreo en tiempo real.
+                En <strong className="font-bold text-stone-900 dark:text-white">Aldri Shop</strong>, nacimos para conectar a creadores, emprendedores y entusiastas del lifestyle moderno con activos digitales de alto rendimiento (plantillas Notion, presets, LUTs, guías) y productos físicos en tendencia internacional con entrega garantizada y rastreo en tiempo real.
               </p>
 
               <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold text-stone-700 dark:text-gray-300 pt-2">

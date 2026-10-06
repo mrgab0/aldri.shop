@@ -69,13 +69,13 @@ export function DeliveryShowcaseBanners() {
             </div>
           </div>
 
-          {/* BANNER 2: Dropshipping Global & Gadgets Seleccionados */}
+          {/* BANNER 2: Envíos Globales & Gadgets Seleccionados */}
           <div className="group relative rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[480px] flex flex-col justify-between p-8 sm:p-10 text-white shadow-2xl border border-white/10">
             {/* Imagen de Fondo con Overlay */}
             <div className="absolute inset-0 z-0">
               <img
                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=80"
-                alt="Dropshipping Gadgets Aldri Shop"
+                alt="Gadgets & Hardware Aldri Shop"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40" />
@@ -85,7 +85,7 @@ export function DeliveryShowcaseBanners() {
             <div className="relative z-10 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 bg-[#163422] text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md border border-[#D4AF37]/50">
                 <Truck size={13} className="text-[#D4AF37]" />
-                <span>Dropshipping Global</span>
+                <span>Envíos Globales</span>
               </span>
               <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white border border-white/30">
                 <Globe size={12} />

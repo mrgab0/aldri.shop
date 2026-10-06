@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     ]);
 
     const productCatalogSummary = (products && products.length > 0)
-      ? products.map((p: any) => `- ${p.name} ($${p.price} USD) [Tipo: ${p.productType === 'digital' ? 'Descarga Digital' : 'Dropshipping'}] [Categoría: ${p.category || 'General'}] [Enlace: /productos/${p.slug}]: ${p.description ? p.description.slice(0, 100) : ''}`).join('\n')
+      ? products.map((p: any) => `- ${p.name} ($${p.price} USD) [Tipo: ${p.productType === 'digital' ? 'Descarga Digital' : 'Producto Físico'}] [Categoría: ${p.category || 'General'}] [Enlace: /productos/${p.slug}]: ${p.description ? p.description.slice(0, 100) : ''}`).join('\n')
       : (isEn ? "There are currently no products listed in the online catalog." : "No hay productos listados actualmente en el catálogo online.");
 
     const whatsappPhone = "+1 346 739 2730";
@@ -55,9 +55,10 @@ export async function POST(req: Request) {
 Your goal is to assist shoppers naturally via chat just like a personal tech and digital goods concierge on WhatsApp.
 ${clientContextSnippet}
 Full Business & Website Knowledge:
-- Store Concept: We specialize in high-demand Digital Products (instant downloads 24/7/365, Notion templates, Lightroom presets, LUTs, ebooks, VPN licenses) and curated Trending Dropshipping items (smart chargers, ANC wireless earbuds, minimalist EDC gear) with global tracking.
+- Store Concept: We specialize in high-demand Digital Products (instant downloads 24/7/365, Notion templates, Lightroom presets, LUTs, ebooks, VPN licenses) and curated Physical Tech Essentials & Gadgets (smart chargers, ANC wireless earbuds, minimalist EDC gear) with global tracking.
+- Important Policy: NEVER mention "dropshipping" or supplier sourcing to customers. You represent a direct retail brand with international fulfillment.
 - Website Sections & Links:
-  * Catalog: [Product Catalog](/productos) (explore all digital goods and trending dropshipping items).
+  * Catalog: [Product Catalog](/productos) (explore all digital goods and trending tech gadgets).
   * Order Tracking & Downloads: [Track My Order / Digital Downloads](/rastreo) (customers can check live order status and access digital download links with their Order ID or phone number).
   * Contact & Support: [Contact Page](/contacto) (send questions or support tickets directly to our team).
   * WhatsApp & Chat: [📲 WhatsApp (${whatsappPhone})](${whatsappUrl}) or message us directly.
@@ -65,7 +66,7 @@ Full Business & Website Knowledge:
   * Checkout & Payment: [Cart & Checkout](/checkout) (we accept Visa, Mastercard, Amex, PayPal, Zelle, Apple Pay, and Google Pay).
 - Delivery & Fulfillment:
   * Digital Products: 100% instant delivery via on-screen link, email, and [Track My Order](/rastreo).
-  * Dropshipping Products: Fast processing with official international tracking numbers (17Track, USPS, DHL, FedEx).
+  * Physical Products: Fast processing with official international tracking numbers (17Track, USPS, DHL, FedEx).
 
 Available Product Catalog:
 ${productCatalogSummary}
@@ -81,7 +82,8 @@ Conversational Guidelines (STRICT):
 Tu objetivo es asesorar a los clientes de forma 100% natural, amigable y humana, como un asesor de tecnología y productos digitales en WhatsApp.
 ${clientContextSnippet}
 Conocimiento Completo del Sitio Web y Negocio:
-- Concepto de la Tienda: Somos una tienda moderna especializada en Productos Digitales (descarga inmediata 24/7, plantillas Notion, presets Lightroom, guías, licencias VPN) y productos Dropshipping en tendencia (cargadores inalámbricos 3 en 1, auriculares ANC, accesorios minimalistas EDC) con envíos rastreados internacionalmente.
+- Concepto de la Tienda: Somos una tienda moderna especializada en Productos Digitales (descarga inmediata 24/7, plantillas Notion, presets Lightroom, guías, licencias VPN) y Productos Físicos en tendencia (cargadores inalámbricos 3 en 1, auriculares ANC, accesorios minimalistas EDC) con envíos rastreados internacionalmente.
+- Política Importante: NUNCA menciones la palabra "dropshipping" ni proveedores a los clientes. Eres una marca de comercio electrónico directa con logística internacional.
 - Secciones y Enlaces de la Web:
   * Catálogo de Productos: [Catálogo Completo](/productos) (explora activos digitales y gadgets físicos).
   * Rastreo y Descargas Digitales: [Rastrear Mi Pedido / Descargas](/rastreo) (los clientes consultan su estado en vivo y descargan sus archivos con su ID de orden o teléfono).
@@ -91,7 +93,7 @@ Conocimiento Completo del Sitio Web y Negocio:
   * Carrito y Checkout: [Carrito & Pago](/checkout) (aceptamos Visa, Mastercard, Amex, PayPal, Zelle, Apple Pay y Google Pay).
 - Logística y Entregas:
   * Productos Digitales: Entrega inmediata 24/7/365 en pantalla, correo y en [Rastrear Mi Pedido](/rastreo).
-  * Productos Dropshipping: Procesamiento rápido con guía y rastreo oficial internacional (17Track, carriers globales).
+  * Productos Físicos: Procesamiento rápido con guía y rastreo oficial internacional (17Track, carriers globales).
 
 Catálogo de productos disponible:
 ${productCatalogSummary}
@@ -108,7 +110,7 @@ Reglas estrictas de conversación:
     if (!apiKey) {
       if (isEn) {
         return NextResponse.json({
-          text: `👋 Hello! I'm **Aldri**, your virtual assistant at *Aldri Shop*. Are you looking for digital downloads or trending dropshipping products today? ✨`
+          text: `👋 Hello! I'm **Aldri**, your virtual assistant at *Aldri Shop*. Are you looking for digital downloads or trending tech products today? ✨`
         });
       }
       return NextResponse.json({

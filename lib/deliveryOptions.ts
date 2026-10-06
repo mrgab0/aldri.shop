@@ -26,7 +26,7 @@ export const DEFAULT_DELIVERY_OPTIONS: DeliveryOption[] = [
   },
   {
     id: "dropship_standard",
-    title: "Envío Dropshipping Estándar Internacional 🚚",
+    title: "Envío Estándar Internacional con Seguimiento 🚚",
     description: "Envío asegurado internacional con seguimiento en vivo vía 17Track.",
     estimatedTimeMinutes: 10080, // 7 días
     estimatedTimeLabel: "7 - 12 Días Hábiles",
@@ -38,7 +38,7 @@ export const DEFAULT_DELIVERY_OPTIONS: DeliveryOption[] = [
   },
   {
     id: "dropship_express",
-    title: "Envío Dropshipping Express Prioritario 🚀",
+    title: "Envío Express Prioritario 🚀",
     description: "Procesamiento y despacho aéreo prioritario con transportadora premium.",
     estimatedTimeMinutes: 4320, // 3 días
     estimatedTimeLabel: "3 - 5 Días Hábiles",
