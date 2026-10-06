@@ -64,9 +64,8 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
           {/* LADO IZQUIERDO: Logo de Aldri Shop */}
           <div className="flex items-center gap-4 py-2 flex-shrink-0 relative z-10">
             <Link href="/" className="flex items-center gap-3.5 group flex-shrink-0">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#D4AF37]/70 shadow-lg group-hover:scale-105 group-active:scale-95 transition-transform bg-stone-900 flex items-center justify-center text-white font-serif font-black text-lg">
-                <span className="text-[#E6C98B]">A</span>
-                <span className="text-indigo-400">S</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#D4AF37]/70 shadow-lg group-hover:scale-105 group-active:scale-95 transition-transform bg-stone-900 flex items-center justify-center flex-shrink-0">
+                <img src="/logo.png" alt="Aldri Shop Logo" className="w-full h-full object-cover" />
               </div>
               <div className="hidden sm:flex flex-col">
                 <span className="font-serif font-black text-xl sm:text-2xl text-stone-900 dark:text-white tracking-tight flex-shrink-0 leading-tight">

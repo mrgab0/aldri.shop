@@ -41,9 +41,8 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
         <div className="flex justify-center mb-4">
           <div className="relative group">
             <div className="absolute -inset-1.5 bg-gradient-to-r from-[#C5A059] via-indigo-600 to-[#C5A059] rounded-full blur opacity-35 group-hover:opacity-65 transition duration-500" />
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl border-2 sm:border-4 border-[#C5A059] bg-stone-900 flex items-center justify-center text-white font-serif font-black text-2xl">
-              <span className="text-[#E6C98B]">A</span>
-              <span className="text-indigo-400">S</span>
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl border-2 sm:border-4 border-[#C5A059] bg-stone-900 flex items-center justify-center">
+              <img src="/logo.png" alt="Aldri Shop Logo Oficial" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

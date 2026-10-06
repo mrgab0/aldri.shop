@@ -32,8 +32,8 @@ export function Footer({ siteConfig }: FooterProps) {
           {/* Horarios de Operación */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full bg-stone-900 border border-[#C5A059] flex items-center justify-center text-white font-bold text-xs font-serif">
-                AS
+              <div className="w-8 h-8 rounded-full overflow-hidden bg-stone-900 border border-[#C5A059] flex items-center justify-center flex-shrink-0">
+                <img src="/logo.png" alt="Aldri Shop Logo" className="w-full h-full object-cover" />
               </div>
               <h3 className="font-black text-black dark:text-white text-xs uppercase tracking-wider font-serif">
                 Aldri Shop &bull; Atención &amp; Entrega
