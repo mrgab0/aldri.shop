@@ -11,7 +11,8 @@ import {
   CreditCard, 
   Search, 
   Settings,
-  Users 
+  Users,
+  Rocket
 } from "lucide-react";
 
 export default function AdminPage() {
@@ -49,6 +50,11 @@ export default function AdminPage() {
         <Link href="/admin/leads" className={`${clayBase} bg-red-600`}>
           <Users className={`${iconBase} group-hover:scale-125 group-hover:drop-shadow-lg`} strokeWidth={1.5} />
           <span className="text-sm tracking-wide">Leads & Chatbot Marketing</span>
+        </Link>
+
+        <Link href="/admin/landings" className={`${clayBase} bg-gradient-to-br from-amber-500 to-orange-600`}>
+          <Rocket className={`${iconBase} group-hover:scale-125 group-hover:-rotate-12 group-hover:drop-shadow-lg text-white`} strokeWidth={1.5} />
+          <span className="text-sm tracking-wide">Landing Pages 🚀</span>
         </Link>
         
         <Link href="/admin/sliders" className={`${clayBase} bg-[#FF97A4]`}>

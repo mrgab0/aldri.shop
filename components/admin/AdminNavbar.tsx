@@ -48,6 +48,12 @@ const NAV_ITEMS = [
     badgeColor: "bg-red-100 dark:bg-red-950/80 text-red-950 dark:text-red-200 border-red-300 dark:border-red-800/80 hover:bg-red-200"
   },
   {
+    href: "/admin/landings",
+    label: "Landing Pages 🚀",
+    icon: "🎯",
+    badgeColor: "bg-amber-100 dark:bg-amber-950/80 text-amber-950 dark:text-amber-200 border-amber-300 dark:border-amber-800/80 hover:bg-amber-200"
+  },
+  {
     href: "/admin/adicionales",
     label: "Adicionales",
     icon: "✨",
