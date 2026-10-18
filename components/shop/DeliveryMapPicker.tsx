@@ -1,7 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { MapPin, Navigation, Search, CheckCircle2, AlertCircle, Compass } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import {
+  MapPin,
+  Search,
+  CheckCircle2,
+  AlertCircle,
+  Compass,
+  Loader2,
+  Navigation,
+  Route,
+  Sparkles,
+  X
+} from "lucide-react";
 
 interface DeliveryMapPickerProps {
   initialAddress: string;
@@ -16,28 +27,30 @@ interface DeliveryMapPickerProps {
   }) => void;
 }
 
-// Coordenadas del punto de partida de la boutique matriz (Houston, TX)
+interface MapboxSuggestion {
+  id: string;
+  place_name: string;
+  text: string;
+  center: [number, number]; // [lng, lat]
+}
+
+// Coordenadas de la boutique matriz de partida (Houston, TX por defecto)
 const DEFAULT_STORE_LAT = 29.6521;
 const DEFAULT_STORE_LNG = -95.1706;
 
-// Cálculo de Distancia Haversine corregida por factor terrestre de carretera (x 1.25)
+// Cálculo Haversine de respaldo (si la API de rutas no responde)
 function calculateHaversineMiles(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 3958.8; // Radio terrestre en millas
+  const R = 3958.8;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
-
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos((lat1 * Math.PI) / 180) *
       Math.cos((lat2 * Math.PI) / 180) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
-
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const straightMiles = R * c;
-
-  // Factor de curvatura de carretera (vías urbanas/autopistas ~1.25 de recorrido real)
-  return Math.round(straightMiles * 1.25 * 10) / 10;
+  return Math.round(R * c * 1.25 * 10) / 10;
 }
 
 export function DeliveryMapPicker({
@@ -46,244 +59,453 @@ export function DeliveryMapPicker({
   storeLng = DEFAULT_STORE_LNG,
   onLocationChange,
 }: DeliveryMapPickerProps) {
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
+
   const [addressInput, setAddressInput] = useState(initialAddress || "");
-  const [lat, setLat] = useState<number>(DEFAULT_STORE_LAT + 0.05);
-  const [lng, setLng] = useState<number>(DEFAULT_STORE_LNG + 0.05);
-  
+  const [lat, setLat] = useState<number>(storeLat + 0.04);
+  const [lng, setLng] = useState<number>(storeLng + 0.04);
+
   const [searching, setSearching] = useState(false);
+  const [calculatingRoute, setCalculatingRoute] = useState(false);
+  const [suggestions, setSuggestions] = useState<MapboxSuggestion[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [geocodedSuccess, setGeocodedSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [distanceMiles, setDistanceMiles] = useState<number>(0);
-  const lastGeocodedRef = useRef<string>("");
+  const [estimatedMinutes, setEstimatedMinutes] = useState<number | null>(null);
 
+  const [isMapSdkLoaded, setIsMapSdkLoaded] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const markerRef = useRef<any>(null);
+  const storeMarkerRef = useRef<any>(null);
+  const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  // 1. Carga Asíncrona de Mapbox GL JS y CSS (SSR-Safe y Zero-Bloat)
   useEffect(() => {
-    if (initialAddress && initialAddress !== addressInput) {
-      setAddressInput(initialAddress);
-      geocodeAddress(initialAddress);
-    }
-  }, [initialAddress]);
+    if (typeof window === "undefined") return;
 
-  // Geocodificación Automática Debounced mientras el cliente escribe o pega la dirección
-  useEffect(() => {
-    if (!addressInput || addressInput.trim().length < 5) return;
-    if (addressInput.trim() === lastGeocodedRef.current) return;
-
-    const timer = setTimeout(() => {
-      geocodeAddress(addressInput);
-    }, 800);
-
-    return () => clearTimeout(timer);
-  }, [addressInput]);
-
-  const updateParent = (newAddress: string, newLat: number, newLng: number) => {
-    const miles = calculateHaversineMiles(storeLat, storeLng, newLat, newLng);
-    setDistanceMiles(miles);
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${newLat},${newLng}`;
-
-    onLocationChange({
-      address: newAddress,
-      lat: newLat,
-      lng: newLng,
-      distanceMiles: miles,
-      googleMapsUrl,
-    });
-  };
-
-  // Geocoding multinivel con fallbacks inteligentes para Houston, TX y Zip Codes
-  const geocodeAddress = async (queryText?: string) => {
-    const rawText = queryText || addressInput;
-    if (!rawText || !rawText.trim()) return;
-
-    const cleanInput = rawText
-      .replace(/EE\.?\s*UU\.?/gi, "USA")
-      .replace(/EEUU/gi, "USA")
-      .trim();
-
-    lastGeocodedRef.current = rawText.trim();
-    setSearching(true);
-    setErrorMsg("");
-    setGeocodedSuccess(false);
-
-    // Preparar variaciones de búsqueda de más específica a más general
-    const searchQueries: string[] = [];
-
-    // Variación 1: Dirección completa con Houston, TX
-    if (!cleanInput.toLowerCase().includes("houston")) {
-      searchQueries.push(`${cleanInput}, Houston, TX, USA`);
-    } else {
-      searchQueries.push(`${cleanInput}, USA`);
+    // Verificar si el CSS ya está en el <head>
+    const cssId = "mapbox-gl-css";
+    if (!document.getElementById(cssId)) {
+      const link = document.createElement("link");
+      link.id = cssId;
+      link.rel = "stylesheet";
+      link.href = "https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css";
+      document.head.appendChild(link);
     }
 
-    // Variación 2: Sin número de casa si el número no figura aún en OpenStreetMap (ej: "Kyler Oaks Pl, 77043, Houston, TX")
-    const withoutHouseNum = cleanInput.replace(/^\d+\s+/, "");
-    if (withoutHouseNum !== cleanInput) {
-      searchQueries.push(`${withoutHouseNum}, Houston, TX, USA`);
-    }
-
-    // Variación 3: Extraer Código Postal ZIP si está presente (ej: "77043, Houston, TX")
-    const zipMatch = cleanInput.match(/\b(77\d{3})\b/);
-    if (zipMatch) {
-      searchQueries.push(`${zipMatch[1]}, Houston, TX, USA`);
-    }
-
-    try {
-      const viewboxStr = `${storeLng - 1.2},${storeLat + 1.2},${storeLng + 1.2},${storeLat - 1.2}`;
-      let foundData: any = null;
-
-      for (const query of searchQueries) {
-        const res = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-            query
-          )}&limit=1&viewbox=${viewboxStr}`,
-          {
-            headers: {
-              "Accept-Language": "es,en",
-            },
-          }
-        );
-        const data = await res.json();
-        if (data && data.length > 0) {
-          foundData = data[0];
-          break;
-        }
-      }
-
-      if (foundData) {
-        let foundLat = parseFloat(foundData.lat);
-        let foundLng = parseFloat(foundData.lon);
-        let miles = calculateHaversineMiles(storeLat, storeLng, foundLat, foundLng);
-
-        // Si la distancia supera 120 millas por desvío fuera de Houston, forzar delimitación estricta
-        if (miles > 120) {
-          const strictRes = await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-              cleanInput + ", Houston, TX"
-            )}&limit=1&viewbox=${viewboxStr}&bounded=1`,
-            {
-              headers: { "Accept-Language": "es,en" },
-            }
-          );
-          const strictData = await strictRes.json();
-          if (strictData && strictData.length > 0) {
-            foundLat = parseFloat(strictData[0].lat);
-            foundLng = parseFloat(strictData[0].lon);
-            miles = calculateHaversineMiles(storeLat, storeLng, foundLat, foundLng);
-          }
-        }
-
-        setLat(foundLat);
-        setLng(foundLng);
-        setGeocodedSuccess(true);
-        updateParent(rawText, foundLat, foundLng);
-      } else {
-        // Si no se pudo ubicar en el mapa, establecer una estimación aproximada por defecto en el área metropolitana
-        setErrorMsg("No encontramos la dirección exacta en el GPS. Por favor revisa el texto o usa 'Usar Mi Ubicación Actual'.");
-        updateParent(rawText, storeLat, storeLng);
-      }
-    } catch (err) {
-      console.error("Error geocodificando dirección:", err);
-      updateParent(rawText, storeLat, storeLng);
-    } finally {
-      setSearching(false);
-    }
-  };
-
-  // Detectar ubicación GPS actual del dispositivo del cliente
-  const handleUseCurrentGPS = () => {
-    if (!navigator.geolocation) {
-      setErrorMsg("Tu navegador no soporta geolocalización GPS.");
+    // Verificar si el SDK ya fue cargado
+    if ((window as any).mapboxgl) {
+      setIsMapSdkLoaded(true);
       return;
     }
 
-    setSearching(true);
+    const scriptId = "mapbox-gl-js";
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js";
+      script.async = true;
+      script.onload = () => setIsMapSdkLoaded(true);
+      script.onerror = () => setErrorMsg("No se pudo cargar el visor de mapas interactivo.");
+      document.body.appendChild(script);
+    } else {
+      script.addEventListener("load", () => setIsMapSdkLoaded(true));
+    }
+  }, []);
+
+  // Notificar al componente padre
+  const notifyParent = useCallback(
+    (newAddress: string, newLat: number, newLng: number, miles: number) => {
+      setDistanceMiles(miles);
+      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${newLat},${newLng}`;
+      onLocationChange({
+        address: newAddress,
+        lat: newLat,
+        lng: newLng,
+        distanceMiles: miles,
+        googleMapsUrl,
+      });
+    },
+    [onLocationChange]
+  );
+
+  // 2. Navigation Directions API (Cálculo de ruta por carretera y dibujo en mapa)
+  const calculateDrivingRoute = useCallback(
+    async (destLng: number, destLat: number, currentAddressText: string) => {
+      setCalculatingRoute(true);
+
+      if (!mapboxToken) {
+        const fallbackMiles = calculateHaversineMiles(storeLat, storeLng, destLat, destLng);
+        notifyParent(currentAddressText, destLat, destLng, fallbackMiles);
+        setCalculatingRoute(false);
+        return;
+      }
+
+      try {
+        const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${storeLng},${storeLat};${destLng},${destLat}?access_token=${mapboxToken}&geometries=geojson&overview=full`;
+        const res = await fetch(directionsUrl);
+        const data = await res.json();
+
+        if (data.routes && data.routes.length > 0) {
+          const route = data.routes[0];
+          const miles = Math.round((route.distance / 1609.34) * 10) / 10;
+          const minutes = Math.round(route.duration / 60);
+
+          setEstimatedMinutes(minutes);
+          notifyParent(currentAddressText, destLat, destLng, miles);
+
+          // Trazar la línea de la ruta en el mapa si la instancia existe
+          const map = mapInstanceRef.current;
+          if (map && map.getSource) {
+            const routeGeoJSON = {
+              type: "Feature",
+              properties: {},
+              geometry: route.geometry,
+            };
+
+            if (map.getSource("delivery-route")) {
+              map.getSource("delivery-route").setData(routeGeoJSON);
+            } else if (map.isStyleLoaded()) {
+              map.addSource("delivery-route", {
+                type: "geojson",
+                data: routeGeoJSON,
+              });
+              map.addLayer({
+                id: "delivery-route-line",
+                type: "line",
+                source: "delivery-route",
+                layout: {
+                  "line-join": "round",
+                  "line-cap": "round",
+                },
+                paint: {
+                  "line-color": "#FF97A4",
+                  "line-width": 4,
+                  "line-opacity": 0.85,
+                },
+              });
+            }
+
+            // Ajustar vista para encuadrar boutique y destino
+            const mapboxgl = (window as any).mapboxgl;
+            if (mapboxgl) {
+              const bounds = new mapboxgl.LngLatBounds();
+              bounds.extend([storeLng, storeLat]);
+              bounds.extend([destLng, destLat]);
+              map.fitBounds(bounds, { padding: 45, maxZoom: 15 });
+            }
+          }
+        } else {
+          const fallbackMiles = calculateHaversineMiles(storeLat, storeLng, destLat, destLng);
+          notifyParent(currentAddressText, destLat, destLng, fallbackMiles);
+        }
+      } catch (err) {
+        console.error("Error consultando Directions API:", err);
+        const fallbackMiles = calculateHaversineMiles(storeLat, storeLng, destLat, destLng);
+        notifyParent(currentAddressText, destLat, destLng, fallbackMiles);
+      } finally {
+        setCalculatingRoute(false);
+      }
+    },
+    [mapboxToken, storeLat, storeLng, notifyParent]
+  );
+
+  // 3. Reverse Geocoding (Cuando el cliente arrastra el pin o hace clic en el mapa)
+  const handleReverseGeocode = useCallback(
+    async (newLng: number, newLat: number) => {
+      setLat(newLat);
+      setLng(newLng);
+      setGeocodedSuccess(true);
+      setErrorMsg("");
+
+      if (!mapboxToken) {
+        const fallbackText = addressInput || `Ubicación GPS (${newLat.toFixed(4)}, ${newLng.toFixed(4)})`;
+        calculateDrivingRoute(newLng, newLat, fallbackText);
+        return;
+      }
+
+      try {
+        const reverseUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${newLng},${newLat}.json?access_token=${mapboxToken}&types=address,poi,postcode,place&language=es,en`;
+        const res = await fetch(reverseUrl);
+        const data = await res.json();
+
+        let resolvedAddress = addressInput;
+        if (data.features && data.features.length > 0) {
+          resolvedAddress = data.features[0].place_name;
+          setAddressInput(resolvedAddress);
+        }
+
+        await calculateDrivingRoute(newLng, newLat, resolvedAddress);
+      } catch (err) {
+        console.error("Error en Reverse Geocode:", err);
+        await calculateDrivingRoute(newLng, newLat, addressInput);
+      }
+    },
+    [mapboxToken, addressInput, calculateDrivingRoute]
+  );
+
+  // 4. Inicialización del Mapa Mapbox GL JS
+  useEffect(() => {
+    if (!isMapSdkLoaded || !mapContainerRef.current) return;
+    if (mapInstanceRef.current) return; // Evitar reinicialización doble
+
+    const mapboxgl = (window as any).mapboxgl;
+    if (!mapboxgl) return;
+
+    if (mapboxToken) {
+      mapboxgl.accessToken = mapboxToken;
+    }
+
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [lng, lat],
+      zoom: 13,
+      attributionControl: false,
+    });
+
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+
+    // Marcador de la Boutique Matriz (Origen fijo)
+    const storeEl = document.createElement("div");
+    storeEl.className = "flex items-center justify-center w-7 h-7 bg-black text-white rounded-full shadow-lg border-2 border-white text-xs font-black";
+    storeEl.innerHTML = "🏪";
+    storeEl.title = "Boutique Matriz / Centro de Despacho";
+    storeMarkerRef.current = new mapboxgl.Marker({ element: storeEl })
+      .setLngLat([storeLng, storeLat])
+      .addTo(map);
+
+    // Marcador Principal Arrastrable para la Entrega (Rosa / Boutique)
+    const marker = new mapboxgl.Marker({
+      draggable: true,
+      color: "#FF97A4",
+    })
+      .setLngLat([lng, lat])
+      .addTo(map);
+
+    markerRef.current = marker;
+    mapInstanceRef.current = map;
+
+    // Evento al soltar el pin arrastrado
+    marker.on("dragend", () => {
+      const pos = marker.getLngLat();
+      handleReverseGeocode(pos.lng, pos.lat);
+    });
+
+    // Evento al hacer clic directo en el mapa
+    map.on("click", (e: any) => {
+      marker.setLngLat(e.lngLat);
+      handleReverseGeocode(e.lngLat.lng, e.lngLat.lat);
+    });
+
+    map.on("load", () => {
+      if (initialAddress) {
+        calculateDrivingRoute(lng, lat, initialAddress);
+      }
+    });
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+    };
+  }, [isMapSdkLoaded, mapboxToken, storeLat, storeLng, handleReverseGeocode, calculateDrivingRoute]);
+
+  // Cerrar sugerencias al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // 5. Search Geocoding Autocomplete (Mientras el cliente escribe)
+  const handleAddressInputChange = (text: string) => {
+    setAddressInput(text);
     setErrorMsg("");
 
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        const userLat = pos.coords.latitude;
-        const userLng = pos.coords.longitude;
-        setLat(userLat);
-        setLng(userLng);
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
 
-        try {
-          const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLng}`
+    if (!text.trim() || text.length < 3 || !mapboxToken) {
+      setSuggestions([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    searchDebounceRef.current = setTimeout(async () => {
+      setSearching(true);
+      try {
+        const searchUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+          text.trim()
+        )}.json?access_token=${mapboxToken}&proximity=${storeLng},${storeLat}&types=address,poi,postcode,place&language=es,en&limit=5`;
+
+        const res = await fetch(searchUrl);
+        const data = await res.json();
+
+        if (data.features && data.features.length > 0) {
+          setSuggestions(
+            data.features.map((f: any) => ({
+              id: f.id,
+              place_name: f.place_name,
+              text: f.text,
+              center: f.center,
+            }))
           );
-          const data = await res.json();
-          const gpsAddr = data.display_name || `Ubicación GPS (${userLat.toFixed(4)}, ${userLng.toFixed(4)})`;
-          setAddressInput(gpsAddr);
-          setGeocodedSuccess(true);
-          updateParent(gpsAddr, userLat, userLng);
-        } catch {
-          const fallback = `Ubicación GPS (${userLat.toFixed(4)}, ${userLng.toFixed(4)})`;
-          setAddressInput(fallback);
-          updateParent(fallback, userLat, userLng);
-        } finally {
-          setSearching(false);
+          setShowDropdown(true);
+        } else {
+          setSuggestions([]);
+          setShowDropdown(false);
         }
-      },
-      (err) => {
+      } catch (err) {
+        console.error("Error en búsqueda autocompletada Mapbox:", err);
+      } finally {
         setSearching(false);
-        setErrorMsg("No se pudo obtener el GPS. Por favor escribe tu dirección.");
-      },
-      { timeout: 10000, enableHighAccuracy: true }
-    );
+      }
+    }, 320);
   };
 
-  const mapIframeUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.03}%2C${lat - 0.03}%2C${lng + 0.03}%2C${lat + 0.03}&layer=mapnik&marker=${lat}%2C${lng}`;
+  // Al seleccionar una opción del autocompletado
+  const handleSelectSuggestion = (suggestion: MapboxSuggestion) => {
+    setAddressInput(suggestion.place_name);
+    setShowDropdown(false);
+    setSuggestions([]);
+    setGeocodedSuccess(true);
+
+    const [newLng, newLat] = suggestion.center;
+    setLat(newLat);
+    setLng(newLng);
+
+    if (mapInstanceRef.current && markerRef.current) {
+      markerRef.current.setLngLat([newLng, newLat]);
+      mapInstanceRef.current.flyTo({
+        center: [newLng, newLat],
+        zoom: 15,
+        essential: true,
+      });
+    }
+
+    calculateDrivingRoute(newLng, newLat, suggestion.place_name);
+  };
+
+  // Limpiar dirección
+  const handleClear = () => {
+    setAddressInput("");
+    setSuggestions([]);
+    setShowDropdown(false);
+    setGeocodedSuccess(false);
+    setDistanceMiles(0);
+  };
 
   return (
     <div className="space-y-4 bg-gray-50/70 dark:bg-gray-900/50 p-5 rounded-2xl border border-gray-200 dark:border-gray-800">
+      {/* Encabezado e Indicador */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-3 border-gray-200 dark:border-gray-800">
         <label className="text-xs font-extrabold uppercase tracking-wider text-gray-900 dark:text-white flex items-center gap-1.5">
-          <MapPin size={16} className="text-[#FF97A4]" /> Dirección y Ubicación en Mapa para Entrega
+          <MapPin size={16} className="text-[#FF97A4]" /> Dirección y Ubicación Exacta para Entrega
         </label>
-        
-        <button
-          type="button"
-          onClick={handleUseCurrentGPS}
-          disabled={searching}
-          className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1.5"
-        >
-          <Navigation size={13} />
-          {searching ? "Detectando GPS..." : "Usar Mi Ubicación Actual (GPS)"}
-        </button>
+
+        <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-1">
+          <Sparkles size={13} className="text-[#FF97A4]" /> Pin interactivo de alta precisión
+        </span>
       </div>
 
-      {/* Campo de texto de Dirección con Geocodificación Automática */}
-      <div className="space-y-1.5">
+      {/* Alerta si falta el Token de Mapbox */}
+      {!mapboxToken && (
+        <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-800 dark:text-amber-200 flex items-start gap-2">
+          <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-bold">Aviso para el Administrador:</p>
+            <p className="text-[11px] opacity-90 mt-0.5">
+              Configura <code className="bg-amber-100 dark:bg-amber-900 px-1 py-0.5 rounded font-mono">NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN</code> en tus variables de entorno para activar la búsqueda satelital de alta resolución y el trazado de rutas.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* 1. Buscador Predictivo (Search Autocomplete) */}
+      <div className="space-y-1.5 relative" ref={dropdownRef}>
         <div className="relative">
           <input
             type="text"
             name="address"
             value={addressInput}
-            onChange={(e) => {
-              setAddressInput(e.target.value);
+            onChange={(e) => handleAddressInputChange(e.target.value)}
+            onFocus={() => {
+              if (suggestions.length > 0) setShowDropdown(true);
             }}
-            onBlur={() => geocodeAddress()}
-            placeholder="Ej: 10827 Kyler Oaks Pl, Houston, TX 77043"
-            className="w-full p-3.5 pr-24 border border-gray-300 dark:border-gray-700 rounded-2xl text-sm font-semibold text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
+            placeholder="Escribe la dirección, calle, urbanización o código postal..."
+            className="w-full p-3.5 pr-20 border border-gray-300 dark:border-gray-700 rounded-2xl text-sm font-semibold text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF97A4] transition-all"
             required
+            autoComplete="off"
           />
-          <button
-            type="button"
-            onClick={() => geocodeAddress()}
-            disabled={searching}
-            className="absolute right-2 top-2 bottom-2 px-3 bg-[#1A1C1C] text-white rounded-xl text-xs font-bold hover:bg-black transition-colors flex items-center gap-1"
-          >
-            <Search size={14} />
-            {searching ? "Buscando..." : "Ubicar GPS"}
-          </button>
+
+          <div className="absolute right-2.5 top-2.5 bottom-2.5 flex items-center gap-1">
+            {searching ? (
+              <Loader2 size={16} className="animate-spin text-[#FF97A4] mr-2" />
+            ) : addressInput ? (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                title="Limpiar dirección"
+              >
+                <X size={15} />
+              </button>
+            ) : (
+              <Search size={16} className="text-gray-400 mr-2" />
+            )}
+          </div>
         </div>
 
+        {/* Dropdown de Sugerencias Autocompletadas */}
+        {showDropdown && suggestions.length > 0 && (
+          <div className="absolute z-30 left-0 right-0 mt-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-gray-100 dark:divide-gray-800">
+            {suggestions.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleSelectSuggestion(item)}
+                className="w-full text-left p-3.5 hover:bg-pink-50/60 dark:hover:bg-gray-800/80 transition-colors flex items-start gap-2.5"
+              >
+                <MapPin size={16} className="text-[#FF97A4] flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs font-bold text-gray-900 dark:text-white">{item.text}</p>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-snug line-clamp-1">
+                    {item.place_name}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Badge de confirmación de dirección y distancia en carretera */}
         {geocodedSuccess && (
-          <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-900/50 text-[11px] font-bold text-emerald-800 dark:text-emerald-300 flex items-center justify-between">
-            <span className="flex items-center gap-1">
-              <CheckCircle2 size={14} className="text-emerald-600" /> Dirección localizada en mapa de Houston
+          <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-900/50 text-[11px] font-bold text-emerald-800 dark:text-emerald-300 flex flex-wrap items-center justify-between gap-2">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 size={14} className="text-emerald-600" />
+              Dirección localizada en mapa
             </span>
-            <span className="bg-emerald-600 text-white px-2.5 py-0.5 rounded-full text-[10px]">
-              📍 {distanceMiles} Millas desde Boutique
-            </span>
+            <div className="flex items-center gap-2">
+              {estimatedMinutes !== null && (
+                <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200 px-2 py-0.5 rounded-full text-[10px]">
+                  ⏱️ ~{estimatedMinutes} min en auto
+                </span>
+              )}
+              <span className="bg-emerald-600 text-white px-2.5 py-0.5 rounded-full text-[10px] flex items-center gap-1">
+                <Route size={11} /> {distanceMiles} Millas por Carretera
+              </span>
+            </div>
           </div>
         )}
 
@@ -294,28 +516,32 @@ export function DeliveryMapPicker({
         )}
       </div>
 
-      {/* Visor de Mapa Interactivo con Marcador de Entrega */}
+      {/* 2. Visor Interactivo Mapbox GL JS con Marcador Arrastrable */}
       <div className="space-y-2">
-        <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm h-48 bg-gray-100">
-          <iframe
-            title="Mapa de Entrega"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            scrolling="no"
-            src={mapIframeUrl}
-            className="w-full h-full"
-          ></iframe>
+        <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm h-64 bg-gray-100 dark:bg-gray-800">
+          <div ref={mapContainerRef} className="w-full h-full" />
 
-          {/* Badge flotante de millas sobre el mapa */}
-          <div className="absolute top-3 right-3 bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 shadow-md flex items-center gap-1.5 text-xs font-black">
+          {/* Banner de Instrucción Táctil / Mouse */}
+          <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-black/75 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1.5 rounded-xl border border-white/10 shadow-md flex items-center gap-2 pointer-events-none">
+            <Navigation size={13} className="text-[#FF97A4] flex-shrink-0 animate-pulse" />
+            <span>Arrastra el pin rosa con el dedo o haz clic para ubicar la puerta exacta.</span>
+          </div>
+
+          {/* Badge Flotante Superior de Millas & Estado */}
+          <div className="absolute top-3 left-3 bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 shadow-md flex items-center gap-1.5 text-xs font-black">
             <Compass size={14} className="text-[#FF97A4]" />
-            <span>{distanceMiles > 0 ? `📍 ${distanceMiles} Millas desde Boutique` : "📍 Escribe la dirección para calcular millas"}</span>
+            <span>
+              {calculatingRoute
+                ? "Calculando ruta..."
+                : distanceMiles > 0
+                ? `📍 ${distanceMiles} Millas desde Tienda`
+                : "📍 Selecciona el destino"}
+            </span>
           </div>
         </div>
 
-        <p className="text-[11px] font-semibold text-gray-700 dark:text-gray-200 italic">
-          💡 Las millas calculadas se aplican automáticamente al costo de entrega según la opción elegida.
+        <p className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 italic flex items-center gap-1.5">
+          <span>💡</span> Las millas se calculan automáticamente por ruta de carretera real y se aplican a la tarifa de entrega.
         </p>
       </div>
     </div>
