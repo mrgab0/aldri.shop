@@ -23,7 +23,8 @@
   --background-end-rgb: 10, 10, 12;
 
   --bg-main: #0A0A0C;
-  --bg-card: #161619;
+  --bg-card: #121215;
+  --bg-card-elevated: #1A1A1F;
   --text-main: #FFFFFF;
   --stitch-gold: #F2CA50;
   --stitch-gold-deep: #D4AF37;
@@ -53,8 +54,13 @@ body {
 }
 
 .stitch-card-dark {
-  background-color: #161619;
+  background-color: #121215;
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stitch-card-elevated {
+  background-color: #1A1A1F;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .stitch-gradient-gold {

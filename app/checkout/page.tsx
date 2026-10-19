@@ -284,7 +284,7 @@ export default function CheckoutPage() {
           <div className="grid md:grid-cols-12 gap-8">
             
             {/* FORMULARIO DE DATOS Y SELECCIÓN DE ENTREGA */}
-            <div className="md:col-span-7 bg-white dark:bg-[#161619] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 space-y-8">
+            <div className="md:col-span-7 bg-white dark:bg-[#121215] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 space-y-8">
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 
@@ -364,7 +364,7 @@ export default function CheckoutPage() {
                         value={cardMessage}
                         onChange={(e) => setCardMessage(e.target.value)}
                         placeholder="Ej: Dejar en portería o instrucciones específicas para la entrega a domicilio."
-                        className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#D4AF37] h-20 bg-white dark:bg-[#161619] text-gray-900 dark:text-white placeholder:text-gray-400"
+                        className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#D4AF37] h-20 bg-white dark:bg-[#121215] text-gray-900 dark:text-white placeholder:text-gray-400"
                       />
                     </div>
 
@@ -487,7 +487,7 @@ export default function CheckoutPage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCopyText(detailToCopy)}
-                                  className="bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 text-gray-700 dark:text-gray-300 hover:text-[#D4AF37] hover:border-[#D4AF37] px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                                  className="bg-white dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 text-gray-700 dark:text-gray-300 hover:text-[#D4AF37] hover:border-[#D4AF37] px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
                                 >
                                   <Copy size={13} />
                                   <span>{copiedText === detailToCopy ? "¡Copiado! ✓" : "Copiar Datos"}</span>
@@ -496,7 +496,7 @@ export default function CheckoutPage() {
                             </div>
 
                             {cfg.qrImage && (
-                              <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-[#161619] rounded-2xl border border-[#EAE4DC] dark:border-white/10 w-fit mx-auto shadow-sm">
+                              <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-[#121215] rounded-2xl border border-[#EAE4DC] dark:border-white/10 w-fit mx-auto shadow-sm">
                                 <img src={cfg.qrImage} alt={`QR ${cfg.title}`} className="w-44 h-44 object-contain rounded-xl" />
                                 <span className="text-[10px] text-gray-500 dark:text-zinc-400 font-bold mt-1.5 flex items-center gap-1">
                                   <QrCode size={12} /> Escanea con la App de {cfg.title}
@@ -519,13 +519,13 @@ export default function CheckoutPage() {
                             )}
 
                             {cfg.accountDetail && (
-                              <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 text-center font-mono font-extrabold text-sm text-gray-900 dark:text-white">
+                              <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 text-center font-mono font-extrabold text-sm text-gray-900 dark:text-white">
                                 {cfg.accountDetail}
                               </div>
                             )}
 
                             {cfg.instructions && (
-                              <div className="text-xs text-gray-700 dark:text-gray-300 bg-white dark:bg-[#161619] p-3.5 rounded-xl border border-[#EAE4DC] dark:border-white/10 space-y-1 shadow-sm">
+                              <div className="text-xs text-gray-700 dark:text-gray-300 bg-white dark:bg-[#121215] p-3.5 rounded-xl border border-[#EAE4DC] dark:border-white/10 space-y-1 shadow-sm">
                                 <span className="font-bold text-gray-500 dark:text-zinc-400 uppercase text-[10px] tracking-wider block mb-1">
                                   📌 Paso a paso para pagar:
                                 </span>
@@ -562,7 +562,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* RESUMEN DE COMPRA CON DESGLOSE DINÁMICO */}
-            <div className="md:col-span-5 bg-white dark:bg-[#161619] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 h-fit space-y-6">
+            <div className="md:col-span-5 bg-white dark:bg-[#121215] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 h-fit space-y-6">
               <h2 className="text-xl font-serif font-black text-gray-900 dark:text-white border-b pb-3 border-[#EAE4DC] dark:border-white/10">Resumen de Tu Pedido</h2>
               
               <div className="space-y-4 max-h-[320px] overflow-y-auto pr-1">

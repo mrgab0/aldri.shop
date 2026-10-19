@@ -72,7 +72,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
       {/* Bento Grid Editorial Stitch CRO */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 auto-rows-auto md:auto-rows-[310px]">
         {/* 1. Elemento Principal Grande (8 cols x 2 rows) */}
-        <div className="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-xl border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all duration-500 min-h-[420px] md:min-h-full">
+        <div className="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#121215] shadow-xl border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_-10px_rgba(212,175,55,0.22)] transition-all duration-500 min-h-[420px] md:min-h-full">
           <img
             src={getImg(p0)}
             alt={p0.name}
@@ -104,7 +104,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
         </div>
 
         {/* 2. Tarjeta Mediana Superior Derecha (4 cols x 1 row) */}
-        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[280px]">
+        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#121215] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_-8px_rgba(212,175,55,0.2)] transition-all min-h-[280px]">
           <img
             src={getImg(p1)}
             alt={p1.name}
@@ -112,7 +112,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#161619]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#121215]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
             <div>
               <h4 className="font-serif font-bold text-gray-900 dark:text-white text-sm line-clamp-1">
                 {p1.name}
@@ -132,7 +132,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
         </div>
 
         {/* 3. Tarjeta Mediana Inferior Derecha (4 cols x 1 row) */}
-        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[280px]">
+        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#121215] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_-8px_rgba(212,175,55,0.2)] transition-all min-h-[280px]">
           <img
             src={getImg(p2)}
             alt={p2.name}
@@ -140,7 +140,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#161619]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#121215]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
             <div>
               <h4 className="font-serif font-bold text-gray-900 dark:text-white text-sm line-clamp-1">
                 {p2.name}
@@ -160,7 +160,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
         </div>
 
         {/* 4. Tarjeta Ancha Inferior Izquierda (6 cols x 1 row) */}
-        <div className="md:col-span-6 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[260px]">
+        <div className="md:col-span-6 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#121215] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[260px]">
           <img
             src={getImg(p3)}
             alt={p3.name}
@@ -190,7 +190,7 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
         </div>
 
         {/* 5. Tarjeta Editorial de Pedidos Especiales (6 cols x 1 row) */}
-        <div className="md:col-span-6 md:row-span-1 bg-white dark:bg-[#161619] rounded-3xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-md border border-dashed border-[#D4AF37]/60 min-h-[260px] relative overflow-hidden">
+        <div className="md:col-span-6 md:row-span-1 bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-md border border-dashed border-[#D4AF37]/60 min-h-[260px] relative overflow-hidden">
           <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-3 text-[#D4AF37] border border-amber-500/20 shadow-sm">
             <Sparkles size={22} className="text-[#D4AF37]" />
           </div>

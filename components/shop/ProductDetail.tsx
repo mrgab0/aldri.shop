@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo, startTransition } from "react";
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { AddonSelection } from "@/components/shop/AddonSelection";
 import { ShopHeader } from "@/components/shop/ShopHeader";
-import { CheckCircle2, Flower2, Package, Sparkles, ShieldCheck, Truck, Tag, ArrowDown, Gamepad2 } from "lucide-react";
+import { CheckCircle2, Download, Cpu, Zap, Package, Sparkles, ShieldCheck, Truck, Tag, ArrowDown, Gamepad2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export const ProductDetail = ({ product }: { product: any }) => {
@@ -66,7 +66,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl space-y-10">
           
           {/* Tarjeta Principal de Producto */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white dark:bg-[#161619] p-6 md:p-10 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white dark:bg-[#121215] p-6 md:p-10 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10">
             
             {/* COLUMNA IZQUIERDA: Galería de Imágenes (hasta 7 fotos) */}
             <div className="space-y-4">
@@ -150,7 +150,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                 <div className="grid grid-cols-2 gap-3 text-xs">
                   {product.productType === 'digital' ? (
                     <>
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-indigo-500/10 text-[#4F46E5] rounded-lg">
                           <Package size={16} />
                         </div>
@@ -162,7 +162,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                         </div>
                       </div>
 
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-amber-500/10 text-[#D4AF37] rounded-lg">
                           <Truck size={16} />
                         </div>
@@ -172,7 +172,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                         </div>
                       </div>
 
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-amber-500/10 text-[#D4AF37] rounded-lg">
                           <ShieldCheck size={16} />
                         </div>
@@ -184,7 +184,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                     </>
                   ) : (
                     <>
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
                           <Package size={16} />
                         </div>
@@ -194,7 +194,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                         </div>
                       </div>
 
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
                           <Truck size={16} />
                         </div>
@@ -206,7 +206,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                         </div>
                       </div>
 
-                      <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
+                      <div className="bg-white dark:bg-[#121215] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 flex items-center gap-2.5">
                         <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg">
                           <ShieldCheck size={16} />
                         </div>
@@ -226,7 +226,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
                   <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-zinc-400">{t('includesTitle')}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {product.features.map((feature: any, index: number) => (
-                      <div key={index} className="flex items-center gap-2 text-xs bg-white dark:bg-[#161619] p-2.5 rounded-xl border border-[#EAE4DC] dark:border-white/10">
+                      <div key={index} className="flex items-center gap-2 text-xs bg-white dark:bg-[#121215] p-2.5 rounded-xl border border-[#EAE4DC] dark:border-white/10">
                         <CheckCircle2 size={16} className="text-[#D4AF37] flex-shrink-0" />
                         <span className="font-medium text-gray-700 dark:text-gray-300">
                           <strong className="text-gray-900 dark:text-white">{feature.label}:</strong> {feature.value}

@@ -70,7 +70,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
         {/* Fila de 4 Badges de Valor (Estilo Tarjetas Stitch CRO) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 max-w-2xl mx-auto mb-9">
           {/* Badge 1 */}
-          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
+          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
             <div className="w-9 h-9 mb-2 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#D4AF37] border border-amber-500/20 group-hover:scale-110 transition-transform">
               <Zap size={18} />
             </div>
@@ -80,7 +80,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
           </div>
 
           {/* Badge 2 */}
-          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
+          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
             <div className="w-9 h-9 mb-2 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#D4AF37] border border-amber-500/20 group-hover:scale-110 transition-transform">
               <Truck size={18} />
             </div>
@@ -90,7 +90,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
           </div>
 
           {/* Badge 3 */}
-          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
+          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
             <div className="w-9 h-9 mb-2 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#D4AF37] border border-amber-500/20 group-hover:scale-110 transition-transform">
               <ShieldCheck size={18} />
             </div>
@@ -100,7 +100,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
           </div>
 
           {/* Badge 4 */}
-          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
+          <div className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:border-[#D4AF37]/50 transition-all group">
             <div className="w-9 h-9 mb-2 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#D4AF37] border border-amber-500/20 group-hover:scale-110 transition-transform">
               <Star size={18} fill="#D4AF37" />
             </div>
