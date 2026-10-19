@@ -50,6 +50,7 @@ export async function POST(req: Request) {
       : (isEn ? "There are currently no products listed in the online catalog." : "No hay productos listados actualmente en el catálogo online.");
 
     const whatsappPhone = "+1 346 739 2730";
+    const whatsappUrl = "https://wa.me/13467392730";
     const rawAddress = (siteConfig as any)?.businessAddress || "";
     const legacyAddrRegex = new RegExp(["bon", "bon"].join("") + "|" + ["hous", "ton"].join("") + "|" + ["tex", "as"].join(""), "i");
     const cleanAddress = legacyAddrRegex.test(rawAddress) ? "" : rawAddress;
