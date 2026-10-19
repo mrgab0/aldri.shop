@@ -4,6 +4,7 @@ import { ProductCard } from "@/components/shop/ProductCard/ProductCard";
 import { StickyNav } from "@/components/shop/StickyNav";
 import { TrustAnnouncementBar } from "@/components/shop/TrustAnnouncementBar";
 import { LuxuryHeroSection } from "@/components/shop/LuxuryHeroSection";
+import { BentoEditorialGrid } from "@/components/shop/BentoEditorialGrid";
 import { StoreLocationSection } from "@/components/shop/StoreLocationSection";
 import dbConnect from "@/lib/db";
 import { Product } from "@/lib/models/Product";
@@ -48,15 +49,18 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0B0C10] text-stone-800 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
-      {/* Barra de anuncio superior (SAME DAY DELIVERY) y barra de confianza estilo flor.zip */}
+    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#0A0A0C] text-gray-900 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
+      {/* Barra de anuncio superior (SAME DAY DELIVERY) */}
       <TrustAnnouncementBar phone="(346) 739-2730" />
 
       {/* Navegación y Menú Principal */}
       <StickyNav siteConfig={siteConfig} />
 
-      {/* Hero Section Editorial de Lujo con tipografía script 'feel loved ♡' y 4 badges */}
+      {/* Hero Section Editorial de Lujo con tipografía Playfair y badges CRO */}
       <LuxuryHeroSection siteConfig={siteConfig} />
+
+      {/* Bento Grid Editorial Stitch CRO */}
+      <BentoEditorialGrid products={products} />
 
       {/* Módulo iFrame Personalizado (si está activo en el Administrador) */}
       {siteConfig?.enableCustomIframe && (

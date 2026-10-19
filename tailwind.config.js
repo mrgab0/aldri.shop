@@ -26,6 +26,22 @@ module.exports = {
           high: '#f5e5e3',
         },
         carbon: '#221a19',
+        stitch: {
+          gold: '#F2CA50',
+          champagne: '#D4AF37',
+          'champagne-light': '#E5C378',
+          'champagne-deep': '#C5A059',
+          obsidian: '#0A0A0C',
+          'surface-dark': '#131315',
+          'card-dark': '#161619',
+          'card-elevated': '#1A1A1F',
+          'border-subtle': 'rgba(255, 255, 255, 0.08)',
+          'border-gold': 'rgba(212, 175, 55, 0.35)',
+          indigo: '#4F46E5',
+          'light-bg': '#FAF8F5',
+          'light-card': '#FFFFFF',
+          'light-border': '#EAE4DC',
+        },
       },
       fontFamily: {
         sans: ['var(--font-montserrat)', 'var(--font-plus-jakarta)', 'Montserrat', 'Plus Jakarta Sans', 'sans-serif'],
@@ -36,6 +52,8 @@ module.exports = {
       boxShadow: {
         'premium': '0px 4px 20px rgba(42,0,2,0.06)',
         'premium-hover': '0px 12px 30px rgba(42,0,2,0.12)',
+        'stitch-card': '0px 8px 32px rgba(0, 0, 0, 0.35)',
+        'stitch-glow': '0px 0px 24px rgba(212, 175, 55, 0.25)',
       }
     },
   },

@@ -55,33 +55,33 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
 
   return (
     <section className="container mx-auto px-4 sm:px-6 py-14 sm:py-20 relative z-20">
-      {/* Encabezado Editorial */}
+      {/* Encabezado Editorial Stitch */}
       <div className="text-center mb-10 sm:mb-14">
         <span className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] inline-flex items-center gap-1.5 mb-2">
           <Sparkles size={13} className="text-[#D4AF37]" />
-          Nuestra Colección
+          Colección Curada
         </span>
-        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-white tracking-tight">
-          Activos Digitales & Gadgets Curados
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-gray-900 dark:text-white tracking-tight">
+          Activos Digitales &amp; Gadgets en Tendencia
         </h2>
-        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto mt-3 font-medium">
-          Selección premium de herramientas digitales con descarga inmediata y productos físicos con tracking verificado.
+        <p className="text-sm sm:text-base text-gray-600 dark:text-zinc-400 max-w-xl mx-auto mt-3 font-normal">
+          Selección de herramientas digitales de alta demanda con descarga inmediata y productos físicos con tracking verificado.
         </p>
       </div>
 
-      {/* Bento Grid Editorial */}
+      {/* Bento Grid Editorial Stitch CRO */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 auto-rows-auto md:auto-rows-[310px]">
-        {/* 1. Elemento Principal Grande (8 columnas x 2 filas en escritorio) */}
-        <div className="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-2xl bg-stone-100 dark:bg-[#181922] shadow-[0px_4px_25px_rgba(0,0,0,0.08)] border border-[#D4AF37]/20 min-h-[420px] md:min-h-full">
+        {/* 1. Elemento Principal Grande (8 cols x 2 rows) */}
+        <div className="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-xl border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all duration-500 min-h-[420px] md:min-h-full">
           <img
             src={getImg(p0)}
             alt={p0.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300" />
           
-          <div className="absolute top-4 left-4">
-            <span className="bg-[#D4AF37] text-stone-900 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+          <div className="absolute top-5 left-5">
+            <span className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black text-[10px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-lg">
               Colección Estrella
             </span>
           </div>
@@ -90,12 +90,12 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
             <h3 className="text-2xl sm:text-4xl font-serif font-bold mb-2 drop-shadow-md text-white">
               {p0.name}
             </h3>
-            <p className="text-xl sm:text-2xl font-serif font-semibold text-[#ffdf92] mb-4">
-              ${p0.price} <span className="text-xs text-gray-300 font-sans tracking-normal uppercase font-bold">USD</span>
+            <p className="text-xl sm:text-2xl font-sans font-bold text-[#F2CA50] mb-5">
+              ${p0.price} <span className="text-xs text-zinc-300 font-sans tracking-normal uppercase font-semibold">USD</span>
             </p>
             <Link
               href={`/productos/${p0.slug}`}
-              className="inline-flex items-center gap-2 bg-white/20 hover:bg-[#D4AF37] hover:text-stone-900 backdrop-blur-md border border-white/60 hover:border-[#D4AF37] text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all shadow-lg active:scale-95"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95"
             >
               <span>Ver Detalles</span>
               <ArrowRight size={14} />
@@ -103,102 +103,102 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
           </div>
         </div>
 
-        {/* 2. Tarjeta Mediana Superior Derecha (4 columnas x 1 fila) */}
-        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-2xl bg-stone-100 dark:bg-[#181922] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-[#D4AF37]/20 min-h-[280px]">
+        {/* 2. Tarjeta Mediana Superior Derecha (4 cols x 1 row) */}
+        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[280px]">
           <img
             src={getImg(p1)}
             alt={p1.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#181922]/95 backdrop-blur-md border-t border-[#D4AF37]/20 transform translate-y-0 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-center">
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#161619]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
             <div>
-              <h4 className="font-serif font-bold text-stone-900 dark:text-white text-base leading-tight">
+              <h4 className="font-serif font-bold text-gray-900 dark:text-white text-sm line-clamp-1">
                 {p1.name}
               </h4>
-              <p className="text-sm font-bold text-[#745b0f] dark:text-[#ffdf92]">
+              <p className="text-xs font-bold text-[#D4AF37]">
                 ${p1.price} USD
               </p>
             </div>
             <Link
               href={`/productos/${p1.slug}`}
-              className="p-2 rounded-lg bg-[#163422] text-white hover:bg-[#1B2E22] transition-colors"
+              className="p-2.5 rounded-xl bg-[#0A0A0C] text-[#F2CA50] dark:bg-white/10 dark:text-white hover:bg-[#D4AF37] hover:text-black transition-colors"
               title="Ver producto"
             >
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </Link>
           </div>
         </div>
 
-        {/* 3. Tarjeta Mediana Inferior Derecha (4 columnas x 1 fila) */}
-        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-2xl bg-stone-100 dark:bg-[#181922] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-[#D4AF37]/20 min-h-[280px]">
+        {/* 3. Tarjeta Mediana Inferior Derecha (4 cols x 1 row) */}
+        <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[280px]">
           <img
             src={getImg(p2)}
             alt={p2.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#181922]/95 backdrop-blur-md border-t border-[#D4AF37]/20 transform translate-y-0 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-center">
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/95 dark:bg-[#161619]/95 backdrop-blur-md border-t border-[#EAE4DC] dark:border-white/10 flex justify-between items-center">
             <div>
-              <h4 className="font-serif font-bold text-stone-900 dark:text-white text-base leading-tight">
+              <h4 className="font-serif font-bold text-gray-900 dark:text-white text-sm line-clamp-1">
                 {p2.name}
               </h4>
-              <p className="text-sm font-bold text-[#745b0f] dark:text-[#ffdf92]">
+              <p className="text-xs font-bold text-[#D4AF37]">
                 ${p2.price} USD
               </p>
             </div>
             <Link
               href={`/productos/${p2.slug}`}
-              className="p-2 rounded-lg bg-[#163422] text-white hover:bg-[#1B2E22] transition-colors"
+              className="p-2.5 rounded-xl bg-[#0A0A0C] text-[#F2CA50] dark:bg-white/10 dark:text-white hover:bg-[#D4AF37] hover:text-black transition-colors"
               title="Ver producto"
             >
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </Link>
           </div>
         </div>
 
-        {/* 4. Tarjeta Ancha Inferior Izquierda (6 columnas x 1 fila) */}
-        <div className="md:col-span-6 md:row-span-1 relative group overflow-hidden rounded-2xl bg-stone-100 dark:bg-[#181922] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-[#D4AF37]/20 min-h-[260px]">
+        {/* 4. Tarjeta Ancha Inferior Izquierda (6 cols x 1 row) */}
+        <div className="md:col-span-6 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white dark:bg-[#161619] shadow-md border border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60 transition-all min-h-[260px]">
           <img
             src={getImg(p3)}
             alt={p3.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex justify-between items-end">
             <div>
-              <span className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest block mb-1">
+              <span className="text-[#F2CA50] text-[10px] font-bold uppercase tracking-widest block mb-1">
                 Destacado Aldri Shop
               </span>
               <h4 className="text-xl sm:text-2xl font-serif font-bold text-white mb-1">
                 {p3.name}
               </h4>
-              <p className="text-lg font-serif font-bold text-[#ffdf92]">
+              <p className="text-lg font-sans font-bold text-[#F2CA50]">
                 ${p3.price} USD
               </p>
             </div>
             <Link
               href={`/productos/${p3.slug}`}
-              className="px-4 py-2 rounded-xl bg-[#D4AF37] text-stone-900 font-bold text-xs uppercase tracking-wider hover:bg-white transition-all shadow-md"
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#F2CA50] to-[#D4AF37] text-black font-extrabold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
             >
               Ver Producto
             </Link>
           </div>
         </div>
 
-        {/* 5. Tarjeta Editorial de Pedidos Especiales (6 columnas x 1 fila) */}
-        <div className="md:col-span-6 md:row-span-1 bg-stone-50 dark:bg-[#181922] rounded-2xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border-2 border-dashed border-[#D4AF37]/50 min-h-[260px] relative overflow-hidden">
-          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/15 dark:bg-[#D4AF37]/25 flex items-center justify-center mb-3 text-[#745b0f] dark:text-[#ffdf92] shadow-sm">
-            <Sparkles size={24} className="text-[#D4AF37]" />
+        {/* 5. Tarjeta Editorial de Pedidos Especiales (6 cols x 1 row) */}
+        <div className="md:col-span-6 md:row-span-1 bg-white dark:bg-[#161619] rounded-3xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-md border border-dashed border-[#D4AF37]/60 min-h-[260px] relative overflow-hidden">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-3 text-[#D4AF37] border border-amber-500/20 shadow-sm">
+            <Sparkles size={22} className="text-[#D4AF37]" />
           </div>
           
-          <h4 className="text-2xl font-serif font-bold text-stone-900 dark:text-white mb-2">
-            Licencias Empresariales & Pedidos a Medida
+          <h4 className="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-2">
+            Licencias Empresariales &amp; Pedidos a Medida
           </h4>
-          <p className="text-xs sm:text-sm text-stone-700 dark:text-gray-300 max-w-md mb-5 leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 max-w-md mb-5 leading-relaxed font-normal">
             ¿Necesitas licencias comerciales por volumen para tu agencia o asesoría sobre especificaciones de hardware? Te atendemos de inmediato.
           </p>
 
@@ -206,9 +206,9 @@ export function BentoEditorialGrid({ products = [] }: BentoEditorialGridProps) {
             href="https://wa.me/13467392730?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20licencias%20o%20productos%20de%20Aldri%20Shop"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#163422] hover:bg-[#1B2E22] text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:scale-105 active:scale-95 border border-[#D4AF37]/60"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-6 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95"
           >
-            <MessageCircle size={15} className="text-[#D4AF37]" />
+            <MessageCircle size={15} className="text-black" />
             <span>Consultar por WhatsApp</span>
           </a>
         </div>

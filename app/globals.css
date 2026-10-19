@@ -3,33 +3,62 @@
 @tailwind utilities;
 
 :root {
-  /* TEMA CLARO: Blanco Puro con tipografía en Negro Tinta */
-  --foreground-rgb: 26, 26, 26;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  /* TEMA CLARO 1: Ivory Luxury (Champagne) */
+  --foreground-rgb: 26, 26, 30;
+  --background-start-rgb: 250, 248, 245;
+  --background-end-rgb: 250, 248, 245;
   
-  --bg-main: #FFFFFF;
+  --bg-main: #FAF8F5;
   --bg-card: #FFFFFF;
-  --text-main: #1A1A1A;
+  --text-main: #1A1A1E;
+  --stitch-gold: #D4AF37;
+  --stitch-gold-deep: #C5A059;
+  --stitch-border: #EAE4DC;
 }
 
 .dark {
-  /* TEMA OSCURO */
+  /* TEMA OSCURO: Obsidian Base & Champagne Gold */
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 15, 16, 21;
-  --background-end-rgb: 15, 16, 21;
+  --background-start-rgb: 10, 10, 12;
+  --background-end-rgb: 10, 10, 12;
+
+  --bg-main: #0A0A0C;
+  --bg-card: #161619;
+  --text-main: #FFFFFF;
+  --stitch-gold: #F2CA50;
+  --stitch-gold-deep: #D4AF37;
+  --stitch-border: rgba(255, 255, 255, 0.08);
 }
 
 /* Base Body Typography */
 body {
   color: var(--text-main);
   background-color: var(--bg-main);
+  font-family: var(--font-montserrat), sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background-color: #0B0C10 !important;
+  background-color: #0A0A0C !important;
   color: #FFFFFF !important;
+}
+
+/* Utilidades Stitch Design System */
+.stitch-border-highlight {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.stitch-glow-gold {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.stitch-card-dark {
+  background-color: #161619;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stitch-gradient-gold {
+  background: linear-gradient(135deg, #F2CA50 0%, #D4AF37 50%, #C5A059 100%);
 }
 
 html:not(.dark) .admin-panel-container {
