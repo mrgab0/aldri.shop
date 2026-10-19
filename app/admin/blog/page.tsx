@@ -571,7 +571,7 @@ export default function AdminBlogPage() {
                     type="text"
                     value={aiKeywords}
                     onChange={(e) => setAiKeywords(e.target.value)}
-                    placeholder="ej: rosas de lujo, delivery houston tx"
+                    placeholder="ej: activos digitales, plantillas notion, gadgets en tendencia"
                     className="w-full p-3 border rounded-xl text-xs font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>

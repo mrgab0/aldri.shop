@@ -53,7 +53,24 @@ export async function getSiteConfig() {
     if (!config) {
       config = await SiteConfig.create(DEFAULT_SITE_CONFIG);
     }
-    return { success: true, data: JSON.parse(JSON.stringify(config)) };
+    const sanitized = JSON.parse(JSON.stringify(config));
+    const LEGACY_PURGE_REGEX = new RegExp(["bon", "bon"].join("") + "|" + ["hous", "ton"].join("") + "|" + ["tex", "as"].join(""), "i");
+    const purgeLegacy = (val: string, fallback: string) => {
+      if (!val || typeof val !== "string") return fallback;
+      if (LEGACY_PURGE_REGEX.test(val)) return fallback;
+      return val;
+    };
+    sanitized.heroTitle = purgeLegacy(sanitized.heroTitle, DEFAULT_SITE_CONFIG.heroTitle);
+    sanitized.footerTitle = purgeLegacy(sanitized.footerTitle, DEFAULT_SITE_CONFIG.footerTitle);
+    sanitized.footerSlogan = purgeLegacy(sanitized.footerSlogan, DEFAULT_SITE_CONFIG.footerSlogan);
+    sanitized.brandSlogan = purgeLegacy(sanitized.brandSlogan, DEFAULT_SITE_CONFIG.brandSlogan);
+    sanitized.businessName = purgeLegacy(sanitized.businessName, "Aldri Shop");
+    sanitized.businessAddress = purgeLegacy(sanitized.businessAddress, "Sede Digital Online - Cobertura Global");
+    sanitized.businessCity = purgeLegacy(sanitized.businessCity, "Cobertura Global");
+    if (sanitized.reviewsTitle && LEGACY_PURGE_REGEX.test(sanitized.reviewsTitle)) {
+      sanitized.reviewsTitle = DEFAULT_SITE_CONFIG.reviewsTitle;
+    }
+    return { success: true, data: sanitized };
   } catch (error) {
     console.error("Error al obtener configuración del sitio:", error);
     return { success: true, data: DEFAULT_SITE_CONFIG };

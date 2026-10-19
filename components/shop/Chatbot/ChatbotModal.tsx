@@ -84,7 +84,7 @@ const I18N_CONTENT = {
 };
 
 const CHAT_STORAGE_KEY = "aldri_chat_history_v1";
-const LEGACY_STORAGE_KEYS = ["bonbon_chat_history_v2", "gf_chat_history_v1", "florist_chat_history", "chat_history"];
+const LEGACY_STORAGE_KEYS = ["legacy_chat_history_v2", "gf_chat_history_v1", "chat_history"];
 const CHAT_STORAGE_TTL = 24 * 60 * 60 * 1000; // 24 horas
 
 export const ChatbotModal = () => {
@@ -132,6 +132,13 @@ export const ChatbotModal = () => {
       LEGACY_STORAGE_KEYS.forEach(k => {
         try { localStorage.removeItem(k); } catch (e) {}
       });
+      try {
+        Object.keys(localStorage).forEach(k => {
+          if (k.includes("chat_history") && k !== CHAT_STORAGE_KEY) {
+            localStorage.removeItem(k);
+          }
+        });
+      } catch (e) {}
 
       const saved = localStorage.getItem(CHAT_STORAGE_KEY);
       if (saved) {

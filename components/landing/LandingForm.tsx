@@ -92,7 +92,7 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
     initialData?.reviews || [
       {
         name: "Carlos Mendoza",
-        location: "Houston, TX",
+        location: "Madrid, España",
         rating: 5,
         comment: "Excelente calidad, llegó exactamente como se describía y muy rápido.",
       },

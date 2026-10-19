@@ -34,7 +34,7 @@ interface MapboxSuggestion {
   center: [number, number]; // [lng, lat]
 }
 
-// Coordenadas de la boutique matriz de partida (Houston, TX por defecto)
+// Coordenadas del centro logístico de despacho principal por defecto
 const DEFAULT_STORE_LAT = 29.6521;
 const DEFAULT_STORE_LNG = -95.1706;
 

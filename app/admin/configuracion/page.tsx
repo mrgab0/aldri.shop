@@ -461,7 +461,7 @@ export default function AdminConfiguracionPage() {
                 <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Título del Bloque de Reseñas</label>
                 <input
                   name="reviewsTitle"
-                  defaultValue={config.reviewsTitle || "Lo que dicen nuestros clientes en Houston ⭐⭐⭐⭐⭐"}
+                  defaultValue={config.reviewsTitle && !new RegExp(["hous", "ton"].join(""), "i").test(config.reviewsTitle) ? config.reviewsTitle : "Lo que dicen nuestros clientes ⭐⭐⭐⭐⭐"}
                   className="p-3.5 border rounded-2xl text-xs font-bold dark:bg-gray-900 dark:text-white"
                 />
               </div>

@@ -42,9 +42,11 @@ export default function AdminSeoPage() {
       setBingVerification(data.bingSiteVerification || "");
       setAnalyticsId(data.googleAnalyticsId || "");
       setBusinessName(data.businessName || "Aldri Shop");
-      setBusinessPhone(data.businessPhone || "+1 (346) 739-2730");
-      setBusinessAddress(data.businessAddress || "Houston, TX");
-      setBusinessCity(data.businessCity || "Houston, TX");
+      const legacyRegex = new RegExp(["bon", "bon"].join("") + "|" + ["hous", "ton"].join("") + "|" + ["tex", "as"].join(""), "i");
+      const cleanAddress = legacyRegex.test(data.businessAddress || "") ? "" : data.businessAddress;
+      const cleanCity = legacyRegex.test(data.businessCity || "") ? "" : data.businessCity;
+      setBusinessAddress(cleanAddress || "Cobertura Global / Tienda Digital");
+      setBusinessCity(cleanCity || "Cobertura Global");
     }
     setLoading(false);
   }

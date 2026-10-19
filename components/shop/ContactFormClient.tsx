@@ -85,7 +85,7 @@ export function ContactFormClient() {
                     </div>
                     <div>
                       <strong className="block text-white text-xs uppercase tracking-wider font-bold">Distribución &amp; Sede</strong>
-                      <span className="text-gray-300 font-medium">Houston, TX &bull; Cobertura Global Online</span>
+                      <span className="text-gray-300 font-medium">Sede Central Digital &bull; Cobertura Global Online</span>
                     </div>
                   </div>
 
