@@ -265,18 +265,18 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] flex flex-col">
+    <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#0A0A0C] text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300">
       <ShopHeader />
 
       <main className="flex-1 py-10 md:py-16">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl space-y-8">
           
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-6 gap-2">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-6 gap-2 border-[#EAE4DC] dark:border-white/10">
             <div>
-              <h1 className="text-3xl md:text-4xl font-serif font-black text-[#1A1C1C]">Finalizar Pedido</h1>
-              <p className="text-xs text-gray-400">Selecciona tu método de entrega y completa tus datos</p>
+              <h1 className="text-3xl md:text-4xl font-serif font-black text-gray-900 dark:text-white">Finalizar Pedido</h1>
+              <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1">Selecciona tu método de entrega y completa tus datos</p>
             </div>
-            <span className="bg-green-50 text-green-700 text-xs font-bold px-3.5 py-1.5 rounded-full border border-green-200 flex items-center gap-1.5">
+            <span className="bg-amber-500/10 text-[#D4AF37] dark:text-[#F2CA50] text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-500/20 flex items-center gap-1.5 shadow-sm">
               <ShieldCheck size={16} /> Pago Seguro Encriptado
             </span>
           </div>
@@ -284,20 +284,20 @@ export default function CheckoutPage() {
           <div className="grid md:grid-cols-12 gap-8">
             
             {/* FORMULARIO DE DATOS Y SELECCIÓN DE ENTREGA */}
-            <div className="md:col-span-7 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 space-y-8">
+            <div className="md:col-span-7 bg-white dark:bg-[#161619] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 space-y-8">
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* 1. Datos de Contacto + Acceso Biométrico */}
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b pb-2">
-                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500">
+                  <div className="flex justify-between items-center border-b pb-2 border-[#EAE4DC] dark:border-white/10">
+                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-zinc-400">
                       1. Información del Cliente
                     </h2>
                     <button
                       type="button"
                       onClick={() => setIsBioModalOpen(true)}
-                      className="bg-pink-50 hover:bg-pink-100 text-[#FF97A4] border border-pink-200 px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+                      className="bg-amber-500/10 hover:bg-amber-500/20 text-[#D4AF37] dark:text-[#F2CA50] border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
                     >
                       <Fingerprint size={14} />
                       <span>Ingresar con Huella 👆</span>
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
                       value={name} 
                       onChange={(e) => setName(e.target.value)} 
                       placeholder="Nombre y Apellido Completo *" 
-                      className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
+                      className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-medium text-gray-900 dark:text-white bg-white dark:bg-[#121215] placeholder:text-gray-400" 
                       required 
                     />
                     <input 
@@ -319,7 +319,7 @@ export default function CheckoutPage() {
                       value={email} 
                       onChange={(e) => setEmail(e.target.value)} 
                       placeholder="Correo Electrónico del Cliente *" 
-                      className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
+                      className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-medium text-gray-900 dark:text-white bg-white dark:bg-[#121215] placeholder:text-gray-400" 
                       required 
                     />
                     <input 
@@ -327,12 +327,12 @@ export default function CheckoutPage() {
                       value={phone} 
                       onChange={(e) => setPhone(e.target.value)} 
                       placeholder="Teléfono / WhatsApp de Contacto *" 
-                      className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
+                      className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-medium text-gray-900 dark:text-white bg-white dark:bg-[#121215] placeholder:text-gray-400" 
                       required 
                     />
                     {isOnlyDigital ? (
-                      <div className="bg-indigo-50/80 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-200 dark:border-indigo-800 space-y-2 mt-2">
-                        <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-bold text-sm">
+                      <div className="bg-[#4F46E5]/10 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-500/20 space-y-2 mt-2">
+                        <div className="flex items-center gap-2 text-[#4F46E5] dark:text-indigo-300 font-bold text-sm">
                           <Sparkles size={16} />
                           <span>⚡ Orden Digital • Entrega Instantánea 24/7</span>
                         </div>
@@ -355,8 +355,8 @@ export default function CheckoutPage() {
                 {!isOnlyDigital && (
                   <>
                     {/* Notas para el Envío */}
-                    <div className="space-y-3 bg-gray-50/60 dark:bg-gray-800/40 p-4 rounded-2xl border border-gray-200 dark:border-gray-700">
-                      <h2 className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                    <div className="space-y-3 bg-[#FAF8F5] dark:bg-[#121215] p-4 rounded-2xl border border-[#EAE4DC] dark:border-white/10">
+                      <h2 className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-zinc-300">
                         Indicaciones para el Envío (Opcional)
                       </h2>
                       <textarea
@@ -364,17 +364,17 @@ export default function CheckoutPage() {
                         value={cardMessage}
                         onChange={(e) => setCardMessage(e.target.value)}
                         placeholder="Ej: Dejar en portería o instrucciones específicas para la entrega a domicilio."
-                        className="w-full p-3.5 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 h-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder:text-gray-400"
+                        className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#D4AF37] h-20 bg-white dark:bg-[#161619] text-gray-900 dark:text-white placeholder:text-gray-400"
                       />
                     </div>
 
                     {/* 2. Selector de Opciones de Entrega */}
                     <div className="space-y-4 pt-2">
-                      <div className="flex justify-between items-center border-b pb-2">
-                        <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500">
+                      <div className="flex justify-between items-center border-b pb-2 border-[#EAE4DC] dark:border-white/10">
+                        <h2 className="text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-zinc-400">
                           2. Opción de Envío Físico
                         </h2>
-                        <span className="text-xs font-bold text-indigo-600">{deliveryOptionsList.length} opciones disponibles</span>
+                        <span className="text-xs font-bold text-[#D4AF37]">{deliveryOptionsList.length} opciones disponibles</span>
                       </div>
 
                       <div className="grid grid-cols-1 gap-2.5 max-h-[380px] overflow-y-auto pr-1">
@@ -389,26 +389,26 @@ export default function CheckoutPage() {
                               onClick={() => setSelectedDelivery(option)}
                               className={`relative flex items-center justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all ${
                                 isSelected
-                                  ? "border-indigo-600 bg-indigo-50/30 dark:bg-indigo-950/20"
-                                  : "border-gray-100 dark:border-gray-800 hover:border-gray-200 bg-white dark:bg-gray-900"
+                                  ? "border-[#D4AF37] bg-amber-500/10 dark:bg-amber-500/5 shadow-sm"
+                                  : "border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/50 bg-white dark:bg-[#121215]"
                               }`}
                             >
                               <div className="flex items-center gap-3.5">
-                                <div className={`p-2.5 rounded-xl ${isSelected ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-500"}`}>
+                                <div className={`p-2.5 rounded-xl ${isSelected ? "bg-[#D4AF37] text-black" : "bg-stone-100 dark:bg-white/10 text-gray-500 dark:text-zinc-400"}`}>
                                   <IconComponent size={20} />
                                 </div>
                                 <div>
                                   <div className="flex items-center gap-2">
-                                    <span className="font-bold text-sm text-[#1A1C1C] dark:text-white">{option.title}</span>
+                                    <span className="font-bold text-sm text-gray-900 dark:text-white">{option.title}</span>
                                     {option.badge && (
-                                      <span className="bg-gray-900 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-indigo-400">
+                                      <span className="bg-black text-[#F2CA50] text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-[#D4AF37]/50">
                                         {option.badge}
                                       </span>
                                     )}
                                   </div>
-                                  <p className="text-xs text-gray-400 mt-0.5">{option.description}</p>
+                                  <p className="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">{option.description}</p>
                                   <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px]">
-                                    <span className="font-bold text-gray-500">
+                                    <span className="font-bold text-gray-500 dark:text-zinc-400">
                                       ⏱️ <strong className="text-gray-800 dark:text-gray-200">{option.estimatedTimeLabel}</strong>
                                     </span>
                                   </div>
@@ -416,11 +416,11 @@ export default function CheckoutPage() {
                               </div>
 
                               <div className="text-right flex-shrink-0 ml-3">
-                                <span suppressHydrationWarning className={`text-sm font-extrabold block ${optionPrice > 0 ? "text-indigo-600" : "text-green-600"}`}>
+                                <span suppressHydrationWarning className={`text-sm font-extrabold block ${optionPrice > 0 ? "text-[#D4AF37] dark:text-[#F2CA50]" : "text-emerald-600"}`}>
                                   {optionPrice > 0 ? `+$${optionPrice.toFixed(2)} USD` : "Gratis"}
                                 </span>
                                 {isSelected && (
-                                  <CheckCircle2 size={18} className="text-indigo-600 ml-auto mt-1" />
+                                  <CheckCircle2 size={18} className="text-[#D4AF37] ml-auto mt-1" />
                                 )}
                               </div>
                             </label>
@@ -432,7 +432,7 @@ export default function CheckoutPage() {
                 )}
                 {/* 3. Información de Pago */}
                 <div className="space-y-4 pt-2">
-                  <h2 className="text-sm font-bold uppercase tracking-wider text-gray-500 border-b pb-2">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-zinc-400 border-b pb-2 border-[#EAE4DC] dark:border-white/10">
                     3. Método de Pago
                   </h2>
                   
@@ -441,7 +441,9 @@ export default function CheckoutPage() {
                       <label 
                         key={method.id} 
                         className={`relative flex flex-col items-center p-3.5 border-2 rounded-2xl cursor-pointer transition-all ${
-                          selectedPayment === method.id ? 'border-[#FF97A4] bg-[#FF97A4]/5 shadow-sm' : 'border-gray-100 hover:border-gray-200'
+                          selectedPayment === method.id 
+                            ? 'border-[#D4AF37] bg-amber-500/10 dark:bg-amber-500/5 shadow-sm' 
+                            : 'border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/50 bg-white dark:bg-[#121215]'
                         }`}
                       >
                         <input 
@@ -455,14 +457,14 @@ export default function CheckoutPage() {
                         <div className="mb-1.5">
                           {PaymentLogos[method.id as keyof typeof PaymentLogos]}
                         </div>
-                        <span className="text-xs font-bold text-gray-700 uppercase">{method.label}</span>
+                        <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase">{method.label}</span>
                       </label>
                     ))}
                   </div>
 
                   {/* TARJETA DESPLEGABLE CON DATOS DE PAGO Y CÓDIGO QR */}
                   {selectedPayment && (
-                    <div className="bg-gray-50 p-5 rounded-2xl border border-gray-200 space-y-4 animate-in fade-in duration-300">
+                    <div className="bg-[#FAF8F5] dark:bg-[#121215] p-5 rounded-2xl border border-[#EAE4DC] dark:border-white/10 space-y-4 animate-in fade-in duration-300">
                       {(() => {
                         const cfg = paymentConfigs[selectedPayment] || {};
                         const detailToCopy = cfg.accountDetail || cfg.linkUrl || "";
@@ -471,11 +473,11 @@ export default function CheckoutPage() {
                           <div className="space-y-4">
                             <div className="flex justify-between items-start">
                               <div>
-                                <span className="font-bold text-xs text-gray-400 uppercase tracking-wider block">
+                                <span className="font-bold text-xs text-gray-500 dark:text-zinc-400 uppercase tracking-wider block">
                                   Instrucciones de Pago ({cfg.title || selectedPayment})
                                 </span>
                                 {cfg.holderName && (
-                                  <span className="font-bold text-sm text-[#1A1C1C] block mt-0.5">
+                                  <span className="font-bold text-sm text-gray-900 dark:text-white block mt-0.5">
                                     Titular: {cfg.holderName}
                                   </span>
                                 )}
@@ -485,7 +487,7 @@ export default function CheckoutPage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCopyText(detailToCopy)}
-                                  className="bg-white border text-gray-700 hover:text-[#FF97A4] hover:border-[#FF97A4] px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                                  className="bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 text-gray-700 dark:text-gray-300 hover:text-[#D4AF37] hover:border-[#D4AF37] px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
                                 >
                                   <Copy size={13} />
                                   <span>{copiedText === detailToCopy ? "¡Copiado! ✓" : "Copiar Datos"}</span>
@@ -494,9 +496,9 @@ export default function CheckoutPage() {
                             </div>
 
                             {cfg.qrImage && (
-                              <div className="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border w-fit mx-auto shadow-sm">
+                              <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-[#161619] rounded-2xl border border-[#EAE4DC] dark:border-white/10 w-fit mx-auto shadow-sm">
                                 <img src={cfg.qrImage} alt={`QR ${cfg.title}`} className="w-44 h-44 object-contain rounded-xl" />
-                                <span className="text-[10px] text-gray-400 font-bold mt-1.5 flex items-center gap-1">
+                                <span className="text-[10px] text-gray-500 dark:text-zinc-400 font-bold mt-1.5 flex items-center gap-1">
                                   <QrCode size={12} /> Escanea con la App de {cfg.title}
                                 </span>
                               </div>
@@ -508,7 +510,7 @@ export default function CheckoutPage() {
                                   href={cfg.linkUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 bg-[#1A1C1C] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#FF97A4] transition-colors shadow-sm"
+                                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wide hover:shadow-lg hover:shadow-amber-500/25 transition-all shadow-sm"
                                 >
                                   <span>Pagar vía {cfg.title}</span>
                                   <ExternalLink size={14} />
@@ -517,18 +519,18 @@ export default function CheckoutPage() {
                             )}
 
                             {cfg.accountDetail && (
-                              <div className="bg-white p-3 rounded-xl border text-center font-mono font-extrabold text-sm text-[#1A1C1C]">
+                              <div className="bg-white dark:bg-[#161619] p-3 rounded-xl border border-[#EAE4DC] dark:border-white/10 text-center font-mono font-extrabold text-sm text-gray-900 dark:text-white">
                                 {cfg.accountDetail}
                               </div>
                             )}
 
                             {cfg.instructions && (
-                              <div className="text-xs text-gray-700 bg-white p-3.5 rounded-xl border border-gray-100 space-y-1 shadow-sm">
-                                <span className="font-bold text-gray-500 uppercase text-[10px] tracking-wider block mb-1">
+                              <div className="text-xs text-gray-700 dark:text-gray-300 bg-white dark:bg-[#161619] p-3.5 rounded-xl border border-[#EAE4DC] dark:border-white/10 space-y-1 shadow-sm">
+                                <span className="font-bold text-gray-500 dark:text-zinc-400 uppercase text-[10px] tracking-wider block mb-1">
                                   📌 Paso a paso para pagar:
                                 </span>
                                 {cfg.instructions.split('\n').map((line: string, i: number) => (
-                                  <p key={i} className="font-medium text-gray-700 leading-relaxed">
+                                  <p key={i} className="font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
                                     {line}
                                   </p>
                                 ))}
@@ -543,7 +545,7 @@ export default function CheckoutPage() {
                   <input 
                     name="paymentRef" 
                     placeholder={selectedPayment === 'efectivo' ? "No requerido para pago en efectivo" : "Número o Código de Referencia de Pago *"} 
-                    className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
+                    className="w-full p-3.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-medium text-gray-900 dark:text-white bg-white dark:bg-[#121215] placeholder:text-gray-400" 
                     disabled={selectedPayment === 'efectivo'}
                     required={selectedPayment !== 'efectivo'}
                   />
@@ -552,7 +554,7 @@ export default function CheckoutPage() {
                 <button 
                   type="submit" 
                   disabled={loading || cartItems.length === 0} 
-                  className="w-full bg-[#FF97A4] text-white py-4 rounded-full font-bold hover:bg-[#B0004A] transition-all shadow-lg shadow-[#FF97A4]/20 disabled:bg-gray-300 text-base"
+                  className="w-full bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black py-4 rounded-full font-extrabold uppercase tracking-wider text-base hover:shadow-lg hover:shadow-amber-500/25 transition-all duration-300 hover:scale-[1.01] active:scale-95 disabled:opacity-50"
                 >
                   {loading ? "Procesando Orden..." : `Confirmar Pedido - $${finalTotal.toFixed(2)} USD`}
                 </button>
@@ -560,39 +562,39 @@ export default function CheckoutPage() {
             </div>
 
             {/* RESUMEN DE COMPRA CON DESGLOSE DINÁMICO */}
-            <div className="md:col-span-5 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 h-fit space-y-6">
-              <h2 className="text-xl font-serif font-black text-[#1A1C1C] border-b pb-3">Resumen de Tu Pedido</h2>
+            <div className="md:col-span-5 bg-white dark:bg-[#161619] p-6 md:p-8 rounded-3xl shadow-sm border border-[#EAE4DC] dark:border-white/10 h-fit space-y-6">
+              <h2 className="text-xl font-serif font-black text-gray-900 dark:text-white border-b pb-3 border-[#EAE4DC] dark:border-white/10">Resumen de Tu Pedido</h2>
               
               <div className="space-y-4 max-h-[320px] overflow-y-auto pr-1">
                 {cartItems.map((item) => (
-                  <div key={`${item.id}-${JSON.stringify(item.addons)}`} className="flex justify-between items-start text-sm border-b pb-3 border-gray-50">
+                  <div key={`${item.id}-${JSON.stringify(item.addons)}`} className="flex justify-between items-start text-sm border-b pb-3 border-[#EAE4DC]/60 dark:border-white/5">
                     <div className="flex items-start gap-3">
                       {item.image && (
-                        <img src={item.image} alt={item.name} className="w-12 h-12 rounded-xl object-cover border flex-shrink-0" />
+                        <img src={item.image} alt={item.name} className="w-12 h-12 rounded-xl object-contain bg-[#FAF8F5] dark:bg-[#101013] border border-[#EAE4DC] dark:border-white/10 flex-shrink-0 p-1" />
                       )}
                       <div>
-                        <span className="font-bold text-[#1A1C1C] block">{item.name}</span>
-                        <span className="text-xs text-gray-400 font-medium block">Cant: {item.quantity}</span>
+                        <span className="font-bold text-gray-900 dark:text-white block">{item.name}</span>
+                        <span className="text-xs text-gray-500 dark:text-zinc-400 font-medium block">Cant: {item.quantity}</span>
                         
                         {item.addons && item.addons.length > 0 && (
-                          <div className="mt-1 space-y-1 border-t border-gray-100 pt-1">
+                          <div className="mt-1 space-y-1 border-t border-[#EAE4DC] dark:border-white/10 pt-1">
                             {item.addons.map((add: any, idx: number) => (
                               <div key={idx} className="text-[10px]">
-                                <span className="block text-[#FF97A4] font-bold">
+                                <span className="block text-[#D4AF37] dark:text-[#F2CA50] font-bold">
                                   ✨ {add.name || add.value} {add.price ? `(+$${add.price.toFixed(2)})` : ''}
                                 </span>
                                 {add.customText ? (
-                                  <div className="bg-pink-50 p-1.5 rounded-md text-gray-800 font-medium my-0.5 border border-pink-100 flex items-start gap-1">
-                                    <MessageSquare size={11} className="text-[#FF97A4] flex-shrink-0 mt-0.5" />
+                                  <div className="bg-amber-500/10 p-1.5 rounded-md text-gray-800 dark:text-gray-200 font-medium my-0.5 border border-amber-500/20 flex items-start gap-1">
+                                    <MessageSquare size={11} className="text-[#D4AF37] flex-shrink-0 mt-0.5" />
                                     <span><em>"{add.customText}"</em></span>
                                   </div>
                                 ) : (
                                   updateAddonCustomText && (
                                     <input
                                       type="text"
-                                      placeholder="Añadir dedicatoria para este adicional..."
+                                      placeholder="Añadir notas para este ítem..."
                                       onChange={(e) => updateAddonCustomText(item.id, add.addonId, e.target.value)}
-                                      className="mt-0.5 p-1 text-[9px] border rounded w-full focus:outline-none focus:ring-1 focus:ring-[#FF97A4]"
+                                      className="mt-0.5 p-1 text-[9px] border border-[#EAE4DC] dark:border-white/10 rounded w-full focus:outline-none focus:ring-1 focus:ring-[#D4AF37] bg-white dark:bg-[#121215] text-gray-900 dark:text-white"
                                     />
                                   )
                                 )}
@@ -602,26 +604,26 @@ export default function CheckoutPage() {
                         )}
                       </div>
                     </div>
-                    <span className="font-bold text-gray-800 flex-shrink-0 ml-2">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-black text-gray-900 dark:text-white flex-shrink-0 ml-2 font-sans">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
 
               {/* CAJA DE CUPÓN DE DESCUENTO */}
-              <div className="pt-4 border-t border-gray-100 space-y-3">
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5">
-                  <Ticket size={14} className="text-[#FF97A4]" /> ¿Tienes un Cupón de Descuento?
+              <div className="pt-4 border-t border-[#EAE4DC] dark:border-white/10 space-y-3">
+                <label className="text-xs font-bold text-gray-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Ticket size={14} className="text-[#D4AF37]" /> ¿Tienes un Cupón de Descuento?
                 </label>
 
                 {couponSuccess && (
-                  <div className="bg-green-50 text-green-700 text-xs p-3 rounded-xl border border-green-200 flex items-start gap-2">
-                    <Sparkles size={16} className="text-green-600 flex-shrink-0 mt-0.5" />
+                  <div className="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs p-3 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-start gap-2">
+                    <Sparkles size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
                     <span>{couponSuccess}</span>
                   </div>
                 )}
 
                 {couponError && (
-                  <div className="bg-red-50 text-red-700 text-xs p-3 rounded-xl border border-red-200 flex items-center gap-2">
+                  <div className="bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-xs p-3 rounded-xl border border-red-200 dark:border-red-800 flex items-center gap-2">
                     <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
                     <span>{couponError}</span>
                   </div>
@@ -633,12 +635,12 @@ export default function CheckoutPage() {
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value)}
                     placeholder="Ej: INAUGURACION, BIENVENIDA"
-                    className="flex-1 p-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-xs uppercase font-bold focus:outline-none focus:ring-2 focus:ring-[#FF97A4] text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400"
+                    className="flex-1 p-2.5 border border-[#EAE4DC] dark:border-white/10 rounded-xl text-xs uppercase font-bold focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-gray-900 dark:text-white bg-white dark:bg-[#121215] placeholder:text-gray-400"
                   />
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
-                    className="bg-[#1A1C1C] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#FF97A4] transition-colors"
+                    className="bg-gray-900 hover:bg-black dark:bg-[#D4AF37] dark:hover:bg-[#F2CA50] text-white dark:text-black px-4 py-2.5 rounded-xl text-xs font-extrabold uppercase transition-all shadow-sm"
                   >
                     Aplicar
                   </button>
@@ -646,14 +648,14 @@ export default function CheckoutPage() {
               </div>
 
               {/* DESGLOSE TRANSPARENTE DE TOTALES */}
-              <div className="space-y-2.5 pt-4 border-t border-gray-100 text-sm">
-                <div className="flex justify-between text-gray-600 font-medium">
-                  <span>Subtotal Arreglos & Adicionales</span>
-                  <span className="font-bold text-gray-800">${subtotal.toFixed(2)}</span>
+              <div className="space-y-2.5 pt-4 border-t border-[#EAE4DC] dark:border-white/10 text-sm">
+                <div className="flex justify-between text-gray-600 dark:text-zinc-400 font-medium">
+                  <span>Subtotal Productos &amp; Adicionales</span>
+                  <span className="font-bold text-gray-900 dark:text-white">${subtotal.toFixed(2)}</span>
                 </div>
 
                 {appliedCoupon && (
-                  <div className="flex justify-between text-green-600 font-bold">
+                  <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-bold">
                     <span className="flex items-center gap-1">
                       <Tag size={14} /> Descuento Cupón ({appliedCoupon.code})
                     </span>
@@ -661,23 +663,23 @@ export default function CheckoutPage() {
                   </div>
                 )}
 
-                <div className="flex justify-between text-purple-700 font-medium bg-purple-50 p-2.5 rounded-xl border border-purple-100">
+                <div className="flex justify-between text-amber-900 dark:text-[#F2CA50] font-medium bg-amber-500/10 dark:bg-amber-500/5 p-2.5 rounded-xl border border-amber-500/20">
                   <span className="font-bold flex items-center gap-1 text-xs">
                     🏛️ Impuestos de Ley (Sales Tax 8.25%)
                   </span>
-                  <span className="font-extrabold text-purple-800">+${taxAmount.toFixed(2)} USD</span>
+                  <span className="font-extrabold text-[#D4AF37] dark:text-[#F2CA50]">+${taxAmount.toFixed(2)} USD</span>
                 </div>
 
-                <div className="flex justify-between text-gray-600 font-medium">
+                <div className="flex justify-between text-gray-600 dark:text-zinc-400 font-medium">
                   <span>Entrega {selectedDelivery ? `(${selectedDelivery.title})` : "(Por seleccionar)"}</span>
-                  <span className={`font-bold ${deliveryFee > 0 ? "text-[#FF97A4]" : "text-gray-800"}`}>
+                  <span className={`font-bold ${deliveryFee > 0 ? "text-[#D4AF37] dark:text-[#F2CA50]" : "text-gray-900 dark:text-white"}`}>
                     {selectedDelivery ? (deliveryFee > 0 ? `+$${deliveryFee.toFixed(2)}` : "Gratis") : "$0.00"}
                   </span>
                 </div>
 
-                <div className="border-t pt-3 flex justify-between font-extrabold text-xl text-[#1A1C1C]">
+                <div className="border-t border-[#EAE4DC] dark:border-white/10 pt-3 flex justify-between items-baseline font-extrabold text-xl text-gray-900 dark:text-white">
                   <span>Total Final</span>
-                  <span className="text-[#FF97A4]">${finalTotal.toFixed(2)} USD</span>
+                  <span className="text-2xl font-black text-[#D4AF37] dark:text-[#F2CA50] tracking-tight">${finalTotal.toFixed(2)} USD</span>
                 </div>
               </div>
             </div>

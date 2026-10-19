@@ -183,7 +183,7 @@ export function DeliveryMapPicker({
                   "line-cap": "round",
                 },
                 paint: {
-                  "line-color": "#FF97A4",
+                  "line-color": "#D4AF37",
                   "line-width": 4,
                   "line-opacity": 0.85,
                 },
@@ -270,19 +270,19 @@ export function DeliveryMapPicker({
 
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
 
-    // Marcador de la Boutique Matriz (Origen fijo)
+    // Marcador del Centro de Despacho (Origen fijo)
     const storeEl = document.createElement("div");
-    storeEl.className = "flex items-center justify-center w-7 h-7 bg-black text-white rounded-full shadow-lg border-2 border-white text-xs font-black";
-    storeEl.innerHTML = "🏪";
-    storeEl.title = "Boutique Matriz / Centro de Despacho";
+    storeEl.className = "flex items-center justify-center w-7 h-7 bg-black text-white rounded-full shadow-lg border-2 border-[#D4AF37] text-xs font-black";
+    storeEl.innerHTML = "🏢";
+    storeEl.title = "Aldri Shop / Centro de Despacho Logístico";
     storeMarkerRef.current = new mapboxgl.Marker({ element: storeEl })
       .setLngLat([storeLng, storeLat])
       .addTo(map);
 
-    // Marcador Principal Arrastrable para la Entrega (Rosa / Boutique)
+    // Marcador Principal Arrastrable para la Entrega (Champagne Gold Stitch)
     const marker = new mapboxgl.Marker({
       draggable: true,
-      color: "#FF97A4",
+      color: "#D4AF37",
     })
       .setLngLat([lng, lat])
       .addTo(map);
@@ -407,15 +407,15 @@ export function DeliveryMapPicker({
   };
 
   return (
-    <div className="space-y-4 bg-gray-50/70 dark:bg-gray-900/50 p-5 rounded-2xl border border-gray-200 dark:border-gray-800">
+    <div className="space-y-4 bg-[#FAF8F5] dark:bg-[#121215] p-5 rounded-2xl border border-[#EAE4DC] dark:border-white/10">
       {/* Encabezado e Indicador */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-3 border-gray-200 dark:border-gray-800">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-3 border-[#EAE4DC] dark:border-white/10">
         <label className="text-xs font-extrabold uppercase tracking-wider text-gray-900 dark:text-white flex items-center gap-1.5">
-          <MapPin size={16} className="text-[#FF97A4]" /> Dirección y Ubicación Exacta para Entrega
+          <MapPin size={16} className="text-[#D4AF37]" /> Dirección y Ubicación Exacta para Entrega
         </label>
 
-        <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-1">
-          <Sparkles size={13} className="text-[#FF97A4]" /> Pin interactivo de alta precisión
+        <span className="text-[11px] font-semibold text-gray-500 dark:text-zinc-400 flex items-center gap-1">
+          <Sparkles size={13} className="text-[#D4AF37]" /> Pin interactivo de alta precisión
         </span>
       </div>
 
@@ -444,14 +444,14 @@ export function DeliveryMapPicker({
               if (suggestions.length > 0) setShowDropdown(true);
             }}
             placeholder="Escribe la dirección, calle, urbanización o código postal..."
-            className="w-full p-3.5 pr-20 border border-gray-300 dark:border-gray-700 rounded-2xl text-sm font-semibold text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF97A4] transition-all"
+            className="w-full p-3.5 pr-20 border border-[#EAE4DC] dark:border-white/10 rounded-2xl text-sm font-semibold text-gray-900 dark:text-white bg-white dark:bg-[#161619] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] transition-all"
             required
             autoComplete="off"
           />
 
           <div className="absolute right-2.5 top-2.5 bottom-2.5 flex items-center gap-1">
             {searching ? (
-              <Loader2 size={16} className="animate-spin text-[#FF97A4] mr-2" />
+              <Loader2 size={16} className="animate-spin text-[#D4AF37] mr-2" />
             ) : addressInput ? (
               <button
                 type="button"
@@ -469,18 +469,18 @@ export function DeliveryMapPicker({
 
         {/* Dropdown de Sugerencias Autocompletadas */}
         {showDropdown && suggestions.length > 0 && (
-          <div className="absolute z-30 left-0 right-0 mt-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-gray-100 dark:divide-gray-800">
+          <div className="absolute z-30 left-0 right-0 mt-1 bg-white dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 rounded-2xl shadow-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-[#EAE4DC] dark:divide-white/10">
             {suggestions.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => handleSelectSuggestion(item)}
-                className="w-full text-left p-3.5 hover:bg-pink-50/60 dark:hover:bg-gray-800/80 transition-colors flex items-start gap-2.5"
+                className="w-full text-left p-3.5 hover:bg-amber-500/10 dark:hover:bg-white/5 transition-colors flex items-start gap-2.5"
               >
-                <MapPin size={16} className="text-[#FF97A4] flex-shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-[#D4AF37] flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-xs font-bold text-gray-900 dark:text-white">{item.text}</p>
-                  <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-snug line-clamp-1">
+                  <p className="text-[11px] text-gray-500 dark:text-zinc-400 leading-snug line-clamp-1">
                     {item.place_name}
                   </p>
                 </div>
@@ -518,18 +518,18 @@ export function DeliveryMapPicker({
 
       {/* 2. Visor Interactivo Mapbox GL JS con Marcador Arrastrable */}
       <div className="space-y-2">
-        <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm h-64 bg-gray-100 dark:bg-gray-800">
+        <div className="relative rounded-2xl overflow-hidden border border-[#EAE4DC] dark:border-white/10 shadow-sm h-64 bg-stone-100 dark:bg-[#161619]">
           <div ref={mapContainerRef} className="w-full h-full" />
 
           {/* Banner de Instrucción Táctil / Mouse */}
-          <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-black/75 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1.5 rounded-xl border border-white/10 shadow-md flex items-center gap-2 pointer-events-none">
-            <Navigation size={13} className="text-[#FF97A4] flex-shrink-0 animate-pulse" />
-            <span>Arrastra el pin rosa con el dedo o haz clic para ubicar la puerta exacta.</span>
+          <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-black/80 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1.5 rounded-xl border border-white/10 shadow-md flex items-center gap-2 pointer-events-none">
+            <Navigation size={13} className="text-[#D4AF37] flex-shrink-0 animate-pulse" />
+            <span>Arrastra el pin dorado con el dedo o haz clic para ubicar la puerta exacta.</span>
           </div>
 
           {/* Badge Flotante Superior de Millas & Estado */}
-          <div className="absolute top-3 left-3 bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 shadow-md flex items-center gap-1.5 text-xs font-black">
-            <Compass size={14} className="text-[#FF97A4]" />
+          <div className="absolute top-3 left-3 bg-white/95 dark:bg-[#161619]/95 text-gray-900 dark:text-white backdrop-blur-md px-3 py-1.5 rounded-full border border-[#EAE4DC] dark:border-white/10 shadow-md flex items-center gap-1.5 text-xs font-black">
+            <Compass size={14} className="text-[#D4AF37]" />
             <span>
               {calculatingRoute
                 ? "Calculando ruta..."
@@ -540,7 +540,7 @@ export function DeliveryMapPicker({
           </div>
         </div>
 
-        <p className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 italic flex items-center gap-1.5">
+        <p className="text-[11px] font-semibold text-gray-600 dark:text-zinc-400 italic flex items-center gap-1.5">
           <span>💡</span> Las millas se calculan automáticamente por ruta de carretera real y se aplican a la tarifa de entrega.
         </p>
       </div>
