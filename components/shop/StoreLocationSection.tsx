@@ -99,9 +99,9 @@ export const StoreLocationSection: React.FC<StoreLocationSectionProps> = ({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 py-2.5 px-4 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
+            className="w-full bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black py-3 px-4 rounded-full text-xs font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all border border-amber-300/40 select-none"
           >
-            <MessageCircle size={15} />
+            <MessageCircle size={15} className="text-black" />
             <span>Consultar por WhatsApp</span>
           </a>
         </div>

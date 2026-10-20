@@ -112,7 +112,7 @@ export default async function Home() {
         <div className="mt-14 text-center">
           <Link
             href="/productos"
-            className="inline-block bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 text-xs font-semibold tracking-widest uppercase px-10 py-3.5 transition-all duration-300 rounded-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+            className="inline-block bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black text-xs font-extrabold tracking-widest uppercase px-10 py-4 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl hover:shadow-amber-500/25 hover:scale-105 active:scale-95 border border-amber-300/40 select-none"
           >
             Ver Todo el Catálogo
           </Link>

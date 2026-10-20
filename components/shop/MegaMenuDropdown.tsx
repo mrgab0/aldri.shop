@@ -45,7 +45,7 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
         {/* Columna 1: Activos Digitales */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <Download size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <Download size={16} className="text-[#D4AF37]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
               Activos Digitales
             </h4>
@@ -58,14 +58,14 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
                   <Link 
                     href={item.href}
                     onClick={onClose}
-                    className="group flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#163422] dark:hover:text-[#C5A059] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
+                    className="group flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#D4AF37] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
                   >
                     <span className="flex items-center gap-2">
-                      <Icon size={14} className="text-[#163422]/70 dark:text-emerald-400 group-hover:scale-110 transition-transform" />
+                      <Icon size={14} className="text-[#D4AF37] group-hover:scale-110 transition-transform" />
                       {item.name}
                     </span>
                     {item.badge && (
-                      <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[#163422] dark:text-emerald-300 border border-stone-200 dark:border-stone-700">
+                      <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[#D4AF37] dark:text-[#F2CA50] border border-stone-200 dark:border-stone-700">
                         {item.badge}
                       </span>
                     )}
@@ -79,7 +79,7 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
         {/* Columna 2: Hardware & Gadgets */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <Truck size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <Truck size={16} className="text-[#D4AF37]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
               Gadgets &amp; Hardware
             </h4>
@@ -92,10 +92,10 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
                   <Link 
                     href={item.href}
                     onClick={onClose}
-                    className="group flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#163422] dark:hover:text-[#C5A059] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
+                    className="group flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#D4AF37] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
                   >
                     <span className="flex items-center gap-2">
-                      <Icon size={14} className="text-[#163422]/70 dark:text-emerald-400 group-hover:scale-110 transition-transform" />
+                      <Icon size={14} className="text-[#D4AF37] group-hover:scale-110 transition-transform" />
                       {item.name}
                     </span>
                     {item.badge && (
@@ -113,7 +113,7 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
         {/* Columna 3: Servicios & Compromiso */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 border-b border-[#D4AF37]/20 pb-2">
-            <ShieldCheck size={16} className="text-[#163422] dark:text-[#C5A059]" />
+            <ShieldCheck size={16} className="text-[#D4AF37]" />
             <h4 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-900 dark:text-white">
               Garantías Aldri
             </h4>
@@ -124,11 +124,11 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
                 <Link 
                   href={item.href}
                   onClick={onClose}
-                  className="flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#163422] dark:hover:text-[#C5A059] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
+                  className="flex items-center justify-between text-xs font-semibold text-stone-700 dark:text-gray-300 hover:text-[#D4AF37] p-1.5 rounded-xl hover:bg-stone-100 dark:hover:bg-gray-800/60 transition-all"
                 >
                   <span>⚡ {item.name}</span>
                   {item.tag && (
-                    <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
+                    <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-md bg-amber-500/10 text-[#D4AF37] dark:text-[#F2CA50] border border-amber-500/30">
                       {item.tag}
                     </span>
                   )}
@@ -139,15 +139,15 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
         </div>
 
         {/* Columna 4: Banner Visual de Oferta / Destacado */}
-        <div className="relative rounded-2xl overflow-hidden group bg-gradient-to-br from-[#163422] to-[#1B2E22] p-5 text-white flex flex-col justify-between shadow-lg border border-[#D4AF37]/30">
+        <div className="relative rounded-2xl overflow-hidden group bg-gradient-to-br from-[#121215] via-[#1A1A1F] to-[#0A0A0C] p-5 text-white flex flex-col justify-between shadow-lg border border-[#D4AF37]/40">
           <div className="relative z-10 space-y-2">
-            <span className="inline-block bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest text-[#C5A059]">
+            <span className="inline-block bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest text-[#F2CA50]">
               ⚡ Pack Destacado
             </span>
-            <h5 className="font-serif font-bold text-base leading-snug">
+            <h5 className="font-serif font-bold text-base leading-snug text-white">
               Creator OS & LUTs Cinematográficos
             </h5>
-            <p className="text-[11px] text-stone-200 font-medium">
+            <p className="text-[11px] text-stone-300 font-medium">
               Licencia comercial completa y descarga instantánea.
             </p>
           </div>
@@ -155,10 +155,10 @@ export function MegaMenuDropdown({ isOpen, onClose }: MegaMenuDropdownProps) {
           <Link
             href="/productos"
             onClick={onClose}
-            className="mt-4 relative z-10 inline-flex items-center justify-center gap-2 bg-white text-stone-900 px-4 py-2.5 rounded-xl text-xs font-black hover:bg-[#163422] hover:text-white transition-all shadow-md active:scale-95"
+            className="mt-4 relative z-10 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-4 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all shadow-md hover:shadow-amber-500/25 active:scale-95 border border-amber-300/40 select-none"
           >
             <span>Ver Catálogo Completo</span>
-            <ArrowRight size={13} />
+            <ArrowRight size={13} className="text-black" />
           </Link>
         </div>
 

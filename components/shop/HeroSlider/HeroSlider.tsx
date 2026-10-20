@@ -160,7 +160,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ initialSlides }) => {
                           href={slide.link} 
                           draggable={false}
                           onDragStart={(e) => e.preventDefault()}
-                          className="inline-block bg-[#163422] hover:bg-[#1B2E22] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-bold text-xs sm:text-sm md:text-base transition-all shadow-xl shadow-stone-900/20 border border-[#D4AF37]/60 hover:scale-105 active:scale-95 select-none"
+                          className="inline-block bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full font-extrabold uppercase tracking-wider text-xs sm:text-sm md:text-base transition-all shadow-xl shadow-amber-500/20 border border-amber-300/40 hover:scale-105 active:scale-95 select-none"
                         >
                           {slide.ctaText || "Ver Oferta"}
                         </a>

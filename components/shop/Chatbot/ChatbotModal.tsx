@@ -351,7 +351,7 @@ export const ChatbotModal = () => {
             key={match.index}
             href={url}
             onClick={() => setIsOpen(false)}
-            className="inline-flex items-center gap-1 font-bold text-[#163422] dark:text-emerald-400 underline hover:text-[#0f2417] bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded transition-colors my-0.5"
+            className="inline-flex items-center gap-1 font-bold text-[#D4AF37] dark:text-[#F2CA50] underline hover:text-amber-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded transition-colors my-0.5"
           >
             {label} <ExternalLink size={12} />
           </Link>
@@ -495,7 +495,7 @@ export const ChatbotModal = () => {
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-xs sm:text-sm whitespace-pre-line shadow-sm ${
                       isUser
-                        ? 'bg-[#163422] text-white rounded-br-none'
+                        ? 'bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-medium rounded-br-none'
                         : 'bg-white dark:bg-[#1a1b24] text-gray-800 dark:text-gray-100 border border-gray-200/80 dark:border-gray-800 rounded-bl-none'
                     }`}
                   >
@@ -554,9 +554,9 @@ export const ChatbotModal = () => {
             {/* Animación de escribiendo... */}
             {isLoading && (
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 bg-white dark:bg-[#1a1b24] w-fit px-3.5 py-2 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
-                <span className="w-1.5 h-1.5 bg-[#163422] dark:bg-emerald-400 rounded-full animate-bounce"></span>
-                <span className="w-1.5 h-1.5 bg-[#163422] dark:bg-emerald-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1.5 h-1.5 bg-[#163422] dark:bg-emerald-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-bounce"></span>
+                <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-bounce [animation-delay:0.4s]"></span>
                 <span className="ml-1 text-[11px] font-medium">{content.searchingCatalog}</span>
               </div>
             )}
@@ -571,10 +571,10 @@ export const ChatbotModal = () => {
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(q)}
-                    className="w-full text-left text-xs bg-white dark:bg-[#181922] hover:bg-stone-100 dark:hover:bg-stone-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-800 px-3 py-2 rounded-xl transition-all font-medium hover:border-[#163422]/40 flex items-center justify-between group shadow-sm"
+                    className="w-full text-left text-xs bg-white dark:bg-[#181922] hover:bg-stone-100 dark:hover:bg-stone-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-800 px-3 py-2 rounded-xl transition-all font-medium hover:border-[#D4AF37]/40 flex items-center justify-between group shadow-sm"
                   >
                     <span>{q}</span>
-                    <span className="text-[#163422] dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform">→</span>
+                    <span className="text-[#D4AF37] group-hover:translate-x-0.5 transition-transform">→</span>
                   </button>
                 ))}
               </div>
@@ -600,15 +600,15 @@ export const ChatbotModal = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder={content.inputPlaceholder}
                 disabled={isLoading}
-                className="flex-1 text-xs sm:text-sm bg-gray-50 dark:bg-[#1c1d28] text-gray-900 dark:text-white px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[#163422] dark:focus:border-emerald-400 transition-colors placeholder:text-gray-400"
+                className="flex-1 text-xs sm:text-sm bg-gray-50 dark:bg-[#1c1d28] text-gray-900 dark:text-white px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[#D4AF37] transition-colors placeholder:text-gray-400"
               />
               <button
                 type="submit"
                 disabled={!inputMessage.trim() || isLoading}
                 aria-label={content.ariaSend}
-                className="bg-[#163422] hover:bg-[#1B2E22] disabled:opacity-50 text-white p-2.5 rounded-xl transition-all flex items-center justify-center shadow-md hover:scale-105 active:scale-95 disabled:hover:scale-100"
+                className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] disabled:opacity-50 text-black p-2.5 rounded-xl transition-all flex items-center justify-center shadow-md hover:scale-105 active:scale-95 disabled:hover:scale-100 border border-amber-300/40"
               >
-                <Send size={16} />
+                <Send size={16} className="text-black" />
               </button>
             </form>
 

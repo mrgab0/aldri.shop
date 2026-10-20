@@ -63,12 +63,12 @@ export function FlashSaleCollectionsSection() {
             {/* Encabezado del Flash Sale & Contador */}
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 bg-[#163422] text-white text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md animate-pulse">
-                  <Tag size={12} />
+                <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md animate-pulse">
+                  <Tag size={12} className="text-black" />
                   <span>Oferta Flash • -25% OFF</span>
                 </span>
                 <span className="text-xs font-bold text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                  <Clock size={13} className="text-[#163422] dark:text-[#C5A059]" />
+                  <Clock size={13} className="text-[#D4AF37]" />
                   <span>Termina en:</span>
                 </span>
               </div>
@@ -94,7 +94,7 @@ export function FlashSaleCollectionsSection() {
                   <span className="text-[10px] uppercase font-extrabold text-gray-700 dark:text-gray-200 tracking-wider">Min</span>
                 </div>
                 <div className="bg-stone-50 dark:bg-gray-800/80 p-3 rounded-2xl border border-gray-200/80 dark:border-gray-700 shadow-sm">
-                  <span className="font-serif font-black text-2xl sm:text-3xl text-[#163422] dark:text-[#C5A059] block">
+                  <span className="font-serif font-black text-2xl sm:text-3xl text-[#D4AF37] block">
                     {String(timeLeft.seconds).padStart(2, '0')}
                   </span>
                   <span className="text-[10px] uppercase font-extrabold text-gray-700 dark:text-gray-200 tracking-wider">Seg</span>
@@ -112,7 +112,7 @@ export function FlashSaleCollectionsSection() {
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <span className="absolute top-2 left-2 bg-[#163422] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">
+                <span className="absolute top-2 left-2 bg-stone-900/90 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full border border-[#D4AF37]/50">
                   🔥 Más Vendido
                 </span>
               </div>
@@ -140,9 +140,9 @@ export function FlashSaleCollectionsSection() {
                   price: 119.99,
                   image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=500&auto=format&fit=crop&q=80"
                 })}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#163422] hover:bg-[#1B2E22] text-white py-3.5 px-6 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg active:scale-95"
+                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black py-4 px-6 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-amber-500/25 active:scale-95 border border-amber-300/40 select-none"
               >
-                <ShoppingBag size={16} />
+                <ShoppingBag size={16} className="text-black" />
                 <span>Aprovechar Oferta Flash Ahora</span>
               </button>
             </div>
@@ -163,7 +163,7 @@ export function FlashSaleCollectionsSection() {
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <Link
                 href="/productos?cat=rosas"
-                className="relative z-10 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95"
+                className="relative z-10 bg-white/95 dark:bg-stone-900/95 text-stone-900 dark:text-white hover:bg-gradient-to-r hover:from-[#F2CA50] hover:via-[#D4AF37] hover:to-[#C5A059] hover:text-black dark:hover:text-black px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95 border border-white/20 dark:border-white/10 select-none"
               >
                 Rosas de Lujo ↗
               </Link>
@@ -181,7 +181,7 @@ export function FlashSaleCollectionsSection() {
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <Link
                 href="/productos?cat=bouquets"
-                className="relative z-10 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95"
+                className="relative z-10 bg-white/95 dark:bg-stone-900/95 text-stone-900 dark:text-white hover:bg-gradient-to-r hover:from-[#F2CA50] hover:via-[#D4AF37] hover:to-[#C5A059] hover:text-black dark:hover:text-black px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95 border border-white/20 dark:border-white/10 select-none"
               >
                 Bouquets Mixtos ↗
               </Link>
@@ -199,7 +199,7 @@ export function FlashSaleCollectionsSection() {
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <Link
                 href="/productos?cat=cajas"
-                className="relative z-10 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95"
+                className="relative z-10 bg-white/95 dark:bg-stone-900/95 text-stone-900 dark:text-white hover:bg-gradient-to-r hover:from-[#F2CA50] hover:via-[#D4AF37] hover:to-[#C5A059] hover:text-black dark:hover:text-black px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95 border border-white/20 dark:border-white/10 select-none"
               >
                 Cajas Velvet ↗
               </Link>
@@ -217,7 +217,7 @@ export function FlashSaleCollectionsSection() {
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <Link
                 href="/productos?cat=adicionales"
-                className="relative z-10 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95"
+                className="relative z-10 bg-white/95 dark:bg-stone-900/95 text-stone-900 dark:text-white hover:bg-gradient-to-r hover:from-[#F2CA50] hover:via-[#D4AF37] hover:to-[#C5A059] hover:text-black dark:hover:text-black px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl group-hover:scale-105 active:scale-95 border border-white/20 dark:border-white/10 select-none"
               >
                 Regalos & Extras ↗
               </Link>

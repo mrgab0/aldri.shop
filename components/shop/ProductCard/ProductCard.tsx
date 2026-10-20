@@ -142,10 +142,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           <button 
             onClick={() => addToCart({ id, name, price, image, productType })}
-            className="bg-gray-900 hover:bg-black dark:bg-[#D4AF37] dark:hover:bg-[#F2CA50] text-white dark:text-black px-3 sm:px-3.5 py-2 rounded-xl active:scale-95 transition-all duration-300 font-bold text-xs shadow-sm flex items-center gap-1.5 hover:scale-105 border border-transparent dark:border-amber-400/30"
+            className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-3 sm:px-3.5 py-2 rounded-xl active:scale-95 transition-all duration-300 font-extrabold text-xs shadow-md hover:shadow-lg hover:shadow-amber-500/25 flex items-center gap-1.5 hover:scale-105 border border-amber-300/40 select-none"
             title="Añadir al Carrito"
           >
-            <ShoppingBag size={13} />
+            <ShoppingBag size={13} className="text-black" />
             <span className="hidden sm:inline">{t('addToCart')}</span>
           </button>
         </div>

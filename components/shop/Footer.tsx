@@ -79,7 +79,7 @@ export function Footer({ siteConfig }: FooterProps) {
                 />
                 <button
                   type="submit"
-                  className="bg-black hover:bg-stone-800 dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors shrink-0 rounded-sm"
+                  className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-5 py-2.5 text-xs font-extrabold uppercase tracking-wider transition-all shadow-md hover:shadow-amber-500/25 shrink-0 rounded-sm border border-amber-300/40 select-none"
                 >
                   Suscribirse
                 </button>

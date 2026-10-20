@@ -78,12 +78,12 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
             {enableSocials && (
               <div className="hidden 2xl:flex items-center gap-1.5 ml-2 pl-3 border-l border-[#D4AF37]/30">
                 {instagramUrl && (
-                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-stone-700 dark:text-gray-300 hover:text-[#163422] hover:-translate-y-0.5 active:scale-95 transition-all bg-stone-100/60 dark:bg-gray-800/60 rounded-md shadow-sm" title="Instagram">
+                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-stone-700 dark:text-gray-300 hover:text-[#D4AF37] hover:-translate-y-0.5 active:scale-95 transition-all bg-stone-100/60 dark:bg-gray-800/60 rounded-md shadow-sm" title="Instagram">
                     <Instagram size={16} />
                   </a>
                 )}
                 {facebookUrl && (
-                  <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-stone-700 dark:text-gray-300 hover:text-[#163422] hover:-translate-y-0.5 active:scale-95 transition-all bg-stone-100/60 dark:bg-gray-800/60 rounded-md shadow-sm" title="Facebook">
+                  <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-stone-700 dark:text-gray-300 hover:text-[#D4AF37] hover:-translate-y-0.5 active:scale-95 transition-all bg-stone-100/60 dark:bg-gray-800/60 rounded-md shadow-sm" title="Facebook">
                     <Facebook size={16} />
                   </a>
                 )}
@@ -110,13 +110,13 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
               >
                 <Link 
                   href={link.href} 
-                  className="px-3.5 xl:px-5 2xl:px-6 h-16 xl:h-20 flex items-center justify-center rounded-none text-stone-900 dark:text-gray-100 hover:text-[#163422] dark:hover:text-[#C5A059] border-b-2 border-transparent hover:border-[#163422] dark:hover:border-[#C5A059] transition-all duration-200 tracking-widest uppercase font-bold text-xs xl:text-[13px] hover:bg-black/[0.02] dark:hover:bg-white/[0.04]"
+                  className="px-3.5 xl:px-5 2xl:px-6 h-16 xl:h-20 flex items-center justify-center rounded-none text-stone-900 dark:text-gray-100 hover:text-[#D4AF37] dark:hover:text-[#F2CA50] border-b-2 border-transparent hover:border-[#D4AF37] dark:hover:border-[#F2CA50] transition-all duration-200 tracking-widest uppercase font-bold text-xs xl:text-[13px] hover:bg-amber-500/[0.04] dark:hover:bg-amber-500/[0.06]"
                 >
                   <span>{link.label}</span>
                   {link.isMega && (
                     <ChevronDown 
                       size={13} 
-                      className={`ml-1 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180 text-[#163422]" : ""}`} 
+                      className={`ml-1 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180 text-[#D4AF37]" : ""}`} 
                     />
                   )}
                 </Link>
@@ -171,10 +171,10 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
                   key={idx}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between px-4 py-4 rounded-md bg-stone-50 dark:bg-gray-800/70 text-stone-900 dark:text-gray-100 font-bold text-sm border-l-4 border-transparent hover:border-[#163422] transition-all hover:bg-[#163422]/5 hover:text-[#163422] dark:hover:text-[#C5A059]"
+                  className="flex items-center justify-between px-4 py-4 rounded-md bg-stone-50 dark:bg-gray-800/70 text-stone-900 dark:text-gray-100 font-bold text-sm border-l-4 border-transparent hover:border-[#D4AF37] transition-all hover:bg-amber-500/10 hover:text-[#D4AF37] dark:hover:text-[#F2CA50]"
                 >
                   <span className="tracking-wider uppercase">{link.label}</span>
-                  <span className="text-xs text-[#163422] dark:text-[#C5A059]">→</span>
+                  <span className="text-xs text-[#D4AF37] dark:text-[#F2CA50]">→</span>
                 </Link>
               ))}
             </nav>

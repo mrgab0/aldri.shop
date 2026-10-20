@@ -293,7 +293,7 @@ export function SocialAndReviewsSection({
                     <div>
                       <h4 className="text-sm font-extrabold text-[#1A1C1C] dark:text-white flex items-center gap-1">
                         Instagram Live Feed
-                        <Sparkles size={12} className="text-[#163422] dark:text-[#C5A059]" />
+                        <Sparkles size={12} className="text-[#D4AF37]" />
                       </h4>
                       <p className="text-[11px] text-gray-600 dark:text-gray-300 font-semibold">@aldri.shop</p>
                     </div>
@@ -303,7 +303,7 @@ export function SocialAndReviewsSection({
                     href={instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 hover:bg-[#163422] hover:text-white px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                    className="bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 hover:bg-[#D4AF37] hover:text-black px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
                   >
                     <span>Seguir</span>
                     <ExternalLink size={12} />

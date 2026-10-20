@@ -17,7 +17,7 @@ export function SocialFeedSection({
     <section className="py-14 bg-white dark:bg-[#0B0C10] border-t border-gray-100 dark:border-gray-800">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center space-y-2 mb-8">
-          <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-[#163422] dark:text-[#C5A059] border border-[#163422]/20 dark:border-[#C5A059]/30 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-800 text-[#D4AF37] dark:text-[#F2CA50] border border-amber-500/30 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
             <Sparkles size={14} className="text-[#D4AF37]" /> Feeds & Tendencias en Vivo
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1A1C1C] dark:text-white tracking-tight">

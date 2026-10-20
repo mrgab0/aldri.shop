@@ -308,7 +308,7 @@ export function DialogflowChatbot({ siteConfig }: DialogflowChatbotProps) {
               </div>
 
               {/* Barra de Acción Rápida para Expandir */}
-              <div className="flex items-center justify-between text-[10px] font-extrabold text-[#163422] dark:text-emerald-300 bg-gray-50 dark:bg-gray-800/60 px-3 py-1.5 rounded-xl border border-gray-150 dark:border-gray-700/60">
+              <div className="flex items-center justify-between text-[10px] font-extrabold text-[#D4AF37] dark:text-[#F2CA50] bg-gray-50 dark:bg-gray-800/60 px-3 py-1.5 rounded-xl border border-gray-150 dark:border-gray-700/60">
                 <span>💬 Toca para chatear</span>
                 <span className="text-[9px] uppercase tracking-wider opacity-75">Expandir ↗</span>
               </div>

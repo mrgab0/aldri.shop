@@ -47,7 +47,7 @@ export const ShopHeader = () => {
               <Link 
                 key={idx}
                 href={link.href} 
-                className="px-2.5 xl:px-3.5 2xl:px-4 py-1.5 xl:py-2 2xl:py-2.5 rounded-full bg-white/60 dark:bg-gray-800/60 text-stone-900 dark:text-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.06)] dark:shadow-none hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:bg-white dark:hover:bg-gray-700 hover:text-[#163422] hover:-translate-y-0.5 active:scale-95 active:translate-y-0 transition-all duration-300 border border-transparent hover:border-[#163422]/20"
+                className="px-2.5 xl:px-3.5 2xl:px-4 py-1.5 xl:py-2 2xl:py-2.5 rounded-full bg-white/60 dark:bg-gray-800/60 text-stone-900 dark:text-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.06)] dark:shadow-none hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:bg-white dark:hover:bg-gray-700 hover:text-[#D4AF37] dark:hover:text-[#F2CA50] hover:-translate-y-0.5 active:scale-95 active:translate-y-0 transition-all duration-300 border border-transparent hover:border-[#D4AF37]/30"
               >
                 {link.label}
               </Link>
@@ -73,16 +73,16 @@ export const ShopHeader = () => {
               <LanguageSwitcher />
             </div>
 
-            {/* Cart Button indicator */}
+            {/* Cart Button indicator con gradiente Champagne Gold */}
             <div className="relative ml-1">
               <Link
                 href="/checkout"
-                className="flex items-center gap-1.5 xl:gap-2 bg-[#163422] text-white px-2.5 xl:px-3.5 2xl:px-5 py-2 2xl:py-2.5 rounded-full font-bold text-xs hover:bg-[#1B2E22] transition-all shadow-md"
+                className="flex items-center gap-1.5 xl:gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-3.5 xl:px-5 py-2 2xl:py-2.5 rounded-full font-extrabold text-xs shadow-md hover:shadow-lg hover:shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all border border-amber-300/40 select-none"
               >
-                <ShoppingCart size={18} />
+                <ShoppingCart size={18} className="text-black" />
                 <span className="hidden 2xl:inline">Carrito</span>
                 {totalCount > 0 && (
-                  <span className="bg-[#D4AF37] text-stone-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+                  <span className="bg-black text-[#F2CA50] text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm">
                     {totalCount}
                   </span>
                 )}
@@ -109,10 +109,10 @@ export const ShopHeader = () => {
                   key={idx}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 rounded-2xl bg-gray-50 dark:bg-gray-800/80 text-stone-900 dark:text-gray-100 font-bold text-sm shadow-sm active:scale-[0.98] transition-all hover:bg-stone-100 hover:text-[#163422]"
+                  className="flex items-center justify-between px-4 py-3 rounded-2xl bg-gray-50 dark:bg-gray-800/80 text-stone-900 dark:text-gray-100 font-bold text-sm shadow-sm active:scale-[0.98] transition-all hover:bg-stone-100 hover:text-[#D4AF37]"
                 >
                   <span>{link.label}</span>
-                  <span className="text-xs text-[#163422] dark:text-[#C5A059]">→</span>
+                  <span className="text-xs text-[#D4AF37]">→</span>
                 </Link>
               ))}
             </nav>

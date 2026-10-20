@@ -101,7 +101,7 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
           <div>
             <div className="flex items-center gap-2 mb-1 justify-center md:justify-start">
               <Sparkles size={14} className="text-[#D4AF37]" />
-              <span className="text-[#163422] dark:text-[#C5A059] text-xs font-black uppercase tracking-[0.2em]">
+              <span className="text-[#D4AF37] dark:text-[#F2CA50] text-xs font-black uppercase tracking-[0.2em]">
                 Selección de Temporada
               </span>
             </div>
@@ -118,7 +118,7 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                   activeTab === tab.id
-                    ? "bg-[#163422] text-white shadow-md scale-105"
+                    ? "bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-extrabold shadow-md scale-105 border border-amber-300/40"
                     : "bg-white/70 dark:bg-gray-800/60 text-slate-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/60 dark:border-gray-700"
                 }`}
               >
@@ -131,14 +131,14 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
           <div className="hidden lg:flex items-center gap-2">
             <button
               onClick={() => handleScroll("left")}
-              className="p-2.5 rounded-full bg-white dark:bg-gray-800 text-stone-900 dark:text-white hover:bg-[#163422] hover:text-white dark:hover:bg-[#163422] shadow-md border border-gray-100 dark:border-gray-700 transition-all active:scale-95"
+              className="p-2.5 rounded-full bg-white dark:bg-gray-800 text-stone-900 dark:text-white hover:bg-[#D4AF37] hover:text-black dark:hover:bg-[#D4AF37] dark:hover:text-black shadow-md border border-gray-100 dark:border-gray-700 transition-all active:scale-95"
               aria-label="Anterior"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => handleScroll("right")}
-              className="p-2.5 rounded-full bg-white dark:bg-gray-800 text-stone-900 dark:text-white hover:bg-[#163422] hover:text-white dark:hover:bg-[#163422] shadow-md border border-gray-100 dark:border-gray-700 transition-all active:scale-95"
+              className="p-2.5 rounded-full bg-white dark:bg-gray-800 text-stone-900 dark:text-white hover:bg-[#D4AF37] hover:text-black dark:hover:bg-[#D4AF37] dark:hover:text-black shadow-md border border-gray-100 dark:border-gray-700 transition-all active:scale-95"
               aria-label="Siguiente"
             >
               <ChevronRight size={18} />
@@ -201,7 +201,7 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                   
                   {/* Badge de Categoría */}
                   <div className="absolute top-3 left-3">
-                    <span className="bg-white dark:bg-gray-900 text-[#163422] dark:text-emerald-300 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md border border-stone-300 dark:border-gray-700">
+                    <span className="bg-white dark:bg-stone-900 text-stone-900 dark:text-[#F2CA50] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md border border-stone-200 dark:border-white/10">
                       {product.category || "Boutique"}
                     </span>
                   </div>
@@ -209,8 +209,8 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                   {/* Badge Destacado */}
                   {product.badge && (
                     <div className="absolute top-3 right-3">
-                      <span className="bg-[#163422] text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md border border-[#D4AF37] flex items-center gap-1">
-                        <Flame size={10} className="text-amber-300" />
+                      <span className="bg-stone-900/90 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md border border-[#D4AF37]/60 flex items-center gap-1">
+                        <Flame size={10} className="text-[#F2CA50]" />
                         {product.badge}
                       </span>
                     </div>
@@ -232,7 +232,7 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                       draggable={false}
                       onDragStart={(e) => e.preventDefault()}
                     >
-                      <h3 className="font-serif font-bold text-base text-stone-900 dark:text-white line-clamp-1 group-hover:text-[#163422] dark:group-hover:text-[#C5A059] transition-colors select-none">
+                      <h3 className="font-serif font-bold text-base text-stone-900 dark:text-white line-clamp-1 group-hover:text-[#D4AF37] transition-colors select-none">
                         {product.name}
                       </h3>
                     </Link>
@@ -254,9 +254,9 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                         price: product.price,
                         image: image
                       })}
-                      className="inline-flex items-center gap-1.5 bg-[#163422] hover:bg-[#1B2E22] text-white px-3.5 py-2 rounded-xl text-xs font-bold shadow-md hover:shadow-lg active:scale-95 transition-all"
+                      className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-3.5 py-2 rounded-xl text-xs font-extrabold uppercase shadow-md hover:shadow-lg hover:shadow-amber-500/25 active:scale-95 transition-all border border-amber-300/40 select-none"
                     >
-                      <ShoppingBag size={14} />
+                      <ShoppingBag size={14} className="text-black" />
                       <span>{t("addToCart") || "Agregar"}</span>
                     </button>
                   </div>

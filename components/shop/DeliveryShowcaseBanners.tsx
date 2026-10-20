@@ -53,10 +53,10 @@ export function DeliveryShowcaseBanners() {
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <Link
                   href="/productos"
-                  className="inline-flex items-center gap-2 bg-white text-stone-900 hover:bg-[#163422] hover:text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-xl active:scale-95"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-6 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-amber-500/25 active:scale-95 border border-amber-300/40 select-none"
                 >
                   <span>Ver Catálogo Digital</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={14} className="text-black" />
                 </Link>
 
                 <Link
@@ -83,7 +83,7 @@ export function DeliveryShowcaseBanners() {
 
             {/* Badges Superiores */}
             <div className="relative z-10 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 bg-[#163422] text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md border border-[#D4AF37]/50">
+              <span className="inline-flex items-center gap-1.5 bg-stone-900/90 text-white px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md border border-[#D4AF37]/50">
                 <Truck size={13} className="text-[#D4AF37]" />
                 <span>Envíos Globales</span>
               </span>

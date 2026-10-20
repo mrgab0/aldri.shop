@@ -640,7 +640,7 @@ export default function CheckoutPage() {
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
-                    className="bg-gray-900 hover:bg-black dark:bg-[#D4AF37] dark:hover:bg-[#F2CA50] text-white dark:text-black px-4 py-2.5 rounded-xl text-xs font-extrabold uppercase transition-all shadow-sm"
+                    className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase transition-all shadow-md hover:shadow-lg hover:shadow-amber-500/25 active:scale-95 border border-amber-300/40 select-none"
                   >
                     Aplicar
                   </button>

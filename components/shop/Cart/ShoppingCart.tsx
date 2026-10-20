@@ -19,15 +19,15 @@ export const ShoppingCartComponent = () => {
 
   return (
     <>
-      {/* Botón activador - Magenta Style */}
+      {/* Botón activador - Stitch Luxury Gold Style */}
       <button 
         onClick={() => setIsOpen(true)}
         aria-label="Ver Carrito de Compras"
-        className="fixed bottom-28 sm:bottom-32 right-5 sm:right-6 z-40 p-3.5 sm:p-4 bg-[#FF97A4] hover:bg-[#ff7b8c] text-white rounded-full shadow-[0px_8px_25px_rgba(216,27,96,0.35)] border-2 border-white/90 dark:border-gray-800 hover:scale-105 transition-all duration-300 active:scale-95 group"
+        className="fixed bottom-28 sm:bottom-32 right-5 sm:right-6 z-40 p-3.5 sm:p-4 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black rounded-full shadow-[0px_8px_25px_rgba(212,175,55,0.4)] border-2 border-white/90 dark:border-stone-900 hover:scale-105 transition-all duration-300 active:scale-95 group"
       >
-        <ShoppingCart size={22} className="group-hover:scale-110 transition-transform" />
+        <ShoppingCart size={22} className="group-hover:scale-110 transition-transform text-black" />
         {cartItems.length > 0 && (
-          <span className="absolute -top-1 -right-1 bg-[#1A1C1C] text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">
+          <span className="absolute -top-1 -right-1 bg-black text-[#F2CA50] text-[10px] font-black h-5 w-5 flex items-center justify-center rounded-full border-2 border-[#D4AF37]">
             {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
           </span>
         )}
@@ -84,7 +84,7 @@ export const ShoppingCartComponent = () => {
                         </div>
                       )}
 
-                      <p className="text-[#FF97A4] font-extrabold mt-1.5">${item.price.toFixed(2)}</p>
+                      <p className="text-[#D4AF37] dark:text-[#F2CA50] font-extrabold mt-1.5">${item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-900 p-1.5 rounded-lg border border-gray-100 dark:border-gray-800">
                       <button 
@@ -114,9 +114,9 @@ export const ShoppingCartComponent = () => {
               <Link 
                 href="/checkout" 
                 onClick={() => setIsOpen(false)}
-                className={`w-full bg-[#FF97A4] text-white py-5 rounded-xl font-bold hover:bg-[#B0004A] transition-all duration-300 shadow-lg shadow-[#FF97A4]/20 flex justify-center items-center gap-2 group ${cartItems.length === 0 ? 'pointer-events-none bg-gray-200 text-gray-400' : ''}`}
+                className={`w-full bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black py-4.5 rounded-full font-extrabold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-amber-500/25 flex justify-center items-center gap-2 group border border-amber-300/40 select-none ${cartItems.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
               >
-                Tramitar Pedido
+                <span>Tramitar Pedido</span>
                 <span className="transform group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>

@@ -68,7 +68,7 @@ body {
 }
 
 html:not(.dark) .admin-panel-container {
-  background-color: #163422 !important;
+  background-color: #121215 !important;
   box-shadow: 8px 8px 24px rgba(0,0,0,0.15) !important;
 }
 html.dark .admin-panel-container {
@@ -117,8 +117,8 @@ html:not(.dark) .chatbot-chip-btn {
   border-color: rgba(0, 0, 0, 0.15) !important;
 }
 html:not(.dark) .chatbot-chip-btn:hover {
-  color: #ffffff !important;
-  background-color: #163422 !important;
+  color: #000000 !important;
+  background-color: #D4AF37 !important;
 }
 html:not(.dark) .chatbot-input {
   color: #000000 !important;
@@ -172,29 +172,29 @@ html:not(.dark) h6:not(.preserve-color) {
   color: #1A1A1A;
 }
 
-/* Reemplazo global de acentos vinotinto a Forest Green / Black */
+/* Reemplazo global de acentos a Stitch Gold / Luxury Dark */
 html:not(.dark) .text-\[\#8B0024\],
 html:not(.dark) .text-\[\#80273B\],
 html:not(.dark) .text-\[\#2a0002\],
 html:not(.dark) .text-\[\#2B0002\] {
-  color: #163422 !important;
+  color: #D4AF37 !important;
 }
 
 html:not(.dark) .border-\[\#8B0024\],
 html:not(.dark) .border-\[\#80273B\] {
-  border-color: #163422 !important;
+  border-color: #D4AF37 !important;
 }
 
 html:not(.dark) .bg-\[\#8B0024\],
 html:not(.dark) .bg-\[\#80273B\],
 html:not(.dark) .bg-\[\#2a0002\],
 html:not(.dark) .bg-\[\#2B0002\] {
-  background-color: #163422 !important;
+  background-color: #D4AF37 !important;
 }
 
 html:not(.dark) .hover\:bg-\[\#8B0024\]:hover,
 html:not(.dark) .hover\:bg-\[\#80273B\]:hover {
-  background-color: #1B2E22 !important;
+  background-color: #F2CA50 !important;
 }
 
 /* --- SECCIÓN NOSOTROS Y BLOG EDITORIAL: TIPOGRAFÍA EN MODO CLARO Y OSCURO --- */
@@ -231,7 +231,7 @@ html.dark .nosotros-page-root blockquote {
 .nosotros-page-root .text-\[\#8B0024\],
 .nosotros-page-root a.text-\[\#8B0024\],
 html:not(.dark) .nosotros-page-root .text-\[\#8B0024\] {
-  color: #163422 !important;
+  color: #D4AF37 !important;
 }
 
 /* --- GARANTÍA DE TIPOGRAFÍA BLANCA INMEDIATA EN MODO OSCURO --- */
@@ -332,7 +332,7 @@ html:not(.dark) footer .footer-text {
 }
 
 html:not(.dark) footer .text-\[\#163422\] {
-  color: #163422 !important;
+  color: #D4AF37 !important;
 }
 
 html.dark footer {

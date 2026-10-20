@@ -246,9 +246,9 @@ export function NosotrosClient({ initialPosts = [], locale = "es" }: NosotrosCli
             <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
               <Link
                 href="/productos"
-                className="bg-stone-900 hover:bg-black dark:bg-[#C5A059] dark:hover:bg-[#d8b56f] text-white dark:text-stone-950 px-7 py-3.5 rounded-full font-black text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
+                className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all active:scale-95 flex items-center gap-2 border border-amber-300/40 select-none"
               >
-                <ShoppingBag size={16} />
+                <ShoppingBag size={16} className="text-black" />
                 <span>Explorar Catálogo</span>
               </Link>
               <a

@@ -240,14 +240,14 @@ export default function CheckoutPage() {
                           }`}
                         >
                           <div className="flex items-center gap-3.5">
-                            <div className={`p-2.5 rounded-xl ${isSelected ? "bg-[#FF97A4] text-white" : "bg-gray-100 text-gray-500"}`}>
+                            <div className={`p-2.5 rounded-xl ${isSelected ? "bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black" : "bg-gray-100 text-gray-500"}`}>
                               <IconComponent size={20} />
                             </div>
                             <div>
                               <div className="flex items-center gap-2">
                                 <span className="font-bold text-sm text-[#1A1C1C]">{option.title}</span>
                                 {option.badge && (
-                                  <span className="bg-[#163422] text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-[#D4AF37]/50">
+                                  <span className="bg-stone-900/90 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm border border-[#D4AF37]/50">
                                     {option.badge}
                                   </span>
                                 )}
@@ -385,7 +385,7 @@ export default function CheckoutPage() {
                   <input 
                     name="paymentRef" 
                     placeholder={selectedPayment === 'efectivo' ? "No requerido para pago en efectivo" : "Número o Código de Referencia de Pago *"} 
-                    className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF97A4] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
+                    className="w-full p-3.5 border border-gray-300 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400" 
                     disabled={selectedPayment === 'efectivo'}
                     required={selectedPayment !== 'efectivo'}
                   />
@@ -394,7 +394,7 @@ export default function CheckoutPage() {
                 <button 
                   type="submit" 
                   disabled={loading || cartItems.length === 0} 
-                  className="w-full bg-[#FF97A4] text-white py-4 rounded-full font-bold hover:bg-[#B0004A] transition-all shadow-lg shadow-[#FF97A4]/20 disabled:bg-gray-300 text-base"
+                  className="w-full bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black py-4 rounded-full font-extrabold uppercase tracking-wider text-base hover:shadow-lg hover:shadow-amber-500/25 transition-all duration-300 hover:scale-[1.01] active:scale-95 disabled:opacity-50 border border-amber-300/40 select-none"
                 >
                   {loading ? "Procesando Orden..." : `Confirmar Pedido - $${finalTotal.toFixed(2)} USD`}
                 </button>
@@ -423,7 +423,7 @@ export default function CheckoutPage() {
 
               <div className="pt-4 border-t border-gray-100 space-y-3">
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5">
-                  <Ticket size={14} className="text-[#FF97A4]" /> ¿Tienes un Cupón de Descuento?
+                  <Ticket size={14} className="text-[#D4AF37]" /> ¿Tienes un Cupón de Descuento?
                 </label>
 
                 {couponSuccess && (
@@ -446,12 +446,12 @@ export default function CheckoutPage() {
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value)}
                     placeholder="Ej: INAUGURACION, BIENVENIDA"
-                    className="flex-1 p-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-xs uppercase font-bold focus:outline-none focus:ring-2 focus:ring-[#FF97A4] text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400"
+                    className="flex-1 p-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-xs uppercase font-bold focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
-                    className="bg-[#1A1C1C] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#FF97A4] transition-colors"
+                    className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase transition-all shadow-md hover:shadow-lg hover:shadow-amber-500/25 active:scale-95 border border-amber-300/40 select-none"
                   >
                     Aplicar
                   </button>

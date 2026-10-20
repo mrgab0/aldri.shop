@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { ProductCard } from "@/components/shop/ProductCard/ProductCard";
 import { ShopHeader } from "@/components/shop/ShopHeader";
 import { Footer } from "@/components/shop/Footer";
-import { Search, ArrowUpDown, Sparkles, Flower2, RefreshCw, Gift, Check, Tag } from "lucide-react";
+import { Search, ArrowUpDown, Sparkles, RefreshCw, Gift, Check, Tag } from "lucide-react";
 import { useCart } from "@/components/shop/Cart/CartContext";
 import { useTranslations } from "next-intl";
 import { WhatsAppButton } from "@/components/shop/WhatsAppButton";
@@ -113,13 +113,13 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
           </div>
 
           {/* TAB SWITCHER: Todos | Digitales | Dropshipping | Adicionales */}
-          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 bg-stone-200/60 dark:bg-[#161619] border border-[#EAE4DC] dark:border-white/10 rounded-full">
+          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 bg-stone-200/60 dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 rounded-full">
             <button
               onClick={() => { setActiveTab("all"); setSelectedCategory("all"); }}
               className={`flex-1 min-w-[90px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
                 activeTab === "all"
-                  ? "bg-black dark:bg-[#D4AF37] text-white dark:text-black shadow-md"
-                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black shadow-md border border-amber-300/40"
+                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-[#F2CA50]"
               }`}
             >
               Todos ({combinedItems.length})
@@ -159,7 +159,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
           </div>
 
           {/* PANEL DE BÚSQUEDA Y FILTROS */}
-          <div className="bg-white dark:bg-[#161619] p-5 md:p-6 rounded-3xl border border-[#EAE4DC] dark:border-white/10 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-[#121215] p-5 md:p-6 rounded-3xl border border-[#EAE4DC] dark:border-white/10 shadow-sm space-y-5">
             <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
               
               {/* Campo de Búsqueda Sencillo */}
@@ -278,7 +278,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                   return (
                     <div
                       key={item._id}
-                      className="bg-white dark:bg-[#161619] rounded-3xl p-5 border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#D4AF37]/50 transition-all flex flex-col justify-between group relative overflow-hidden"
+                      className="bg-white dark:bg-[#121215] rounded-3xl p-5 border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#D4AF37]/50 transition-all flex flex-col justify-between group relative overflow-hidden"
                     >
                       <div className="space-y-3">
                         <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#FAF8F5] dark:bg-[#101013]">
@@ -339,7 +339,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                 })}
               </div>
             ) : (
-              <div className="bg-white dark:bg-[#161619] p-12 rounded-3xl border border-[#EAE4DC] dark:border-white/10 text-center space-y-4 max-w-lg mx-auto shadow-sm">
+              <div className="bg-white dark:bg-[#121215] p-12 rounded-3xl border border-[#EAE4DC] dark:border-white/10 text-center space-y-4 max-w-lg mx-auto shadow-sm">
                 <Sparkles size={44} className="mx-auto text-[#D4AF37]" />
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t('noResultsTitle')}</h3>
                 <p className="text-xs text-gray-500 dark:text-zinc-400">
