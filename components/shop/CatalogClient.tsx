@@ -93,53 +93,53 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#0A0A0C] text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300">
+    <div className="min-h-screen gold-ambient-mesh text-white flex flex-col transition-colors duration-300">
       <ShopHeader />
 
       <main className="flex-1 py-10 md:py-16">
         <div className="container mx-auto px-4 md:px-6 max-w-7xl space-y-8">
           
           {/* Cabecera Principal del Catálogo */}
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-[#D4AF37] dark:text-[#F2CA50] text-xs font-black uppercase tracking-[0.25em] bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20 inline-block shadow-sm">
+          <div className="text-center max-w-3xl mx-auto space-y-3.5">
+            <span className="text-[#F2CA50] text-xs font-black uppercase tracking-[0.25em] glass-pill px-4 py-1.5 rounded-full border border-amber-400/30 inline-block shadow-[0_0_20px_rgba(212,175,55,0.15)]">
               {t('headerBadge')}
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif font-black text-gray-900 dark:text-white tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-serif font-black text-white tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
               {t('headerTitle')}
             </h1>
-            <p className="text-gray-600 dark:text-zinc-400 text-sm md:text-base font-medium leading-relaxed">
+            <p className="text-zinc-300 text-sm md:text-base font-normal leading-relaxed">
               {t('headerDesc')}
             </p>
           </div>
 
-          {/* TAB SWITCHER: Todos | Digitales | Dropshipping | Adicionales */}
-          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 bg-stone-200/60 dark:bg-[#121215] border border-[#EAE4DC] dark:border-white/10 rounded-full">
+          {/* TAB SWITCHER: Todos | Digitales | Dropshipping | Adicionales en Cristal */}
+          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 glass-panel-luxury rounded-full border border-white/10">
             <button
               onClick={() => { setActiveTab("all"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[90px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+              className={`flex-1 min-w-[90px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "all"
-                  ? "bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black shadow-md border border-amber-300/40"
-                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-[#F2CA50]"
+                  ? "glass-btn-gold text-black shadow-lg"
+                  : "text-zinc-400 hover:text-[#F2CA50]"
               }`}
             >
               Todos ({combinedItems.length})
             </button>
             <button
               onClick={() => { setActiveTab("digital"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[110px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+              className={`flex-1 min-w-[110px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "digital"
-                  ? "bg-[#4F46E5] text-white shadow-md"
-                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-indigo-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)] border border-indigo-400/40"
+                  : "text-zinc-400 hover:text-white"
               }`}
             >
               ⚡ Digitales ({combinedItems.filter(i => i.productType === 'digital').length})
             </button>
             <button
               onClick={() => { setActiveTab("dropship"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+              className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "dropship"
-                  ? "bg-emerald-600 text-white shadow-md"
-                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] border border-emerald-400/40"
+                  : "text-zinc-400 hover:text-white"
               }`}
             >
               📦 Físicos ({combinedItems.filter(i => i.productType === 'dropship').length})
@@ -147,10 +147,10 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
             {initialAddons.length > 0 && (
               <button
                 onClick={() => { setActiveTab("addons"); setSelectedCategory("all"); }}
-                className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-full text-xs font-extrabold transition-all text-center ${
+                className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                   activeTab === "addons"
-                    ? "bg-amber-600 text-white shadow-md"
-                    : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                    ? "glass-btn-gold text-black shadow-lg"
+                    : "text-zinc-400 hover:text-white"
                 }`}
               >
                 Extras ({initialAddons.length})
@@ -158,8 +158,8 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
             )}
           </div>
 
-          {/* PANEL DE BÚSQUEDA Y FILTROS */}
-          <div className="bg-white dark:bg-[#121215] p-5 md:p-6 rounded-3xl border border-[#EAE4DC] dark:border-white/10 shadow-sm space-y-5">
+          {/* PANEL DE BÚSQUEDA Y FILTROS EN MATERIAL GLASS */}
+          <div className="glass-panel-luxury p-5 md:p-6 rounded-3xl border border-white/10 shadow-2xl space-y-5">
             <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
               
               {/* Campo de Búsqueda Sencillo */}
@@ -278,49 +278,49 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                   return (
                     <div
                       key={item._id}
-                      className="bg-white dark:bg-[#121215] rounded-3xl p-5 border border-[#EAE4DC] dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#D4AF37]/50 transition-all flex flex-col justify-between group relative overflow-hidden"
+                      className="glass-card-radical rounded-3xl p-5 flex flex-col justify-between group relative overflow-hidden"
                     >
                       <div className="space-y-3">
-                        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#FAF8F5] dark:bg-[#101013]">
+                        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#121218]/70 to-[#07070A]/90 p-2 flex items-center justify-center border border-white/10">
                           <img
                             src={item.images[0]}
                             alt={item.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                           />
-                          <span className="absolute top-3 left-3 bg-black/90 text-[#F2CA50] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md border border-[#D4AF37]/50 backdrop-blur-sm">
-                            <Sparkles size={11} className="text-[#F2CA50]" /> {t('addonBadge')}
+                          <span className="absolute top-3 left-3 glass-btn-gold text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md">
+                            <Sparkles size={10} className="text-black" /> {t('addonBadge')}
                           </span>
                         </div>
 
                         <div>
-                          <span className="text-[11px] font-bold text-[#D4AF37] dark:text-[#F2CA50] uppercase tracking-wider block">
+                          <span className="text-[10px] font-black text-[#F2CA50] uppercase tracking-widest block mb-1">
                             {item.category || t('addonBadge')}
                           </span>
-                          <h3 className="font-bold text-lg text-gray-900 dark:text-white line-clamp-1 group-hover:text-[#D4AF37] transition-colors">
+                          <h3 className="font-bold text-base text-white line-clamp-1 group-hover:text-[#F2CA50] transition-colors">
                             {item.name}
                           </h3>
                           {item.description && (
-                            <p className="text-xs text-gray-500 dark:text-zinc-400 line-clamp-2 mt-1 font-medium">
+                            <p className="text-xs text-zinc-400 line-clamp-2 mt-1 font-normal">
                               {item.description}
                             </p>
                           )}
                         </div>
                       </div>
 
-                      <div className="pt-4 mt-3 border-t border-[#EAE4DC] dark:border-white/10 flex items-center justify-between">
+                      <div className="pt-4 mt-3 border-t border-white/10 flex items-center justify-between">
                         <div>
-                          <span className="text-[10px] text-gray-500 dark:text-zinc-400 font-bold block uppercase">Precio</span>
-                          <span className="text-xl font-black text-gray-900 dark:text-white font-sans">
-                            ${item.price.toFixed(2)} <span className="text-xs font-bold text-gray-500 dark:text-zinc-400">USD</span>
+                          <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wider">Precio</span>
+                          <span className="text-xl font-black text-[#F2CA50] font-sans drop-shadow-[0_0_10px_rgba(242,202,80,0.3)]">
+                            ${item.price.toFixed(2)} <span className="text-xs font-bold text-zinc-300">USD</span>
                           </span>
                         </div>
 
                         <button
                           onClick={() => handleAddAddonToCart(item)}
-                          className={`px-4 py-2.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 shadow-sm active:scale-95 ${
+                          className={`px-4 py-2.5 rounded-xl font-black text-xs transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer ${
                             isAdded
-                              ? "bg-green-600 text-white"
-                              : "bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-extrabold hover:shadow-amber-500/25"
+                              ? "bg-emerald-600 text-white"
+                              : "glass-btn-gold text-black"
                           }`}
                         >
                           {isAdded ? (
@@ -339,10 +339,10 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                 })}
               </div>
             ) : (
-              <div className="bg-white dark:bg-[#121215] p-12 rounded-3xl border border-[#EAE4DC] dark:border-white/10 text-center space-y-4 max-w-lg mx-auto shadow-sm">
-                <Sparkles size={44} className="mx-auto text-[#D4AF37]" />
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t('noResultsTitle')}</h3>
-                <p className="text-xs text-gray-500 dark:text-zinc-400">
+              <div className="glass-panel-luxury p-12 rounded-3xl border border-white/10 text-center space-y-4 max-w-lg mx-auto shadow-2xl">
+                <Sparkles size={44} className="mx-auto text-[#F2CA50] animate-pulse" />
+                <h3 className="text-xl font-bold text-white">{t('noResultsTitle')}</h3>
+                <p className="text-xs text-zinc-300">
                   {t('noResultsDesc')}
                 </p>
                 <button
@@ -351,7 +351,7 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                     setSelectedCategory("all");
                     setActiveTab("all");
                   }}
-                  className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-6 py-2.5 rounded-full font-extrabold text-xs shadow-md hover:scale-105 active:scale-95 transition-transform"
+                  className="glass-btn-gold text-black px-7 py-3 rounded-full font-black text-xs tracking-wider uppercase shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer"
                 >
                   {t('viewAllBtn')}
                 </button>
