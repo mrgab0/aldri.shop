@@ -13,6 +13,7 @@ const CookieConsent = dynamic(() => import("@/components/CookieConsent").then((m
 const PedidoFlotante = dynamic(() => import("@/components/shop/PedidoFlotante").then((m) => m.PedidoFlotante));
 const ShoppingCartComponent = dynamic(() => import("@/components/shop/Cart/ShoppingCart").then((m) => m.ShoppingCartComponent));
 const ChatbotModal = dynamic(() => import("@/components/shop/Chatbot/ChatbotModal").then((m) => m.ChatbotModal));
+const RecentSalesTicker = dynamic(() => import("@/components/shop/RecentSalesTicker").then((m) => m.RecentSalesTicker));
 
 import { Playfair_Display, Montserrat, Plus_Jakarta_Sans, Manrope, Great_Vibes } from "next/font/google";
 
@@ -103,6 +104,7 @@ export default function RootLayout({
               <CookieConsent />
               <AnalyticsTracker />
               <InstallPrompt />
+              <RecentSalesTicker />
             </CartProvider>
           </NextIntlClientProvider>
         </ThemeProvider>

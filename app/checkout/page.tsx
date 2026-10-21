@@ -42,6 +42,8 @@ export default function CheckoutPage() {
   const [deliveryOptionsList, setDeliveryOptionsList] = useState<DeliveryOption[]>(DEFAULT_DELIVERY_OPTIONS);
   const [selectedDelivery, setSelectedDelivery] = useState<DeliveryOption | null>(null);
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
+  const [includeOrderBump, setIncludeOrderBump] = useState(false);
+  const bumpPrice = 9.99;
 
   // Estado de Ubicación y Distancia por Millas
   const [deliveryLocation, setDeliveryLocation] = useState<{
@@ -134,7 +136,8 @@ export default function CheckoutPage() {
     setTimeout(() => setCopiedText(""), 3000);
   };
 
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const baseSubtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const subtotal = baseSubtotal + (includeOrderBump ? bumpPrice : 0);
 
   // Cálculo del Descuento del Cupón
   let discountAmount = 0;
@@ -242,7 +245,19 @@ export default function CheckoutPage() {
       cardMessage: data.get("cardMessage")?.toString() || cardMessage || "",
       paymentMethod: data.get("paymentMethod")?.toString() || "",
       paymentRef: data.get("paymentRef")?.toString() || "N/A",
-      items: cartItems,
+      items: includeOrderBump
+        ? [
+            ...cartItems,
+            {
+              id: "bump-creator-os",
+              name: "Aldri Creator OS Suite (Plantilla Notion)",
+              price: bumpPrice,
+              quantity: 1,
+              productType: "digital" as const,
+              downloadUrl: "https://aldri.notion.site/Creator-OS-Suite-Template-Preview"
+            }
+          ]
+        : cartItems,
       total: finalTotal
     };
 
@@ -555,6 +570,45 @@ export default function CheckoutPage() {
                   />
                 </div>
 
+                {/* 4. Order Bump Exclusivo de 1-Clic */}
+                <div
+                  onClick={() => setIncludeOrderBump(!includeOrderBump)}
+                  className={`p-4 sm:p-5 rounded-2xl border-2 border-dashed transition-all cursor-pointer select-none space-y-3 ${
+                    includeOrderBump
+                      ? "bg-amber-500/15 dark:bg-amber-500/10 border-[#D4AF37] ring-2 ring-[#D4AF37]/30 shadow-md"
+                      : "bg-[#FAF8F5] dark:bg-[#121215] border-[#EAE4DC] dark:border-white/10 hover:border-[#D4AF37]/60"
+                  }`}
+                >
+                  <div className="flex items-start gap-3.5">
+                    <input
+                      type="checkbox"
+                      checked={includeOrderBump}
+                      onChange={(e) => setIncludeOrderBump(e.target.checked)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-5 h-5 mt-0.5 rounded text-[#D4AF37] focus:ring-[#D4AF37] cursor-pointer accent-[#D4AF37]"
+                    />
+                    <div className="flex-1 space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-2.5 py-0.5 rounded-full shadow-sm">
+                          ⚡ OFERTA EXCLUSIVA DE 1 CLIC (75% OFF)
+                        </span>
+                        <span className="text-xs font-bold text-gray-400 line-through">
+                          $39.00 USD
+                        </span>
+                        <span className="text-xs font-extrabold text-[#B8902A] dark:text-[#F2CA50]">
+                          +$9.99 USD
+                        </span>
+                      </div>
+                      <h3 className="text-sm font-black text-gray-900 dark:text-white leading-snug">
+                        ¡Sí! Añadir Aldri Creator OS Suite (Plantilla Notion)
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                        El sistema operativo definitivo para creadores y nómadas digitales: gestión de proyectos, pipeline editorial multicanal y finanzas. Duplicación inmediata y acceso de por vida.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <button 
                   type="submit" 
                   disabled={loading || cartItems.length === 0} 
@@ -657,6 +711,15 @@ export default function CheckoutPage() {
                   <span>Subtotal Productos &amp; Adicionales</span>
                   <span className="font-bold text-gray-900 dark:text-white">${subtotal.toFixed(2)}</span>
                 </div>
+
+                {includeOrderBump && (
+                  <div className="flex justify-between text-[#B8902A] dark:text-[#F2CA50] font-bold text-xs bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20">
+                    <span className="flex items-center gap-1">
+                      ⚡ Order Bump: Creator OS Suite (75% OFF)
+                    </span>
+                    <span>+$9.99 USD</span>
+                  </div>
+                )}
 
                 {appliedCoupon && (
                   <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-bold">
