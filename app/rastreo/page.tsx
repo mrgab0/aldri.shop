@@ -185,32 +185,46 @@ export default function RastreoPedidoPage() {
 
                 {/* Descargas Digitales si aplican */}
                 {(isDigital || order.items?.some((i: any) => i.productType === 'digital')) && (
-                  <div className="p-5 bg-indigo-50/80 dark:bg-indigo-950/40 rounded-2xl border border-indigo-200 dark:border-indigo-800 space-y-3">
+                  <div className="p-5 bg-amber-50/80 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-800/40 space-y-3">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-black uppercase tracking-wider text-indigo-700 dark:text-indigo-300 flex items-center gap-1.5">
-                        <Sparkles size={16} /> Descargas Digitales Autorizadas
+                      <h4 className="text-xs font-black uppercase tracking-wider text-amber-900 dark:text-[#F2CA50] flex items-center gap-1.5">
+                        <Sparkles size={16} className="text-[#D4AF37]" /> Descargas Digitales & Licencias
                       </h4>
-                      <span className="text-[10px] font-bold bg-indigo-600 text-white px-2.5 py-0.5 rounded-full">
-                        Acceso Instantáneo
+                      <span className="text-[10px] font-extrabold bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-2.5 py-0.5 rounded-full shadow-sm">
+                        Acceso Autorizado
                       </span>
                     </div>
                     <div className="space-y-2">
-                      {order.items.map((it: any, i: number) => (
-                        <div key={i} className="flex justify-between items-center bg-white dark:bg-gray-900 p-3.5 rounded-xl border border-indigo-100 dark:border-indigo-900/50">
-                          <div>
-                            <span className="font-bold text-sm text-gray-900 dark:text-white block">{it.name}</span>
-                            <span className="text-xs text-gray-400">Licencia activa • Acceso 24/7</span>
+                      {order.items.map((it: any, i: number) => {
+                        const hasDownload = it.downloadUrl && it.downloadUrl.trim() !== "" && it.downloadUrl !== "#";
+                        return (
+                          <div key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white dark:bg-gray-900 p-4 rounded-xl border border-amber-100 dark:border-amber-900/30 shadow-sm">
+                            <div>
+                              <span className="font-bold text-sm text-gray-900 dark:text-white block">{it.name}</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                                {hasDownload 
+                                  ? "Licencia activa • Acceso y actualizaciones de por vida" 
+                                  : "Configurando licencia personalizada • Enviado directo a tu email"}
+                              </span>
+                            </div>
+                            {hasDownload ? (
+                              <a
+                                href={it.downloadUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-extrabold px-5 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5 hover:scale-105"
+                              >
+                                <span>Descargar Activo 📥</span>
+                              </a>
+                            ) : (
+                              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-900/40 px-3.5 py-2 rounded-xl border border-amber-300 dark:border-amber-700">
+                                <Clock size={14} className="text-amber-600 dark:text-amber-400 animate-pulse" />
+                                <span>Asignando Licencia (Enviado a tu email)</span>
+                              </div>
+                            )}
                           </div>
-                          <a
-                            href={it.downloadUrl || "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
-                          >
-                            <span>Descargar 📥</span>
-                          </a>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}

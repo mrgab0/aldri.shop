@@ -211,9 +211,10 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
             </div>
 
             <div style="margin-bottom: 20px; text-align: center;">
-              <a href="${siteUrl}/rastreo?order=${savedOrder.orderId}" style="display: inline-block; background-color: #6366F1; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-                Ver Estado y Descargas de mi Pedido 📥
+              <a href="${siteUrl}/rastreo?order=${savedOrder.orderId}" style="display: inline-block; background: linear-gradient(135deg, #F2CA50, #D4AF37, #C5A059); color: #000000; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 14px; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);">
+                Consultar Estado & Descargas de mi Pedido 📥
               </a>
+              <p style="margin: 10px 0 0 0; font-size: 12px; color: #64748B;">💡 <em>Tus claves de licencia y enlaces de descarga están vinculados permanentemente a tu orden.</em></p>
             </div>
 
               ${savedOrder.googleMapsUrl ? `

@@ -331,14 +331,18 @@ export default function CheckoutPage() {
                       required 
                     />
                     {isOnlyDigital ? (
-                      <div className="bg-[#4F46E5]/10 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-500/20 space-y-2 mt-2">
-                        <div className="flex items-center gap-2 text-[#4F46E5] dark:text-indigo-300 font-bold text-sm">
-                          <Sparkles size={16} />
-                          <span>⚡ Orden Digital • Entrega Instantánea 24/7</span>
+                      <div className="bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10 p-5 rounded-2xl border border-[#D4AF37]/30 space-y-2 mt-2">
+                        <div className="flex items-center gap-2 text-amber-900 dark:text-[#F2CA50] font-black text-sm">
+                          <Sparkles size={16} className="text-[#D4AF37]" />
+                          <span>⚡ Entrega Digital Directa • Sin Costos de Envío</span>
                         </div>
-                        <p className="text-xs text-indigo-900/80 dark:text-indigo-200/80 leading-relaxed font-medium">
-                          Tus productos se activarán inmediatamente después del pago. Recibirás los accesos y enlaces de descarga directamente en tu correo electrónico y en la pantalla de confirmación. No se requiere dirección física ni costos de envío.
+                        <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+                          Tu pedido se procesará automáticamente tras el pago. Recibirás tus claves de licencia personalizadas y enlaces de descarga directamente en tu correo electrónico y en la pantalla de confirmación. No se requiere dirección física ni esperas postales.
                         </p>
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#D4AF37] pt-0.5">
+                          <Clock size={13} />
+                          <span>Activación de licencia y acceso exclusivo garantizado a tu email</span>
+                        </div>
                       </div>
                     ) : (
                       <DeliveryMapPicker
