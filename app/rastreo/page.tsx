@@ -215,8 +215,70 @@ export default function RastreoPedidoPage() {
                   </div>
                 )}
 
-                {/* Guía de Seguimiento de Envío Físico */}
-                {order.trackingNumber && (
+                {/* Guías de Seguimiento Multi-Proveedor o Guía Única */}
+                {order.shipments && order.shipments.length > 0 ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-black uppercase text-emerald-700 dark:text-emerald-300 tracking-wider block">
+                        🚚 Paquetes y Guías de Envío ({order.shipments.length} {order.shipments.length === 1 ? 'Paquete' : 'Paquetes Separados'}):
+                      </span>
+                      <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 px-2.5 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-700">
+                        Despacho Multi-Almacén
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3">
+                      {order.shipments.map((pkg: any, idx: number) => {
+                        const providerLabel = pkg.provider === 'zendrop' 
+                          ? 'Zendrop (Almacén EE.UU. Exprés 2-5 días)' 
+                          : pkg.provider === 'cjdropshipping' 
+                          ? 'CJ Dropshipping (Almacén Global 7-12 días)' 
+                          : 'Paquetería Exprés';
+                        const effectiveUrl = pkg.trackingUrl || (pkg.trackingNumber ? `https://www.17track.net/es/track?nums=${encodeURIComponent(pkg.trackingNumber)}` : null);
+
+                        return (
+                          <div key={idx} className="p-4 bg-emerald-50/70 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 space-y-2">
+                            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200/50 dark:border-emerald-800/50 pb-2">
+                              <span className="text-xs font-black text-emerald-900 dark:text-emerald-200">
+                                Paquete #{idx + 1}: {providerLabel}
+                              </span>
+                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-white dark:bg-gray-900 text-emerald-700 border border-emerald-200">
+                                {pkg.status || 'En Proceso'}
+                              </span>
+                            </div>
+
+                            <p className="text-xs font-bold text-gray-900 dark:text-white">
+                              Transportadora: <span className="text-emerald-600">{pkg.trackingCarrier || 'Asignando transportadora'}</span>
+                            </p>
+
+                            {pkg.trackingNumber ? (
+                              <p className="text-xs font-bold text-gray-900 dark:text-white">
+                                Número de Guía: <span className="font-mono bg-white dark:bg-gray-900 px-2 py-0.5 rounded border border-emerald-200">{pkg.trackingNumber}</span>
+                              </p>
+                            ) : (
+                              <p className="text-xs text-gray-500 italic">
+                                Guía en proceso de generación por el almacén.
+                              </p>
+                            )}
+
+                            {effectiveUrl && (
+                              <div className="pt-1">
+                                <a
+                                  href={effectiveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-200 bg-emerald-100/90 dark:bg-emerald-900/60 px-3.5 py-1.5 rounded-xl border border-emerald-300 dark:border-emerald-700 shadow-sm transition-all hover:scale-105"
+                                >
+                                  <span>Rastrear Paquete en 17Track 🌐 →</span>
+                                </a>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : order.trackingNumber ? (
                   <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 space-y-1.5">
                     <span className="text-[10px] font-black uppercase text-emerald-700 dark:text-emerald-300 tracking-wider block">
                       🚚 Información de Envío (Producto Físico):
@@ -243,7 +305,7 @@ export default function RastreoPedidoPage() {
                       );
                     })()}
                   </div>
-                )}
+                ) : null}
 
                 {/* Detalles de Entrega */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">

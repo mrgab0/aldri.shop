@@ -82,6 +82,49 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
       createdAt: new Date(),
     });
     await savedOrder.save();
+
+    // Despacho multi-proveedor automático si contiene productos físicos
+    if (hasDropship) {
+      try {
+        const { dispatchMultiVendorOrder } = await import("@/lib/fulfillment/dispatcher");
+        const dispatchSummary = await dispatchMultiVendorOrder({
+          orderId: savedOrder.orderId,
+          items: (savedOrder.items || []).map((it: any) => ({
+            id: it.id || it._id?.toString() || 'item',
+            name: it.name,
+            price: it.price,
+            quantity: it.quantity,
+            productType: it.productType,
+            fulfillmentProvider: it.fulfillmentProvider || 'cjdropshipping',
+            supplierSku: it.supplierSku
+          })),
+          shippingAddress: {
+            recipientName: savedOrder.customerName,
+            phone: savedOrder.customerPhone,
+            email: savedOrder.customerEmail,
+            streetAddress: savedOrder.address,
+          },
+          note: savedOrder.cardMessage || 'Aldri Shop Order'
+        });
+
+        if (dispatchSummary.packages.length > 0) {
+          savedOrder.shipments = dispatchSummary.packages.map(p => ({
+            packageId: p.packageId,
+            provider: p.provider,
+            items: [],
+            trackingNumber: p.trackingNumber || '',
+            trackingCarrier: p.trackingCarrier || '',
+            trackingUrl: p.trackingUrl || '',
+            dispatchId: p.dispatchId || '',
+            status: p.status === 'failed' ? 'pending' : (p.status as any),
+            createdAt: new Date()
+          }));
+          await savedOrder.save();
+        }
+      } catch (dispErr) {
+        console.error("Error en despacho multi-proveedor automático:", dispErr);
+      }
+    }
   }
 
   // Incrementar contador de uso de cupón si aplica

@@ -29,10 +29,12 @@ export async function createProduct(formData: FormData) {
     const digitalLicenseKey = formData.get("digitalLicenseKey") as string || "";
 
     // Campos dropshipping
+    const dropshipProvider = (formData.get("dropshipProvider") as string) || "cjdropshipping";
+    const warehouseLocation = (formData.get("warehouseLocation") as string) || "GLOBAL";
     const supplierSku = formData.get("supplierSku") as string || "";
     const supplierUrl = formData.get("supplierUrl") as string || "";
-    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || "7-12 días hábiles";
-    const shippingOrigin = formData.get("shippingOrigin") as string || "Almacén Internacional";
+    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || (dropshipProvider === 'zendrop' ? "2-5 días hábiles" : "7-12 días hábiles");
+    const shippingOrigin = formData.get("shippingOrigin") as string || (dropshipProvider === 'zendrop' ? "Almacén EE.UU. (Exprés)" : "Almacén Internacional");
 
     const flowerCount = parseInt(formData.get("flowerCount") as string) || 0;
     const bouquetType = formData.get("bouquetType") as string || "";
@@ -72,10 +74,12 @@ export async function createProduct(formData: FormData) {
         licenseKey: digitalLicenseKey
       },
       dropshipInfo: {
+        provider: dropshipProvider as any,
         supplierSku,
         supplierUrl,
         estimatedDeliveryDays,
         shippingOrigin,
+        warehouseLocation: warehouseLocation as any,
         weightKg: 0
       },
       flowerCount,
@@ -286,10 +290,12 @@ export async function updateProduct(id: string, formData: FormData) {
     const digitalLicenseKey = formData.get("digitalLicenseKey") as string || "";
 
     // Campos dropshipping
+    const dropshipProvider = (formData.get("dropshipProvider") as string) || "cjdropshipping";
+    const warehouseLocation = (formData.get("warehouseLocation") as string) || "GLOBAL";
     const supplierSku = formData.get("supplierSku") as string || "";
     const supplierUrl = formData.get("supplierUrl") as string || "";
-    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || "7-12 días hábiles";
-    const shippingOrigin = formData.get("shippingOrigin") as string || "Almacén Internacional";
+    const estimatedDeliveryDays = formData.get("estimatedDeliveryDays") as string || (dropshipProvider === 'zendrop' ? "2-5 días hábiles" : "7-12 días hábiles");
+    const shippingOrigin = formData.get("shippingOrigin") as string || (dropshipProvider === 'zendrop' ? "Almacén EE.UU. (Exprés)" : "Almacén Internacional");
 
     const flowerCount = parseInt(formData.get("flowerCount") as string) || 0;
     const bouquetType = formData.get("bouquetType") as string || "";
@@ -331,10 +337,12 @@ export async function updateProduct(id: string, formData: FormData) {
           licenseKey: digitalLicenseKey
         },
         dropshipInfo: {
+          provider: dropshipProvider as any,
           supplierSku,
           supplierUrl,
           estimatedDeliveryDays,
           shippingOrigin,
+          warehouseLocation: warehouseLocation as any,
           weightKg: 0
         },
         flowerCount,

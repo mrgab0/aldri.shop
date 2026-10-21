@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export type ProductType = 'digital' | 'dropship';
+export type DropshipProvider = 'cjdropshipping' | 'zendrop' | 'spocket' | 'manual';
 
 // Interface para el Producto
 export interface IProduct extends Document {
@@ -22,12 +23,14 @@ export interface IProduct extends Document {
     downloadLimit?: number;
     licenseKey?: string;
   };
-  // Campos específicos de Dropshipping
+  // Campos específicos de Dropshipping Multi-Proveedor
   dropshipInfo?: {
+    provider?: DropshipProvider;
     supplierSku?: string;
     supplierUrl?: string;
     estimatedDeliveryDays?: string;
     shippingOrigin?: string;
+    warehouseLocation?: 'US' | 'EU' | 'CN' | 'GLOBAL';
     weightKg?: number;
   };
   flowerType?: string;
@@ -65,10 +68,12 @@ const ProductSchema: Schema = new Schema({
     licenseKey: { type: String, default: "" }
   },
   dropshipInfo: {
+    provider: { type: String, enum: ['cjdropshipping', 'zendrop', 'spocket', 'manual'], default: 'cjdropshipping' },
     supplierSku: { type: String, default: "" },
     supplierUrl: { type: String, default: "" },
     estimatedDeliveryDays: { type: String, default: "7-12 días hábiles" },
     shippingOrigin: { type: String, default: "Almacén Internacional" },
+    warehouseLocation: { type: String, enum: ['US', 'EU', 'CN', 'GLOBAL'], default: 'GLOBAL' },
     weightKg: { type: Number, default: 0 }
   },
   flowerType: { type: String, default: "" },

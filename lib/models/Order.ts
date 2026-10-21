@@ -2,6 +2,23 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export type OrderType = 'digital' | 'dropship' | 'hybrid';
 
+export interface IShipmentPackage {
+  packageId: string;
+  provider: 'cjdropshipping' | 'zendrop' | 'spocket' | 'manual';
+  items: Array<{
+    id: string;
+    name: string;
+    quantity: number;
+    supplierSku?: string;
+  }>;
+  trackingNumber?: string;
+  trackingCarrier?: string;
+  trackingUrl?: string;
+  dispatchId?: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered';
+  createdAt?: Date;
+}
+
 export interface IOrder extends Document {
   orderId: string;
   customerName: string;
@@ -25,12 +42,15 @@ export interface IOrder extends Document {
     price: number;
     quantity: number;
     productType?: 'digital' | 'dropship';
+    fulfillmentProvider?: 'cjdropshipping' | 'zendrop' | 'spocket' | 'manual';
+    supplierSku?: string;
     downloadUrl?: string;
     addons?: any[];
   }>;
   trackingNumber?: string;
   trackingCarrier?: string;
   trackingUrl?: string;
+  shipments?: IShipmentPackage[];
   digitalDownloads?: Array<{
     productId: string;
     name: string;
@@ -67,12 +87,30 @@ const OrderSchema: Schema = new Schema({
     price: Number,
     quantity: Number,
     productType: { type: String, default: 'digital' },
+    fulfillmentProvider: { type: String, enum: ['cjdropshipping', 'zendrop', 'spocket', 'manual'], default: 'cjdropshipping' },
+    supplierSku: { type: String, default: '' },
     downloadUrl: { type: String, default: '' },
     addons: Schema.Types.Mixed
   }],
   trackingNumber: { type: String, default: "" },
   trackingCarrier: { type: String, default: "" },
   trackingUrl: { type: String, default: "" },
+  shipments: [{
+    packageId: { type: String, default: "" },
+    provider: { type: String, enum: ['cjdropshipping', 'zendrop', 'spocket', 'manual'], default: 'cjdropshipping' },
+    items: [{
+      id: String,
+      name: String,
+      quantity: Number,
+      supplierSku: String
+    }],
+    trackingNumber: { type: String, default: "" },
+    trackingCarrier: { type: String, default: "" },
+    trackingUrl: { type: String, default: "" },
+    dispatchId: { type: String, default: "" },
+    status: { type: String, default: "pending" },
+    createdAt: { type: Date, default: Date.now }
+  }],
   digitalDownloads: [{
     productId: String,
     name: String,
