@@ -49,7 +49,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#0A0A0C] text-gray-900 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
+    <main className="min-h-screen gold-ambient-mesh text-white transition-colors duration-300 relative overflow-x-hidden">
       {/* Barra de anuncio superior (SAME DAY DELIVERY) */}
       <TrustAnnouncementBar phone="(346) 739-2730" />
 
@@ -73,12 +73,18 @@ export default async function Home() {
       {/* Vitrina "TENDENCIAS & DESTACADOS" en cuadrícula de 5 columnas */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 z-20 relative select-none" data-purpose="product-collection">
         
-        {/* Título de Sección con interletreado dorado */}
-        <div className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-serif text-[#C5A059] tracking-[0.35em] uppercase font-semibold">
+        {/* Título de Sección con interletreado dorado y cápsula de cristal */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill mb-3 border border-amber-400/30 shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F2CA50] animate-pulse" />
+            <span className="text-[#F2CA50] text-xs font-black uppercase tracking-[0.25em]">
+              Catálogo Seleccionado 2026
+            </span>
+          </div>
+          <h2 className="text-2xl md:text-4xl font-serif text-white tracking-[0.25em] uppercase font-bold drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
             T E N D E N C I A S &nbsp; &amp; &nbsp; D E S T A C A D O S
           </h2>
-          <p className="text-xs uppercase tracking-widest text-stone-500 dark:text-gray-400 mt-2 font-medium">
+          <p className="text-xs uppercase tracking-widest text-zinc-400 mt-2.5 font-bold">
             Digital Goods &bull; Instant Downloads &bull; Trending Hardware Selection
           </p>
         </div>
@@ -102,7 +108,7 @@ export default async function Home() {
               />
             ))
           ) : (
-            <p className="col-span-full text-center text-gray-500 py-12 font-medium">
+            <p className="col-span-full text-center text-zinc-400 py-12 font-medium">
               No hay productos disponibles por el momento.
             </p>
           )}
@@ -112,7 +118,7 @@ export default async function Home() {
         <div className="mt-14 text-center">
           <Link
             href="/productos"
-            className="inline-block bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black text-xs font-extrabold tracking-widest uppercase px-10 py-4 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl hover:shadow-amber-500/25 hover:scale-105 active:scale-95 border border-amber-300/40 select-none"
+            className="inline-block glass-btn-gold text-xs font-black tracking-widest uppercase px-12 py-4 rounded-full cursor-pointer select-none"
           >
             Ver Todo el Catálogo
           </Link>
