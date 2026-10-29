@@ -128,10 +128,12 @@ const DEMO_PRODUCTS = [
       "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80"
     ],
     dropshipInfo: {
-      supplierSku: "CJ-MAG-FOLD-3IN1",
-      supplierUrl: "https://cjdropshipping.com/product/magnetic-wireless-charger",
-      estimatedDeliveryDays: "7-10 días hábiles",
-      shippingOrigin: "Almacén Internacional Express",
+      provider: "zendrop",
+      supplierSku: "ZD-MAG-FOLD-3IN1",
+      supplierUrl: "https://zendrop.com/product/magnetic-wireless-charger",
+      estimatedDeliveryDays: "2-5 días hábiles",
+      shippingOrigin: "Almacén EE.UU. (USPS Exprés)",
+      warehouseLocation: "US",
       weightKg: 0.25
     },
     features: [

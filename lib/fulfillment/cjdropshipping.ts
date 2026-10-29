@@ -3,25 +3,83 @@ import type { DispatchPackageRequest, DispatchResult } from './types';
 const CJ_API_URL = process.env.CJ_API_URL || 'https://developers.cjdropshipping.com/api2.0/v1';
 const CJ_API_KEY = process.env.CJ_API_KEY || '';
 
+// Caché en memoria para reutilizar el access token y no agotar puntos de API
+let cachedAccessToken: string | null = null;
+let tokenExpiresAt: number = 0;
+
 /**
- * Dispatch an order package to CJ Dropshipping Open API.
- * If credentials are not yet configured, returns a simulated structured dispatch result
- * so the store flow operates without crashing.
+ * Obtiene un access token válido para CJ Dropshipping Open API v2.0.
+ * La vida útil de un token en CJ es de 180 días.
+ * Si ya existe en caché y restan más de 60 minutos antes de expirar, se reutiliza.
+ */
+export async function getCJAccessToken(): Promise<string | null> {
+  const apiKey = process.env.CJ_API_KEY || CJ_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+
+  const now = Date.now();
+  if (cachedAccessToken && tokenExpiresAt > now + 3600 * 1000) {
+    return cachedAccessToken;
+  }
+
+  try {
+    const res = await fetch(`${CJ_API_URL}/authentication/getAccessToken`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ apiKey })
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.result && data.data?.accessToken) {
+      cachedAccessToken = data.data.accessToken;
+      // Guardar tiempo de expiración (por defecto 180 días si no viene la fecha explícita)
+      tokenExpiresAt = data.data.accessTokenExpiryDate
+        ? new Date(data.data.accessTokenExpiryDate).getTime()
+        : now + 180 * 24 * 3600 * 1000;
+      return cachedAccessToken;
+    }
+
+    console.error('[CJ Dropshipping Auth Error]', data.message || 'Respuesta inválida al renovar token');
+    return null;
+  } catch (error: any) {
+    console.error('[CJ Dropshipping Network Error]', error.message || error);
+    return null;
+  }
+}
+
+/**
+ * Despacha un paquete físico a CJ Dropshipping Open API.
+ * Si no hay credenciales configuradas, opera en Modo Manual Transparente (pending).
  */
 export async function dispatchCJOrder(req: DispatchPackageRequest): Promise<DispatchResult> {
   const packageId = `PKG-CJ-${req.orderId}-${Date.now().toString().slice(-4)}`;
+  const apiKey = process.env.CJ_API_KEY || CJ_API_KEY;
 
-  if (!CJ_API_KEY) {
-    // Modo simulación estructurada / sandbox seguro
+  if (!apiKey) {
+    // Modo Manual Transparente: Sin clave de API configurada.
     return {
       success: true,
       provider: 'cjdropshipping',
       packageId,
-      dispatchId: `CJ-SIM-${req.orderId}`,
-      trackingCarrier: 'CJPacket Fast Line',
-      trackingNumber: `CJ${Math.floor(100000000 + Math.random() * 900000000)}YQ`,
-      trackingUrl: `https://www.17track.net/es/track?nums=CJ${Math.floor(100000000 + Math.random() * 900000000)}YQ`,
-      status: 'processing'
+      status: 'pending',
+      trackingCarrier: 'CJPacket Fast Line (Pendiente de credenciales)',
+      trackingNumber: '',
+      trackingUrl: undefined
+    };
+  }
+
+  const accessToken = await getCJAccessToken();
+  if (!accessToken) {
+    return {
+      success: false,
+      provider: 'cjdropshipping',
+      packageId,
+      status: 'failed',
+      error: 'Fallo de autenticación con CJ Dropshipping: Verifique la validez de CJ_API_KEY'
     };
   }
 
@@ -46,7 +104,7 @@ export async function dispatchCJOrder(req: DispatchPackageRequest): Promise<Disp
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'CJ-Access-Token': CJ_API_KEY
+        'CJ-Access-Token': accessToken
       },
       body: JSON.stringify(payload)
     });
@@ -59,7 +117,7 @@ export async function dispatchCJOrder(req: DispatchPackageRequest): Promise<Disp
         provider: 'cjdropshipping',
         packageId,
         status: 'failed',
-        error: data.message || `Error HTTP ${res.status} en CJ Dropshipping`
+        error: data.message || `Error HTTP ${res.status} al crear orden en CJ Dropshipping`
       };
     }
 
@@ -82,7 +140,7 @@ export async function dispatchCJOrder(req: DispatchPackageRequest): Promise<Disp
       provider: 'cjdropshipping',
       packageId,
       status: 'failed',
-      error: error.message || 'Fallo de conexión con CJ Dropshipping'
+      error: error.message || 'Fallo de conexión con CJ Dropshipping al despachar orden'
     };
   }
 }

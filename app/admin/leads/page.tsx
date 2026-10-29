@@ -18,7 +18,7 @@ import {
   X,
   FileSpreadsheet
 } from "lucide-react";
-
+import MessageAudio from "@/app/admin/components/MessageAudio";
 export default function AdminLeadsPage() {
   const [leads, setLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -336,16 +336,7 @@ export default function AdminLeadsPage() {
 
             <div className="flex-1 overflow-y-auto space-y-3 pr-2 text-xs">
               {(selectedLead.conversation || []).map((msg: any, idx: number) => (
-                <div
-                  key={idx}
-                  className={`p-3 rounded-2xl max-w-[85%] ${
-                    msg.role === "user"
-                      ? "ml-auto bg-indigo-600 text-white rounded-br-xs"
-                      : "mr-auto bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-xs"
-                  }`}
-                >
-                  <p className="whitespace-pre-wrap">{msg.text}</p>
-                </div>
+                <MessageAudio text={msg.text} role={msg.role} />
               ))}
             </div>
           </div>

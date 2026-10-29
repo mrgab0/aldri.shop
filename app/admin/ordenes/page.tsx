@@ -520,6 +520,14 @@ export default function AdminOrdenesPage() {
                             <span>• {item.name} (x{item.quantity})</span>
                             <span>${(item.price * item.quantity).toFixed(2)}</span>
                           </div>
+                          {item.downloadUrl && (
+                            <div className="text-[11px] font-mono text-amber-600 dark:text-amber-400 flex items-center gap-1.5 pl-3">
+                              <span>⚡ Descarga activa:</span>
+                              <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer" className="underline truncate max-w-xs hover:text-amber-500">
+                                {item.downloadUrl}
+                              </a>
+                            </div>
+                          )}
 
                           {item.addons && item.addons.length > 0 && (
                             <div className="pl-3 space-y-1 mt-1">
@@ -636,37 +644,75 @@ export default function AdminOrdenesPage() {
                 />
               </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 border-t pt-3 border-gray-100 dark:border-gray-800">
+                <div>
+                  <label className="font-bold text-gray-700 dark:text-gray-300 block mb-1">Empresa / Transportadora:</label>
+                  <input
+                    type="text"
+                    value={editingOrder.trackingCarrier || ""}
+                    onChange={(e) => setEditingOrder({ ...editingOrder, trackingCarrier: e.target.value })}
+                    placeholder="USPS, FedEx, CJPacket, etc."
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-900 dark:border-gray-800 font-semibold"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-gray-700 dark:text-gray-300 block mb-1">Número de Guía (Tracking):</label>
+                  <input
+                    type="text"
+                    value={editingOrder.trackingNumber || ""}
+                    onChange={(e) => setEditingOrder({ ...editingOrder, trackingNumber: e.target.value })}
+                    placeholder="Ej. 940011189956..."
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-900 dark:border-gray-800 font-semibold font-mono"
+                  />
+                </div>
+              </div>
+
               {/* Lista de Ítems */}
               <div className="border-t pt-3 border-gray-100 dark:border-gray-800">
                 <label className="font-bold text-gray-800 dark:text-gray-200 block mb-2">Ítems de la Venta:</label>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {(editingOrder.items || []).map((item: any, idx: number) => (
-                    <div key={idx} className="flex items-center gap-2 bg-gray-50 dark:bg-gray-900 p-2 rounded-xl border border-gray-200 dark:border-gray-800">
-                      <input
-                        type="text"
-                        value={item.name || ""}
-                        onChange={(e) => handleEditItemChange(idx, "name", e.target.value)}
-                        placeholder="Nombre de Arreglo"
-                        className="flex-1 p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold"
-                      />
-                      <div className="w-20">
+                    <div key={idx} className="space-y-2 bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                      <div className="flex items-center gap-2">
                         <input
-                          type="number"
-                          step="0.01"
-                          value={item.price || 0}
-                          onChange={(e) => handleEditItemChange(idx, "price", parseFloat(e.target.value) || 0)}
-                          placeholder="Precio"
-                          className="w-full p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold"
+                          type="text"
+                          value={item.name || ""}
+                          onChange={(e) => handleEditItemChange(idx, "name", e.target.value)}
+                          placeholder="Nombre del Producto"
+                          className="flex-1 p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold"
                         />
+                        <div className="w-20">
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={item.price || 0}
+                            onChange={(e) => handleEditItemChange(idx, "price", parseFloat(e.target.value) || 0)}
+                            placeholder="Precio"
+                            className="w-full p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold"
+                          />
+                        </div>
+                        <div className="w-16">
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity || 1}
+                            onChange={(e) => handleEditItemChange(idx, "quantity", parseInt(e.target.value) || 1)}
+                            placeholder="Cant"
+                            className="w-full p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold text-center"
+                          />
+                        </div>
                       </div>
-                      <div className="w-16">
+
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap">
+                          ⚡ Link Digital (JIT):
+                        </span>
                         <input
-                          type="number"
-                          min="1"
-                          value={item.quantity || 1}
-                          onChange={(e) => handleEditItemChange(idx, "quantity", parseInt(e.target.value) || 1)}
-                          placeholder="Cant"
-                          className="w-full p-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-xs font-semibold text-center"
+                          type="text"
+                          value={item.downloadUrl || ""}
+                          onChange={(e) => handleEditItemChange(idx, "downloadUrl", e.target.value)}
+                          placeholder="https://drive.google.com/... o https://notion.so/..."
+                          className="flex-1 p-1.5 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-300"
                         />
                       </div>
                     </div>

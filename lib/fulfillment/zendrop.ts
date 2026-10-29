@@ -12,16 +12,16 @@ export async function dispatchZendropOrder(req: DispatchPackageRequest): Promise
   const packageId = `PKG-ZD-${req.orderId}-${Date.now().toString().slice(-4)}`;
 
   if (!ZENDROP_API_KEY) {
-    // Modo simulación estructurada / sandbox seguro
+    // Modo Manual Transparente: Sin clave de API configurada.
+    // La orden queda registrada como pendiente de despacho para procesamiento manual.
     return {
       success: true,
       provider: 'zendrop',
       packageId,
-      dispatchId: `ZD-SIM-${req.orderId}`,
-      trackingCarrier: 'USPS Priority / FedEx Home',
-      trackingNumber: `9400111899${Math.floor(1000000000 + Math.random() * 9000000000)}`,
-      trackingUrl: `https://www.17track.net/es/track?nums=9400111899${Math.floor(1000000000 + Math.random() * 9000000000)}`,
-      status: 'processing'
+      status: 'pending',
+      trackingCarrier: 'USPS Priority (Pendiente de despacho)',
+      trackingNumber: '',
+      trackingUrl: undefined
     };
   }
 
