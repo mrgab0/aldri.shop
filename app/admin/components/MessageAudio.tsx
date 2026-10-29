@@ -1,7 +1,7 @@
 // app/admin/components/MessageAudio.tsx
 "use client";
 
-import { useEdgeTTS } from "@/hooks/useEdgeTTS";
+import { useEdgeTTS } from "@/app/hooks/useEdgeTTS";
 
 interface MessageAudioProps {
   text: string;
