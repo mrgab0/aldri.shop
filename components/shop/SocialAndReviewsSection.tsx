@@ -190,21 +190,21 @@ export function SocialAndReviewsSection({
   if (!enableReviews && !enableSocialFeed) return null;
 
   return (
-    <section ref={sectionRef} className="relative z-20 py-16 bg-[#fff8f7]/90 dark:bg-[#0B0C10]/90 backdrop-blur-sm border-t border-[#D4AF37]/20 transition-colors duration-300">
+    <section ref={sectionRef} className="relative z-20 py-16 bg-[#060608]/90 backdrop-blur-md border-t border-white/10 text-white transition-colors duration-300 select-none">
       <div className="container mx-auto px-4 max-w-7xl relative z-20">
         <div className={`grid grid-cols-1 ${enableReviews && enableSocialFeed ? "lg:grid-cols-12" : "max-w-4xl mx-auto"} gap-8 items-stretch`}>
 
           {/* COLUMNA IZQUIERDA: Reseñas Verificadas & Trustpilot */}
           {enableReviews && (
-            <div className={`${enableSocialFeed ? "lg:col-span-6" : "col-span-1"} bg-white dark:bg-[#12131A] p-6 sm:p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-xl flex flex-col justify-between space-y-6 relative z-10`}>
+            <div className={`${enableSocialFeed ? "lg:col-span-6" : "col-span-1"} glass-panel-luxury p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl flex flex-col justify-between space-y-6 relative z-10 text-white`}>
               <div>
                 {/* Header de Reseñas */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-gray-800">
-                  <div className="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/50 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                  <div className="inline-flex items-center gap-2 bg-emerald-950/60 text-emerald-400 border border-emerald-900/50 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">
                     <ShieldCheck size={14} />
                     <span>{t("badge")}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-amber-400">
+                  <div className="flex items-center gap-1 text-[#F2CA50]">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={16} fill="currentColor" stroke="none" />
                     ))}
@@ -212,17 +212,17 @@ export function SocialAndReviewsSection({
                 </div>
 
                 {/* Título de la Sección de Reseñas */}
-                <h3 className="text-xl sm:text-2xl font-serif font-black text-[#1A1C1C] dark:text-white tracking-tight mb-2">
+                <h3 className="text-xl sm:text-2xl font-serif font-black text-white tracking-tight mb-2">
                   {reviewsTitle || t("title")}
                 </h3>
 
                 {/* Puntuación y Total */}
                 <div className="flex items-center gap-2 mb-6">
-                  <span className="text-lg font-black text-[#1A1C1C] dark:text-white">
+                  <span className="text-lg font-black text-[#F2CA50]">
                     {ratingScore || "4.9 / 5.0"}
                   </span>
-                  <span className="text-gray-300 dark:text-gray-700">•</span>
-                  <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
+                  <span className="text-zinc-600">•</span>
+                  <span className="text-xs font-bold text-emerald-400 bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                     {countText || t("countText")}
                   </span>
                 </div>
@@ -231,39 +231,39 @@ export function SocialAndReviewsSection({
                 {trustpilotWidgetHtml && trustpilotWidgetHtml.trim() ? (
                   <div
                     ref={widgetRef}
-                    className="w-full flex justify-center border border-gray-100 dark:border-gray-800 rounded-2xl p-4 bg-gray-50 dark:bg-gray-900/50"
+                    className="w-full flex justify-center border border-white/10 rounded-2xl p-4 bg-[#0E0E12]"
                   />
                 ) : (
-                  /* Tarjetas de Reseñas Verificadas (Diseño Nativo) */
+                  /* Tarjetas de Reseñas Verificadas (Diseño Nativo Material Glass) */
                   <div className="space-y-4">
                     {reviewsList.map((rev) => (
                       <div
                         key={rev.id}
-                        className="bg-[#F9F9F9] dark:bg-gray-900/70 p-4 sm:p-5 rounded-2xl border border-gray-200/70 dark:border-gray-800/80 shadow-sm relative transition-all hover:border-pink-200 review-card-item"
+                        className="glass-card-radical p-4 sm:p-5 rounded-2xl border border-white/10 shadow-lg relative transition-all review-card-item"
                       >
-                        <Quote size={24} className="absolute right-4 top-4 text-pink-200 dark:text-pink-950/40 pointer-events-none" />
+                        <Quote size={24} className="absolute right-4 top-4 text-[#F2CA50]/20 pointer-events-none" />
 
                         {/* Estrellas */}
-                        <div className="flex items-center gap-1 text-amber-400 mb-2">
+                        <div className="flex items-center gap-1 text-[#F2CA50] mb-2">
                           {[...Array(rev.rating)].map((_, i) => (
                             <Star key={i} size={14} fill="currentColor" stroke="none" />
                           ))}
                         </div>
 
                         {/* Comentario */}
-                        <p className="text-xs text-slate-800 dark:text-gray-300 font-medium leading-relaxed italic mb-3 review-text">
+                        <p className="text-xs text-zinc-300 font-medium leading-relaxed italic mb-3 review-text">
                           "{rev.comment}"
                         </p>
 
                         {/* Autor e Info */}
-                        <div className="flex items-center justify-between text-[11px] font-bold text-slate-500">
-                          <span className="flex items-center gap-1 text-stone-900 dark:text-white review-author">
+                        <div className="flex items-center justify-between text-[11px] font-bold text-zinc-400">
+                          <span className="flex items-center gap-1 text-white review-author">
                             {rev.name}
-                            <span className="text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-1.5 py-0.5 rounded-md">
+                            <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded-md border border-emerald-500/30">
                               <CheckCircle2 size={10} className="inline mr-0.5" /> Verificado
                             </span>
                           </span>
-                          <span className="text-slate-400 dark:text-gray-400 review-date">{rev.date}</span>
+                          <span className="text-zinc-500 review-date">{rev.date}</span>
                         </div>
                       </div>
                     ))}
@@ -272,8 +272,8 @@ export function SocialAndReviewsSection({
               </div>
 
               {/* Pie con Nota de Confianza */}
-              <div className="pt-2 text-center border-t border-gray-100 dark:border-gray-800">
-                <span className="text-xs font-bold text-gray-600 dark:text-gray-300">
+              <div className="pt-2 text-center border-t border-white/10">
+                <span className="text-xs font-bold text-zinc-300">
                   ⭐⭐⭐⭐⭐ Calificación promedio de 4.9 basada en clientes de todo el mundo.
                 </span>
               </div>
@@ -282,20 +282,20 @@ export function SocialAndReviewsSection({
 
           {/* COLUMNA DERECHA: Instagram Live Feed & Slider Incrustado */}
           {enableSocialFeed && (
-            <div className={`${enableReviews ? "lg:col-span-6" : "col-span-1"} bg-white dark:bg-[#12131A] p-6 sm:p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden z-10`}>
+            <div className={`${enableReviews ? "lg:col-span-6" : "col-span-1"} glass-panel-luxury p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl flex flex-col justify-between space-y-6 relative overflow-hidden z-10 text-white`}>
               <div>
                 {/* Header de Instagram */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-gray-800">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
                     <div className="p-2 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-md">
                       <Instagram size={18} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-extrabold text-[#1A1C1C] dark:text-white flex items-center gap-1">
+                      <h4 className="text-sm font-extrabold text-white flex items-center gap-1">
                         Instagram Live Feed
-                        <Sparkles size={12} className="text-[#D4AF37]" />
+                        <Sparkles size={12} className="text-[#F2CA50]" />
                       </h4>
-                      <p className="text-[11px] text-gray-600 dark:text-gray-300 font-semibold">@aldri.shop</p>
+                      <p className="text-[11px] text-zinc-400 font-semibold">@aldri.shop</p>
                     </div>
                   </div>
 
@@ -303,21 +303,21 @@ export function SocialAndReviewsSection({
                     href={instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 hover:bg-[#D4AF37] hover:text-black px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                    className="glass-pill text-white border border-white/15 hover:border-[#F2CA50]/50 hover:text-[#F2CA50] px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
                   >
                     <span>Seguir</span>
                     <ExternalLink size={12} />
                   </a>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-serif font-black text-[#1A1C1C] dark:text-white tracking-tight mb-4">
+                <h3 className="text-xl sm:text-2xl font-serif font-black text-white tracking-tight mb-4">
                   {socialTitle}
                 </h3>
 
                 {/* Opción A: Slider de Códigos Incrustados / Embeds Reales de Instagram */}
                 {hasEmbeds ? (
                   <div className="space-y-4">
-                    <div className="relative rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/60 p-3 flex justify-center min-h-[380px] items-center">
+                    <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0E0E12] p-3 flex justify-center min-h-[380px] items-center">
                       <div
                         key={currentSlide}
                         className="w-full flex justify-center [&>iframe]:max-w-full [&>iframe]:rounded-xl [&>blockquote]:mx-auto transition-all duration-300"
@@ -329,14 +329,14 @@ export function SocialAndReviewsSection({
                         <>
                           <button
                             onClick={handlePrevSlide}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-white p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-20"
+                            className="absolute left-2 top-1/2 -translate-y-1/2 glass-pill text-white border border-white/15 p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                             aria-label="Anterior publicación"
                           >
                             <ChevronLeft size={18} />
                           </button>
                           <button
                             onClick={handleNextSlide}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-white p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-20"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 glass-pill text-white border border-white/15 p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                             aria-label="Siguiente publicación"
                           >
                             <ChevronRight size={18} />
@@ -352,8 +352,8 @@ export function SocialAndReviewsSection({
                           <button
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
-                            className={`h-2 rounded-full transition-all ${
-                              currentSlide === idx ? "w-6 bg-[#FF97A4]" : "w-2 bg-gray-200 dark:bg-gray-800"
+                            className={`h-2 rounded-full transition-all cursor-pointer ${
+                              currentSlide === idx ? "w-6 bg-[#F2CA50]" : "w-2 bg-white/20"
                             }`}
                           />
                         ))}
@@ -363,10 +363,10 @@ export function SocialAndReviewsSection({
                 ) : (
                   /* Opción B: Slider Nativo de Publicaciones de Instagram */
                   <div className="space-y-4">
-                    <div className="relative rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-[#F9F9F9] dark:bg-gray-900/60">
+                    <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0E0E12]">
 
                       {/* Imagen y Tarjeta de la Publicación de Instagram Activa */}
-                      <div className="relative aspect-[4/3] sm:aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800 group">
+                      <div className="relative aspect-[4/3] sm:aspect-video w-full overflow-hidden bg-black/40 group">
                         <img
                           src={instagramPosts[currentSlide].image}
                           alt="Instagram post"
@@ -392,7 +392,7 @@ export function SocialAndReviewsSection({
                       {/* Flechas de Navegación del Slide */}
                       <button
                         onClick={handlePrevSlide}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-white p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-10"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 glass-pill text-white border border-white/15 p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-10 cursor-pointer"
                         aria-label="Anterior publicación"
                       >
                         <ChevronLeft size={18} />
@@ -400,7 +400,7 @@ export function SocialAndReviewsSection({
 
                       <button
                         onClick={handleNextSlide}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-white p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-10"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 glass-pill text-white border border-white/15 p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all z-10 cursor-pointer"
                         aria-label="Siguiente publicación"
                       >
                         <ChevronRight size={18} />
@@ -413,8 +413,8 @@ export function SocialAndReviewsSection({
                         <button
                           key={idx}
                           onClick={() => setCurrentSlide(idx)}
-                          className={`h-2 rounded-full transition-all ${
-                            currentSlide === idx ? "w-6 bg-[#FF97A4]" : "w-2 bg-gray-200 dark:bg-gray-800"
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            currentSlide === idx ? "w-6 bg-[#F2CA50]" : "w-2 bg-white/20"
                           }`}
                         />
                       ))}

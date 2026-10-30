@@ -283,7 +283,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
 
                 {/* Banner elegante con señalización cuando hay adicionales */}
                 {selectedAddons.length > 0 && (
-                  <div className="p-3.5 bg-gradient-to-r from-amber-500/15 via-[#D4AF37]/20 to-amber-500/10 text-gray-900 dark:text-white rounded-2xl shadow-sm border border-[#D4AF37]/40 flex items-center justify-between">
+                  <div className="p-3.5 bg-gradient-to-r from-amber-500/15 via-[#D4AF37]/20 to-amber-500/10 text-white rounded-2xl shadow-sm border border-[#D4AF37]/40 flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <Sparkles size={18} className="text-[#D4AF37] animate-spin duration-1000" />
                       <span className="text-xs font-black tracking-wide">

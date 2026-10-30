@@ -3,44 +3,45 @@
 @tailwind utilities;
 
 :root {
-  /* TEMA CLARO 1: Ivory Luxury (Champagne) */
-  --foreground-rgb: 26, 26, 30;
-  --background-start-rgb: 250, 248, 245;
-  --background-end-rgb: 250, 248, 245;
-  
-  --bg-main: #FAF8F5;
-  --bg-card: #FFFFFF;
-  --text-main: #1A1A1E;
-  --stitch-gold: #D4AF37;
-  --stitch-gold-deep: #C5A059;
-  --stitch-border: #EAE4DC;
+  /* TEMA POR DEFECTO: Obsidian Luxury & Champagne Gold */
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 6, 6, 8;
+  --background-end-rgb: 6, 6, 8;
+
+  --bg-main: #060608;
+  --bg-card: #0E0E12;
+  --bg-card-elevated: #15151B;
+  --text-main: #FFFFFF;
+  --stitch-gold: #F2CA50;
+  --stitch-gold-deep: #D4AF37;
+  --stitch-border: rgba(255, 255, 255, 0.12);
 }
 
 .dark {
   /* TEMA OSCURO: Obsidian Base & Champagne Gold */
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 12;
-  --background-end-rgb: 10, 10, 12;
+  --background-start-rgb: 6, 6, 8;
+  --background-end-rgb: 6, 6, 8;
 
-  --bg-main: #0A0A0C;
-  --bg-card: #121215;
-  --bg-card-elevated: #1A1A1F;
+  --bg-main: #060608;
+  --bg-card: #0E0E12;
+  --bg-card-elevated: #15151B;
   --text-main: #FFFFFF;
   --stitch-gold: #F2CA50;
   --stitch-gold-deep: #D4AF37;
-  --stitch-border: rgba(255, 255, 255, 0.08);
+  --stitch-border: rgba(255, 255, 255, 0.12);
 }
 
 /* Base Body Typography */
 body {
-  color: var(--text-main);
-  background-color: var(--bg-main);
+  color: #FFFFFF;
+  background-color: #060608;
   font-family: var(--font-montserrat), sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background-color: #0A0A0C !important;
+  background-color: #060608 !important;
   color: #FFFFFF !important;
 }
 

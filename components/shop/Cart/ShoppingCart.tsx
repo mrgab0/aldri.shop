@@ -36,46 +36,46 @@ export const ShoppingCartComponent = () => {
       {/* Side Drawer */}
       {isOpen && (
         <div className="fixed inset-0 z-[60] flex justify-end">
-          <div className="absolute inset-0 bg-[#1A1C1C]/40 backdrop-blur-sm transition-opacity" onClick={() => setIsOpen(false)} />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-md transition-opacity" onClick={() => setIsOpen(false)} />
           
-          <div className="relative w-full max-w-md bg-[#F9F9F9] dark:bg-[#12131A] h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500">
-            <div className="p-8 flex justify-between items-center border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#181922]">
-              <h2 className="text-2xl font-extrabold text-[#1A1C1C] dark:text-white tracking-tight">Tu Carrito</h2>
-              <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors text-gray-400 hover:text-black dark:hover:text-white">
-                <X size={24} />
+          <div className="relative w-full max-w-md bg-[#0A0A0E]/95 backdrop-blur-2xl h-full shadow-[0_0_50px_rgba(0,0,0,0.8)] border-l border-white/10 flex flex-col animate-in slide-in-from-right duration-500 text-white select-none">
+            <div className="p-6 sm:p-8 flex justify-between items-center border-b border-white/10 bg-[#0E0E14]/80">
+              <h2 className="text-2xl font-serif font-black text-white tracking-tight">Tu Carrito</h2>
+              <button onClick={() => setIsOpen(false)} className="glass-pill p-2 text-zinc-400 hover:text-white rounded-full transition-colors cursor-pointer">
+                <X size={20} />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-8 space-y-6">
+            <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-4">
               {cartItems.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-40 text-gray-400">
-                  <ShoppingCart size={48} className="mb-4 opacity-20" />
-                  <p className="font-medium">El carrito está vacío</p>
+                <div className="flex flex-col items-center justify-center h-48 text-zinc-500 space-y-3">
+                  <ShoppingCart size={48} className="opacity-30 text-[#F2CA50]" />
+                  <p className="font-medium text-sm">Tu carrito está vacío</p>
                 </div>
               ) : (
                 cartItems.map((item) => (
-                  <div key={`${item.id}-${JSON.stringify(item.addons)}`} className="relative flex gap-4 p-4 bg-white dark:bg-[#181922] rounded-xl shadow-[0px_4px_15px_rgba(0,0,0,0.03)] border border-gray-100 dark:border-gray-800 items-center">
+                  <div key={`${item.id}-${JSON.stringify(item.addons)}`} className="relative flex gap-4 p-4 glass-card-radical rounded-2xl border border-white/10 shadow-lg items-center">
                     {/* Botón X para eliminar producto */}
                     <button 
                       onClick={() => removeFromCart(item.id)}
-                      className="absolute top-2 right-2 p-1 text-red-400 hover:text-red-600 transition-colors"
+                      className="absolute top-2 right-2 p-1 text-zinc-500 hover:text-rose-400 transition-colors cursor-pointer"
                     >
-                      <X size={16} />
+                      <X size={15} />
                     </button>
                     
-                    <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg" />
-                    <div className="flex-1">
-                      <h3 className="font-bold text-[#1A1C1C] dark:text-white text-sm leading-tight">{item.name}</h3>
+                    <img src={item.image} alt={item.name} className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border border-white/10" />
+                    <div className="flex-1 min-w-0 pr-4">
+                      <h3 className="font-bold text-white text-xs sm:text-sm leading-snug line-clamp-2">{item.name}</h3>
                       
                       {item.addons && item.addons.length > 0 && (
-                        <div className="mt-1 space-y-1 border-t border-gray-100 dark:border-gray-800 pt-1">
+                        <div className="mt-1 space-y-0.5 border-t border-white/10 pt-1">
                           {item.addons.map((add: any, idx: number) => (
                             <div key={idx} className="text-[10px]">
-                              <span className="text-gray-500 dark:text-gray-400 font-medium block">
+                              <span className="text-zinc-400 font-medium block">
                                 ✨ {add.name || add.value} {add.price ? `(+$${add.price.toFixed(2)})` : ''}
                               </span>
                               {add.customText && (
-                                <span className="text-[#FF97A4] italic block pl-2 font-semibold">
+                                <span className="text-[#F2CA50] italic block pl-2 font-medium">
                                   💬 "{add.customText}"
                                 </span>
                               )}
@@ -84,21 +84,21 @@ export const ShoppingCartComponent = () => {
                         </div>
                       )}
 
-                      <p className="text-[#D4AF37] dark:text-[#F2CA50] font-extrabold mt-1.5">${item.price.toFixed(2)}</p>
+                      <p className="text-[#F2CA50] font-black text-sm sm:text-base mt-1">${item.price.toFixed(2)}</p>
                     </div>
-                    <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-900 p-1.5 rounded-lg border border-gray-100 dark:border-gray-800">
+                    <div className="flex items-center gap-2 glass-pill p-1.5 rounded-xl border border-white/10">
                       <button 
                         onClick={() => decreaseFromCart(item.id)}
-                        className="p-1 hover:bg-white dark:hover:bg-gray-800 rounded transition-colors text-gray-500"
+                        className="p-1 hover:text-white rounded transition-colors text-zinc-400 cursor-pointer"
                       >
-                        <Minus size={14}/>
+                        <Minus size={13}/>
                       </button>
-                      <span className="text-xs font-bold text-[#1A1C1C] dark:text-white w-4 text-center">{item.quantity}</span>
+                      <span className="text-xs font-bold text-white w-4 text-center">{item.quantity}</span>
                       <button 
                         onClick={() => addToCart(item)}
-                        className="p-1 hover:bg-white dark:hover:bg-gray-800 rounded transition-colors text-gray-500"
+                        className="p-1 hover:text-white rounded transition-colors text-zinc-400 cursor-pointer"
                       >
-                        <Plus size={14}/>
+                        <Plus size={13}/>
                       </button>
                     </div>
                   </div>
@@ -106,15 +106,15 @@ export const ShoppingCartComponent = () => {
               )}
             </div>
 
-            <div className="p-8 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#181922]">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-gray-400 font-bold uppercase text-xs tracking-widest">Total Estimado</span>
-                <span className="text-3xl font-extrabold text-[#1A1C1C] dark:text-white">${total.toFixed(2)}</span>
+            <div className="p-6 sm:p-8 border-t border-white/10 bg-[#0E0E14]/80">
+              <div className="flex justify-between items-center mb-5">
+                <span className="text-zinc-400 font-bold uppercase text-[10px] tracking-widest">Total Estimado</span>
+                <span className="text-3xl font-black text-[#F2CA50] drop-shadow-[0_0_12px_rgba(242,202,80,0.3)]">${total.toFixed(2)}</span>
               </div>
               <Link 
                 href="/checkout" 
                 onClick={() => setIsOpen(false)}
-                className={`w-full bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] hover:from-[#FFE088] hover:to-[#D4AF37] text-black py-4.5 rounded-full font-extrabold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-amber-500/25 flex justify-center items-center gap-2 group border border-amber-300/40 select-none ${cartItems.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
+                className={`w-full glass-btn-gold text-black py-4 rounded-full font-black uppercase tracking-wider text-xs transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-[0.98] flex justify-center items-center gap-2 group cursor-pointer ${cartItems.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
               >
                 <span>Tramitar Pedido</span>
                 <span className="transform group-hover:translate-x-1 transition-transform">→</span>

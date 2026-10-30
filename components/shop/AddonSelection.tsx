@@ -104,23 +104,23 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
         return (
           <div
             key={category}
-            className="bg-white dark:bg-[#181922] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden transition-all duration-300"
+            className="glass-card-radical rounded-2xl border border-white/10 shadow-lg overflow-hidden transition-all duration-300"
           >
             {/* CABECERA DE CASCADA / ACORDEÓN DESPLEGABLE */}
             <button
               type="button"
               onClick={() => toggleCategoryAccordion(category)}
-              className="w-full p-4 flex items-center justify-between hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors text-left"
+              className="w-full p-4 flex items-center justify-between hover:bg-white/5 transition-colors text-left cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-xl transition-colors ${categorySelectedCount > 0 ? "bg-[#FF97A4] text-white" : "bg-[#FF97A4]/10 text-[#FF97A4]"}`}>
+                <div className={`p-2 rounded-xl transition-colors ${categorySelectedCount > 0 ? "glass-btn-gold text-black" : "glass-pill text-[#F2CA50]"}`}>
                   <IconComponent size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-[#1A1C1C] dark:text-white leading-none">{category}</h4>
-                  <span className="text-[11px] text-gray-400 font-medium block mt-1">
+                  <h4 className="font-bold text-sm text-white leading-none">{category}</h4>
+                  <span className="text-[11px] text-zinc-400 font-medium block mt-1">
                     {categorySelectedCount > 0 ? (
-                      <strong className="text-[#FF97A4]">{categorySelectedCount} seleccionado(s)</strong>
+                      <strong className="text-[#F2CA50]">{categorySelectedCount} seleccionado(s)</strong>
                     ) : (
                       `${items.length} opción(es) disponible(s)`
                     )}
@@ -130,11 +130,11 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
 
               <div className="flex items-center gap-2">
                 {categorySelectedCount > 0 && (
-                  <span className="bg-[#FF97A4] text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                  <span className="glass-btn-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">
                     {categorySelectedCount}
                   </span>
                 )}
-                <div className="p-1 text-gray-400">
+                <div className="p-1 text-zinc-400">
                   {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </div>
               </div>
@@ -142,7 +142,7 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
 
             {/* CONTENIDO DESPLEGABLE DE CASCADA */}
             {isOpen && (
-              <div className="p-4 pt-1 border-t border-gray-50 dark:border-gray-800 space-y-3 bg-gray-50/40 dark:bg-[#12131A] animate-in fade-in duration-300">
+              <div className="p-4 pt-1 border-t border-white/10 space-y-3 bg-[#0A0A0E]/60 animate-in fade-in duration-300">
                 {items.map((addon) => {
                   const addonIdStr = addon._id.toString();
                   const selectedObj = selected.find((s) => s.addonId === addonIdStr);
@@ -153,10 +153,10 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                     const currentSelectedVal = selectedObj?.value || "";
 
                     return (
-                      <div key={addonIdStr} className="bg-white dark:bg-[#181922] p-3.5 rounded-xl border border-gray-100 dark:border-gray-800 space-y-2 shadow-sm">
+                      <div key={addonIdStr} className="glass-pill p-3.5 rounded-xl border border-white/10 space-y-2 shadow-sm">
                         <div className="flex justify-between items-center">
-                          <span className="font-bold text-xs text-gray-800 dark:text-gray-200">{addon.name}</span>
-                          {addon.price > 0 && <span className="font-bold text-xs text-[#FF97A4]">+${addon.price.toFixed(2)}</span>}
+                          <span className="font-bold text-xs text-white">{addon.name}</span>
+                          {addon.price > 0 && <span className="font-black text-xs text-[#F2CA50]">+${addon.price.toFixed(2)}</span>}
                         </div>
 
                         <div className="flex flex-wrap gap-2 pt-1">
@@ -165,10 +165,10 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                               type="button"
                               key={opt}
                               onClick={() => handleSelectOption(addon, currentSelectedVal === opt ? "" : opt)}
-                              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border cursor-pointer ${
                                 currentSelectedVal === opt
-                                  ? "bg-[#1A1C1C] dark:bg-pink-500 text-white border-[#1A1C1C] shadow-sm scale-105"
-                                  : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-100"
+                                  ? "glass-btn-gold text-black font-extrabold shadow-md scale-105"
+                                  : "glass-pill text-zinc-300 border-white/15 hover:border-[#F2CA50]/40 hover:text-white"
                               }`}
                             >
                               {opt}
@@ -178,9 +178,9 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
 
                         {/* Entrada opcional de dedicatoria/texto si está seleccionado */}
                         {isSelected && (
-                          <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-800">
-                            <label className="flex items-center gap-1.5 text-[11px] font-bold text-gray-600 dark:text-gray-400 mb-1">
-                              <Edit3 size={12} className="text-[#FF97A4]" />
+                          <div className="mt-2 pt-2 border-t border-white/10">
+                            <label className="flex items-center gap-1.5 text-[11px] font-bold text-zinc-400 mb-1">
+                              <Edit3 size={12} className="text-[#F2CA50]" />
                               <span>Nota o Dedicatoria para este adicional (opcional):</span>
                             </label>
                             <input
@@ -188,7 +188,7 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                               value={selectedObj?.customText || ""}
                               onChange={(e) => handleCustomTextChange(addonIdStr, e.target.value)}
                               placeholder="Ej: Escribir Feliz Cumpleaños en la cinta..."
-                              className="w-full p-2 border border-pink-200 dark:border-gray-700 rounded-lg text-xs dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
+                              className="w-full p-2.5 bg-white/5 border border-white/15 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#F2CA50]"
                             />
                           </div>
                         )}
@@ -201,19 +201,19 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                     const currentText = selectedObj?.value || "";
 
                     return (
-                      <div key={addonIdStr} className="bg-white dark:bg-[#181922] p-3.5 rounded-xl border border-gray-100 dark:border-gray-800 space-y-2 shadow-sm">
+                      <div key={addonIdStr} className="glass-pill p-3.5 rounded-xl border border-white/10 space-y-2 shadow-sm">
                         <div className="flex justify-between items-center">
-                          <span className="font-bold text-xs text-gray-800 dark:text-gray-200 flex items-center gap-1.5">
-                            <MessageSquare size={14} className="text-[#FF97A4]" /> {addon.name}
+                          <span className="font-bold text-xs text-white flex items-center gap-1.5">
+                            <MessageSquare size={14} className="text-[#F2CA50]" /> {addon.name}
                           </span>
-                          {addon.price > 0 && <span className="font-bold text-xs text-[#FF97A4]">+${addon.price.toFixed(2)}</span>}
+                          {addon.price > 0 && <span className="font-black text-xs text-[#F2CA50]">+${addon.price.toFixed(2)}</span>}
                         </div>
 
                         <textarea
                           value={currentText}
                           onChange={(e) => handleTextInput(addon, e.target.value)}
                           placeholder="Escribe aquí tu mensaje especial de dedicatoria..."
-                          className="w-full p-2.5 border rounded-xl text-xs dark:bg-gray-900 dark:border-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4] h-20"
+                          className="w-full p-2.5 bg-white/5 border border-white/15 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#F2CA50] h-20"
                         />
                       </div>
                     );
@@ -223,8 +223,8 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                   return (
                     <div
                       key={addonIdStr}
-                      className={`bg-white dark:bg-[#181922] p-3.5 rounded-xl border-2 transition-all shadow-sm ${
-                        isSelected ? "border-[#FF97A4] bg-pink-50/20 dark:bg-pink-950/20" : "border-gray-100 dark:border-gray-800 hover:border-gray-200"
+                      className={`p-3.5 rounded-xl border transition-all shadow-sm ${
+                        isSelected ? "border-[#F2CA50] bg-amber-500/10 shadow-[0_0_15px_rgba(242,202,80,0.15)]" : "border-white/10 hover:border-white/20 bg-white/5"
                       }`}
                     >
                       <div 
@@ -232,39 +232,39 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                         className="flex items-center justify-between cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-11 h-11 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden flex-shrink-0 flex items-center justify-center">
+                          <div className="w-11 h-11 rounded-lg bg-[#0E0E12] border border-white/10 overflow-hidden flex-shrink-0 flex items-center justify-center">
                             {addon.image ? (
                               <img src={addon.image} alt={addon.name} className="w-full h-full object-cover" />
                             ) : (
-                              <Sparkles size={16} className="text-purple-400" />
+                              <Sparkles size={16} className="text-[#F2CA50]" />
                             )}
                           </div>
 
                           <div>
-                            <span className="font-bold text-xs text-gray-800 dark:text-gray-200 block">{addon.name}</span>
-                            {addon.description && <span className="text-[10px] text-gray-400 block">{addon.description}</span>}
+                            <span className="font-bold text-xs text-white block">{addon.name}</span>
+                            {addon.description && <span className="text-[10px] text-zinc-400 block">{addon.description}</span>}
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2.5">
-                          <span className="font-extrabold text-xs text-[#FF97A4]">
+                          <span className="font-black text-xs text-[#F2CA50]">
                             {addon.price > 0 ? `+$${addon.price.toFixed(2)}` : "Gratis"}
                           </span>
                           <div
-                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
-                              isSelected ? "bg-[#FF97A4] border-[#FF97A4] text-white" : "border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+                            className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
+                              isSelected ? "glass-btn-gold text-black border-[#F2CA50]" : "border-white/20 bg-white/5 text-transparent"
                             }`}
                           >
-                            {isSelected && <Check size={12} strokeWidth={3} />}
+                            {isSelected && <Check size={12} strokeWidth={3} className="text-black" />}
                           </div>
                         </div>
                       </div>
 
                       {/* Casilla de Dedicatoria/Mensaje para este Adicional al seleccionarlo */}
                       {isSelected && (
-                        <div className="mt-3 pt-2.5 border-t border-pink-100 dark:border-pink-900/40 animate-in fade-in duration-200">
-                          <label className="flex items-center gap-1.5 text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5">
-                            <Edit3 size={12} className="text-[#FF97A4]" />
+                        <div className="mt-3 pt-2.5 border-t border-white/10 animate-in fade-in duration-200">
+                          <label className="flex items-center gap-1.5 text-[11px] font-bold text-zinc-400 mb-1.5">
+                            <Edit3 size={12} className="text-[#F2CA50]" />
                             <span>Mensaje o Dedicatoria para este adicional (opcional):</span>
                           </label>
                           <input
@@ -272,8 +272,8 @@ export const AddonSelection = React.memo(({ addons, onSelectionChange }: AddonSe
                             value={selectedObj?.customText || ""}
                             onClick={(e) => e.stopPropagation()}
                             onChange={(e) => handleCustomTextChange(addonIdStr, e.target.value)}
-                            placeholder="Ej: Para María, o imprimir 'Te Amo' en el globo/cinta..."
-                            className="w-full p-2.5 border border-pink-200 dark:border-gray-700 rounded-xl text-xs dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
+                            placeholder="Ej: Para María, o imprimir dedicatoria especial..."
+                            className="w-full p-2.5 bg-white/5 border border-white/15 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#F2CA50]"
                           />
                         </div>
                       )}
