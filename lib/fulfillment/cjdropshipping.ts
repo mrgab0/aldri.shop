@@ -144,3 +144,57 @@ export async function dispatchCJOrder(req: DispatchPackageRequest): Promise<Disp
     };
   }
 }
+
+/**
+ * Consulta el catálogo oficial de CJ Dropshipping para búsqueda y curaduría.
+ */
+export async function searchCJCatalog(keyword: string, options: { pageNum?: number; pageSize?: number } = {}) {
+  const token = await getCJAccessToken();
+  if (!token) {
+    return { success: false, error: 'No se pudo obtener el token de acceso de CJ Dropshipping', data: { list: [], total: 0 } };
+  }
+
+  const pageNum = options.pageNum || 1;
+  const pageSize = options.pageSize || 10;
+  const url = `${CJ_API_URL}/product/list?productNameEn=${encodeURIComponent(keyword)}&pageNum=${pageNum}&pageSize=${pageSize}`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'CJ-Access-Token': token
+      }
+    });
+
+    const data = await res.json();
+    if (res.ok && data.result) {
+      return {
+        success: true,
+        data: {
+          total: data.data?.total || 0,
+          list: (data.data?.list || []).map((item: any) => ({
+            id: item.pid,
+            name: item.productNameEn,
+            price: Number(item.sellPrice || 0),
+            image: item.productImage,
+            productUrl: `https://cjdropshipping.com/product/${item.pid}.html`,
+            categoryName: item.categoryName || 'Tech',
+            countryCode: 'CN'
+          }))
+        }
+      };
+    }
+
+    return {
+      success: false,
+      error: data.message || `Error HTTP ${res.status} al consultar catálogo CJ`,
+      data: { list: [], total: 0 }
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error.message || 'Error de red al consultar catálogo CJ',
+      data: { list: [], total: 0 }
+    };
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Titanium Minimalist Carabiner Keychain - Obsidian Edition",
+  "slug": "titanium-minimalist-carabiner-keychain-obsidian-edition",
+  "sku": "ALDR-ZE-2453731",
+  "description": "Titanium Minimalist Carabiner Keychain - Obsidian Edition.\n\n• Tecnología: TC4 titanium alloy: ultra-light 0.35oz, super strong, anti-corrosion\n• Compatibilidad: Secure carabiner clip for keys, belt attachment, everyday carry\n• Materiales: Aerospace-grade TC4 titanium, non-rust, premium matte finish\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado internacional garantizado con Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/7b/bf/9393e2e84d5b97e3394629754cea_import.webp"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "badge": "Edición Especial 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "TC4 titanium alloy: ultra-light 0.35oz, super strong, anti-corrosion"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Secure carabiner clip for keys, belt attachment, everyday carry"
+    },
+    {
+      "label": "Materiales",
+      "value": "Aerospace-grade TC4 titanium, non-rust, premium matte finish"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "2453731",
+    "supplierUrl": "https://app.zendrop.com/product/2453731",
+    "estimatedDeliveryDays": "2-5 días hábiles",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "minimalist-desk-setup-creator",
+    "compositeScore": 88,
+    "verdict": "STRONG_BUY",
+    "rationale": "Premium titanium EDC accessory aligning with minimalist desk setup creators who value obsidian/matte black aesthetics, machined aluminum, and tactical order. Solves the pain of cluttered workspaces with plastic cheap accessories while signaling high purchasing power status.",
+    "suggestedCombo": {
+      "combo_name": "Titanium Elite Bundle",
+      "bundle_price_usd": 59.99,
+      "addons_included": [
+        "Silver Fiber Gloves",
+        "Graphene Magnetic Pad"
+      ]
+    },
+    "curatedAt": "2026-10-30T23:57:55.007Z"
+  }
+}

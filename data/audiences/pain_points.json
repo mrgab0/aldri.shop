@@ -1,0 +1,43 @@
+{
+  "painPoints": [
+    {
+      "id": "mobile-thermal-throttling",
+      "category": "Esports Performance",
+      "headline": "Thermal Throttling & Caída de Frames",
+      "symptoms": [
+        "El teléfono sube a 44°C-47°C a los 10 minutos de juego.",
+        "La tasa de cuadros cae bruscamente de 120 FPS a 45 FPS.",
+        "La pantalla atenúa su brillo automáticamente para no quemar el panel AMOLED.",
+        "Los dedos sudan en la pantalla táctil provocando fallos en el apuntado y giroscopio."
+      ],
+      "solutionTech": "Refrigeración termoeléctrica activa con celda Peltier (descenso de hasta 28°C bajo cero ambiente en 15 segundos) + dedales de fibra de plata.",
+      "benchmarkDevices": ["POCO F4 GT / F5 Pro / F6 Pro", "Xiaomi 13 / 14 Ultra", "iPhone 15 / 16 Pro", "RedMagic 8 / 9"],
+      "urgencyLevel": "ALTA / COMPRA INELÁSTICA"
+    },
+    {
+      "id": "battery-heat-degradation",
+      "category": "Hardware Health",
+      "headline": "Degradación Acelerada de Batería por Calor Extremo",
+      "symptoms": [
+        "Jugar mientras se carga el teléfono deteriora la salud de la batería de 100% a 85% en pocos meses.",
+        "El puerto USB-C se recalienta y activa protecciones de carga lenta."
+      ],
+      "solutionTech": "Disipador magnético semiconductor con derivación térmica de grafeno.",
+      "benchmarkDevices": ["Cualquier smartphone moderno de carga rápida 67W-120W"],
+      "urgencyLevel": "MEDIA-ALTA"
+    },
+    {
+      "id": "cable-clutter-and-wobble",
+      "category": "Desk Productivity",
+      "headline": "Desorden de Cables y Soportes Plásticos Inestables",
+      "symptoms": [
+        "Múltiples cables para reloj, auriculares y teléfono sobre el escritorio.",
+        "Soportes plásticos baratos que se tambalean al tocar la pantalla.",
+        "Cables que se pelan en los conectores."
+      ],
+      "solutionTech": "Estaciones de carga MagSafe 3-en-1 en aleación de aluminio y organizadores magnéticos de titanio.",
+      "benchmarkDevices": ["Ecosistema Apple MagSafe", "Ecosistema Android Qi2"],
+      "urgencyLevel": "MEDIA / COMPRA POR ESTÉTICA Y ORDEN"
+    }
+  ]
+}

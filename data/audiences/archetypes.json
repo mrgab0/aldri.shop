@@ -1,0 +1,96 @@
+{
+  "archetypes": [
+    {
+      "id": "competitive-mobile-esports-grinder",
+      "name": "El Grinder de Esports Móvil",
+      "ageRange": "16-32",
+      "devices": [
+        "POCO F4 / F5 / F6 / F7 Pro",
+        "Xiaomi 13 / 14 / 15",
+        "iPhone 14 / 15 / 16 Pro Max",
+        "RedMagic 8 / 9 Pro",
+        "Black Shark"
+      ],
+      "games": [
+        "Warzone Mobile",
+        "Genshin Impact",
+        "Free Fire Max",
+        "Call of Duty: Mobile (CODM)",
+        "PUBG Mobile 90/120 FPS"
+      ],
+      "acutePainPoint": "Thermal throttling severo tras 10 minutos de juego: el procesador sube a 46°C y la tasa de cuadros cae de 120 FPS a 45 FPS con tirones de lag térmico.",
+      "purchasingPower": "Medio-Alto ($40 - $70 USD para accesorios de ventaja competitiva).",
+      "inelasticityTrigger": "No tolera perder partidas por culpa de calor o sudor en dedos. El hardware es una inversión de rendimiento, no un gasto recreativo.",
+      "desiredMaterials": ["Aluminio CNC aeroespacial", "Placas de grafeno", "Celdas Peltier semiconductoras criogénicas", "Fibra de plata conductiva"],
+      "primaryGeos": ["US", "MX", "CO", "VE", "ES", "AR", "PE"],
+      "preferredPaymentMethods": ["Card", "Apple Pay", "PayPal", "Binance Pay", "Pago Móvil"]
+    },
+    {
+      "id": "mobile-emulation-purist",
+      "name": "El Purista de Emulación Android",
+      "ageRange": "20-40",
+      "devices": [
+        "POCO F6 Pro (Snapdragon 8 Gen 2/3)",
+        "Odin 2 Pro",
+        "Samsung Galaxy S23 / S24 Ultra",
+        "Retroid Pocket 4 Pro"
+      ],
+      "games": [
+        "Yuzu / Citra / Ryujinx (Switch)",
+        "AetherSX2 (PS2)",
+        "Dolphin (GameCube/Wii)",
+        "PPSSPP (PSP 4K)"
+      ],
+      "acutePainPoint": "La GPU y CPU se sofocan al renderizar emulación pesada a resolución 3x, provocando reinicios del emulador y degradación de la batería por sobrecalentamiento.",
+      "purchasingPower": "Alto ($50 - $120 USD). Entusiasta técnico con ingresos disponibles.",
+      "inelasticityTrigger": "Desea convertir su teléfono en una consola de sobremesa portátil con 60 FPS estables.",
+      "desiredMaterials": ["Disipadores activos con pantalla digital de temperatura en tiempo real", "Bases refrigeradas ergonómicas"],
+      "primaryGeos": ["US", "ES", "MX", "CL", "BR"],
+      "preferredPaymentMethods": ["Card", "Google Pay", "PayPal", "Zelle"]
+    },
+    {
+      "id": "minimalist-desk-setup-creator",
+      "name": "El Arquitecto de Desk Setup Minimalista",
+      "ageRange": "22-45",
+      "devices": [
+        "MacBook Pro M-Series",
+        "iPad Pro M4",
+        "iPhone MagSafe",
+        "Sony A7IV / Lumix S5"
+      ],
+      "games": ["No gaming; Focus en Productividad, Edición de Video y Finanzas"],
+      "acutePainPoint": "Escritorio saturado de cables enredados, cargadores de plástico blanco baratos y soportes inestables que arruinan la armonía visual de su espacio de trabajo.",
+      "purchasingPower": "Alto ($45 - $95 USD).",
+      "inelasticityTrigger": "Paga por estética Obsidian / Matte Black, aluminio mecanizado y orden táctico.",
+      "desiredMaterials": ["Aleación de aluminio anodizado negro mate", "Acabados en oro champagne", "Imanes de neodimio N52", "Trenzado de nylon militar"],
+      "primaryGeos": ["US", "CA", "UK", "ES", "MX"],
+      "preferredPaymentMethods": ["Apple Pay", "Credit Card", "Shop Pay"]
+    },
+    {
+      "id": "digital-product-notion-architect",
+      "name": "El Profesional de Productividad & Notion OS",
+      "ageRange": "20-38",
+      "devices": ["Cualquier laptop/smartphone moderno con acceso web"],
+      "games": ["Gestión de proyectos, freelancing, creación de agencias"],
+      "acutePainPoint": "Parálisis por desorganización: gasta 3 horas diarias buscando notas, tareas y finanzas en 10 aplicaciones dispersas.",
+      "purchasingPower": "Medio ($20 - $50 USD).",
+      "inelasticityTrigger": "Descarga inmediata 24/7. El sistema le ahorra 15 horas de trabajo manual desde el primer día.",
+      "desiredMaterials": ["Software digital listo para duplicar en 1 clic", "Videos explicativos paso a paso"],
+      "primaryGeos": ["Global (Hispanoamérica, USA, España)"],
+      "preferredPaymentMethods": ["PayPal", "Credit Card", "Zelle", "Pago Móvil"]
+    },
+    {
+      "id": "tactical-edc-gadget-collector",
+      "name": "El Coleccionista EDC Táctico & Vanguardia",
+      "ageRange": "24-48",
+      "devices": ["Flagships resistentes, smartwatches de titanio, navajas tácticas EDC"],
+      "games": ["Outdoor, tecnología modular, coleccionismo de herramientas premium"],
+      "acutePainPoint": "Accesorios cotidianos frágiles que se rompen con facilidad y carecen de precisión o utilidad real en situaciones diarias.",
+      "purchasingPower": "Alto ($40 - $120 USD).",
+      "inelasticityTrigger": "Obsesión por herramientas de aleación de titanio, fibra de carbono y funcionalidad multifunción oculta.",
+      "desiredMaterials": ["Titanio Grado 5", "Fibra de carbono forjada", "Tornillería Torx de precisión"],
+      "primaryGeos": ["US", "ES", "DE", "MX"],
+      "preferredPaymentMethods": ["Credit Card", "PayPal", "Apple Pay"]
+    }
+  ]
+}
