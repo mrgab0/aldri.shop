@@ -100,8 +100,8 @@ def trigger_check():
     print(f"Dashboard en vivo: {session_link}")
     print("Esperando ejecución de Playwright en la nube...")
 
-    # Esperar a que la ejecución termine
-    for i in range(15):
+    # Esperar a que la ejecución termine (hasta 105s para suites visuales completas)
+    for i in range(35):
         time.sleep(3)
         check_res = api_request(f"/check-sessions/{session_id}")
         status = check_res.get("status")

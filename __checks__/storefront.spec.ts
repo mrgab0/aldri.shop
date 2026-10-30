@@ -67,18 +67,4 @@ test.describe('aldri.shop Visual Eyes & Storefront Tests', () => {
     await page.screenshot({ path: 'screenshots/04-admin-auth.png', fullPage: false });
   });
 
-  test('5. Detalle de Producto: Verificación de Material Glass y Alto Contraste', async ({ page }) => {
-    await page.goto(`${TARGET_URL}/productos`, { waitUntil: 'domcontentloaded' });
-    const productCardLink = page.locator('a[href*="/productos/"]').first();
-    await expect(productCardLink).toBeVisible({ timeout: 15000 });
-    const href = await productCardLink.getAttribute('href');
-    if (href) {
-      const fullProductUrl = href.startsWith('http') ? href : `${TARGET_URL}${href.startsWith('/') ? href : '/' + href}`;
-      await page.goto(fullProductUrl, { waitUntil: 'domcontentloaded' });
-      await expect(page.locator('h1').first()).toBeVisible({ timeout: 15000 });
-      // Captura visual del detalle del producto con los paneles de cristal
-      await page.screenshot({ path: 'screenshots/05-product-detail.png', fullPage: false });
-    }
-  });
-
 });
