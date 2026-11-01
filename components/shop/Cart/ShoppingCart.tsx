@@ -76,7 +76,7 @@ export const ShoppingCartComponent = () => {
                               </span>
                               {add.customText && (
                                 <span className="text-[#F2CA50] italic block pl-2 font-medium">
-                                  💬 "{add.customText}"
+                                  💬 &quot;{add.customText}&quot;
                                 </span>
                               )}
                             </div>

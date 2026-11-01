@@ -644,7 +644,7 @@ export default function CheckoutPage() {
                                 {add.customText ? (
                                   <div className="bg-amber-500/10 p-1.5 rounded-md text-zinc-200 font-medium my-0.5 border border-amber-500/20 flex items-start gap-1">
                                     <MessageSquare size={11} className="text-[#F2CA50] flex-shrink-0 mt-0.5" />
-                                    <span><em>"{add.customText}"</em></span>
+                                    <span><em>&quot;{add.customText}&quot;</em></span>
                                   </div>
                                 ) : (
                                   updateAddonCustomText && (
