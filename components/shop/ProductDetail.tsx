@@ -5,10 +5,19 @@ import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { AddonSelection } from "@/components/shop/AddonSelection";
 import { ShopHeader } from "@/components/shop/ShopHeader";
 import { CheckCircle2, Download, Cpu, Zap, Package, Sparkles, ShieldCheck, Truck, Tag, ArrowDown, Gamepad2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export const ProductDetail = ({ product }: { product: any }) => {
   const t = useTranslations("ProductDetail");
+  const locale = useLocale();
+  const isEn = locale === 'en';
+
+  const displayName = isEn && product.nameEn ? product.nameEn : product.name;
+  const displayDescription = isEn && product.descriptionEn ? product.descriptionEn : product.description;
+  const displayCategory = isEn && product.categoryEn ? product.categoryEn : product.category;
+  const displayBadge = isEn && product.badgeEn ? product.badgeEn : product.badge;
+  const displayFeatures = isEn && product.featuresEn?.length ? product.featuresEn : product.features;
+
   const [selectedAddons, setSelectedAddons] = useState<{ addonId: string; value?: string; price?: number; name?: string }[]>([]);
   const [lastAddonToast, setLastAddonToast] = useState<{ name: string; price: number } | null>(null);
 
@@ -20,13 +29,13 @@ export const ProductDetail = ({ product }: { product: any }) => {
 
   const [activeImage, setActiveImage] = useState(images[0]);
 
-  // Formateador de viñetas para la descripción
+  // Formateador de viñetas para la descripción bilingüe
   const descriptionBullets = useMemo(() => (
-    (product.description || "")
+    (displayDescription || "")
       .split("\n")
       .map((line: string) => line.trim())
       .filter((line: string) => line.length > 0)
-  ), [product.description]);
+  ), [displayDescription]);
 
   // Cálculo Dinámico del Precio Combinado (Base + Adicionales)
   const basePrice = Number(product.price || 0);
@@ -80,12 +89,12 @@ export const ProductDetail = ({ product }: { product: any }) => {
                 {/* Insignia o Categoría Flotante */}
                 <div className="absolute top-4 left-4 flex gap-2 z-10">
                   <span className="glass-pill text-zinc-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md">
-                    {product.category}
+                    {displayCategory}
                   </span>
-                  {product.badge && (
+                  {displayBadge && (
                     <span className="glass-btn-gold text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1">
                       <Sparkles size={10} className="text-black" />
-                      {product.badge}
+                      {displayBadge}
                     </span>
                   )}
                 </div>
@@ -115,10 +124,10 @@ export const ProductDetail = ({ product }: { product: any }) => {
               {/* Titular y Precio Dinámico */}
               <div>
                 <span className="text-[#F2CA50] text-xs font-black uppercase tracking-[0.25em] block mb-1">
-                  {product.category || "Colección Oficial Aldri Shop"}
+                  {displayCategory || (isEn ? "Aldri Shop Official Selection" : "Colección Oficial Aldri Shop")}
                 </span>
                 <h1 className="text-3xl md:text-5xl font-serif font-black text-white leading-tight mb-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
-                  {product.name}
+                  {displayName}
                 </h1>
 
                 <div className="flex flex-wrap items-baseline gap-3">
@@ -221,11 +230,11 @@ export const ProductDetail = ({ product }: { product: any }) => {
               </div>
 
               {/* VIÑETAS / CARACTERÍSTICAS DINÁMICAS (Features) */}
-              {product.features && product.features.length > 0 && (
+              {displayFeatures && displayFeatures.length > 0 && (
                 <div className="space-y-2">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400">{t('includesTitle')}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {product.features.map((feature: any, index: number) => (
+                    {displayFeatures.map((feature: any, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-xs glass-pill p-2.5 rounded-xl border border-white/10">
                         <CheckCircle2 size={16} className="text-[#F2CA50] flex-shrink-0" />
                         <span className="font-medium text-zinc-200">

@@ -1,0 +1,72 @@
+{
+  "name": "Plataforma de Refrigeración Obsidian Edition",
+  "nameEn": "Obsidian Edition Cooling Platform",
+  "slug": "obsidian-edition-cooling-platform",
+  "sku": "ALDR-CJ-2116461431242993666",
+  "description": "Plataforma de Refrigeración Obsidian Edition.\n\n• Tecnología: Silent turbo-fan con control de temperatura\n• Compatibilidad: Adapta de 10 a 15 pulgadas\n• Materiales: Aleación de aluminio aerospace\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Edition Cooling Platform.\n\n• Technology: Silent turbo-fan with temperature control\n• Compatibility: Fits 10-15 inch laptops\n• Materials: Aerospace aluminum alloy\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://cf.cjdropshipping.com/31f2725c-d1e0-4389-8908-4d2c0bff564f.jpg"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "categoryEn": "Hardware & Esports",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Silent turbo-fan con control de temperatura"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Adapta de 10 a 15 pulgadas"
+    },
+    {
+      "label": "Materiales",
+      "value": "Aleación de aluminio aerospace"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Silent turbo-fan with temperature control"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Fits 10-15 inch laptops"
+    },
+    {
+      "label": "Materials",
+      "value": "Aerospace aluminum alloy"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "cjdropshipping",
+    "supplierSku": "2116461431242993666",
+    "supplierUrl": "https://cjdropshipping.com/product/2116461431242993666.html",
+    "estimatedDeliveryDays": "7-12 días hábiles (CJPacket Fast Line)",
+    "shippingOrigin": "Almacén Global Internacional",
+    "warehouseLocation": "GLOBAL",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "El pad de refrigeración se alinea con el arquetipo Competitive Mobile Esports Grinder al resolver el punto de dolor crítico de throttling térmico en dispositivos de alto rendimiento. Su diseño en aluminio mate Obsidian satisface la demanda de estética premium y materiales aerospace, permitiendo un margen bruto >60% y posicionamiento de lujo en aldri.shop.",
+    "suggestedCombo": {
+      "combo_name": "Obsidian Cooling Bundle",
+      "bundle_price_usd": 59.99,
+      "addons_included": [
+        "Mouse Pad de Aluminio",
+        "Estuche de Viaje"
+      ]
+    },
+    "curatedAt": "2026-11-01T01:27:31.435Z"
+  }
+}

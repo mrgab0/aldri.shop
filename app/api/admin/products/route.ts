@@ -40,3 +40,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message || "Error al guardar producto" }, { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const authHeader = req.headers.get("authorization");
+    const adminPass = process.env.ADMIN_PASSWORD || "TuPasswordSeguraAdmin2026";
+    
+    if (!authHeader || authHeader.replace("Bearer ", "") !== adminPass) {
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(req.url);
+    const mode = searchParams.get("mode");
+
+    await dbConnect();
+    if (mode === "clear-mocks") {
+      // Elimina los mocks antiguos que no provienen del motor real verificado
+      const result = await Product.deleteMany({
+        $or: [
+          { sku: { $regex: /^ALDR-DIG-/ } },
+          { sku: { $regex: /^ALDR-DRP-/ } },
+          { sku: "ALDR-ZD-MAGSAFE-FOLD" },
+          { dropshipInfo: { $exists: false } }
+        ]
+      });
+      return NextResponse.json({ success: true, deletedCount: result.deletedCount });
+    }
+
+    return NextResponse.json({ error: "Modo no soportado" }, { status: 400 });
+  } catch (error: any) {
+    console.error("Error eliminando productos mock:", error);
+    return NextResponse.json({ error: error.message || "Error al eliminar mocks" }, { status: 500 });
+  }
+}

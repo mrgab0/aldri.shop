@@ -1,0 +1,72 @@
+{
+  "name": "Enfriador Semiconductor Obsidian RGB — Doble Turbina con Pantalla Digital",
+  "nameEn": "Obsidian RGB Semiconductor Phone Cooler — Dual Turbine with Digital Display",
+  "slug": "obsidian-rgb-semiconductor-phone-cooler-dual-turbine-with-digital-display",
+  "sku": "ALDR-CJ-2608230744531610800",
+  "description": "Enfriador Semiconductor Obsidian RGB — Doble Turbina con Pantalla Digital.\n\n• Tecnología: Celda Peltier semiconductor con doble turbina activa y pantalla digital de temperatura en tiempo real.\n• Compatibilidad: iPhone 14/15/16 Pro Max, POCO F4–F7, Xiaomi 13–15, RedMagic 8/9 y Black Shark.\n• Materiales: Disipador de aleación térmica con acabado negro mate premium y superficie de contacto de grafeno.\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian RGB Semiconductor Phone Cooler — Dual Turbine with Digital Display.\n\n• Technology: Semiconductor Peltier cell with active dual turbine and real-time digital temperature display.\n• Compatibility: iPhone 14/15/16 Pro Max, POCO F4–F7, Xiaomi 13–15, RedMagic 8/9, and Black Shark.\n• Materials: Thermal alloy heatsink with premium matte black finish and graphene contact surface.\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://cc-west-usa.oss-us-west-1.aliyuncs.com/20230823/1692783893321.jpg"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "categoryEn": "Hardware & Esports",
+  "badge": "Edición Especial 2026",
+  "badgeEn": "Special Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Celda Peltier semiconductor con doble turbina activa y pantalla digital de temperatura en tiempo real."
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "iPhone 14/15/16 Pro Max, POCO F4–F7, Xiaomi 13–15, RedMagic 8/9 y Black Shark."
+    },
+    {
+      "label": "Materiales",
+      "value": "Disipador de aleación térmica con acabado negro mate premium y superficie de contacto de grafeno."
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Semiconductor Peltier cell with active dual turbine and real-time digital temperature display."
+    },
+    {
+      "label": "Compatibility",
+      "value": "iPhone 14/15/16 Pro Max, POCO F4–F7, Xiaomi 13–15, RedMagic 8/9, and Black Shark."
+    },
+    {
+      "label": "Materials",
+      "value": "Thermal alloy heatsink with premium matte black finish and graphene contact surface."
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "cjdropshipping",
+    "supplierSku": "2608230744531610800",
+    "supplierUrl": "https://cjdropshipping.com/product/2608230744531610800.html",
+    "estimatedDeliveryDays": "7-12 días hábiles (CJPacket Fast Line)",
+    "shippingOrigin": "Almacén Global Internacional",
+    "warehouseLocation": "GLOBAL",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "El producto aborda directamente el dolor de thermal throttling en gaming móvil competitivo (arquetipo competitive-mobile-esports-grinder), donde la demanda es inelástica por la pérdida de rendimiento en partidas. Con coste de fábrica de $6.94 y precio sugerido de $49.99, el margen bruto supera el 85%, muy por encima del umbral del 65%. Los elementos visuales RGB, doble turbina y pantalla digital generan alto valor percibido para el público gamer y de setup.",
+    "suggestedCombo": {
+      "combo_name": "Bundle Térmico Gamer Obsidian",
+      "bundle_price_usd": 59.99,
+      "addons_included": [
+        "Dedales de Fibra de Plata",
+        "Pad Magnético de Grafeno"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:09:07.632Z"
+  }
+}

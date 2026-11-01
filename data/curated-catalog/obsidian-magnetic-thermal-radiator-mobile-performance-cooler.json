@@ -1,0 +1,73 @@
+{
+  "name": "Disipador Térmico Magnético Obsidian — Cooler de Rendimiento para Móvil",
+  "nameEn": "Obsidian Magnetic Thermal Radiator — Mobile Performance Cooler",
+  "slug": "obsidian-magnetic-thermal-radiator-mobile-performance-cooler",
+  "sku": "ALDR-CJ-2608190258221622500",
+  "description": "Disipador Térmico Magnético Obsidian — Cooler de Rendimiento para Móvil.\n\n• Tecnología: Celda Peltier semiconductor activa con disipación rápida; reduce hasta 28 °C en segundos para eliminar el thermal throttling.\n• Compatibilidad: Sujeción trasera magnética y clamp ajustable para iPhone 14/15/16 Pro Max, POCO F4-F6, Xiaomi 13-15 y RedMagic.\n• Materiales: Chasis en aluminio anodizado negro mate con placa de grafeno y imanes de neodimio N52.\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Magnetic Thermal Radiator — Mobile Performance Cooler.\n\n• Technology: Active semiconductor Peltier cell with rapid heat dissipation; drops temperature up to 28 °C in seconds to eliminate thermal throttling.\n• Compatibility: Magnetic back-clamp and adjustable mount for iPhone 14/15/16 Pro Max, POCO F4-F6, Xiaomi 13-15 and RedMagic.\n• Materials: Matte black anodized aluminum chassis with graphene plate and N52 neodymium magnets.\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://cc-west-usa.oss-us-west-1.aliyuncs.com/20230819/1692413902341.jpg"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "categoryEn": "Hardware & Esports",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Celda Peltier semiconductor activa con disipación rápida; reduce hasta 28 °C en segundos para eliminar el thermal throttling."
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Sujeción trasera magnética y clamp ajustable para iPhone 14/15/16 Pro Max, POCO F4-F6, Xiaomi 13-15 y RedMagic."
+    },
+    {
+      "label": "Materiales",
+      "value": "Chasis en aluminio anodizado negro mate con placa de grafeno y imanes de neodimio N52."
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Active semiconductor Peltier cell with rapid heat dissipation; drops temperature up to 28 °C in seconds to eliminate thermal throttling."
+    },
+    {
+      "label": "Compatibility",
+      "value": "Magnetic back-clamp and adjustable mount for iPhone 14/15/16 Pro Max, POCO F4-F6, Xiaomi 13-15 and RedMagic."
+    },
+    {
+      "label": "Materials",
+      "value": "Matte black anodized aluminum chassis with graphene plate and N52 neodymium magnets."
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "cjdropshipping",
+    "supplierSku": "2608190258221622500",
+    "supplierUrl": "https://cjdropshipping.com/product/2608190258221622500.html",
+    "estimatedDeliveryDays": "7-12 días hábiles (CJPacket Fast Line)",
+    "shippingOrigin": "Almacén Global Internacional",
+    "warehouseLocation": "GLOBAL",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "El producto ataca directamente el dolor de thermal throttling del arquetipo competitive-mobile-esports-grinder, cuya compra es inelástica por la necesidad de mantener 120 FPS estables en Warzone Mobile y Genshin Impact. Con costo de fábrica de $4.48 y precio sugerido de $49.99, el margen bruto supera el 90 %, y su formato magnético/clamp permite presentación visual premium en acabado Obsidian negro mate alineada con la estética de la tienda.",
+    "suggestedCombo": {
+      "combo_name": "Bundle Gamer Térmico Obsidian",
+      "bundle_price_usd": 69.99,
+      "addons_included": [
+        "Dedales de Fibra de Plata",
+        "Pad Magnético de Grafeno",
+        "Cable Magnético Trenzado Nylon"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:09:22.997Z"
+  }
+}

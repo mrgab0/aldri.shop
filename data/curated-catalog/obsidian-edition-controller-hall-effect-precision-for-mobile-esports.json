@@ -1,0 +1,72 @@
+{
+  "name": "Controlador Obsidian Edition: Precisión Hall Effect para Esports Móvil",
+  "nameEn": "Obsidian Edition Controller: Hall Effect Precision for Mobile Esports",
+  "slug": "obsidian-edition-controller-hall-effect-precision-for-mobile-esports",
+  "sku": "ALDR-CJ-2610271348021604800",
+  "description": "Controlador Obsidian Edition: Precisión Hall Effect para Esports Móvil.\n\n• Tecnología: Joysticks Hall Effect de alta precisión sin drift para sesiones prolongadas\n• Compatibilidad: Universal con iPhone 14/15/16 Pro Max, POCO F4/F5/F6, Xiaomi 13/14/15, RedMagic 8/9\n• Materiales: Chasis ligero aerospace-grade con acabado antimanchas y conectores dorados resistentes a corrosión\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Edition Controller: Hall Effect Precision for Mobile Esports.\n\n• Technology: Hall Effect joysticks with zero drift for extended gaming sessions\n• Compatibility: Universal fit for iPhone 14/15/16 Pro Max, POCO F4/F5/F6, Xiaomi 13/14/15, RedMagic 8/9\n• Materials: Aerospace-grade lightweight chassis with antimatter-resistant finish and gold-plated connectors\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://cf.cjdropshipping.com/quick/product/00f3089f-6242-4420-9c19-6dc68d3ed9a1.jpg"
+  ],
+  "stock": 250,
+  "category": "Controladores & Accesorios para Esports Móviles",
+  "categoryEn": "Mobile Esports Controllers & Accessories",
+  "badge": "Edición Limitada Esports 2026",
+  "badgeEn": "Limited Edition Esports 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Joysticks Hall Effect de alta precisión sin drift para sesiones prolongadas"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Universal con iPhone 14/15/16 Pro Max, POCO F4/F5/F6, Xiaomi 13/14/15, RedMagic 8/9"
+    },
+    {
+      "label": "Materiales",
+      "value": "Chasis ligero aerospace-grade con acabado antimanchas y conectores dorados resistentes a corrosión"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Hall Effect joysticks with zero drift for extended gaming sessions"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Universal fit for iPhone 14/15/16 Pro Max, POCO F4/F5/F6, Xiaomi 13/14/15, RedMagic 8/9"
+    },
+    {
+      "label": "Materials",
+      "value": "Aerospace-grade lightweight chassis with antimatter-resistant finish and gold-plated connectors"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "cjdropshipping",
+    "supplierSku": "2610271348021604800",
+    "supplierUrl": "https://cjdropshipping.com/product/2610271348021604800.html",
+    "estimatedDeliveryDays": "7-12 días hábiles (CJPacket Fast Line)",
+    "shippingOrigin": "Almacén Global Internacional",
+    "warehouseLocation": "GLOBAL",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 89,
+    "verdict": "STRONG_BUY",
+    "rationale": "El controlador mapea perfectamente al arquetipo 'competitive-mobile-esports-grinder' cuya dolor agudo es el throttling térmico después de 10 minutos de juego. Los joysticks Hall Effect eliminan el drift (fallo común en controllers de bajo costo) y la vibración dual inmersiva eleva la experiencia competitiva. A $10.94 costo de fábrica, el precio de $49.99 USD entrega 78.1% margen bruto (>60% exigido). La posición de lujo Obsidian Edition alinea con la estética matte black/aluminio del catálogo y el badge 'Limited Edition 2026' activa la disparidad inelástica del segmento. El bundle de $59.99 eleva el AOV ofreciendo accesorios de disipación que complementan la solución térmica del usuario.",
+    "suggestedCombo": {
+      "combo_name": "Obsidian Esports Bundle",
+      "bundle_price_usd": 59.99,
+      "addons_included": [
+        "Disipador térmico de grafeno",
+        "Estuche de transporte premium"
+      ]
+    },
+    "curatedAt": "2026-11-01T01:33:06.510Z"
+  }
+}

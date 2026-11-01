@@ -1,0 +1,72 @@
+{
+  "name": "Obsidian Edition Cooler Semiconductor MagSafe",
+  "nameEn": "Obsidian Edition MagSafe Semiconductor Cooler",
+  "slug": "obsidian-edition-magsafe-semiconductor-cooler",
+  "sku": "ALDR-ZE-2274608",
+  "description": "Obsidian Edition Cooler Semiconductor MagSafe.\n\n• Tecnología: Disipación Peltier semiconductor de estado sólido para enfriamiento activo sin ruido\n• Compatibilidad: Acoplamiento magnético MagSafe universal - iPhone 12/13/14/15 y Android/Tablet\n• Materiales: Chasis CNC aluminio aeronáutico con placas de grafeno - acabado premium antioxidante\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Edition MagSafe Semiconductor Cooler.\n\n• Technology: Solid-state Peltier semiconductor cooling for active heat reduction with zero noise\n• Compatibility: Universal MagSafe mounting - iPhone 12-15 and Android/Tablet compatibility\n• Materials: CNC aerospace aluminum with graphene heat sink - premium anodized antioxidant finish\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 49.99,
+  "compareAtPrice": 67.49,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/86/5a/df9dfe79457fae321973f01f9832_import.webp"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "categoryEn": "Hardware & Esports",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Disipación Peltier semiconductor de estado sólido para enfriamiento activo sin ruido"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Acoplamiento magnético MagSafe universal - iPhone 12/13/14/15 y Android/Tablet"
+    },
+    {
+      "label": "Materiales",
+      "value": "Chasis CNC aluminio aeronáutico con placas de grafeno - acabado premium antioxidante"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Solid-state Peltier semiconductor cooling for active heat reduction with zero noise"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Universal MagSafe mounting - iPhone 12-15 and Android/Tablet compatibility"
+    },
+    {
+      "label": "Materials",
+      "value": "CNC aerospace aluminum with graphene heat sink - premium anodized antioxidant finish"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "2274608",
+    "supplierUrl": "https://app.zendrop.com/product/2274608",
+    "estimatedDeliveryDays": "2-5 días hábiles (USPS Priority)",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "Producto mapeado al arquetipo Competitive Mobile Esports Grinder: aborda el pain point crítico de thermal throttling que hace caer FPS de 120 a 45 tras 10 minutos de juego. El precio $49.99 USD sobre costo $12.86 USD genera margen del 288% (muy por encima del requerido >60%). La tecnología semiconductor Peltier, compatibilidad MagSafe y materiales CNC aluminio/gráfico posicionan este producto en el segmento de lujo performance gaming, alineado con los deseados materiales del arquetipo: aluminio CNC aeroespacial, grafeno y células semiconductoras Peltier. El badge 'Edición Obsidian 2026' y el bundle competitivo elevan el AOV y refuerzan la posición de aldri.shop como curador de tecnología de alto rendimiento con estética Obsidian/Matte Black.",
+    "suggestedCombo": {
+      "combo_name": "Obsidian Competitive Bundle",
+      "bundle_price_usd": 59.99,
+      "addons_included": [
+        "Premium anti-reflective screen protector",
+        "Magnetic ventilation clip"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:16:38.440Z"
+  }
+}

@@ -6,15 +6,18 @@ export type DropshipProvider = 'cjdropshipping' | 'zendrop' | 'spocket' | 'manua
 // Interface para el Producto
 export interface IProduct extends Document {
   name: string;
+  nameEn?: string;
   slug: string;
   sku?: string;
   description: string;
+  descriptionEn?: string;
   price: number;
   compareAtPrice?: number;
   productType: ProductType;
   images: string[];
   stock: number;
   category: string;
+  categoryEn?: string;
   // Campos específicos de Productos Digitales
   digitalAsset?: {
     fileUrl?: string;
@@ -38,10 +41,20 @@ export interface IProduct extends Document {
   careInstructions?: string;
   addons?: mongoose.Types.ObjectId[] | any[];
   badge?: string;
+  badgeEn?: string;
   isActive?: boolean;
   flowerCount?: number;
   bouquetType?: string;
   features?: any[];
+  featuresEn?: any[];
+  nexusMetadata?: {
+    matchedArchetype?: string;
+    compositeScore?: number;
+    verdict?: string;
+    rationale?: string;
+    suggestedCombo?: any;
+    curatedAt?: string;
+  };
   seo?: {
     title?: string;
     description?: string;
@@ -51,15 +64,18 @@ export interface IProduct extends Document {
 
 const ProductSchema: Schema = new Schema({
   name: { type: String, required: true },
+  nameEn: { type: String, default: "" },
   slug: { type: String, required: true, unique: true },
   sku: { type: String, default: "" },
   description: { type: String, required: true },
+  descriptionEn: { type: String, default: "" },
   price: { type: Number, required: true },
   compareAtPrice: { type: Number, default: 0 },
   productType: { type: String, enum: ['digital', 'dropship'], default: 'digital' },
   images: [{ type: String }],
   stock: { type: Number, default: 0 },
   category: { type: String, required: true },
+  categoryEn: { type: String, default: "" },
   digitalAsset: {
     fileUrl: { type: String, default: "" },
     fileSize: { type: String, default: "" },
@@ -81,10 +97,20 @@ const ProductSchema: Schema = new Schema({
   careInstructions: { type: String, default: "" },
   addons: [{ type: Schema.Types.ObjectId, ref: 'Addon' }],
   badge: { type: String, default: "" },
+  badgeEn: { type: String, default: "" },
   isActive: { type: Boolean, default: true },
   flowerCount: { type: Number, default: 0 },
   bouquetType: { type: String, default: "" },
   features: [{ label: String, value: String }],
+  featuresEn: [{ label: String, value: String }],
+  nexusMetadata: {
+    matchedArchetype: { type: String, default: "" },
+    compositeScore: { type: Number, default: 0 },
+    verdict: { type: String, default: "" },
+    rationale: { type: String, default: "" },
+    suggestedCombo: { type: Schema.Types.Mixed },
+    curatedAt: { type: String, default: "" }
+  },
   seo: {
     title: { type: String },
     description: { type: String }

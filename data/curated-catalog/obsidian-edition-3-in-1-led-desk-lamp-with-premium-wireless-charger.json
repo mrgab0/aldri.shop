@@ -1,0 +1,72 @@
+{
+  "name": "Lámpara Obsidian 3-en-1 LED con Carga Inalámbrica Premium",
+  "nameEn": "Obsidian Edition 3-in-1 LED Desk Lamp with Premium Wireless Charger",
+  "slug": "obsidian-edition-3-in-1-led-desk-lamp-with-premium-wireless-charger",
+  "sku": "ALDR-ZE-2243201",
+  "description": "Lámpara Obsidian 3-en-1 LED con Carga Inalámbrica Premium.\n\n• Tecnología: Carga inalámbrica Qi 15W + lámpara LED integrada con dimmer táctil\n• Compatibilidad: Smartphone, smartwatch y auriculares TrueWireless\n• Materiales: Aleación de aluminio anodizado negro mate con acabado premium\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Edition 3-in-1 LED Desk Lamp with Premium Wireless Charger.\n\n• Technology: 15W Qi wireless charging + integrated LED lamp with tactile dimmer\n• Compatibility: Smartphone, smartwatch and TrueWireless earbuds\n• Materials: Premium anodized matte black aluminum alloy\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 59.99,
+  "compareAtPrice": 80.99,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/ce/46/c19c4aec4895b6fe5a5ccb427c04_import.webp"
+  ],
+  "stock": 250,
+  "category": "Accesorios de Escritorio Premium",
+  "categoryEn": "Premium Desk Accessories",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Carga inalámbrica Qi 15W + lámpara LED integrada con dimmer táctil"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Smartphone, smartwatch y auriculares TrueWireless"
+    },
+    {
+      "label": "Materiales",
+      "value": "Aleación de aluminio anodizado negro mate con acabado premium"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "15W Qi wireless charging + integrated LED lamp with tactile dimmer"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Smartphone, smartwatch and TrueWireless earbuds"
+    },
+    {
+      "label": "Materials",
+      "value": "Premium anodized matte black aluminum alloy"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "2243201",
+    "supplierUrl": "https://app.zendrop.com/product/2243201",
+    "estimatedDeliveryDays": "2-5 días hábiles (USPS Priority)",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "minimalist-desk-setup-creator",
+    "compositeScore": 89,
+    "verdict": "STRONG_BUY",
+    "rationale": "Producto 3-en-1 que resuelve directamente el dolor de cable clutter y supports inestables del arquetipo minimalist-desk-setup-creator. Combina funcionalidad de lámpara de escritorio con estación de carga premium en aleación de aluminio negro mate, alineándose con los materiales deseados (aluminio anodizado negro, oro champagne). El precio de $59.99 sobre un costo de $19.88 entrega margen del 66.9%, cumpliendo el umbral >60%. El diseño gooseneck 360° y carga simultánea para 3 dispositivos eleva el AOV a través del combo propuesto.",
+    "suggestedCombo": {
+      "combo_name": "Combo Mesa Obsidian",
+      "bundle_price_usd": 79.99,
+      "addons_included": [
+        "Organizador magnético de cables",
+        "Base de carga rápida USB-C"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:20:27.784Z"
+  }
+}

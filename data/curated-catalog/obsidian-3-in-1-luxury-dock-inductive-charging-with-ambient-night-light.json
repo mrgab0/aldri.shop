@@ -1,0 +1,72 @@
+{
+  "name": "Obsidian Dock 3-en-1 Edición Lujo - Carga Inducción y Luz Nocturna",
+  "nameEn": "Obsidian 3-in-1 Luxury Dock - Inductive Charging with Ambient Night Light",
+  "slug": "obsidian-3-in-1-luxury-dock-inductive-charging-with-ambient-night-light",
+  "sku": "ALDR-ZE-2244267",
+  "description": "Obsidian Dock 3-en-1 Edición Lujo - Carga Inducción y Luz Nocturna.\n\n• Tecnología: Carga rápida 15W 3-en-1 con bobinas de inducción avanzadas\n• Compatibilidad: Soporte universal para iPhone, Apple Watch y AirPods con certificación Qi2\n• Materiales: Chasis de aleación de aluminio negro mate con acabado antioxidante\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian 3-in-1 Luxury Dock - Inductive Charging with Ambient Night Light.\n\n• Technology: 15W fast charging 3-in-1 with advanced induction coils\n• Compatibility: Universal support for iPhone, Apple Watch and AirPods with Qi2 certification\n• Materials: Matte black anodized aluminum chassis with anti-corrosion finish\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 79.99,
+  "compareAtPrice": 107.99,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/5a/cf/35d26b3049949cdcaed67c945d22_import.webp"
+  ],
+  "stock": 250,
+  "category": "Productividad en el Escritorio",
+  "categoryEn": "Desk Productivity",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Carga rápida 15W 3-en-1 con bobinas de inducción avanzadas"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Soporte universal para iPhone, Apple Watch y AirPods con certificación Qi2"
+    },
+    {
+      "label": "Materiales",
+      "value": "Chasis de aleación de aluminio negro mate con acabado antioxidante"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "15W fast charging 3-in-1 with advanced induction coils"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Universal support for iPhone, Apple Watch and AirPods with Qi2 certification"
+    },
+    {
+      "label": "Materials",
+      "value": "Matte black anodized aluminum chassis with anti-corrosion finish"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "2244267",
+    "supplierUrl": "https://app.zendrop.com/product/2244267",
+    "estimatedDeliveryDays": "2-5 días hábiles (USPS Priority)",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "minimalist-desk-setup-creator",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "El producto 3-en-1 se alinea perfectamente con el arquetipo Minimalist Desk Setup Creator al eliminar el desorden de cables, ofrecer materiales premium (aluminio negro mate) y satisfacer la demanda de estética Obsidian. El margen del 95% sobre el costo de fábrica garantiza rentabilidad, mientras que la combinación de carga rápida, luz nocturna y plegable agrega valor percibido para el segmento de alto poder adquisitivo.",
+    "suggestedCombo": {
+      "combo_name": "Combo Carga Obsidian",
+      "bundle_price_usd": 99.99,
+      "addons_included": [
+        "Cable USB-C trenzado de nailon militar",
+        "Organizador magnético de escritorio en titanio"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:19:06.234Z"
+  }
+}

@@ -3,17 +3,20 @@
 import Link from 'next/link';
 import React from 'react';
 import { useCart } from "@/components/shop/Cart/CartContext";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ShoppingBag, Sparkles } from "lucide-react";
 
 interface ProductCardProps {
   id: string;
   name: string;
+  nameEn?: string;
   slug: string;
   price: number;
   compareAtPrice?: number;
   category: string;
+  categoryEn?: string;
   badge?: string;
+  badgeEn?: string;
   image: string;
   secondaryImage?: string;
   productType?: 'digital' | 'dropship';
@@ -22,17 +25,26 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({
   id,
   name,
+  nameEn,
   slug,
   price,
   compareAtPrice,
   category,
+  categoryEn,
   badge,
+  badgeEn,
   image,
   secondaryImage,
   productType = 'digital'
 }) => {
   const { addToCart } = useCart();
   const t = useTranslations("common");
+  const locale = useLocale();
+  const isEn = locale === 'en';
+
+  const displayName = (isEn && nameEn) ? nameEn : name;
+  const displayCategory = (isEn && categoryEn) ? categoryEn : category;
+  const displayBadge = (isEn && badgeEn) ? badgeEn : badge;
 
   const optimizeImageUrl = (url: string) => {
     if (!url) return "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80&auto=format";
@@ -89,19 +101,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? "bg-indigo-950/80 text-indigo-200 border-indigo-400/40 shadow-[0_0_12px_rgba(99,102,241,0.3)]"
                 : "bg-emerald-950/80 text-emerald-200 border-emerald-400/40 shadow-[0_0_12px_rgba(16,185,129,0.3)]"
             }`}>
-              {productType === 'digital' ? '⚡ Digital 24/7' : '📦 Físico'}
+              {productType === 'digital' ? (isEn ? '⚡ Digital 24/7' : '⚡ Digital 24/7') : (isEn ? '📦 US/Global Tracked' : '📦 Físico Rastreado')}
             </span>
             <span className="glass-pill text-zinc-300 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest w-fit">
-              {category}
+              {displayCategory}
             </span>
           </div>
 
           {/* Insignia / Badge Personalizada */}
-          {badge && (
+          {displayBadge && (
             <div className="absolute top-3 right-3 z-10">
               <span className="glass-btn-gold text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1">
                 <Sparkles size={9} className="text-black" />
-                {badge}
+                {displayBadge}
               </span>
             </div>
           )}
@@ -116,7 +128,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
             >
-              {name}
+              {displayName}
             </Link>
           </h3>
           

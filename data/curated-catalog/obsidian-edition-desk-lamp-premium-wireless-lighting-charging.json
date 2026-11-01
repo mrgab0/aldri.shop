@@ -1,0 +1,72 @@
+{
+  "name": "Lámpara de Escritorio Obsidian Edition: Carga Inalámbrica y Iluminación Premium",
+  "nameEn": "Obsidian Edition Desk Lamp: Premium Wireless Lighting & Charging",
+  "slug": "obsidian-edition-desk-lamp-premium-wireless-lighting-charging",
+  "sku": "ALDR-ZE-1913482",
+  "description": "Lámpara de Escritorio Obsidian Edition: Carga Inalámbrica y Iluminación Premium.\n\n• Tecnología: Carga inalámbrica Qi + puerto USB dual para carga rápida de dispositivos\n• Compatibilidad: Compatible con smartphones con carga inalámbrica y cualquier dispositivo USB\n• Materiales: Cuerpo de aleación de aluminio negro mate con acabado táctil premium\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Edition Desk Lamp: Premium Wireless Lighting & Charging.\n\n• Technology: Wireless Qi charging + dual USB port for fast device charging\n• Compatibility: Works with any wireless charging smartphone and USB-powered devices\n• Materials: Matte black aluminum alloy body with premium tactile finish\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 69.99,
+  "compareAtPrice": 94.49,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/42/1a/d560de8247138074586056f33149_import.webp"
+  ],
+  "stock": 250,
+  "category": "Hardware de Escritorio y Productividad",
+  "categoryEn": "Desktop Hardware & Productivity",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Carga inalámbrica Qi + puerto USB dual para carga rápida de dispositivos"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Compatible con smartphones con carga inalámbrica y cualquier dispositivo USB"
+    },
+    {
+      "label": "Materiales",
+      "value": "Cuerpo de aleación de aluminio negro mate con acabado táctil premium"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Wireless Qi charging + dual USB port for fast device charging"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Works with any wireless charging smartphone and USB-powered devices"
+    },
+    {
+      "label": "Materials",
+      "value": "Matte black aluminum alloy body with premium tactile finish"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "1913482",
+    "supplierUrl": "https://app.zendrop.com/product/1913482",
+    "estimatedDeliveryDays": "2-5 días hábiles (USPS Priority)",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "minimalist-desk-setup-creator",
+    "compositeScore": 87,
+    "verdict": "STRONG_BUY",
+    "rationale": "Producto 3-en-1 (lámpara + cargador inalámbrico + puerto USB) alinea perfectemente con el arquetipo Minimalist Desk Setup Creator, resolviendo el dolor de cableado saturado y soportes plásticos baratos. El diseño en acabado negro mate Obsidian eleva la percepción de lujo, permitiendo un margen >60% sobre el costo de fábrica ($25.24) con precio de venta de $69.99 USD. La combinación con accesorios magnéticos incrementa el AOV hacia los $89.99.",
+    "suggestedCombo": {
+      "combo_name": "Bundle Obsidian Desk Studio",
+      "bundle_price_usd": 89.99,
+      "addons_included": [
+        "Organizador de cables magnético Obsidian",
+        "Protector de pantalla anti-reflejo"
+      ]
+    },
+    "curatedAt": "2026-10-31T20:17:46.955Z"
+  }
+}

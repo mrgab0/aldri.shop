@@ -1,0 +1,72 @@
+{
+  "name": "Obsidian Cooling Edition Disipador Semiconductor Peltier",
+  "nameEn": "Obsidian Cooling Edition Peltier Semiconductor Cooling Pad",
+  "slug": "obsidian-cooling-edition-peltier-semiconductor-cooling-pad",
+  "sku": "ALDR-ZE-2232519",
+  "description": "Obsidian Cooling Edition Disipador Semiconductor Peltier.\n\n• Tecnología: Dual semiconductor Peltier active cooling - lowers temp in 3s\n• Compatibilidad: Universal fit for smartphones 6.0-6.8 pulgadas\n• Materiales: ABS de ingeniería negra mate resistente a altas temperaturas\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Cooling Edition Peltier Semiconductor Cooling Pad.\n\n• Technology: Dual semiconductor Peltier active cooling - lowers temp in 3s\n• Compatibility: Universal fit for smartphones 6.0-6.8 inches\n• Materials: Engineering-grade black matte ABS heat-resistant\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 59.99,
+  "compareAtPrice": 80.99,
+  "productType": "dropship",
+  "images": [
+    "https://file.zendrop.com/products/25/4e/febfe7424688b0f7f527b45f2308_import.webp"
+  ],
+  "stock": 250,
+  "category": "Hardware & Esports",
+  "categoryEn": "Hardware & Esports",
+  "badge": "Edición Obsidian 2026 | Esports Grade",
+  "badgeEn": "Obsidian Edition 2026 | Esports Grade",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Tecnología",
+      "value": "Dual semiconductor Peltier active cooling - lowers temp in 3s"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Universal fit for smartphones 6.0-6.8 pulgadas"
+    },
+    {
+      "label": "Materiales",
+      "value": "ABS de ingeniería negra mate resistente a altas temperaturas"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Technology",
+      "value": "Dual semiconductor Peltier active cooling - lowers temp in 3s"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Universal fit for smartphones 6.0-6.8 inches"
+    },
+    {
+      "label": "Materials",
+      "value": "Engineering-grade black matte ABS heat-resistant"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "zendrop",
+    "supplierSku": "2232519",
+    "supplierUrl": "https://app.zendrop.com/product/2232519",
+    "estimatedDeliveryDays": "2-5 días hábiles (USPS Priority)",
+    "shippingOrigin": "Almacén Estados Unidos (USPS Priority)",
+    "warehouseLocation": "US",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "competitive-mobile-esports-grinder",
+    "compositeScore": 89,
+    "verdict": "STRONG_BUY",
+    "rationale": "Producto de disipador semiconductor dual (Peltier) que ataca directamente el punto de dolor térmico del arquetipo 'competitive-mobile-esports-grinder': throttling severo después de 10 minutos de juego. El precio de $59.99 asegura margen bruto ~64% sobre el costo de $21.52. Posicionado como edición Obsidian premium alinea con estética premium aldri.shop y materiales negros mates. La tecnología de refroidimento termoeléctrico activo resuelve la inelasticidad por rendimiento hardware, no recreativo.",
+    "suggestedCombo": {
+      "combo_name": "Obsidian Gaming Bundle",
+      "bundle_price_usd": 79.99,
+      "addons_included": [
+        "Gamepad Grips MagSafe-Compatible",
+        "Cable USB-C 100W Nylon Trenzado"
+      ]
+    },
+    "curatedAt": "2026-11-01T01:26:11.020Z"
+  }
+}

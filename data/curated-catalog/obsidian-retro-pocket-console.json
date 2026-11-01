@@ -1,0 +1,73 @@
+{
+  "name": "Consola Retro Obsidian Pocket",
+  "nameEn": "Obsidian Retro Pocket Console",
+  "slug": "obsidian-retro-pocket-console",
+  "sku": "ALDR-CJ-2610240903511609000",
+  "description": "Consola Retro Obsidian Pocket.\n\n• Pantalla: IPS HD 4.5 pulgadas, colores vibrantes y ángulo amplio\n• Procesador: Quad‑Core Linux, rendimiento estable para emulación\n• Compatibilidad: Emulación de consolas clásicas (NES, SNES, PS1, GBA, Sega)\n\nOptimizado para el arquetipo de alto rendimiento. Envío rastreado garantizado con Aldri Shop.",
+  "descriptionEn": "Obsidian Retro Pocket Console.\n\n• Display: HD IPS 4.5‑inch, vibrant colors, wide viewing angles\n• Processor: Quad‑Core Linux, stable performance for emulation\n• Compatibility: Classic console emulation (NES, SNES, PS1, GBA, Sega)\n\nEngineered for high performance. Guaranteed tracked shipping with Aldri Shop.",
+  "price": 69.99,
+  "compareAtPrice": 94.49,
+  "productType": "dropship",
+  "images": [
+    "https://oss-cf.cjdropshipping.com/product/20231024/1698138231511.jpg"
+  ],
+  "stock": 250,
+  "category": "Hardware & Emulación",
+  "categoryEn": "Hardware & Emulation",
+  "badge": "Edición Obsidian 2026",
+  "badgeEn": "Obsidian Edition 2026",
+  "isActive": true,
+  "features": [
+    {
+      "label": "Pantalla",
+      "value": "IPS HD 4.5 pulgadas, colores vibrantes y ángulo amplio"
+    },
+    {
+      "label": "Procesador",
+      "value": "Quad‑Core Linux, rendimiento estable para emulación"
+    },
+    {
+      "label": "Compatibilidad",
+      "value": "Emulación de consolas clásicas (NES, SNES, PS1, GBA, Sega)"
+    }
+  ],
+  "featuresEn": [
+    {
+      "label": "Display",
+      "value": "HD IPS 4.5‑inch, vibrant colors, wide viewing angles"
+    },
+    {
+      "label": "Processor",
+      "value": "Quad‑Core Linux, stable performance for emulation"
+    },
+    {
+      "label": "Compatibility",
+      "value": "Classic console emulation (NES, SNES, PS1, GBA, Sega)"
+    }
+  ],
+  "dropshipInfo": {
+    "provider": "cjdropshipping",
+    "supplierSku": "2610240903511609000",
+    "supplierUrl": "https://cjdropshipping.com/product/2610240903511609000.html",
+    "estimatedDeliveryDays": "7-12 días hábiles (CJPacket Fast Line)",
+    "shippingOrigin": "Almacén Global Internacional",
+    "warehouseLocation": "GLOBAL",
+    "weightKg": 0.25
+  },
+  "nexusMetadata": {
+    "matchedArchetype": "mobile-emulation-purist",
+    "compositeScore": 90,
+    "verdict": "STRONG_BUY",
+    "rationale": "Producto alineado con el arquetipo mobile‑emulation‑purist: satisface la demanda de emulación portátil sin sobrecalentamiento de smartphones. El precio de 69.99 USD representa un markup del 71 % sobre el costo de fábrica ($40.8), cumpliendo el umbral de >60 % y situándose dentro del rango $29.99‑$89.99. La estética obsidiana y los materiales premium evocan el lujo aldri.shop, mientras que el bundle eleva el AOV ofreciendo accesorios de protección y carga.",
+    "suggestedCombo": {
+      "combo_name": "Combo Retro Premium",
+      "bundle_price_usd": 84.99,
+      "addons_included": [
+        "Fundas de protección en aluminio",
+        "Protector de pantalla templado",
+        "Cable USB‑C de carga rápida"
+      ]
+    },
+    "curatedAt": "2026-11-01T01:30:48.869Z"
+  }
+}

@@ -23,32 +23,37 @@ export async function getCJAccessToken(): Promise<string | null> {
     return cachedAccessToken;
   }
 
-  try {
-    const res = await fetch(`${CJ_API_URL}/authentication/getAccessToken`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ apiKey })
-    });
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch(`${CJ_API_URL}/authentication/getAccessToken`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ apiKey }),
+        signal: AbortSignal.timeout(15000)
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok && data.result && data.data?.accessToken) {
-      cachedAccessToken = data.data.accessToken;
-      // Guardar tiempo de expiración (por defecto 180 días si no viene la fecha explícita)
-      tokenExpiresAt = data.data.accessTokenExpiryDate
-        ? new Date(data.data.accessTokenExpiryDate).getTime()
-        : now + 180 * 24 * 3600 * 1000;
-      return cachedAccessToken;
+      if (res.ok && data.result && data.data?.accessToken) {
+        cachedAccessToken = data.data.accessToken;
+        tokenExpiresAt = data.data.accessTokenExpiryDate
+          ? new Date(data.data.accessTokenExpiryDate).getTime()
+          : now + 180 * 24 * 3600 * 1000;
+        return cachedAccessToken;
+      }
+
+      console.error('[CJ Dropshipping Auth Error]', data.message || 'Respuesta inválida al renovar token');
+    } catch (error: any) {
+      if (attempt === 3) {
+        console.error('[CJ Dropshipping Network Error]', error.message || error);
+      }
+      await new Promise(r => setTimeout(r, 1000));
     }
-
-    console.error('[CJ Dropshipping Auth Error]', data.message || 'Respuesta inválida al renovar token');
-    return null;
-  } catch (error: any) {
-    console.error('[CJ Dropshipping Network Error]', error.message || error);
-    return null;
   }
+
+  return null;
 }
 
 /**
@@ -195,6 +200,55 @@ export async function searchCJCatalog(keyword: string, options: { pageNum?: numb
       success: false,
       error: error.message || 'Error de red al consultar catálogo CJ',
       data: { list: [], total: 0 }
+    };
+  }
+}
+
+/**
+ * Consulta el detalle completo de un producto específico por su ID (pid) en CJ Dropshipping.
+ */
+export async function getCJProduct(pid: string) {
+  const token = await getCJAccessToken();
+  if (!token) {
+    return { success: false, error: 'No se pudo obtener el token de CJ', data: null };
+  }
+
+  try {
+    const res = await fetch(`${CJ_API_URL}/product/query?pid=${encodeURIComponent(pid)}`, {
+      method: 'GET',
+      headers: {
+        'CJ-Access-Token': token
+      },
+      signal: AbortSignal.timeout(15000)
+    });
+
+    const data = await res.json();
+    if (res.ok && data.result && data.data) {
+      return {
+        success: true,
+        data: {
+          id: data.data.pid,
+          name: data.data.productNameEn,
+          price: Number(data.data.sellPrice || 0),
+          image: data.data.productImage,
+          productUrl: `https://cjdropshipping.com/product/${data.data.pid}.html`,
+          description: data.data.description || data.data.productNameEn,
+          categoryName: data.data.categoryName || 'Tech',
+          countryCode: 'CN'
+        }
+      };
+    }
+
+    return {
+      success: false,
+      error: data.message || `No se pudo encontrar el producto CJ ${pid}`,
+      data: null
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error.message || `Error de red al consultar producto CJ ${pid}`,
+      data: null
     };
   }
 }
