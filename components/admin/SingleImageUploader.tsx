@@ -94,23 +94,23 @@ export function SingleImageUploader({
   };
 
   return (
-    <div className="space-y-2 border p-4 rounded-xl bg-gray-50/50">
+    <div className="space-y-2 border border-gray-200 dark:border-white/10 p-4 rounded-xl bg-gray-50/50 dark:bg-[#12131A]">
       {/* Input oculto para el formulario HTML */}
       <input type="hidden" name={name} value={imageUrl} required={required && !imageUrl} />
 
       <div className="flex justify-between items-center">
         <div>
-          <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block">
+          <label className="text-xs font-bold text-gray-700 dark:text-zinc-300 uppercase tracking-wider block">
             {label} {required && <span className="text-red-500">*</span>}
           </label>
           {recommendation && (
-            <span className="text-[11px] text-gray-400 font-normal">{recommendation}</span>
+            <span className="text-[11px] text-gray-400 dark:text-zinc-500 font-normal">{recommendation}</span>
           )}
         </div>
         <button
           type="button"
           onClick={() => setShowManualInput(!showManualInput)}
-          className="text-xs text-[#FF97A4] font-bold hover:underline flex items-center gap-1"
+          className="text-xs text-[#F2CA50] font-bold hover:underline flex items-center gap-1"
         >
           <LinkIcon size={12} />
           {showManualInput ? "Ocultar URL manual" : "Agregar URL manual"}
@@ -118,18 +118,18 @@ export function SingleImageUploader({
       </div>
 
       {showManualInput && (
-        <div className="flex gap-2 p-2 bg-white border rounded-lg animate-in fade-in duration-200">
+        <div className="flex gap-2 p-2 bg-white dark:bg-[#0E0E12] border border-gray-200 dark:border-white/10 rounded-lg animate-in fade-in duration-200">
           <input
             type="url"
             value={manualUrl}
             onChange={(e) => setManualUrl(e.target.value)}
             placeholder="https://ejemplo.com/banner.jpg"
-            className="flex-1 p-2 text-xs border rounded focus:outline-none focus:ring-1 focus:ring-[#FF97A4]"
+            className="flex-1 p-2 text-xs border border-gray-300 dark:border-white/15 rounded focus:outline-none focus:ring-1 focus:ring-[#F2CA50] bg-white dark:bg-[#0E0E12] text-gray-900 dark:text-white"
           />
           <button
             type="button"
             onClick={handleAddManualUrl}
-            className="bg-[#1A1C1C] text-white px-3 py-1 text-xs font-bold rounded hover:bg-black transition-colors"
+            className="bg-[#1A1C1C] dark:bg-white text-white dark:text-black px-3 py-1 text-xs font-bold rounded hover:bg-black transition-colors"
           >
             Añadir
           </button>

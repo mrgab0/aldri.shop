@@ -262,10 +262,13 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                         key={item._id}
                         id={item._id}
                         name={item.name}
+                        nameEn={item.nameEn}
                         slug={item.slug}
                         price={item.price}
                         category={item.category}
+                        categoryEn={item.categoryEn}
                         badge={item.badge}
+                        badgeEn={item.badgeEn}
                         productType={item.productType}
                         image={item.images[0] || "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800"}
                       />

@@ -8,13 +8,13 @@ interface ThemeContextType {
 }
 
 const ThemeContext = React.createContext<ThemeContextType>({
-  theme: "light",
+  theme: "dark",
   setTheme: () => {},
 });
 
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
+  defaultTheme = "dark",
 }: {
   children: React.ReactNode;
   defaultTheme?: string;
@@ -27,20 +27,20 @@ export function ThemeProvider({
   React.useEffect(() => {
     const saved = localStorage.getItem("theme") || defaultTheme;
     setThemeState(saved);
-    if (saved === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
+    if (saved === "light") {
       document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
     }
   }, [defaultTheme]);
 
   const setTheme = (newTheme: string) => {
     setThemeState(newTheme);
     localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
+    if (newTheme === "light") {
       document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
     }
   };
 

@@ -97,12 +97,15 @@ export default async function Home() {
                 key={product._id.toString()}
                 id={product._id.toString()}
                 name={product.name}
+                nameEn={product.nameEn}
                 slug={product.slug}
                 price={product.price}
                 compareAtPrice={product.compareAtPrice}
                 productType={product.productType || "digital"}
                 category={product.category}
+                categoryEn={product.categoryEn}
                 badge={product.badge}
+                badgeEn={product.badgeEn}
                 image={product.images && product.images.length > 0 ? product.images[0] : ""}
                 secondaryImage={product.images && product.images.length > 1 ? product.images[1] : undefined}
               />

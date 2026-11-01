@@ -44,35 +44,35 @@ export default function RastreoPedidoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0F1015] text-[#1A1C1C] dark:text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#060608] gold-ambient-mesh text-white flex flex-col">
       <ShopHeader />
 
       <main className="flex-1 py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl space-y-8">
           {/* Header de Rastreo */}
           <div className="text-center space-y-3">
-            <span className="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 inline-block shadow-sm">
+            <span className="glass-pill text-[#F2CA50] border-amber-400/30 text-xs font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full inline-block shadow-[0_0_20px_rgba(212,175,55,0.15)]">
               Seguimiento en Tiempo Real
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-sans font-black tracking-tight text-gray-900 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight text-white">
               Rastrear Mi Pedido
             </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 font-medium max-w-lg mx-auto">
+            <p className="text-sm text-zinc-400 font-medium max-w-lg mx-auto">
               Ingresa el ID de tu Pedido, correo o teléfono para consultar el estado de tu compra y descargar tus productos digitales.
             </p>
           </div>
 
           {/* Formulario de Búsqueda */}
-          <form onSubmit={handleSearch} className="bg-white dark:bg-[#12131A] p-4 md:p-6 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-3">
+          <form onSubmit={handleSearch} className="glass-panel-luxury p-4 md:p-6 rounded-3xl border border-white/10 shadow-xl space-y-3">
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-3.5 text-gray-400" size={18} />
+                <Search className="absolute left-4 top-3.5 text-zinc-400" size={18} />
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Ej: ALDR-123456-1, tu correo o teléfono"
-                  className="w-full pl-11 pr-4 py-3.5 border rounded-2xl text-sm font-bold text-gray-900 dark:text-white bg-gray-50/50 dark:bg-gray-900/50 placeholder:text-gray-400 border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full pl-11 pr-4 py-3.5 border rounded-2xl text-sm font-bold text-white bg-[#0E0E12] placeholder:text-zinc-500 border-white/15 focus:outline-none focus:ring-2 focus:ring-[#F2CA50]"
                   required
                 />
               </div>
@@ -80,14 +80,14 @@ export default function RastreoPedidoPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3.5 rounded-2xl font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 disabled:bg-gray-400"
+                className="glass-btn-gold text-[#060608] px-8 py-3.5 rounded-2xl font-black text-sm transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 select-none cursor-pointer"
               >
                 {loading ? "Buscando..." : "Buscar Pedido"}
               </button>
             </div>
 
             {error && (
-              <div className="p-3.5 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-xs font-bold rounded-2xl border border-red-100 dark:border-red-900/50 flex items-center gap-2">
+              <div className="p-3.5 bg-red-950/40 text-red-300 text-xs font-bold rounded-2xl border border-red-800 flex items-center gap-2">
                 <AlertCircle size={16} />
                 <span>{error}</span>
               </div>
@@ -115,13 +115,13 @@ export default function RastreoPedidoPage() {
                 ];
 
             return (
-              <div className="bg-white dark:bg-[#12131A] p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm space-y-8 animate-in fade-in duration-500">
+              <div className="glass-panel-luxury p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-8 animate-in fade-in duration-500">
                 {/* Encabezado del Pedido */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-4 border-gray-100 dark:border-gray-800">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-4 border-white/10">
                   <div>
-                    <span className="text-xs text-gray-400 font-mono block">ID de Orden: {order.orderId || order._id}</span>
-                    <h3 className="text-lg font-bold text-[#1A1C1C] dark:text-white flex items-center gap-2">
-                      <User size={16} className="text-indigo-600" />
+                    <span className="text-xs text-zinc-400 font-mono block">ID de Orden: {order.orderId || order._id}</span>
+                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                      <User size={16} className="text-[#F2CA50]" />
                       <span>{order.customerName}</span>
                     </h3>
                   </div>
@@ -129,10 +129,17 @@ export default function RastreoPedidoPage() {
                   <div className="flex items-center gap-2">
                     <span className={`px-4 py-1.5 rounded-full text-xs font-extrabold border ${
                       currentStep === 3
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300"
+                        ? "bg-emerald-950 text-emerald-300 border-emerald-700"
                         : currentStep === 2
-                        ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300"
+                        ? "bg-indigo-950 text-indigo-300 border-indigo-700"
                         : currentStep === 1
+                        ? "bg-amber-950 text-[#F2CA50] border-amber-700"
+                        : "bg-blue-950 text-blue-300 border-blue-700"
+                    }`}>
+                      {order.status || (isDigital ? "Completado" : "Confirmado")}
+                    </span>
+                  </div>
+                </div>
                         ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300"
                         : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300"
                     }`}>
@@ -185,12 +192,12 @@ export default function RastreoPedidoPage() {
 
                 {/* Descargas Digitales si aplican */}
                 {(isDigital || order.items?.some((i: any) => i.productType === 'digital')) && (
-                  <div className="p-5 bg-amber-50/80 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-800/40 space-y-3">
+                  <div className="p-5 bg-[#0E0E12] rounded-2xl border border-amber-500/20 space-y-3">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-black uppercase tracking-wider text-amber-900 dark:text-[#F2CA50] flex items-center gap-1.5">
-                        <Sparkles size={16} className="text-[#D4AF37]" /> Descargas Digitales & Licencias
+                      <h4 className="text-xs font-black uppercase tracking-wider text-[#F2CA50] flex items-center gap-1.5">
+                        <Sparkles size={16} className="text-[#D4AF37]" /> Descargas Digitales &amp; Licencias
                       </h4>
-                      <span className="text-[10px] font-extrabold bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black px-2.5 py-0.5 rounded-full shadow-sm">
+                      <span className="text-[10px] font-black glass-btn-gold text-[#060608] px-2.5 py-0.5 rounded-full shadow-sm">
                         Acceso Autorizado
                       </span>
                     </div>
@@ -198,10 +205,10 @@ export default function RastreoPedidoPage() {
                       {order.items.map((it: any, i: number) => {
                         const hasDownload = it.downloadUrl && it.downloadUrl.trim() !== "" && it.downloadUrl !== "#";
                         return (
-                          <div key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white dark:bg-gray-900 p-4 rounded-xl border border-amber-100 dark:border-amber-900/30 shadow-sm">
+                          <div key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10 shadow-sm">
                             <div>
-                              <span className="font-bold text-sm text-gray-900 dark:text-white block">{it.name}</span>
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                              <span className="font-bold text-sm text-white block">{it.name}</span>
+                              <span className="text-xs text-zinc-400">
                                 {hasDownload 
                                   ? "Licencia activa • Acceso y actualizaciones de por vida" 
                                   : "Configurando licencia personalizada • Enviado directo a tu email"}
@@ -212,13 +219,13 @@ export default function RastreoPedidoPage() {
                                 href={it.downloadUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black font-extrabold px-5 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5 hover:scale-105"
+                                className="glass-btn-gold text-[#060608] font-black px-5 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5 hover:scale-105 select-none"
                               >
                                 <span>Descargar Activo 📥</span>
                               </a>
                             ) : (
-                              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-900/40 px-3.5 py-2 rounded-xl border border-amber-300 dark:border-amber-700">
-                                <Clock size={14} className="text-amber-600 dark:text-amber-400 animate-pulse" />
+                              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#F2CA50] bg-amber-500/10 px-3.5 py-2 rounded-xl border border-amber-500/30">
+                                <Clock size={14} className="text-[#F2CA50] animate-pulse" />
                                 <span>Asignando Licencia (Enviado a tu email)</span>
                               </div>
                             )}

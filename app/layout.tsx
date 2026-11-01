@@ -68,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${playfair.variable} ${montserrat.variable} ${plusJakarta.variable} ${manrope.variable} ${greatVibes.variable}`} suppressHydrationWarning>
+    <html lang="es" className={`dark ${playfair.variable} ${montserrat.variable} ${plusJakarta.variable} ${manrope.variable} ${greatVibes.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" />
         <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
