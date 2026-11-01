@@ -38,6 +38,7 @@
   "exclude": [
     "node_modules",
     "__checks__",
-    "checkly.config.ts"
+    "checkly.config.ts",
+    "scripts"
   ]
 }

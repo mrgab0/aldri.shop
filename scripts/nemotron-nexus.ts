@@ -2,8 +2,8 @@ import { spawn } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { searchZendropCatalog, getZendropProduct } from '../lib/fulfillment/zendrop.ts';
-import { searchCJCatalog, getCJAccessToken, getCJProduct } from '../lib/fulfillment/cjdropshipping.ts';
+import { searchZendropCatalog, getZendropProduct } from '../lib/fulfillment/zendrop';
+import { searchCJCatalog, getCJAccessToken, getCJProduct } from '../lib/fulfillment/cjdropshipping';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
