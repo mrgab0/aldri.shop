@@ -1,0 +1,4 @@
+scripts
+__checks__
+checkly.config.ts
+*.log

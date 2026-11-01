@@ -1,4 +1,4 @@
-import { searchZendropCatalog, getZendropProduct, estimateZendropShipping } from '../lib/fulfillment/zendrop.ts';
+import { searchZendropCatalog, getZendropProduct, estimateZendropShipping } from '../lib/fulfillment/zendrop';
 
 async function run() {
   console.log('=== PRUEBA DE INTEGRACIÓN EN VIVO: ZENDROP MCP ===');
