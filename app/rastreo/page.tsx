@@ -140,13 +140,6 @@ export default function RastreoPedidoPage() {
                     </span>
                   </div>
                 </div>
-                        ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300"
-                        : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300"
-                    }`}>
-                      {order.status || (isDigital ? "Completado" : "Confirmado")}
-                    </span>
-                  </div>
-                </div>
 
                 {/* Línea de Tiempo / Progreso de 4 Pasos Dinámicos */}
                 <div className="space-y-4">
