@@ -7,9 +7,11 @@ export async function POST(req: Request) {
   try {
     await dbConnect();
 
-    // 1. Eliminar cualquier producto de simulación previo (mocks/placeholders)
+    // 1. Eliminar cualquier producto de simulación previo o SKU obsoleto que no pertenezca al catálogo oficial
+    const validSkus = REAL_CURATED_PRODUCTS.map(p => p.sku);
     const delResult = await Product.deleteMany({
       $or: [
+        { sku: { $nin: validSkus } },
         { sku: { $regex: /^ALDR-(?:DIG|DROP)-/i } },
         { sku: 'ALDR-ZD-MAGSAFE-FOLD' },
         { dropshipInfo: { $exists: false }, productType: 'dropship' }
