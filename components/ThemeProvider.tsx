@@ -29,8 +29,10 @@ export function ThemeProvider({
     setThemeState(saved);
     if (saved === "light") {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     } else {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     }
   }, [defaultTheme]);
 
@@ -39,8 +41,10 @@ export function ThemeProvider({
     localStorage.setItem("theme", newTheme);
     if (newTheme === "light") {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     } else {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     }
   };
 

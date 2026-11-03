@@ -92,9 +92,26 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Detección Temprana de Tema Anti-FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'light') {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.classList.add('light');
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <NextIntlClientProvider locale="es" messages={esMessages}>
             <CartProvider>
               <PedidoFlotante />

@@ -52,7 +52,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
   }
 
   return (
-    <main className="min-h-screen gold-ambient-mesh text-white transition-colors duration-300 relative overflow-x-hidden">
+    <main className="min-h-screen gold-ambient-mesh text-slate-900 dark:text-white transition-colors duration-300 relative overflow-x-hidden">
       {/* Barra de anuncio superior (SAME DAY DELIVERY) */}
       <TrustAnnouncementBar phone="(346) 739-2730" />
 
@@ -84,10 +84,10 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
               Catálogo Seleccionado 2026
             </span>
           </div>
-          <h2 className="text-2xl md:text-4xl font-serif text-white tracking-[0.25em] uppercase font-bold drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
+          <h2 className="text-2xl md:text-4xl font-serif text-slate-900 dark:text-white tracking-[0.25em] uppercase font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
             T E N D E N C I A S &nbsp; &amp; &nbsp; D E S T A C A D O S
           </h2>
-          <p className="text-xs uppercase tracking-widest text-zinc-400 mt-2.5 font-bold">
+          <p className="text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mt-2.5 font-bold">
             Digital Goods &bull; Instant Downloads &bull; Trending Hardware Selection
           </p>
         </div>

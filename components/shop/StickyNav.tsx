@@ -51,10 +51,10 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
   return (
     <>
       <nav
-        className={`w-full z-50 transition-all duration-300 border-b border-white/10 ${
+        className={`w-full z-50 transition-all duration-300 border-b border-black/10 dark:border-white/10 ${
           isSticky
-            ? "fixed top-0 bg-[#08080C]/85 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.6)] py-0 border-t-0"
-            : "relative bg-[#08080C]/70 backdrop-blur-xl py-1 border-t border-white/5"
+            ? "fixed top-0 bg-white/90 dark:bg-[#08080C]/85 backdrop-blur-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.6)] py-0 border-t-0"
+            : "relative bg-white/80 dark:bg-[#08080C]/70 backdrop-blur-xl py-1 border-t border-black/5 dark:border-white/5"
         }`}
       >
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 xl:gap-6 relative">
@@ -66,7 +66,7 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
                 <img src="/logo.png" alt="Aldri Shop Logo" className="w-full h-full object-cover rounded-full" />
               </div>
               <div className="hidden sm:flex flex-col">
-                <span className="font-serif font-black text-xl sm:text-2xl text-white tracking-tight flex-shrink-0 leading-tight">
+                <span className="font-serif font-black text-xl sm:text-2xl text-slate-900 dark:text-white tracking-tight flex-shrink-0 leading-tight">
                   Aldri <span className="text-[#F2CA50]">Shop</span>
                 </span>
                 <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#F2CA50]/90">
@@ -110,7 +110,7 @@ export function StickyNav({ siteConfig }: StickyNavProps) {
               >
                 <Link 
                   href={link.href} 
-                  className="px-4 xl:px-6 h-16 xl:h-20 flex items-center justify-center text-zinc-200 hover:text-[#F2CA50] border-b-2 border-transparent hover:border-[#F2CA50] transition-all duration-200 tracking-widest uppercase font-black text-xs xl:text-[13px] hover:bg-white/[0.03]"
+                  className="px-4 xl:px-6 h-16 xl:h-20 flex items-center justify-center text-zinc-700 dark:text-zinc-200 hover:text-[#714B00] dark:hover:text-[#F2CA50] border-b-2 border-transparent hover:border-[#714B00] dark:hover:border-[#F2CA50] transition-all duration-200 tracking-widest uppercase font-black text-xs xl:text-[13px] hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
                 >
                   <span>{link.label}</span>
                   {link.isMega && (

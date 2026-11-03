@@ -69,7 +69,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         className="block relative select-none"
       >
         {/* Contenedor de Imagen con Pedestal de Estudio en Cristal */}
-        <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-[#121218]/70 to-[#07070A]/90 p-3 flex items-center justify-center border-b border-white/10">
+        <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100/80 dark:from-[#121218]/70 dark:to-[#07070A]/90 p-3 flex items-center justify-center border-b border-black/5 dark:border-white/10">
           <img
             src={optimizedMainImage}
             alt={name}
@@ -103,7 +103,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             }`}>
               {productType === 'digital' ? (isEn ? '⚡ Digital 24/7' : '⚡ Digital 24/7') : (isEn ? '📦 US/Global Tracked' : '📦 Físico Rastreado')}
             </span>
-            <span className="glass-pill text-zinc-300 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest w-fit">
+            <span className="glass-pill text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest w-fit">
               {displayCategory}
             </span>
           </div>
@@ -122,7 +122,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow bg-transparent">
         <div>
-          <h3 className="font-sans font-bold text-sm sm:text-base text-white group-hover:text-[#F2CA50] transition-colors mb-1.5 line-clamp-1">
+          <h3 className="font-sans font-bold text-sm sm:text-base text-zinc-900 dark:text-white group-hover:text-[#714B00] dark:group-hover:text-[#F2CA50] transition-colors mb-1.5 line-clamp-1">
             <Link
               href={`/productos/${slug}`}
               draggable={false}
@@ -135,19 +135,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Calificación de 5 estrellas estilo Stitch Luxury */}
           <div className="flex items-center text-[11px] text-[#F2CA50] mb-3">
             <span className="tracking-wide">★★★★★</span>
-            <span className="text-zinc-400 ml-1.5 text-[10px] font-semibold">(5.0)</span>
+            <span className="text-zinc-500 dark:text-zinc-400 ml-1.5 text-[10px] font-semibold">(5.0)</span>
           </div>
         </div>
 
-        <div className="flex justify-between items-center pt-3 border-t border-white/10 mt-auto">
+        <div className="flex justify-between items-center pt-3 border-t border-black/5 dark:border-white/10 mt-auto">
           <div>
-            <span className="text-[10px] uppercase tracking-widest text-zinc-400 block font-bold">Precio</span>
+            <span className="text-[10px] uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block font-bold">Precio</span>
             <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-base sm:text-lg font-black text-[#F2CA50] font-sans tracking-tight drop-shadow-[0_0_10px_rgba(242,202,80,0.3)]">
-                ${price.toFixed(2)} <span className="text-[10px] text-zinc-300 font-bold">USD</span>
+                ${price.toFixed(2)} <span className="text-[10px] text-zinc-600 dark:text-zinc-300 font-bold">USD</span>
               </span>
               {compareAtPrice && compareAtPrice > price ? (
-                <span className="text-xs text-zinc-500 line-through">
+                <span className="text-xs text-zinc-400 dark:text-zinc-500 line-through">
                   ${compareAtPrice.toFixed(2)}
                 </span>
               ) : null}

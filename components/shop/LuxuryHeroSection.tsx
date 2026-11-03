@@ -65,14 +65,14 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
         </div>
 
         {/* Titular Principal en Playfair Display (Editorial Lujo Stitch Radical) */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] font-bold tracking-tight mb-5 drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 dark:text-white leading-[1.1] font-bold tracking-tight mb-5 drop-shadow-[0_2px_15px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
           Digital Products &amp; <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] drop-shadow-[0_0_35px_rgba(212,175,55,0.35)]">
             Modern Essentials
           </span>
         </h1>
 
-        <p className="text-zinc-300 text-sm md:text-base lg:text-lg font-normal max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
+        <p className="text-zinc-600 dark:text-zinc-300 text-sm md:text-base lg:text-lg font-normal max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
           Descarga plantillas y activos de productividad al instante 24/7 y adquiere gadgets tecnológicos de vanguardia con seguimiento global en vivo.
         </p>
 
@@ -83,7 +83,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
             <div className="w-11 h-11 mb-2.5 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#F2CA50] border border-amber-400/30 shadow-[0_0_15px_rgba(242,202,80,0.2)] group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
               <Zap size={20} />
             </div>
-            <span className="text-xs font-extrabold text-white text-center leading-snug tracking-wide">
+            <span className="text-xs font-extrabold text-zinc-900 dark:text-white text-center leading-snug tracking-wide">
               Descarga<br /><span className="text-[#F2CA50]">Inmediata 24/7</span>
             </span>
           </div>
@@ -93,7 +93,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
             <div className="w-11 h-11 mb-2.5 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#F2CA50] border border-amber-400/30 shadow-[0_0_15px_rgba(242,202,80,0.2)] group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
               <Truck size={20} />
             </div>
-            <span className="text-xs font-extrabold text-white text-center leading-snug tracking-wide">
+            <span className="text-xs font-extrabold text-zinc-900 dark:text-white text-center leading-snug tracking-wide">
               Envíos Globales<br /><span className="text-[#F2CA50]">Rastreados</span>
             </span>
           </div>
@@ -103,7 +103,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
             <div className="w-11 h-11 mb-2.5 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#F2CA50] border border-amber-400/30 shadow-[0_0_15px_rgba(242,202,80,0.2)] group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
               <ShieldCheck size={20} />
             </div>
-            <span className="text-xs font-extrabold text-white text-center leading-snug tracking-wide">
+            <span className="text-xs font-extrabold text-zinc-900 dark:text-white text-center leading-snug tracking-wide">
               Garantía &amp;<br /><span className="text-[#F2CA50]">Soporte VIP</span>
             </span>
           </div>
@@ -113,7 +113,7 @@ export const LuxuryHeroSection: React.FC<LuxuryHeroSectionProps> = ({ siteConfig
             <div className="w-11 h-11 mb-2.5 rounded-xl bg-amber-500/10 flex items-center justify-center text-[#F2CA50] border border-amber-400/30 shadow-[0_0_15px_rgba(242,202,80,0.2)] group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
               <Star size={20} fill="#F2CA50" />
             </div>
-            <span className="text-xs font-extrabold text-white text-center leading-snug tracking-wide">
+            <span className="text-xs font-extrabold text-zinc-900 dark:text-white text-center leading-snug tracking-wide">
               5 Estrellas<br /><span className="text-[#F2CA50]">Verificadas</span>
             </span>
           </div>
