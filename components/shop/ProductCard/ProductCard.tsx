@@ -77,22 +77,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             decoding="async"
             draggable={false}
             onDragStart={(e) => e.preventDefault()}
-            className={`w-full h-full object-contain select-none pointer-events-none transform group-hover:scale-110 transition-all duration-700 ease-out drop-shadow-md ${
-              optimizedSecondaryImage ? 'group-hover:opacity-0' : ''
-            }`}
+            className="w-full h-full object-contain select-none pointer-events-none transform group-hover:scale-105 transition-transform duration-500 ease-out drop-shadow-md"
           />
-          {optimizedSecondaryImage && (
-            <img
-              src={optimizedSecondaryImage}
-              alt={`${name} - alternativa`}
-              loading="lazy"
-              decoding="async"
-              draggable={false}
-              onDragStart={(e) => e.preventDefault()}
-              className="absolute inset-0 w-full h-full object-contain p-3 select-none pointer-events-none transform scale-100 group-hover:scale-110 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 drop-shadow-md"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           
           {/* Badge Flotante de Tipo de Producto en Cápsula Translúcida */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">

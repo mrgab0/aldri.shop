@@ -182,22 +182,9 @@ export function FeaturedProductsSlider({ products }: FeaturedProductsSliderProps
                     decoding="async"
                     draggable={false}
                     onDragStart={(e) => e.preventDefault()}
-                    className={`w-full h-full object-cover select-none pointer-events-none group-hover:scale-105 transition-all duration-700 ${
-                      secondaryImage ? 'group-hover:opacity-0' : ''
-                    }`}
+                    className="w-full h-full object-cover select-none pointer-events-none group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  {secondaryImage && (
-                    <img
-                      src={secondaryImage}
-                      alt={`${product.name} - alternativa`}
-                      loading="lazy"
-                      decoding="async"
-                      draggable={false}
-                      onDragStart={(e) => e.preventDefault()}
-                      className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none transform scale-100 group-hover:scale-105 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   
                   {/* Badge de Categoría */}
                   <div className="absolute top-3 left-3">

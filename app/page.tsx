@@ -107,7 +107,6 @@ export default async function Home() {
                 badge={product.badge}
                 badgeEn={product.badgeEn}
                 image={product.images && product.images.length > 0 ? product.images[0] : ""}
-                secondaryImage={product.images && product.images.length > 1 ? product.images[1] : undefined}
               />
             ))
           ) : (

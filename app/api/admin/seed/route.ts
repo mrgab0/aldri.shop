@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       ]
     });
 
-    // 2. Insertar o actualizar los 20 productos reales bilingües
+    // 2. Insertar o actualizar los 40 productos reales bilingües
     const createdProducts = [];
     for (const item of REAL_CURATED_PRODUCTS) {
       const updated = await Product.findOneAndUpdate(
@@ -30,10 +30,13 @@ export async function POST(req: Request) {
       createdProducts.push(updated);
     }
 
+    const zdCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'zendrop').length;
+    const cjCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'cjdropshipping').length;
+
     return NextResponse.json({
       success: true,
       deletedLegacyCount: delResult.deletedCount,
-      message: `Se sincronizaron ${createdProducts.length} productos 100% reales (10 Zendrop US + 10 CJ Dropshipping)`,
+      message: `Se sincronizaron ${createdProducts.length} productos 100% reales (${zdCount} Zendrop US + ${cjCount} CJ Dropshipping)`,
       count: createdProducts.length,
       products: createdProducts.map(p => ({
         id: p._id,
