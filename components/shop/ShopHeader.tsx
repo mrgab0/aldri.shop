@@ -18,6 +18,7 @@ export const ShopHeader = () => {
 
   const navLinks = [
     { href: "/productos", label: t('catalog') },
+    { href: "/afiliados", label: t('affiliates') },
     { href: "/rastreo", label: t('tracking') },
     { href: "/contacto", label: t('contact') }
   ];

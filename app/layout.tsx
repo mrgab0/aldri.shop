@@ -6,6 +6,7 @@ import esMessages from '@/messages/es.json';
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { ReferralTracker } from "@/components/shop/ReferralTracker";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 
@@ -120,6 +121,7 @@ export default function RootLayout({
               <ChatbotModal />
               <CookieConsent />
               <AnalyticsTracker />
+              <ReferralTracker />
               <InstallPrompt />
               <RecentSalesTicker />
             </CartProvider>

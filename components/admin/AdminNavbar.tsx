@@ -72,6 +72,12 @@ const NAV_ITEMS = [
     badgeColor: "bg-purple-100 dark:bg-purple-950/80 text-purple-950 dark:text-purple-200 border-purple-300 dark:border-purple-800/80 hover:bg-purple-200"
   },
   {
+    href: "/admin/afiliados",
+    label: "Afiliados / Referidos",
+    icon: "🤝",
+    badgeColor: "bg-amber-100 dark:bg-amber-950/80 text-amber-950 dark:text-amber-200 border-amber-300 dark:border-amber-800/80 hover:bg-amber-200"
+  },
+  {
     href: "/admin/pagos",
     label: "Cuentas",
     icon: "💳",

@@ -172,6 +172,10 @@ export function Footer({ siteConfig }: FooterProps) {
             <Link className="text-zinc-400 hover:text-[#F2CA50] font-medium transition-colors" href="/rastreo">
               Rastreo y Descargas
             </Link>
+            <span className="text-zinc-600">·</span>
+            <Link className="text-zinc-400 hover:text-[#F2CA50] font-medium transition-colors" href="/afiliados">
+              Programa de Afiliados
+            </Link>
           </div>
         </div>
 

@@ -223,6 +223,15 @@ export default function CheckoutPage() {
     const hasDropship = cartItems.some(i => i.productType === 'dropship');
     const computedOrderType = isOnlyDigital ? "digital" : (hasDigital && hasDropship ? "hybrid" : "dropship");
 
+    let referralCode = "";
+    try {
+      referralCode = localStorage.getItem("aldri_ref") || "";
+      if (!referralCode && typeof document !== "undefined") {
+        const match = document.cookie.match(/(?:^|;\s*)aldri_ref=([^;]*)/);
+        if (match) referralCode = decodeURIComponent(match[1]);
+      }
+    } catch (e) {}
+
     const orderData = {
       customerName: data.get("name")?.toString() || "",
       customerEmail: data.get("email")?.toString() || "",
@@ -240,6 +249,7 @@ export default function CheckoutPage() {
         : (selectedDelivery ? `${selectedDelivery.title} (${selectedDelivery.estimatedTimeLabel})` : "Envío a Domicilio"),
       deliveryFee: deliveryFee,
       couponCode: appliedCoupon ? appliedCoupon.code : "",
+      referralCode: referralCode.trim().toUpperCase(),
       discountAmount: discountAmount,
       taxAmount: taxAmount,
       cardMessage: data.get("cardMessage")?.toString() || cardMessage || "",

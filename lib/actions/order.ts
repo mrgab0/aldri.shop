@@ -140,6 +140,41 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
     }
   }
 
+  // Atribución de Comisión al Programa de Afiliados (Estilo Amazon Associates)
+  if (orderData.referralCode) {
+    try {
+      const { Affiliate } = await import("@/lib/models/Affiliate");
+      const normalizedRefCode = orderData.referralCode.trim().toUpperCase();
+      const affiliate = await Affiliate.findOne({
+        code: normalizedRefCode,
+        isActive: true,
+      });
+
+      if (affiliate) {
+        const rate = affiliate.commissionRate || 0.10;
+        const commissionAmount = Math.round((savedOrder.total * rate) * 100) / 100;
+
+        savedOrder.referralCode = affiliate.code;
+        savedOrder.affiliateId = affiliate._id;
+        savedOrder.commissionAmount = commissionAmount;
+        savedOrder.commissionRate = rate;
+        savedOrder.commissionStatus = "pending";
+        await savedOrder.save();
+
+        await Affiliate.findByIdAndUpdate(affiliate._id, {
+          $inc: {
+            orderCount: 1,
+            totalSales: savedOrder.total,
+            totalCommissionsEarned: commissionAmount,
+          },
+          $set: { updatedAt: new Date() },
+        });
+      }
+    } catch (affErr) {
+      console.error("Error procesando atribución de afiliado en la orden:", affErr);
+    }
+  }
+
   // Notificación por Email usando Nodemailer
   try {
     const rawAdminEmails = process.env.ADMIN_EMAILS;

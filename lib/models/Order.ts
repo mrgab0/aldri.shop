@@ -35,6 +35,11 @@ export interface IOrder extends Document {
   couponCode?: string;
   discountAmount?: number;
   taxAmount?: number;
+  referralCode?: string;
+  affiliateId?: mongoose.Types.ObjectId;
+  commissionAmount?: number;
+  commissionRate?: number;
+  commissionStatus?: 'pending' | 'approved' | 'paid';
   cardMessage?: string;
   items: Array<{
     id: string;
@@ -80,6 +85,11 @@ const OrderSchema: Schema = new Schema({
   couponCode: { type: String, default: "" },
   discountAmount: { type: Number, default: 0 },
   taxAmount: { type: Number, default: 0 },
+  referralCode: { type: String, default: "", uppercase: true, trim: true },
+  affiliateId: { type: Schema.Types.ObjectId, ref: 'Affiliate', default: null },
+  commissionAmount: { type: Number, default: 0 },
+  commissionRate: { type: Number, default: 0 },
+  commissionStatus: { type: String, enum: ['pending', 'approved', 'paid'], default: 'pending' },
   cardMessage: { type: String, default: "" },
   items: [{
     id: String,
