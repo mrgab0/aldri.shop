@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
  * Diseñado para ejecutarse en Checkly / CI contra despliegues de Vercel.
  */
 
-const TARGET_URL = process.env.ENVIRONMENT_URL || process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://aldri.shop';
+const TARGET_URL = process.env.ENVIRONMENT_URL || process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://aldri-shop.vercel.app';
 
 test.describe('aldri.shop Visual Eyes & Storefront Tests', () => {
 
@@ -65,6 +65,14 @@ test.describe('aldri.shop Visual Eyes & Storefront Tests', () => {
 
     // Captura visual del acceso admin
     await page.screenshot({ path: 'screenshots/04-admin-auth.png', fullPage: false });
+  });
+
+  test('5. Programa de Afiliados: Landing y Registro Internacional', async ({ page }) => {
+    await page.goto(`${TARGET_URL}/es/afiliados`, { waitUntil: 'domcontentloaded' });
+    const body = page.locator('body');
+    await expect(body).toBeVisible();
+    await expect(page.locator('h1, h2, form').first()).toBeVisible();
+    await page.screenshot({ path: 'screenshots/05-afiliados.png', fullPage: false });
   });
 
 });
