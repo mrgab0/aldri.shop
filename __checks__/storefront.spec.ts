@@ -75,4 +75,10 @@ test.describe('aldri.shop Visual Eyes & Storefront Tests', () => {
     await page.screenshot({ path: 'screenshots/05-afiliados.png', fullPage: false });
   });
 
+  test('6. Marco Legal: Privacidad, Términos y Reembolsos', async ({ page }) => {
+    await page.goto(`${TARGET_URL}/es/privacidad`, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('h1').first()).toBeVisible();
+    await page.screenshot({ path: 'screenshots/06-privacidad.png', fullPage: false });
+  });
+
 });

@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locales = ["es", "en"];
 
   // Rutas estáticas de la tienda con soporte bilingüe (/es y /en)
-  const staticPaths = ["", "/productos", "/contacto", "/rastreo", "/afiliados"];
+  const staticPaths = ["", "/productos", "/contacto", "/rastreo", "/afiliados", "/privacidad", "/terminos", "/reembolsos"];
   const staticRoutes: MetadataRoute.Sitemap = locales.flatMap((loc) =>
     staticPaths.map((p) => ({
       url: `${baseUrl}/${loc}${p}`,

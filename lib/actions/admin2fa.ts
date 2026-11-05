@@ -8,6 +8,7 @@ import * as crypto from "crypto";
 import * as speakeasy from "speakeasy";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { setAdminSessionCookie } from "@/lib/adminAuth";
 
 const ADMIN_COOKIE_NAME = "ffy_admin_session";
 
@@ -312,14 +313,4 @@ export async function verifyEmergencyRescueOtpAction(code: string) {
   }
 }
 
-// Helper interno para establecer cookie de admin de 7 días
-async function setAdminSessionCookie() {
-  const cookieStore = await cookies();
-  cookieStore.set(ADMIN_COOKIE_NAME, "authenticated_session_token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 7, // 7 días de sesión
-    path: "/",
-  });
-}
+

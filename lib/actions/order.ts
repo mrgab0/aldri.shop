@@ -3,6 +3,7 @@
 import dbConnect from "@/lib/db";
 import { Order } from "@/lib/models/Order";
 import { verify2FACodeAction } from "@/lib/actions/admin2fa";
+import { verifyAdminSession } from "@/lib/adminAuth";
 import nodemailer from "nodemailer";
 import path from "path";
 import fs from "fs";
@@ -140,7 +141,21 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
     }
   }
 
-  // Atribución de Comisión al Programa de Afiliados (Estilo Amazon Associates)
+  // Decrementar inventario / stock real de los productos comprados
+  try {
+    const { Product } = await import("@/lib/models/Product");
+    for (const item of (savedOrder.items || [])) {
+      if (item.id && !item.id.startsWith("bump-")) {
+        await Product.findByIdAndUpdate(item.id, {
+          $inc: { stock: -(item.quantity || 1) },
+        });
+      }
+    }
+  } catch (stockErr) {
+    console.error("Error decrementando stock en inventario:", stockErr);
+  }
+
+  // Atribución de Comisión al Programa de Afiliados (Estilo Amazon Associates con Anti-Fraude)
   if (orderData.referralCode) {
     try {
       const { Affiliate } = await import("@/lib/models/Affiliate");
@@ -151,24 +166,44 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
       });
 
       if (affiliate) {
-        const rate = affiliate.commissionRate || 0.10;
-        const commissionAmount = Math.round((savedOrder.total * rate) * 100) / 100;
+        // Blindaje Anti-Auto-Referido: Comprobar si el comprador es el mismo afiliado
+        const custEmail = (savedOrder.customerEmail || "").trim().toLowerCase();
+        const custPhone = (savedOrder.customerPhone || "").replace(/[^0-9]/g, "");
+        const affEmail = (affiliate.email || "").trim().toLowerCase();
+        const affPhone = (affiliate.phone || "").replace(/[^0-9]/g, "");
 
-        savedOrder.referralCode = affiliate.code;
-        savedOrder.affiliateId = affiliate._id;
-        savedOrder.commissionAmount = commissionAmount;
-        savedOrder.commissionRate = rate;
-        savedOrder.commissionStatus = "pending";
-        await savedOrder.save();
+        const isSelfReferral =
+          (custEmail && custEmail === affEmail) ||
+          (custPhone && affPhone && (custPhone.includes(affPhone) || affPhone.includes(custPhone)));
 
-        await Affiliate.findByIdAndUpdate(affiliate._id, {
-          $inc: {
-            orderCount: 1,
-            totalSales: savedOrder.total,
-            totalCommissionsEarned: commissionAmount,
-          },
-          $set: { updatedAt: new Date() },
-        });
+        if (isSelfReferral) {
+          console.warn(`[Affiliate] Auto-referido bloqueado para ${affiliate.code} (Email o teléfono coincide con comprador).`);
+          savedOrder.referralCode = affiliate.code;
+          savedOrder.affiliateId = affiliate._id;
+          savedOrder.commissionAmount = 0;
+          savedOrder.commissionRate = 0;
+          savedOrder.commissionStatus = "pending";
+          await savedOrder.save();
+        } else {
+          const rate = affiliate.commissionRate || 0.10;
+          const commissionAmount = Math.round((savedOrder.total * rate) * 100) / 100;
+
+          savedOrder.referralCode = affiliate.code;
+          savedOrder.affiliateId = affiliate._id;
+          savedOrder.commissionAmount = commissionAmount;
+          savedOrder.commissionRate = rate;
+          savedOrder.commissionStatus = "pending";
+          await savedOrder.save();
+
+          await Affiliate.findByIdAndUpdate(affiliate._id, {
+            $inc: {
+              orderCount: 1,
+              totalSales: savedOrder.total,
+              totalCommissionsEarned: commissionAmount,
+            },
+            $set: { updatedAt: new Date() },
+          });
+        }
       }
     } catch (affErr) {
       console.error("Error procesando atribución de afiliado en la orden:", affErr);
@@ -388,6 +423,11 @@ export async function getOrderById(orderIdOrPhone: string) {
 
 export async function updateOrderStatusAction(orderId: string, status: string) {
   try {
+    const isAuth = await verifyAdminSession();
+    if (!isAuth) {
+      return { success: false, error: "No autorizado. Sesión de administrador requerida." };
+    }
+
     await dbConnect();
     const updated = await Order.findOneAndUpdate(
       { orderId },
@@ -410,6 +450,11 @@ export async function updateOrderWith2FAAction(
   twoFactorCode: string
 ) {
   try {
+    const isAuth = await verifyAdminSession();
+    if (!isAuth) {
+      return { success: false, error: "No autorizado. Sesión de administrador requerida." };
+    }
+
     await dbConnect();
 
     // 1. Verificar 2FA
@@ -438,6 +483,11 @@ export async function updateOrderWith2FAAction(
 
 export async function getAllOrdersAction() {
   try {
+    const isAuth = await verifyAdminSession();
+    if (!isAuth) {
+      return { success: false, error: "No autorizado. Sesión de administrador requerida." };
+    }
+
     await dbConnect();
     const orders = await Order.find({}).sort({ createdAt: -1 }).limit(100).lean();
     return { success: true, data: JSON.parse(JSON.stringify(orders)) };
