@@ -5,6 +5,7 @@ import "@/lib/models/Addon";
 import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components/shop/ProductDetail";
 import { REAL_CURATED_PRODUCTS } from "@/data/curated-catalog";
+import { REAL_DIGITAL_PRODUCTS } from "@/data/digital-catalog";
 
 interface RootProductPageProps {
   params: Promise<{ slug: string }>;
@@ -21,7 +22,7 @@ async function getProductBySlug(slug: string) {
     console.error("Error buscando producto en DB:", err);
   }
 
-  const curated = REAL_CURATED_PRODUCTS.find((p) => p.slug === slug);
+  const curated = REAL_CURATED_PRODUCTS.find((p) => p.slug === slug) || REAL_DIGITAL_PRODUCTS.find((p) => p.slug === slug);
   if (curated && curated.isActive !== false) {
     return JSON.parse(JSON.stringify(curated));
   }

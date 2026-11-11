@@ -55,6 +55,32 @@ const DEFAULT_PAYMENT_CONFIGS: Record<string, any> = {
     linkUrl: "",
     isActive: true,
   },
+  binance_pay: {
+    methodId: "binance_pay",
+    title: "Binance Pay",
+    holderName: "Aldri Shop Oficial",
+    accountDetail: "Configurar Binance Pay ID en Panel Admin",
+    qrImage: "",
+    instructions: "1. Abre tu aplicación de Binance y pulsa el icono de Binance Pay o 'Escanear QR'.\n2. Realiza el envío del monto exacto de tu compra sin comisiones de red.\n3. Copia el ID de Orden o TxID de Binance y pégalo abajo.",
+    linkUrl: "https://pay.binance.com",
+    isActive: true,
+  },
+  crypto: {
+    methodId: "crypto",
+    title: "Criptomonedas (USDT / BTC / SOL)",
+    holderName: "Billetera Cripto Oficial",
+    accountDetail: "USDT (TRC20): Configurar en Panel Admin",
+    qrImage: "",
+    cryptoWallets: {
+      usdtTrc20: "",
+      usdtBep20: "",
+      bitcoin: "",
+      solana: "",
+    },
+    instructions: "1. Selecciona la red de tu preferencia (USDT TRC20, BEP20, Bitcoin o Solana) y copia la dirección.\n2. Envía el equivalente exacto desde tu billetera (TrustWallet, Metamask, Binance, Exodus, etc.).\n3. Pega el Hash de Transacción (TxHash) abajo para validar tu pedido.",
+    linkUrl: "",
+    isActive: true,
+  },
 };
 
 export async function getDefaultPaymentConfigs() {
@@ -102,6 +128,15 @@ export async function updatePaymentConfig(methodId: string, formData: FormData) 
 
     if (isActiveInput !== null) {
       updateData.isActive = isActiveInput === "true";
+    }
+
+    if (methodId === "crypto") {
+      updateData.cryptoWallets = {
+        usdtTrc20: (formData.get("usdtTrc20") as string) || "",
+        usdtBep20: (formData.get("usdtBep20") as string) || "",
+        bitcoin: (formData.get("bitcoin") as string) || "",
+        solana: (formData.get("solana") as string) || "",
+      };
     }
 
     await PaymentConfig.findOneAndUpdate(

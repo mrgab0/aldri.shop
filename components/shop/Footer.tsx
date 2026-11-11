@@ -112,6 +112,23 @@ export function Footer({ siteConfig }: FooterProps) {
 
         {/* Insignias de Métodos de Pago Aceptados con Máximo Contraste */}
         <div className="py-6 flex flex-wrap justify-center items-center gap-2">
+          {/* Binance Pay */}
+          <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-[#181A20] border border-amber-400/40 rounded text-[10px] font-black text-[#F0B90B] shadow-sm">
+            <span>BINANCE</span>
+            <span className="text-[#060608] bg-[#F0B90B] px-1 rounded-sm text-[9px] font-extrabold">PAY</span>
+          </span>
+          {/* Tether USDT */}
+          <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-[#0E0E12] border border-emerald-500/40 rounded text-[10px] font-black text-[#26A17B] shadow-sm">
+            ₮ USDT
+          </span>
+          {/* Bitcoin */}
+          <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-[#0E0E12] border border-amber-500/40 rounded text-[10px] font-black text-[#F7931A] shadow-sm">
+            ₿ Bitcoin
+          </span>
+          {/* Solana */}
+          <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-[#0E0E12] border border-[#14F195]/40 rounded text-[10px] font-black text-[#14F195] shadow-sm">
+            ◎ Solana
+          </span>
           {/* AMEX */}
           <span className="inline-flex items-center justify-center px-2.5 py-1 bg-[#0E0E12] border border-white/10 rounded text-[10px] font-black text-[#007AC1] shadow-sm">
             AMEX

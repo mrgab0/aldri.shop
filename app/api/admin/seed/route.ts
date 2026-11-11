@@ -2,13 +2,17 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import { Product } from '@/lib/models/Product';
 import { REAL_CURATED_PRODUCTS } from '@/data/curated-catalog';
+import { REAL_DIGITAL_PRODUCTS } from '@/data/digital-catalog';
 
 export async function POST(req: Request) {
   try {
     await dbConnect();
 
-    // 1. Eliminar cualquier producto de simulación previo o SKU obsoleto que no pertenezca al catálogo oficial
-    const validSkus = REAL_CURATED_PRODUCTS.map(p => p.sku);
+    // 1. Eliminar cualquier producto de simulación previo o SKU obsoleto que no pertenezca al catálogo oficial (físico o digital)
+    const validSkus = [
+      ...REAL_CURATED_PRODUCTS.map(p => p.sku),
+      ...REAL_DIGITAL_PRODUCTS.map(p => p.sku)
+    ];
     const delResult = await Product.deleteMany({
       $or: [
         { sku: { $nin: validSkus } },
@@ -18,7 +22,7 @@ export async function POST(req: Request) {
       ]
     });
 
-    // 2. Insertar o actualizar los 40 productos reales bilingües
+    // 2. Insertar o actualizar los productos físicos reales
     const createdProducts = [];
     for (const item of REAL_CURATED_PRODUCTS) {
       const updated = await Product.findOneAndUpdate(
@@ -32,13 +36,27 @@ export async function POST(req: Request) {
       createdProducts.push(updated);
     }
 
+    // 3. Insertar o actualizar los productos digitales y claves de videojuegos
+    for (const digitalItem of REAL_DIGITAL_PRODUCTS) {
+      const updatedDigital = await Product.findOneAndUpdate(
+        { sku: digitalItem.sku },
+        {
+          ...digitalItem,
+          isActive: true
+        },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      );
+      createdProducts.push(updatedDigital);
+    }
+
     const zdCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'zendrop').length;
     const cjCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'cjdropshipping').length;
+    const digCount = createdProducts.filter(p => p?.productType === 'digital').length;
 
     return NextResponse.json({
       success: true,
       deletedLegacyCount: delResult.deletedCount,
-      message: `Se sincronizaron ${createdProducts.length} productos 100% reales (${zdCount} Zendrop US + ${cjCount} CJ Dropshipping)`,
+      message: `Se sincronizaron ${createdProducts.length} productos 100% reales (${zdCount} Zendrop US + ${cjCount} CJ Dropshipping + ${digCount} Digitales & Claves)`,
       count: createdProducts.length,
       products: createdProducts.map(p => ({
         id: p._id,

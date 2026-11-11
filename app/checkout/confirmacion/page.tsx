@@ -31,6 +31,17 @@ export default async function ConfirmacionPage({
             <p className="text-2xl font-mono font-bold text-indigo-600">{orderId}</p>
         </div>
 
+        {order?.items?.some((i: any) => i.productType === 'digital') && (
+          <div className="bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-xl mb-6 text-left space-y-1 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+              <span>⚡</span> Entrega de Claves y Activos Digitales
+            </p>
+            <p className="text-xs text-amber-950 leading-relaxed font-medium">
+              Tu pedido contiene productos digitales / claves de activación. Podrás consultar el estado de tu clave o enlace de descarga directamente en la sección de descargas de tu pedido.
+            </p>
+          </div>
+        )}
+
         {order && <OrderSummary items={order.items} />}
 
         <div className="flex flex-col gap-3 mt-6">

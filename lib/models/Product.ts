@@ -25,6 +25,11 @@ export interface IProduct extends Document {
     fileType?: string;
     downloadLimit?: number;
     licenseKey?: string;
+    platform?: 'Steam' | 'Xbox' | 'PlayStation' | 'PC' | 'Nintendo' | 'Multi' | string;
+    keyDeliveryType?: 'instant_key' | 'download_link' | 'activation_guide' | 'jit_key' | string;
+    availableKeys?: string[];
+    activationInstructions?: string;
+    activationInstructionsEn?: string;
   };
   // Campos específicos de Dropshipping Multi-Proveedor
   dropshipInfo?: {
@@ -81,7 +86,12 @@ const ProductSchema: Schema = new Schema({
     fileSize: { type: String, default: "" },
     fileType: { type: String, default: "" },
     downloadLimit: { type: Number, default: 10 },
-    licenseKey: { type: String, default: "" }
+    licenseKey: { type: String, default: "" },
+    platform: { type: String, default: "PC" },
+    keyDeliveryType: { type: String, default: "jit_key" },
+    availableKeys: [{ type: String }],
+    activationInstructions: { type: String, default: "" },
+    activationInstructionsEn: { type: String, default: "" }
   },
   dropshipInfo: {
     provider: { type: String, enum: ['cjdropshipping', 'zendrop', 'spocket', 'manual'], default: 'cjdropshipping' },

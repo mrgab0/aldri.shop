@@ -15,10 +15,25 @@ import { Zap, Rocket, Truck, Sun, Clock, Moon, Store, ShieldCheck, CheckCircle2,
 
 
 const PaymentLogos = {
+  binance_pay: (
+    <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto">
+      <rect width="38" height="24" fill="#181A20" rx="4"/>
+      <path d="M19 5l3.5 3.5-3.5 3.5-3.5-3.5L19 5zm-6 6l3.5 3.5-3.5 3.5L9.5 14.5 13 11zm12 0l3.5 3.5-3.5 3.5-3.5-3.5 3.5-3.5zm-6 6l3.5 3.5-3.5 3.5-3.5-3.5 3.5-3.5z" fill="#F0B90B"/>
+    </svg>
+  ),
+  crypto: (
+    <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto">
+      <rect width="38" height="24" fill="#0E0E12" rx="4"/>
+      <circle cx="14" cy="12" r="7" fill="#F7931A"/>
+      <text x="14" y="16" fill="#fff" fontSize="11" fontWeight="bold" textAnchor="middle">₿</text>
+      <circle cx="24" cy="12" r="7" fill="#26A17B"/>
+      <text x="24" y="16" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">₮</text>
+    </svg>
+  ),
+  square: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><rect width="38" height="24" fill="#000000" rx="4"/><rect x="11" y="7" width="16" height="10" rx="2" fill="#fff"/></svg>,
+  paypal: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><path d="M0 0h38v24H0z" fill="#003087"/><path d="M10 5h18v14H10z" fill="#009cde"/></svg>,
   zelle: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><path d="M0 0h38v24H0z" fill="#6d2277"/><path d="M10 5h18v3l-10 8h10v5H10v-3l10-8H10z" fill="#fff"/></svg>,
   cashapp: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><rect width="38" height="24" fill="#00D632"/><path d="M19 6v12M14 9h7a2 2 0 0 1 0 4h-4a2 2 0 0 0 0 4h6" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
-  paypal: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><path d="M0 0h38v24H0z" fill="#003087"/><path d="M10 5h18v14H10z" fill="#009cde"/></svg>,
-  square: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><rect width="38" height="24" fill="#000000" rx="4"/><rect x="11" y="7" width="16" height="10" rx="2" fill="#fff"/></svg>,
   efectivo: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><rect width="38" height="24" fill="#22C55E" rx="4"/><circle cx="19" cy="12" r="5" fill="#fff"/></svg>
 };
 
@@ -39,6 +54,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState("");
+  const [selectedCryptoNetwork, setSelectedCryptoNetwork] = useState<"usdtTrc20" | "usdtBep20" | "bitcoin" | "solana">("usdtTrc20");
   const [deliveryOptionsList, setDeliveryOptionsList] = useState<DeliveryOption[]>(DEFAULT_DELIVERY_OPTIONS);
   const [selectedDelivery, setSelectedDelivery] = useState<DeliveryOption | null>(null);
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
@@ -196,10 +212,12 @@ export default function CheckoutPage() {
   };
 
   const rawPaymentMethods = [
+    { id: "binance_pay", label: "Binance Pay" },
+    { id: "crypto", label: "Criptos (USDT/BTC)" },
+    { id: "square", label: "Square (Tarjeta)" },
+    { id: "paypal", label: "PayPal" },
     { id: "zelle", label: "Zelle" },
     { id: "cashapp", label: "CashApp" },
-    { id: "paypal", label: "PayPal" },
-    { id: "square", label: "Square (Tarjeta)" },
     { id: "efectivo", label: "Efectivo" },
   ];
 
@@ -496,7 +514,9 @@ export default function CheckoutPage() {
                     <div className="bg-[#0E0E12] p-5 rounded-2xl border border-white/10 space-y-4 animate-in fade-in duration-300">
                       {(() => {
                         const cfg = paymentConfigs[selectedPayment] || {};
-                        const detailToCopy = cfg.accountDetail || cfg.linkUrl || "";
+                        const detailToCopy = selectedPayment === "crypto"
+                          ? (cfg.cryptoWallets?.[selectedCryptoNetwork] || cfg.accountDetail || "")
+                          : (cfg.accountDetail || cfg.linkUrl || "");
 
                         return (
                           <div className="space-y-4">
@@ -524,6 +544,60 @@ export default function CheckoutPage() {
                               )}
                             </div>
 
+                            {/* Selector de Red si se selecciona Criptomonedas */}
+                            {selectedPayment === "crypto" && (
+                              <div className="space-y-3 bg-[#121216] p-4 rounded-xl border border-white/10">
+                                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                                  Selecciona la Red de tu Billetera:
+                                </span>
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                  {[
+                                    { id: "usdtTrc20", label: "USDT (TRC20)" },
+                                    { id: "usdtBep20", label: "USDT (BEP20)" },
+                                    { id: "bitcoin", label: "Bitcoin (BTC)" },
+                                    { id: "solana", label: "Solana (SOL)" },
+                                  ].map((net) => (
+                                    <button
+                                      key={net.id}
+                                      type="button"
+                                      onClick={() => setSelectedCryptoNetwork(net.id as any)}
+                                      className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all text-center ${
+                                        selectedCryptoNetwork === net.id
+                                          ? "bg-amber-400/20 border-[#F2CA50] text-[#F2CA50] shadow-sm"
+                                          : "bg-white/5 border-white/10 text-zinc-300 hover:text-white"
+                                      }`}
+                                    >
+                                      {net.label}
+                                    </button>
+                                  ))}
+                                </div>
+
+                                {(() => {
+                                  const wallets = cfg.cryptoWallets || {};
+                                  const activeWallet = wallets[selectedCryptoNetwork] || cfg.accountDetail || "";
+                                  return (
+                                    <div className="space-y-2 pt-2">
+                                      <div className="flex justify-between items-center text-xs">
+                                        <span className="text-zinc-400 font-bold">Dirección Oficial ({selectedCryptoNetwork.toUpperCase()}):</span>
+                                        {activeWallet && (
+                                          <button
+                                            type="button"
+                                            onClick={() => handleCopyText(activeWallet)}
+                                            className="text-[#F2CA50] hover:underline font-bold flex items-center gap-1 text-[11px]"
+                                          >
+                                            <Copy size={12} /> {copiedText === activeWallet ? "¡Copiada! ✓" : "Copiar"}
+                                          </button>
+                                        )}
+                                      </div>
+                                      <div className="bg-[#0E0E12] p-3 rounded-xl border border-white/15 text-center font-mono font-extrabold text-xs text-[#F2CA50] break-all select-all">
+                                        {activeWallet || "Billetera pendiente de configurar en Panel Admin"}
+                                      </div>
+                                    </div>
+                                  );
+                                })()}
+                              </div>
+                            )}
+
                             {cfg.qrImage && (
                               <div className="flex flex-col items-center justify-center p-3 bg-white/5 rounded-2xl border border-white/10 w-fit mx-auto shadow-sm">
                                 <img src={cfg.qrImage} alt={`QR ${cfg.title}`} className="w-44 h-44 object-contain rounded-xl" />
@@ -547,7 +621,7 @@ export default function CheckoutPage() {
                               </div>
                             )}
 
-                            {cfg.accountDetail && (
+                            {cfg.accountDetail && selectedPayment !== "crypto" && (
                               <div className="bg-[#121216] p-3 rounded-xl border border-white/10 text-center font-mono font-extrabold text-sm text-[#F2CA50]">
                                 {cfg.accountDetail}
                               </div>
@@ -573,7 +647,15 @@ export default function CheckoutPage() {
 
                   <input 
                     name="paymentRef" 
-                    placeholder={selectedPayment === 'efectivo' ? "No requerido para pago en efectivo" : "Número o Código de Referencia de Pago *"} 
+                    placeholder={
+                      selectedPayment === 'efectivo' 
+                        ? "No requerido para pago en efectivo" 
+                        : selectedPayment === 'binance_pay'
+                        ? "ID de Orden o TxID de Binance Pay *"
+                        : selectedPayment === 'crypto'
+                        ? "Hash de Transacción Blockchain (TxHash) *"
+                        : "Número o Código de Referencia de Pago *"
+                    } 
                     className="w-full p-3.5 border border-white/15 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F2CA50] font-medium text-white bg-[#0E0E12] placeholder:text-zinc-500" 
                     disabled={selectedPayment === 'efectivo'}
                     required={selectedPayment !== 'efectivo'}

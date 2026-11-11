@@ -7,6 +7,21 @@ import { CreditCard, Save, QrCode, CheckCircle2, Copy, Link as LinkIcon, Refresh
 import Link from "next/link";
 
 const PaymentLogos = {
+  binance_pay: (
+    <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto">
+      <rect width="38" height="24" fill="#181A20" rx="4"/>
+      <path d="M19 5l3.5 3.5-3.5 3.5-3.5-3.5L19 5zm-6 6l3.5 3.5-3.5 3.5L9.5 14.5 13 11zm12 0l3.5 3.5-3.5 3.5-3.5-3.5 3.5-3.5zm-6 6l3.5 3.5-3.5 3.5-3.5-3.5 3.5-3.5z" fill="#F0B90B"/>
+    </svg>
+  ),
+  crypto: (
+    <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto">
+      <rect width="38" height="24" fill="#0E0E12" rx="4"/>
+      <circle cx="14" cy="12" r="7" fill="#F7931A"/>
+      <text x="14" y="16" fill="#fff" fontSize="11" fontWeight="bold" textAnchor="middle">₿</text>
+      <circle cx="24" cy="12" r="7" fill="#26A17B"/>
+      <text x="24" y="16" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">₮</text>
+    </svg>
+  ),
   zelle: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><path d="M0 0h38v24H0z" fill="#6d2277"/><path d="M10 5h18v3l-10 8h10v5H10v-3l10-8H10z" fill="#fff"/></svg>,
   cashapp: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><rect width="38" height="24" fill="#00D632"/><path d="M19 6v12M14 9h7a2 2 0 0 1 0 4h-4a2 2 0 0 0 0 4h6" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
   paypal: <svg viewBox="0 0 38 24" width="38" height="24" className="w-8 h-auto"><path d="M0 0h38v24H0z" fill="#003087"/><path d="M10 5h18v14H10z" fill="#009cde"/></svg>,
@@ -61,6 +76,8 @@ export default function AdminPagosPage() {
   }
 
   const methodsList = [
+    { id: "binance_pay", name: "Binance Pay", desc: "Configura tu Binance Pay ID, Código QR y enlace oficial de pago sin comisiones" },
+    { id: "crypto", name: "Criptomonedas (Multi-Red)", desc: "Configura tus direcciones de wallet: USDT (TRC20/BEP20), Bitcoin y Solana" },
     { id: "zelle", name: "Zelle", desc: "Configura el Correo/Teléfono y el Código QR de Zelle" },
     { id: "cashapp", name: "CashApp", desc: "Configura el $Cashtag y el Código QR de CashApp" },
     { id: "paypal", name: "PayPal", desc: "Configura el correo PayPal y enlace paypal.me" },
@@ -150,30 +167,80 @@ export default function AdminPagosPage() {
                   </div>
 
                   {/* Correo, Teléfono o $Cashtag */}
-                  {m.id !== "efectivo" && (
+                  {m.id !== "efectivo" && m.id !== "crypto" && (
                     <div className="flex flex-col gap-1">
                       <label className="text-xs font-bold text-gray-700 dark:text-gray-300">
-                        {m.id === "zelle" ? "Correo o Teléfono de Zelle *" : m.id === "cashapp" ? "$Cashtag de CashApp *" : m.id === "paypal" ? "Correo de PayPal *" : "Detalle de Cuenta"}
+                        {m.id === "binance_pay" ? "Binance Pay ID o Correo de Binance *" : m.id === "zelle" ? "Correo o Teléfono de Zelle *" : m.id === "cashapp" ? "$Cashtag de CashApp *" : m.id === "paypal" ? "Correo de PayPal *" : "Detalle de Cuenta"}
                       </label>
                       <input
                         name="accountDetail"
                         defaultValue={cfg.accountDetail || ""}
-                        placeholder={m.id === "zelle" ? "pagos@aldri.shop" : m.id === "cashapp" ? "$AldriShop" : "pagos@aldri.shop"}
+                        placeholder={m.id === "binance_pay" ? "Ej: 198427189 o pagos@aldri.shop" : m.id === "zelle" ? "pagos@aldri.shop" : m.id === "cashapp" ? "$AldriShop" : "pagos@aldri.shop"}
                         className="p-3 border rounded-xl text-xs font-bold text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                       />
                     </div>
                   )}
 
-                  {/* Enlace Directo (Square / Paypal.me) */}
-                  {(m.id === "square" || m.id === "paypal" || m.id === "cashapp") && (
+                  {/* Sección Especial para Criptomonedas Multi-Red */}
+                  {m.id === "crypto" && (
+                    <div className="space-y-3 bg-gray-50 dark:bg-[#12131A] p-4 rounded-2xl border border-gray-200 dark:border-gray-800">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider block">
+                          🪙 Direcciones Públicas de Billetera
+                        </span>
+                        <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">
+                          Multi-Red
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">USDT (Red TRON - TRC20) *Principal</label>
+                        <input
+                          name="usdtTrc20"
+                          defaultValue={cfg.cryptoWallets?.usdtTrc20 || ""}
+                          placeholder="Ej: T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb"
+                          className="p-3 border rounded-xl text-xs font-mono font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-bold text-yellow-600 dark:text-yellow-400">USDT (Red BNB Chain - BEP20)</label>
+                        <input
+                          name="usdtBep20"
+                          defaultValue={cfg.cryptoWallets?.usdtBep20 || ""}
+                          placeholder="Ej: 0x71C...849"
+                          className="p-3 border rounded-xl text-xs font-mono font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-bold text-amber-600 dark:text-amber-400">Bitcoin (BTC - Red Nativa)</label>
+                        <input
+                          name="bitcoin"
+                          defaultValue={cfg.cryptoWallets?.bitcoin || ""}
+                          placeholder="Ej: bc1q... o 1A1z..."
+                          className="p-3 border rounded-xl text-xs font-mono font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-bold text-purple-600 dark:text-purple-400">Solana (SOL)</label>
+                        <input
+                          name="solana"
+                          defaultValue={cfg.cryptoWallets?.solana || ""}
+                          placeholder="Ej: 7xKX...2mQ"
+                          className="p-3 border rounded-xl text-xs font-mono font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Enlace Directo (Square / Paypal.me / Binance Pay) */}
+                  {(m.id === "square" || m.id === "paypal" || m.id === "cashapp" || m.id === "binance_pay") && (
                     <div className="flex flex-col gap-1">
                       <label className="text-xs font-bold text-gray-700 dark:text-gray-300 flex items-center gap-1">
-                        <LinkIcon size={12} className="text-[#FF97A4]" /> Enlace Directo de Pago (URL)
+                        <LinkIcon size={12} className="text-[#FF97A4]" /> {m.id === "binance_pay" ? "Enlace de Pago Binance Pay (URL)" : "Enlace Directo de Pago (URL)"}
                       </label>
                       <input
                         name="linkUrl"
                         defaultValue={cfg.linkUrl || ""}
-                        placeholder={m.id === "square" ? "https://square.link/u/..." : "https://paypal.me/..."}
+                        placeholder={m.id === "binance_pay" ? "https://pay.binance.com" : m.id === "square" ? "https://square.link/u/..." : "https://paypal.me/..."}
                         className="p-3 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#FF97A4]"
                       />
                     </div>
