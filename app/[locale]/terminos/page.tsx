@@ -4,8 +4,9 @@ import { Metadata } from "next";
 import { FileText, ShieldCheck, ShoppingBag, Scale, Award, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale?: string }> }): Promise<Metadata> {
+  const resolved = await params;
+  const locale = resolved?.locale || "es";
   const isEn = locale === "en";
 
   return {
@@ -23,8 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function TerminosPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default async function TerminosPage({ params }: { params: Promise<{ locale?: string }> }) {
+  const resolved = await params;
+  const locale = resolved?.locale || "es";
   const isEn = locale === "en";
 
   return (

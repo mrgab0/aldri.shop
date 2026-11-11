@@ -29,7 +29,7 @@ function getExpectedAdminPassword(): string {
 /**
  * Genera un token de sesión criptográfico firmado con HMAC-SHA256 y timestamp
  */
-export async function createAdminSessionToken(): Promise<string> {
+async function createAdminSessionToken(): Promise<string> {
   const timestamp = Date.now().toString();
   const randomId = crypto.randomBytes(16).toString("hex");
   const payload = `${timestamp}:${randomId}`;
@@ -43,7 +43,7 @@ export async function createAdminSessionToken(): Promise<string> {
 /**
  * Verifica la firma criptográfica y la vigencia temporal del token de sesión
  */
-export function verifyAdminSessionToken(token: string): boolean {
+function verifyAdminSessionToken(token: string): boolean {
   if (!token || typeof token !== "string") return false;
 
   const parts = token.split(":");
