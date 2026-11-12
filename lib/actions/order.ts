@@ -393,6 +393,30 @@ export async function createOrder(orderData: any, existingOrderId?: string) {
     console.error("Error enviando email SMTP:", error);
   }
 
+  // Notificación instantánea a Telegram (Hermes Bot)
+  try {
+    const { sendTelegramOrderNotification } = await import("@/lib/telegram");
+    await sendTelegramOrderNotification({
+      orderId: savedOrder.orderId,
+      customerName: savedOrder.customerName,
+      customerEmail: savedOrder.customerEmail,
+      customerPhone: savedOrder.customerPhone,
+      total: savedOrder.total,
+      paymentMethod: savedOrder.paymentMethod,
+      paymentRef: savedOrder.paymentRef,
+      orderType: savedOrder.orderType,
+      referralCode: savedOrder.referralCode,
+      items: (savedOrder.items || []).map((it: any) => ({
+        name: it.name,
+        quantity: it.quantity,
+        price: it.price,
+        productType: it.productType,
+      })),
+    });
+  } catch (tgErr) {
+    console.error("Error enviando alerta de Telegram:", tgErr);
+  }
+
   return { success: true, orderId: savedOrder.orderId };
 }
 
