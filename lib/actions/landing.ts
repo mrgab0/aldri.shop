@@ -3,6 +3,8 @@
 import dbConnect from "@/lib/db";
 import { LandingPage, ILandingPage } from "@/lib/models/LandingPage";
 import { Product } from "@/lib/models/Product";
+import { REAL_CURATED_PRODUCTS } from "@/data/curated-catalog";
+import { REAL_DIGITAL_PRODUCTS } from "@/data/digital-catalog";
 import { revalidatePath } from "next/cache";
 
 export async function getLandingPages() {
@@ -26,7 +28,7 @@ export async function getLandingPages() {
 export async function getLandingPageBySlug(subdomain: string) {
   try {
     await dbConnect();
-    const landing = await LandingPage.findOne({
+    const landing: any = await LandingPage.findOne({
       subdomain: subdomain.toLowerCase().trim(),
       isActive: true,
     })
@@ -35,6 +37,33 @@ export async function getLandingPageBySlug(subdomain: string) {
 
     if (!landing) {
       return { success: false, error: "Landing page no encontrada o inactiva." };
+    }
+
+    // Fallback de producto con los catálogos seleccionados si no está en MongoDB
+    if (!landing.productId || !landing.productId.name) {
+      const matchSlug = landing.productSlug || landing.subdomain;
+      const foundCurated =
+        REAL_CURATED_PRODUCTS.find((p) => p.slug === matchSlug) ||
+        REAL_DIGITAL_PRODUCTS.find((p) => p.slug === matchSlug) ||
+        REAL_CURATED_PRODUCTS.find((p) => landing.title && p.name.toLowerCase().includes(landing.title.toLowerCase())) ||
+        REAL_DIGITAL_PRODUCTS.find((p) => landing.title && p.name.toLowerCase().includes(landing.title.toLowerCase()));
+
+      if (foundCurated) {
+        landing.productId = {
+          _id: (foundCurated as any)._id || `curated-${foundCurated.slug}`,
+          name: foundCurated.name,
+          price: foundCurated.price,
+          compareAtPrice: foundCurated.compareAtPrice,
+          images: foundCurated.images,
+          description: foundCurated.description,
+          slug: foundCurated.slug,
+          category: foundCurated.category,
+          productType: (foundCurated as any).productType || (foundCurated as any).digitalAsset ? "digital" : "dropship",
+          features: foundCurated.features,
+          dropshipInfo: (foundCurated as any).dropshipInfo,
+          digitalAsset: (foundCurated as any).digitalAsset,
+        };
+      }
     }
 
     return {
@@ -177,13 +206,65 @@ export async function trackLandingClick(subdomain: string) {
 
 export async function getProductsForLandingSelector() {
   try {
-    await dbConnect();
-    const products = await Product.find({ isActive: true })
-      .select("_id name price compareAtPrice images description slug category")
-      .sort({ createdAt: -1 })
-      .lean();
-    return { success: true, data: JSON.parse(JSON.stringify(products)) };
+    let dbProducts: any[] = [];
+    try {
+      await dbConnect();
+      dbProducts = await Product.find({ isActive: true })
+        .select("_id name price compareAtPrice images description slug category productType features dropshipInfo digitalAsset")
+        .sort({ createdAt: -1 })
+        .lean();
+    } catch (dbErr) {
+      console.warn("DB conexión secundaria en getProductsForLandingSelector:", dbErr);
+    }
+
+    const existingSlugs = new Set((dbProducts || []).map((p: any) => p.slug));
+
+    // Incorporar catálogo de dropshipping curado
+    const curatedItems = REAL_CURATED_PRODUCTS.filter((p) => !existingSlugs.has(p.slug)).map((p) => ({
+      _id: `curated-${p.slug}`,
+      name: p.name,
+      price: p.price,
+      compareAtPrice: p.compareAtPrice,
+      images: p.images,
+      description: p.description,
+      slug: p.slug,
+      category: p.category,
+      productType: "dropship",
+      features: p.features,
+      dropshipInfo: (p as any).dropshipInfo,
+    }));
+
+    // Incorporar catálogo digital (juegos, software, licencias)
+    const digitalItems = REAL_DIGITAL_PRODUCTS.filter((p) => !existingSlugs.has(p.slug)).map((p) => ({
+      _id: `digital-${p.slug}`,
+      name: p.name,
+      price: p.price,
+      compareAtPrice: p.compareAtPrice,
+      images: p.images,
+      description: p.description,
+      slug: p.slug,
+      category: p.category,
+      productType: "digital",
+      features: p.features,
+      digitalAsset: (p as any).digitalAsset,
+    }));
+
+    const combined = [...(dbProducts || []), ...curatedItems, ...digitalItems];
+    return { success: true, data: JSON.parse(JSON.stringify(combined)) };
   } catch (error: any) {
-    return { success: false, error: error.message };
+    console.error("Error al obtener productos para landing:", error);
+    const fallback = [...REAL_CURATED_PRODUCTS, ...REAL_DIGITAL_PRODUCTS].map((p) => ({
+      _id: `fallback-${p.slug}`,
+      name: p.name,
+      price: p.price,
+      compareAtPrice: p.compareAtPrice,
+      images: p.images,
+      description: p.description,
+      slug: p.slug,
+      category: p.category,
+      productType: (p as any).digitalAsset ? "digital" : "dropship",
+      features: p.features,
+    }));
+    return { success: true, data: JSON.parse(JSON.stringify(fallback)) };
   }
 }

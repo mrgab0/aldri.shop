@@ -19,6 +19,8 @@ import {
   MessageCircle,
   ShoppingCart,
   Star,
+  ImageIcon,
+  Layers,
 } from "lucide-react";
 import {
   createLandingPage,
@@ -33,6 +35,7 @@ interface LandingFormProps {
 }
 
 const THEME_COLORS = [
+  { name: "Champagne Gold (Lujo)", value: "#F2CA50" },
   { name: "Naranja Fuego", value: "#ea580c" },
   { name: "Verde Esmeralda", value: "#059669" },
   { name: "Azul Royal", value: "#2563eb" },
@@ -56,6 +59,8 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
     title: initialData?.title || "",
     subdomain: initialData?.subdomain || "",
     productId: initialData?.productId?._id || initialData?.productId || "",
+    productSlug: initialData?.productSlug || "",
+    productType: (initialData?.productType as "dropship" | "digital") || "dropship",
     headline: initialData?.headline || "",
     subheadline: initialData?.subheadline || "",
     heroBadge: initialData?.heroBadge || "🔥 Oferta Especial de Lanzamiento",
@@ -63,12 +68,57 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
     originalPrice: initialData?.originalPrice || 0,
     discountPercentage: initialData?.discountPercentage || 40,
     countdownMinutes: initialData?.countdownMinutes || 15,
-    themeColor: initialData?.themeColor || "#ea580c",
+    themeColor: initialData?.themeColor || "#F2CA50",
     ctaText: initialData?.ctaText || "Comprar Ahora con Descuento",
     ctaType: (initialData?.ctaType as "checkout" | "whatsapp") || "checkout",
     whatsappMessage: initialData?.whatsappMessage || "",
     isActive: initialData?.isActive !== undefined ? initialData.isActive : true,
   });
+
+  // Galería de imágenes (proveedor / carátulas)
+  const [customImages, setCustomImages] = useState<string[]>(
+    initialData?.customImages || []
+  );
+  const [newImageUrl, setNewImageUrl] = useState("");
+
+  // Descuentos Escalonados Multi-Pack (Funnel de Conversión)
+  const [multiPacks, setMultiPacks] = useState<Array<{
+    quantity: number;
+    title: string;
+    badge?: string;
+    price: number;
+    originalPrice?: number;
+    isPopular?: boolean;
+  }>>(
+    initialData?.multiPacks && initialData.multiPacks.length > 0
+      ? initialData.multiPacks
+      : [
+          {
+            quantity: 1,
+            title: "1 Unidad (Estándar)",
+            badge: "40% OFF",
+            price: initialData?.promoPrice || 29.99,
+            originalPrice: initialData?.originalPrice || 49.99,
+            isPopular: false,
+          },
+          {
+            quantity: 2,
+            title: "Pack x2 (Ahorro Pareja)",
+            badge: "🔥 MÁS VENDIDO (10% EXTRA OFF)",
+            price: initialData?.promoPrice ? Math.round(initialData.promoPrice * 2 * 0.9 * 100) / 100 : 49.99,
+            originalPrice: (initialData?.originalPrice || 49.99) * 2,
+            isPopular: true,
+          },
+          {
+            quantity: 3,
+            title: "Pack x3 (Máximo Valor / Regalo)",
+            badge: "⭐ MEJOR AHORRO (15% EXTRA OFF)",
+            price: initialData?.promoPrice ? Math.round(initialData.promoPrice * 3 * 0.85 * 100) / 100 : 69.99,
+            originalPrice: (initialData?.originalPrice || 49.99) * 3,
+            isPopular: false,
+          },
+        ]
+  );
 
   // Listas dinámicas
   const [benefits, setBenefits] = useState<Array<{ title: string; description: string }>>(
@@ -119,7 +169,7 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
       },
       {
         question: "¿Qué métodos de pago aceptan?",
-        answer: "Aceptamos Zelle, CashApp, Tarjetas de Crédito/Débito, PayPal y pagos electrónicos 100% seguros con cifrado SSL.",
+        answer: "Aceptamos Binance Pay, USDT (TRC20/BEP20), Bitcoin, Solana, Tarjetas de Crédito, PayPal y Zelle de forma 100% segura con cifrado SSL.",
       },
       {
         question: "¿Tiene garantía?",
@@ -141,29 +191,71 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
     load();
   }, []);
 
-  // Al seleccionar producto, autocompletar datos básicos si están vacíos
+  // Al seleccionar producto, autocompletar datos básicos, galería y multi-packs
   const handleSelectProduct = (productId: string) => {
     setFormData((prev) => ({ ...prev, productId }));
     const prod = products.find((p) => p._id === productId);
     if (prod) {
-      if (!formData.title) {
-        setFormData((prev) => ({ ...prev, title: prod.name }));
+      const pPrice = prod.price || 29.99;
+      const oPrice = prod.compareAtPrice || Math.round(pPrice * 1.5);
+      const discountPct = oPrice > pPrice ? Math.round(((oPrice - pPrice) / oPrice) * 100) : 40;
+      const cleanSlug = (prod.slug || prod.name)
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "-")
+        .replace(/-+/g, "-")
+        .substring(0, 30);
+
+      setFormData((prev) => ({
+        ...prev,
+        title: prod.name,
+        subdomain: prev.subdomain || cleanSlug,
+        productSlug: prod.slug,
+        productType: prod.productType || (prod.digitalAsset ? "digital" : "dropship"),
+        promoPrice: pPrice,
+        originalPrice: oPrice,
+        discountPercentage: discountPct,
+        heroBadge: `🔥 Oferta Especial - ${discountPct}% OFF`,
+      }));
+
+      // Autollenar galería si el producto tiene imágenes
+      if (prod.images && Array.isArray(prod.images) && prod.images.length > 0) {
+        setCustomImages(prod.images);
       }
-      if (!formData.subdomain) {
-        const slug = (prod.slug || prod.name)
-          .toLowerCase()
-          .replace(/[^a-z0-9]/g, "-")
-          .replace(/-+/g, "-")
-          .substring(0, 30);
-        setFormData((prev) => ({ ...prev, subdomain: slug }));
+
+      // Autollenar características si están disponibles
+      if (prod.features && Array.isArray(prod.features) && prod.features.length > 0) {
+        setFeatures(prod.features);
       }
-      if (!formData.promoPrice || formData.promoPrice === 0) {
-        setFormData((prev) => ({
-          ...prev,
-          promoPrice: prod.price || 0,
-          originalPrice: prod.compareAtPrice || Math.round((prod.price || 0) * 1.4),
-        }));
-      }
+
+      // Generar packs escalonados automáticos (1x, 2x con 10% extra, 3x con 15% extra)
+      const pack2Price = Math.round(pPrice * 2 * 0.9 * 100) / 100;
+      const pack3Price = Math.round(pPrice * 3 * 0.85 * 100) / 100;
+      setMultiPacks([
+        {
+          quantity: 1,
+          title: "1 Unidad (Estándar)",
+          badge: `${discountPct}% OFF`,
+          price: pPrice,
+          originalPrice: oPrice,
+          isPopular: false,
+        },
+        {
+          quantity: 2,
+          title: "Pack x2 (Ahorro Pareja)",
+          badge: "🔥 MÁS VENDIDO (10% EXTRA OFF)",
+          price: pack2Price,
+          originalPrice: oPrice * 2,
+          isPopular: true,
+        },
+        {
+          quantity: 3,
+          title: "Pack x3 (Máximo Valor)",
+          badge: "⭐ MEJOR AHORRO (15% EXTRA OFF)",
+          price: pack3Price,
+          originalPrice: oPrice * 3,
+          isPopular: false,
+        },
+      ]);
     }
   };
 
@@ -188,6 +280,7 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          productId: formData.productId,
           productName,
           category: selectedProd?.category || "Tendencia",
           description: selectedProd?.description || "",
@@ -196,8 +289,8 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
       });
 
       const data = await res.json();
-      if (data.success && data.content) {
-        const c = data.content;
+      if (data.success && (data.content || data.data)) {
+        const c = data.content || data.data;
         setFormData((prev) => ({
           ...prev,
           headline: c.headline || prev.headline,
@@ -270,6 +363,10 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
     const payload = {
       ...formData,
       subdomain: cleanSubdomain,
+      productSlug: formData.productSlug || cleanSubdomain,
+      productType: formData.productType || "dropship",
+      customImages,
+      multiPacks,
       benefits,
       features,
       reviews,
@@ -424,6 +521,67 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400"
             />
+          </div>
+        </div>
+
+        {/* SECCIÓN 1.5: GALERÍA DE IMÁGENES & PORTADAS */}
+        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h2 className="text-base font-bold text-white flex items-center gap-2">
+              <ImageIcon className="w-5 h-5 text-amber-400" />
+              Galería de Imágenes & Portadas ({customImages.length})
+            </h2>
+          </div>
+
+          {customImages.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {customImages.map((img, idx) => (
+                <div key={idx} className="relative aspect-square rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group">
+                  <Image src={img} alt={`Imagen ${idx + 1}`} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setCustomImages(customImages.filter((_, i) => i !== idx))}
+                      className="p-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white"
+                      title="Eliminar imagen"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  {idx === 0 && (
+                    <span className="absolute bottom-1 left-1 bg-amber-500 text-black font-bold text-[9px] px-1.5 py-0.5 rounded shadow">
+                      Principal
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-slate-500 italic">
+              No hay imágenes cargadas aún. Selecciona un producto para cargar su galería oficial o añade URLs abajo.
+            </p>
+          )}
+
+          <div className="flex gap-2 pt-2">
+            <input
+              type="url"
+              placeholder="https://... (URL de imagen adicional)"
+              value={newImageUrl}
+              onChange={(e) => setNewImageUrl(e.target.value)}
+              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400 font-mono"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                if (newImageUrl.trim()) {
+                  setCustomImages([...customImages, newImageUrl.trim()]);
+                  setNewImageUrl("");
+                }
+              }}
+              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold text-xs rounded-xl flex items-center gap-1.5"
+            >
+              <Plus className="w-4 h-4" /> Añadir
+            </button>
           </div>
         </div>
 
@@ -627,6 +785,123 @@ export function LandingForm({ initialData, isEditing = false }: LandingFormProps
                 </div>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN 3.5: PAQUETES ESCALONADOS MULTI-PACK (FUNNEL DE CONVERSIÓN) */}
+        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h2 className="text-base font-bold text-white flex items-center gap-2">
+                <Layers className="w-5 h-5 text-amber-400" />
+                3.5 Descuentos Escalonados Multi-Pack (Funnel de Ventas)
+              </h2>
+              <p className="text-slate-400 text-xs mt-0.5">
+                Multiplica el ticket promedio de compra ofreciendo paquetes con descuentos progresivos (1x, 2x con 10% extra, 3x con 15% extra).
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {multiPacks.map((pack, pIdx) => (
+              <div
+                key={pIdx}
+                className={`p-4 rounded-xl border space-y-3 relative ${
+                  pack.isPopular
+                    ? "bg-amber-500/5 border-amber-500/40 ring-1 ring-amber-500/30"
+                    : "bg-slate-950 border-slate-800"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                    Nivel {pIdx + 1} ({pack.quantity} {pack.quantity === 1 ? "Unidad" : "Unidades"})
+                  </span>
+                  <label className="flex items-center gap-1.5 text-[11px] text-slate-300 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={!!pack.isPopular}
+                      onChange={(e) => {
+                        const updated = multiPacks.map((item, i) => ({
+                          ...item,
+                          isPopular: i === pIdx ? e.target.checked : false,
+                        }));
+                        setMultiPacks(updated);
+                      }}
+                      className="rounded border-slate-700 text-amber-500 focus:ring-0"
+                    />
+                    Destacado
+                  </label>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+                    Título del Pack
+                  </label>
+                  <input
+                    type="text"
+                    value={pack.title}
+                    onChange={(e) => {
+                      const updated = [...multiPacks];
+                      updated[pIdx].title = e.target.value;
+                      setMultiPacks(updated);
+                    }}
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+                    Insignia / Badge
+                  </label>
+                  <input
+                    type="text"
+                    value={pack.badge || ""}
+                    onChange={(e) => {
+                      const updated = [...multiPacks];
+                      updated[pIdx].badge = e.target.value;
+                      setMultiPacks(updated);
+                    }}
+                    placeholder="ej: 🔥 MÁS VENDIDO"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-amber-300"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+                      Precio Total ($)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={pack.price}
+                      onChange={(e) => {
+                        const updated = [...multiPacks];
+                        updated[pIdx].price = parseFloat(e.target.value) || 0;
+                        setMultiPacks(updated);
+                      }}
+                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+                      Original ($)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={pack.originalPrice || 0}
+                      onChange={(e) => {
+                        const updated = [...multiPacks];
+                        updated[pIdx].originalPrice = parseFloat(e.target.value) || 0;
+                        setMultiPacks(updated);
+                      }}
+                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-400 font-mono"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

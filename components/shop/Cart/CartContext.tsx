@@ -22,7 +22,7 @@ export interface CartItem {
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (product: Omit<CartItem, 'quantity'>) => void;
+  addToCart: (product: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
   decreaseFromCart: (id: string, addons?: AddonItemSelection[]) => void;
   removeFromCart: (id: string, addons?: AddonItemSelection[]) => void;
   updateAddonCustomText?: (itemId: string, addonId: string, customText: string) => void;
@@ -43,7 +43,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('aldri_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product: Omit<CartItem, 'quantity'>) => {
+  const addToCart = (product: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
+    const qtyToAdd = product.quantity && product.quantity > 0 ? product.quantity : 1;
     setCartItems((prev) => {
       // Comparar tanto ID como addons para identificar artículos únicos
       const existingItem = prev.find((item) => 
@@ -53,11 +54,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       if (existingItem) {
         return prev.map((item) =>
           item.id === product.id && JSON.stringify(item.addons) === JSON.stringify(product.addons)
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + qtyToAdd }
             : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prev, { ...product, quantity: qtyToAdd }];
     });
   };
 

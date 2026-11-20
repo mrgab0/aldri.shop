@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import { Product } from "@/lib/models/Product";
+import { REAL_CURATED_PRODUCTS } from "@/data/curated-catalog";
+import { REAL_DIGITAL_PRODUCTS } from "@/data/digital-catalog";
 import { verifyAdminSession } from "@/lib/adminAuth";
 
 export const runtime = "nodejs";
@@ -18,16 +20,38 @@ export async function POST(req: Request) {
     let description = body.description || "";
     let price = body.price || 0;
     let productType = "dropship";
+    let productFeatures: string[] = [];
+    let productLogistics = "";
 
     if (body.productId) {
-      await dbConnect();
-      const product = (await Product.findById(body.productId).lean()) as any;
-      if (product) {
-        name = product.name || name;
-        category = product.category || category;
-        description = product.description || description;
-        price = product.price || price;
-        productType = product.productType || productType;
+      if (body.productId.startsWith("curated-") || body.productId.startsWith("digital-") || body.productId.startsWith("fallback-")) {
+        const slug = body.productId.replace(/^(curated-|digital-|fallback-)/, "");
+        const found = REAL_CURATED_PRODUCTS.find((p) => p.slug === slug) || REAL_DIGITAL_PRODUCTS.find((p) => p.slug === slug);
+        if (found) {
+          name = found.name || name;
+          category = found.category || category;
+          description = found.description || description;
+          price = found.price || price;
+          productType = (found as any).digitalAsset ? "digital" : "dropship";
+          productFeatures = found.features || [];
+          productLogistics = (found as any).dropshipInfo?.supplier === "Zendrop" ? "Envío Rápido Almacén USA (2 a 5 Días)" : "Envío Rápido Internacional";
+        }
+      } else {
+        try {
+          await dbConnect();
+          const product = (await Product.findById(body.productId).lean()) as any;
+          if (product) {
+            name = product.name || name;
+            category = product.category || category;
+            description = product.description || description;
+            price = product.price || price;
+            productType = product.productType || productType;
+            productFeatures = product.features || [];
+            productLogistics = product.dropshipInfo?.supplier === "Zendrop" ? "Envío Rápido Almacén USA (2 a 5 Días)" : "";
+          }
+        } catch (dbErr) {
+          console.warn("Error buscando producto por id en generate-ai:", dbErr);
+        }
       }
     }
 
@@ -50,8 +74,9 @@ Tu objetivo es redactar los textos persuasivos para una Landing Page de producto
 DATOS DEL PRODUCTO:
 - Nombre: ${name}
 - Categoría: ${category}
-- Tipo: ${productType === "digital" ? "Descarga Digital Instantánea" : "Producto Físico con Seguimiento Internacional"}
-- Descripción base: ${description}
+- Tipo: ${productType === "digital" ? "Licencia Digital Oficial / Acceso Inmediato 24/7" : "Producto Físico de Lujo"}
+- Logística: ${productLogistics || (productType === "digital" ? "Descarga inmediata tras confirmación" : "Envío con número de seguimiento y entrega segura")}
+- Especificaciones base: ${productFeatures.length > 0 ? productFeatures.join(", ") : description || "Tecnología de última generación con acabados premium"}
 - Precio regular: $${price} USD
 
 INSTRUCCIONES DE RESPUESTA:
@@ -78,9 +103,9 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin formato Markdown, si
     { "name": "David G.", "location": "Miami, FL", "rating": 5, "comment": "Opinión destacando la gran relación calidad-precio." }
   ],
   "faqs": [
-    { "question": "¿Cuánto tarda la entrega?", "answer": "${productType === 'digital' ? 'Acceso inmediato 24/7 en pantalla y por correo.' : 'Procesamiento en 24-48h con guía internacional (7 a 12 días).'}" },
-    { "question": "¿Qué métodos de pago aceptan?", "answer": "Aceptamos tarjetas Visa, Mastercard, American Express, PayPal y Zelle de forma 100% segura." },
-    { "question": "¿Tiene garantía?", "answer": "Sí, cuentas con soporte directo y garantía de satisfacción garantizada." }
+    { "question": "¿Cuánto tarda la entrega?", "answer": "${productType === 'digital' ? 'Activación inmediata 24/7 en pantalla y respaldo por correo.' : 'Despacho rápido con número de guía oficial USPS / Internacional en 2 a 5 días hábiles.'}" },
+    { "question": "¿Qué métodos de pago aceptan?", "answer": "Aceptamos Binance Pay, Criptomonedas (USDT TRC20/BEP20, BTC, SOL), Tarjetas Visa/Mastercard, PayPal y Zelle de forma 100% encriptada." },
+    { "question": "¿Tiene garantía?", "answer": "Sí, cuentas con soporte prioritario 24/7 y garantía total de satisfacción o reposición." }
   ],
   "ctaText": "¡Aprovechar Oferta de Lanzamiento Ahora! ⚡"
 }`;
@@ -125,7 +150,7 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin formato Markdown, si
       return NextResponse.json({ error: "No se pudo generar el contenido con IA." }, { status: 502 });
     }
 
-    return NextResponse.json({ success: true, data: generatedJson });
+    return NextResponse.json({ success: true, data: generatedJson, content: generatedJson });
   } catch (error: any) {
     console.error("Error en API de generación de Landing:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });

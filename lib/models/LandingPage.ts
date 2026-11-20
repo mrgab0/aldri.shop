@@ -1,9 +1,20 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+export interface IMultiPackOption {
+  quantity: number;
+  title: string;
+  badge?: string;
+  price: number;
+  originalPrice?: number;
+  isPopular?: boolean;
+}
+
 export interface ILandingPage extends Document {
   title: string;
-  subdomain: string; // Ej: "cargador-mag" -> cargador-mag.aldri.shop o aldri.shop/l/cargador-mag
+  subdomain: string; // Ej: "cargador-mag" -> aldri.shop/l/cargador-mag
   productId?: mongoose.Types.ObjectId;
+  productSlug?: string;
+  productType?: "dropship" | "digital";
   headline: string;
   subheadline: string;
   heroBadge?: string;
@@ -19,7 +30,8 @@ export interface ILandingPage extends Document {
   ctaText: string;
   ctaType: "checkout" | "whatsapp";
   whatsappMessage?: string;
-  themeColor: string; // Hexadecimal, ej: "#6366F1" o "#163422"
+  themeColor: string; // Hexadecimal, ej: "#F2CA50", "#ea580c" o "#059669"
+  multiPacks?: IMultiPackOption[];
   isActive: boolean;
   viewsCount: number;
   clicksCount: number;
@@ -39,6 +51,8 @@ const LandingPageSchema: Schema = new Schema(
       match: [/^[a-z0-9-]+$/, "El subdominio solo puede contener letras minúsculas, números y guiones"],
     },
     productId: { type: Schema.Types.ObjectId, ref: "Product" },
+    productSlug: { type: String, trim: true },
+    productType: { type: String, enum: ["dropship", "digital"], default: "dropship" },
     headline: { type: String, required: true },
     subheadline: { type: String, default: "" },
     heroBadge: { type: String, default: "🔥 Oferta Especial de Lanzamiento" },
@@ -72,7 +86,17 @@ const LandingPageSchema: Schema = new Schema(
     ctaText: { type: String, default: "¡Comprar Ahora con Descuento! ⚡" },
     ctaType: { type: String, enum: ["checkout", "whatsapp"], default: "checkout" },
     whatsappMessage: { type: String, default: "¡Hola! Quiero ordenar la oferta especial de la landing page." },
-    themeColor: { type: String, default: "#6366F1" },
+    themeColor: { type: String, default: "#F2CA50" },
+    multiPacks: [
+      {
+        quantity: { type: Number, default: 1 },
+        title: { type: String, default: "1 Unidad" },
+        badge: { type: String, default: "" },
+        price: { type: Number, required: true },
+        originalPrice: { type: Number },
+        isPopular: { type: Boolean, default: false },
+      },
+    ],
     isActive: { type: Boolean, default: true },
     viewsCount: { type: Number, default: 0 },
     clicksCount: { type: Number, default: 0 },
