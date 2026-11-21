@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/components/shop/Cart/CartContext";
 import { trackLandingClick } from "@/lib/actions/landing";
+import { trackViewContent, trackAddToCart } from "@/lib/pixel";
 import {
   ShieldCheck,
   Truck,
@@ -137,6 +138,14 @@ export function LandingPageView({ landing }: LandingPageViewProps) {
 
   // Countdown timer
   useEffect(() => {
+    // Meta Pixel: Registrar ViewContent al cargar la landing
+    trackViewContent({
+      id: landing._id,
+      name: landing.title,
+      price: price,
+      category: isDigital ? "Digital Goods" : "General",
+    });
+
     const totalSeconds = (landing.countdownMinutes || 15) * 60;
     let remaining = totalSeconds;
 
@@ -177,6 +186,13 @@ export function LandingPageView({ landing }: LandingPageViewProps) {
         activePack.quantity > 1
           ? `${landing.title} - ${activePack.title}`
           : product?.name || landing.title;
+
+      trackAddToCart({
+        id: `${product?._id || landing._id}-pack-${activePack.quantity}`,
+        name: packDisplayName,
+        price: activePack.price,
+        quantity: 1,
+      });
 
       addToCart({
         id: `${product?._id || landing._id}-pack-${activePack.quantity}`,

@@ -10,6 +10,7 @@ import { getDeliveryOptions } from "@/lib/actions/delivery";
 import { validateCoupon, checkAutoLaunchCoupon } from "@/lib/actions/coupon";
 import { getPaymentConfigs } from "@/lib/actions/paymentConfig";
 import { logAnalyticsEventAction } from "@/lib/actions/analytics";
+import { trackInitiateCheckout } from "@/lib/pixel";
 import { CustomerBiometricModal } from "@/components/auth/CustomerBiometricModal";
 import { Zap, Rocket, Truck, Sun, Clock, Moon, Store, ShieldCheck, CheckCircle2, Ticket, Sparkles, Tag, AlertCircle, Copy, ExternalLink, QrCode, MessageSquare, Heart, Fingerprint } from "lucide-react";
 
@@ -133,6 +134,11 @@ export default function CheckoutPage() {
     setIsMounted(true);
 
     if (cartItems.length > 0) {
+      trackInitiateCheckout({
+        items: cartItems.map((i) => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
+        total: cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0),
+      });
+
       logAnalyticsEventAction({
         type: "cart_abandon",
         path: "/checkout",

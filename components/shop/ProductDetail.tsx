@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback, useMemo, startTransition } from "react";
+import { useState, useCallback, useMemo, useEffect, startTransition } from "react";
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { AddonSelection } from "@/components/shop/AddonSelection";
 import { ShopHeader } from "@/components/shop/ShopHeader";
 import { CheckCircle2, Download, Cpu, Zap, Package, Sparkles, ShieldCheck, Truck, Tag, ArrowDown, Gamepad2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
+import { trackViewContent } from "@/lib/pixel";
 
 export const ProductDetail = ({ product }: { product: any }) => {
   const t = useTranslations("ProductDetail");
@@ -28,6 +29,16 @@ export const ProductDetail = ({ product }: { product: any }) => {
   ), [product.images]);
 
   const [activeImage, setActiveImage] = useState(images[0]);
+
+  // Meta Pixel: Registrar ViewContent al entrar al producto
+  useEffect(() => {
+    trackViewContent({
+      id: product._id || product.slug,
+      name: displayName,
+      price: basePrice,
+      category: displayCategory,
+    });
+  }, [product._id, product.slug, displayName, basePrice, displayCategory]);
 
   // Formateador de viñetas para la descripción bilingüe
   const descriptionBullets = useMemo(() => (

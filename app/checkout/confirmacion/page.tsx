@@ -3,6 +3,7 @@ import dbConnect from "@/lib/db";
 import Link from "next/link";
 import { CheckCircle2, MessageCircle, Home } from "lucide-react";
 import { OrderSummary } from "@/components/shop/OrderSummary";
+import { PurchasePixelTracker } from "@/components/analytics/PurchasePixelTracker";
 
 export default async function ConfirmacionPage({
   searchParams,
@@ -17,6 +18,16 @@ export default async function ConfirmacionPage({
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F9F9F9] p-6">
+      <PurchasePixelTracker
+        orderId={orderId}
+        total={order?.total || 0}
+        items={(order?.items || []).map((i: any) => ({
+          id: i.productId || i._id || i.id || "item",
+          name: i.name,
+          price: i.price,
+          quantity: i.quantity,
+        }))}
+      />
       <div className="bg-white p-12 rounded-2xl shadow-xl border border-gray-100 text-center animate-in zoom-in-95 duration-500 max-w-lg w-full">
         <div className="bg-green-100 p-4 rounded-full text-green-600 mb-6 animate-bounce mx-auto w-20">
           <CheckCircle2 size={48} />
