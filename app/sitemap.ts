@@ -5,7 +5,6 @@ import { REAL_CURATED_PRODUCTS } from "@/data/curated-catalog";
 import { REAL_DIGITAL_PRODUCTS } from "@/data/digital-catalog";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 3600; // Recalcular sitemap cada hora
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aldri.shop";

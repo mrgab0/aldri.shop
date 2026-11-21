@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { CartProvider } from "@/components/shop/Cart/CartContext";
 import { NextIntlClientProvider } from 'next-intl';
@@ -122,7 +123,9 @@ export default function RootLayout({
               <ChatbotModal />
               <CookieConsent />
               <AnalyticsTracker />
-              <FacebookPixel />
+              <Suspense fallback={null}>
+                <FacebookPixel />
+              </Suspense>
               <ReferralTracker />
               <InstallPrompt />
               <RecentSalesTicker />

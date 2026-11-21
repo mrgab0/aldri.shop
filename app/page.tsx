@@ -9,6 +9,8 @@ import { StoreLocationSection } from "@/components/shop/StoreLocationSection";
 import dbConnect from "@/lib/db";
 import { Product } from "@/lib/models/Product";
 import { getSiteConfig } from "@/lib/actions/siteConfig";
+import { REAL_CURATED_PRODUCTS } from "@/data/curated-catalog";
+import { REAL_DIGITAL_PRODUCTS } from "@/data/digital-catalog";
 
 const SocialAndReviewsSection = dynamic(
   () => import("@/components/shop/SocialAndReviewsSection").then((m) => m.SocialAndReviewsSection),
@@ -48,6 +50,21 @@ export default async function Home() {
     console.warn("Aviso: No se pudo conectar a la base de datos durante el pre-renderizado estático de Home. Usando valores seguros.", err);
   }
 
+  // Unificar con catálogos curados físicos y digitales
+  const dbSlugs = new Set((products || []).map((p: any) => p.slug));
+  const fallbackCurated = REAL_CURATED_PRODUCTS.filter((p) => !dbSlugs.has(p.slug)).map((p) => ({
+    ...p,
+    _id: (p as any)._id || `curated-${p.slug}`,
+    productType: "dropship",
+  }));
+  const fallbackDigital = REAL_DIGITAL_PRODUCTS.filter((p) => !dbSlugs.has(p.slug)).map((p) => ({
+    ...p,
+    _id: (p as any)._id || `digital-${p.slug}`,
+    productType: "digital",
+  }));
+
+  const allDisplayProducts = [...products, ...fallbackCurated, ...fallbackDigital].slice(0, 30);
+
   return (
     <main className="min-h-screen gold-ambient-mesh text-white transition-colors duration-300 relative overflow-x-hidden">
       {/* Barra de anuncio superior (SAME DAY DELIVERY) */}
@@ -60,7 +77,7 @@ export default async function Home() {
       <LuxuryHeroSection siteConfig={siteConfig} />
 
       {/* Bento Grid Editorial Stitch CRO */}
-      <BentoEditorialGrid products={products} />
+      <BentoEditorialGrid products={allDisplayProducts} />
 
       {/* Módulo iFrame Personalizado (si está activo en el Administrador) */}
       {siteConfig?.enableCustomIframe && (
@@ -91,8 +108,8 @@ export default async function Home() {
 
         {/* Cuadrícula de 5 columnas en desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10">
-          {products.length > 0 ? (
-            products.map((product: any) => (
+          {allDisplayProducts.length > 0 ? (
+            allDisplayProducts.map((product: any) => (
               <ProductCard 
                 key={product._id.toString()}
                 id={product._id.toString()}

@@ -1,18 +1,17 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { useEffect } from "react";
 import { FB_PIXEL_ID, pageview } from "@/lib/pixel";
 
 export function FacebookPixel() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Registrar cambio de ruta
+    // Registrar cambio de ruta automáticamente al navegar
     pageview();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   if (!FB_PIXEL_ID) return null;
 
