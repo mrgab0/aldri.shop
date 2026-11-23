@@ -18,6 +18,7 @@ export const ProductDetail = ({ product }: { product: any }) => {
   const displayCategory = isEn && product.categoryEn ? product.categoryEn : product.category;
   const displayBadge = isEn && product.badgeEn ? product.badgeEn : product.badge;
   const displayFeatures = isEn && product.featuresEn?.length ? product.featuresEn : product.features;
+  const basePrice = Number(product.price || 0);
 
   const [selectedAddons, setSelectedAddons] = useState<{ addonId: string; value?: string; price?: number; name?: string }[]>([]);
   const [lastAddonToast, setLastAddonToast] = useState<{ name: string; price: number } | null>(null);
@@ -49,7 +50,6 @@ export const ProductDetail = ({ product }: { product: any }) => {
   ), [displayDescription]);
 
   // Cálculo Dinámico del Precio Combinado (Base + Adicionales)
-  const basePrice = Number(product.price || 0);
   const { addonsTotalPrice, combinedTotalPrice } = useMemo(() => {
     const addonsTotal = selectedAddons.reduce((acc, curr) => acc + (curr.price || 0), 0);
     return {
