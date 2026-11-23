@@ -383,22 +383,6 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
                 )}
               </>
             ) : (
-                          {isAdded ? (
-                            <>
-                              <Check size={14} /> {t('added')}
-                            </>
-                          ) : (
-                            <>
-                              <Gift size={14} /> {t('addToCart')}
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
               <div className="glass-panel-luxury p-12 rounded-3xl border border-white/10 text-center space-y-4 max-w-lg mx-auto shadow-2xl">
                 <Sparkles size={44} className="mx-auto text-[#F2CA50] animate-pulse" />
                 <h3 className="text-xl font-bold text-white">{t('noResultsTitle')}</h3>
