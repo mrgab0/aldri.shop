@@ -93,7 +93,7 @@ export function RecentSalesTicker() {
 
   return (
     <div
-      className={`fixed bottom-5 left-5 z-40 max-w-sm transition-all duration-700 transform pointer-events-auto ${
+      className={`fixed bottom-24 left-6 sm:bottom-6 sm:left-6 z-30 max-w-sm transition-all duration-700 transform pointer-events-auto ${
         visible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95 pointer-events-none"
       }`}
     >

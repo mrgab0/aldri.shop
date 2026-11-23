@@ -23,11 +23,11 @@ export const ShoppingCartComponent = () => {
       <button 
         onClick={() => setIsOpen(true)}
         aria-label="Ver Carrito de Compras"
-        className="fixed bottom-28 sm:bottom-32 right-5 sm:right-6 z-40 p-3.5 sm:p-4 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black rounded-full shadow-[0px_8px_25px_rgba(212,175,55,0.4)] border-2 border-white/90 dark:border-stone-900 hover:scale-105 transition-all duration-300 active:scale-95 group"
+        className="fixed bottom-6 right-6 z-40 p-3.5 sm:p-4 bg-gradient-to-r from-[#F2CA50] via-[#D4AF37] to-[#C5A059] text-black rounded-full shadow-[0px_10px_30px_rgba(212,175,55,0.45)] border-2 border-white/90 dark:border-stone-900 hover:scale-105 transition-all duration-300 active:scale-95 group cursor-pointer"
       >
         <ShoppingCart size={22} className="group-hover:scale-110 transition-transform text-black" />
         {cartItems.length > 0 && (
-          <span className="absolute -top-1 -right-1 bg-black text-[#F2CA50] text-[10px] font-black h-5 w-5 flex items-center justify-center rounded-full border-2 border-[#D4AF37]">
+          <span className="absolute -top-1 -right-1 bg-black text-[#F2CA50] text-[10px] font-black h-5 w-5 flex items-center justify-center rounded-full border-2 border-[#D4AF37] animate-pulse">
             {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
           </span>
         )}
@@ -48,9 +48,23 @@ export const ShoppingCartComponent = () => {
 
             <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-4">
               {cartItems.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-48 text-zinc-500 space-y-3">
-                  <ShoppingCart size={48} className="opacity-30 text-[#F2CA50]" />
-                  <p className="font-medium text-sm">Tu carrito está vacío</p>
+                <div className="flex flex-col items-center justify-center h-72 text-zinc-400 space-y-4 px-4 text-center">
+                  <div className="w-16 h-16 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center shadow-[0_0_20px_rgba(242,202,80,0.15)]">
+                    <ShoppingCart size={28} className="text-[#F2CA50]" />
+                  </div>
+                  <div>
+                    <p className="font-serif font-black text-xl text-white">Tu carrito está vacío</p>
+                    <p className="text-xs text-zinc-400 mt-1.5 max-w-xs leading-relaxed">
+                      Explora más de 110 productos digitales con entrega instantánea 24/7 y gadgets de vanguardia.
+                    </p>
+                  </div>
+                  <Link
+                    href="/productos"
+                    onClick={() => setIsOpen(false)}
+                    className="glass-btn-gold text-black px-7 py-3 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl"
+                  >
+                    Explorar Catálogo
+                  </Link>
                 </div>
               ) : (
                 cartItems.map((item) => (

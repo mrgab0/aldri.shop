@@ -1,10 +1,10 @@
 "use client";
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from "@/components/shop/Cart/CartContext";
 import { useTranslations, useLocale } from "next-intl";
-import { ShoppingBag, Sparkles } from "lucide-react";
+import { ShoppingBag, Sparkles, Check } from "lucide-react";
 
 interface ProductCardProps {
   id: string;
@@ -41,10 +41,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const t = useTranslations("common");
   const locale = useLocale();
   const isEn = locale === 'en';
+  const [justAdded, setJustAdded] = useState(false);
 
   const displayName = (isEn && nameEn) ? nameEn : name;
   const displayCategory = (isEn && categoryEn) ? categoryEn : category;
   const displayBadge = (isEn && badgeEn) ? badgeEn : badge;
+  const productHref = `/${locale}/productos/${slug}`;
 
   const optimizeImageUrl = (url: string) => {
     if (!url) return "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80&auto=format";
@@ -60,10 +62,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const optimizedMainImage = optimizeImageUrl(image);
   const optimizedSecondaryImage = secondaryImage ? optimizeImageUrl(secondaryImage) : undefined;
 
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart({ id, name, price, image, productType });
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1600);
+  };
+
   return (
-    <div className="group relative glass-card-radical rounded-3xl overflow-hidden flex flex-col justify-between select-none">
+    <div className="group relative glass-card-radical rounded-3xl overflow-hidden flex flex-col justify-between select-none hover:border-amber-400/40 hover:shadow-[0_12px_35px_rgba(212,175,55,0.12)] transition-all duration-500">
       <Link
-        href={`/productos/${slug}`}
+        href={productHref}
         draggable={false}
         onDragStart={(e) => e.preventDefault()}
         className="block relative select-none"
@@ -87,7 +97,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? "bg-indigo-950/80 text-indigo-200 border-indigo-400/40 shadow-[0_0_12px_rgba(99,102,241,0.3)]"
                 : "bg-emerald-950/80 text-emerald-200 border-emerald-400/40 shadow-[0_0_12px_rgba(16,185,129,0.3)]"
             }`}>
-              {productType === 'digital' ? (isEn ? '⚡ Digital 24/7' : '⚡ Digital 24/7') : (isEn ? '📦 US/Global Tracked' : '📦 Físico Rastreado')}
+              {productType === 'digital' ? '⚡ Digital 24/7' : (isEn ? '📦 US/Global Tracked' : '📦 Físico Rastreado')}
             </span>
             <span className="glass-pill text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest w-fit">
               {displayCategory}
@@ -110,7 +120,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div>
           <h3 className="font-sans font-bold text-sm sm:text-base text-zinc-900 dark:text-white group-hover:text-[#714B00] dark:group-hover:text-[#F2CA50] transition-colors mb-1.5 line-clamp-1">
             <Link
-              href={`/productos/${slug}`}
+              href={productHref}
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
             >
@@ -141,12 +151,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           <button 
-            onClick={() => addToCart({ id, name, price, image, productType })}
-            className="glass-btn-gold px-3 sm:px-3.5 py-2 rounded-xl active:scale-95 transition-all duration-300 font-black text-xs flex items-center gap-1.5 select-none cursor-pointer"
-            title="Añadir al Carrito"
+            onClick={handleAdd}
+            className={`px-3.5 sm:px-4 py-2.5 rounded-xl active:scale-95 transition-all duration-300 font-black text-xs flex items-center justify-center gap-1.5 select-none cursor-pointer min-h-[44px] min-w-[44px] ${
+              justAdded
+                ? "bg-emerald-500 text-black border border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.5)] scale-105"
+                : "glass-btn-gold text-black hover:scale-105"
+            }`}
+            title={justAdded ? "¡Agregado al carrito!" : "Añadir al Carrito"}
+            aria-label="Añadir al Carrito"
           >
-            <ShoppingBag size={13} className="text-black" />
-            <span className="hidden sm:inline">{t('addToCart')}</span>
+            {justAdded ? (
+              <>
+                <Check size={14} className="text-black stroke-[3]" />
+                <span className="text-[11px] font-black">¡Agregado!</span>
+              </>
+            ) : (
+              <>
+                <ShoppingBag size={14} className="text-black" />
+                <span className="hidden sm:inline">{t('addToCart')}</span>
+              </>
+            )}
           </button>
         </div>
       </div>

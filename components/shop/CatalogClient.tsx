@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ProductCard } from "@/components/shop/ProductCard/ProductCard";
 import { ShopHeader } from "@/components/shop/ShopHeader";
 import { Footer } from "@/components/shop/Footer";
@@ -42,14 +42,19 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
     return [...productsFormatted, ...addonsFormatted];
   }, [initialProducts, initialAddons]);
 
-  // Extraer categorías únicas
+  // Extraer categorías únicas dinámicamente según la pestaña activa
   const categories = useMemo(() => {
     const set = new Set<string>();
     combinedItems.forEach((item) => {
+      // Filtrar categorías que no correspondan a la pestaña actual
+      if (activeTab === "digital" && (item.itemType !== "product" || item.productType !== "digital")) return;
+      if (activeTab === "dropship" && (item.itemType !== "product" || item.productType !== "dropship")) return;
+      if (activeTab === "addons" && item.itemType !== "addon") return;
+
       if (item.displayCategory) set.add(item.displayCategory);
     });
     return Array.from(set);
-  }, [combinedItems]);
+  }, [combinedItems, activeTab]);
 
   // Filtrado y Ordenamiento en tiempo real
   const filteredItems = useMemo(() => {
@@ -80,6 +85,18 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
         return 0;
       });
   }, [combinedItems, activeTab, searchTerm, selectedCategory, sortBy]);
+
+  // Paginación Progresiva Fluida (24 productos iniciales, +24 en demanda)
+  const ITEMS_PER_PAGE = 24;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [activeTab, selectedCategory, searchTerm, sortBy]);
+
+  const displayedItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
 
   const handleAddAddonToCart = (addon: any) => {
     addToCart({
@@ -113,33 +130,33 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
           </div>
 
           {/* TAB SWITCHER: Todos | Digitales | Dropshipping | Adicionales en Cristal */}
-          <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto p-1.5 glass-panel-luxury rounded-full border border-white/10">
+          <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto p-1.5 glass-panel-luxury rounded-full border border-amber-400/20 shadow-[0_0_30px_rgba(212,175,55,0.08)]">
             <button
               onClick={() => { setActiveTab("all"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[90px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
+              className={`flex-1 min-w-[95px] py-2.5 px-4 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "all"
                   ? "glass-btn-gold text-black shadow-lg"
-                  : "text-zinc-400 hover:text-[#F2CA50]"
+                  : "text-zinc-400 hover:text-[#F2CA50] hover:bg-white/5"
               }`}
             >
               Todos ({combinedItems.length})
             </button>
             <button
               onClick={() => { setActiveTab("digital"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[110px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
+              className={`flex-1 min-w-[125px] py-2.5 px-4 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "digital"
-                  ? "bg-indigo-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)] border border-indigo-400/40"
-                  : "text-zinc-400 hover:text-white"
+                  ? "bg-gradient-to-r from-amber-500/25 via-[#D4AF37]/30 to-amber-500/20 text-[#F2CA50] border border-[#F2CA50]/60 shadow-[0_0_20px_rgba(242,202,80,0.25)] font-black"
+                  : "text-zinc-400 hover:text-[#F2CA50] hover:bg-white/5"
               }`}
             >
               ⚡ Digitales ({combinedItems.filter(i => i.productType === 'digital').length})
             </button>
             <button
               onClick={() => { setActiveTab("dropship"); setSelectedCategory("all"); }}
-              className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
+              className={`flex-1 min-w-[125px] py-2.5 px-4 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                 activeTab === "dropship"
-                  ? "bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] border border-emerald-400/40"
-                  : "text-zinc-400 hover:text-white"
+                  ? "bg-gradient-to-r from-amber-500/25 via-[#D4AF37]/30 to-amber-500/20 text-[#F2CA50] border border-[#F2CA50]/60 shadow-[0_0_20px_rgba(242,202,80,0.25)] font-black"
+                  : "text-zinc-400 hover:text-[#F2CA50] hover:bg-white/5"
               }`}
             >
               📦 Físicos ({combinedItems.filter(i => i.productType === 'dropship').length})
@@ -147,10 +164,10 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
             {initialAddons.length > 0 && (
               <button
                 onClick={() => { setActiveTab("addons"); setSelectedCategory("all"); }}
-                className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
+                className={`flex-1 min-w-[95px] py-2.5 px-4 rounded-full text-xs font-black uppercase tracking-wider transition-all text-center cursor-pointer ${
                   activeTab === "addons"
                     ? "glass-btn-gold text-black shadow-lg"
-                    : "text-zinc-400 hover:text-white"
+                    : "text-zinc-400 hover:text-[#F2CA50] hover:bg-white/5"
                 }`}
               >
                 Extras ({initialAddons.length})
@@ -254,78 +271,118 @@ export function CatalogClient({ initialProducts, initialAddons = [] }: CatalogCl
             </div>
 
             {filteredItems.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredItems.map((item) => {
-                  if (item.itemType === "product") {
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {displayedItems.map((item) => {
+                    if (item.itemType === "product") {
+                      return (
+                        <ProductCard
+                          key={item._id}
+                          id={item._id}
+                          name={item.name}
+                          nameEn={item.nameEn}
+                          slug={item.slug}
+                          price={item.price}
+                          category={item.category}
+                          categoryEn={item.categoryEn}
+                          badge={item.badge}
+                          badgeEn={item.badgeEn}
+                          productType={item.productType}
+                          image={item.images[0] || "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800"}
+                        />
+                      );
+                    }
+
+                    // TARJETA DE ADICIONAL
+                    const isAdded = addedAddonId === item._id;
+
                     return (
-                      <ProductCard
+                      <div
                         key={item._id}
-                        id={item._id}
-                        name={item.name}
-                        nameEn={item.nameEn}
-                        slug={item.slug}
-                        price={item.price}
-                        category={item.category}
-                        categoryEn={item.categoryEn}
-                        badge={item.badge}
-                        badgeEn={item.badgeEn}
-                        productType={item.productType}
-                        image={item.images[0] || "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800"}
-                      />
-                    );
-                  }
+                        className="glass-card-radical rounded-3xl p-5 flex flex-col justify-between group relative overflow-hidden"
+                      >
+                        <div className="space-y-3">
+                          <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#121218]/70 to-[#07070A]/90 p-2 flex items-center justify-center border border-white/10">
+                            <img
+                              src={item.images[0]}
+                              alt={item.name}
+                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <span className="absolute top-3 left-3 glass-btn-gold text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md">
+                              <Sparkles size={10} className="text-black" /> {t('addonBadge')}
+                            </span>
+                          </div>
 
-                  // TARJETA DE ADICIONAL
-                  const isAdded = addedAddonId === item._id;
-
-                  return (
-                    <div
-                      key={item._id}
-                      className="glass-card-radical rounded-3xl p-5 flex flex-col justify-between group relative overflow-hidden"
-                    >
-                      <div className="space-y-3">
-                        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#121218]/70 to-[#07070A]/90 p-2 flex items-center justify-center border border-white/10">
-                          <img
-                            src={item.images[0]}
-                            alt={item.name}
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <span className="absolute top-3 left-3 glass-btn-gold text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md">
-                            <Sparkles size={10} className="text-black" /> {t('addonBadge')}
-                          </span>
+                          <div>
+                            <span className="text-[10px] font-black text-[#F2CA50] uppercase tracking-widest block mb-1">
+                              {item.category || t('addonBadge')}
+                            </span>
+                            <h3 className="font-bold text-base text-white line-clamp-1 group-hover:text-[#F2CA50] transition-colors">
+                              {item.name}
+                            </h3>
+                            {item.description && (
+                              <p className="text-xs text-zinc-400 line-clamp-2 mt-1 font-normal">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
 
-                        <div>
-                          <span className="text-[10px] font-black text-[#F2CA50] uppercase tracking-widest block mb-1">
-                            {item.category || t('addonBadge')}
-                          </span>
-                          <h3 className="font-bold text-base text-white line-clamp-1 group-hover:text-[#F2CA50] transition-colors">
-                            {item.name}
-                          </h3>
-                          {item.description && (
-                            <p className="text-xs text-zinc-400 line-clamp-2 mt-1 font-normal">
-                              {item.description}
-                            </p>
-                          )}
+                        <div className="pt-4 mt-3 border-t border-white/10 flex items-center justify-between">
+                          <div>
+                            <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wider">Precio</span>
+                            <span className="text-xl font-black text-[#F2CA50] font-sans drop-shadow-[0_0_10px_rgba(242,202,80,0.3)]">
+                              ${item.price.toFixed(2)} <span className="text-xs font-bold text-zinc-300">USD</span>
+                            </span>
+                          </div>
+
+                          <button
+                            onClick={() => handleAddAddonToCart(item)}
+                            className={`px-4 py-2.5 rounded-xl font-black text-xs transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer ${
+                              isAdded
+                                ? "bg-emerald-600 text-white"
+                                : "glass-btn-gold text-black"
+                            }`}
+                          >
+                            {isAdded ? (
+                              <>
+                                <Check size={14} /> {t('added')}
+                              </>
+                            ) : (
+                              <>
+                                <Gift size={14} /> {t('addToCart')}
+                              </>
+                            )}
+                          </button>
                         </div>
                       </div>
+                    );
+                  })}
+                </div>
 
-                      <div className="pt-4 mt-3 border-t border-white/10 flex items-center justify-between">
-                        <div>
-                          <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wider">Precio</span>
-                          <span className="text-xl font-black text-[#F2CA50] font-sans drop-shadow-[0_0_10px_rgba(242,202,80,0.3)]">
-                            ${item.price.toFixed(2)} <span className="text-xs font-bold text-zinc-300">USD</span>
-                          </span>
-                        </div>
-
-                        <button
-                          onClick={() => handleAddAddonToCart(item)}
-                          className={`px-4 py-2.5 rounded-xl font-black text-xs transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer ${
-                            isAdded
-                              ? "bg-emerald-600 text-white"
-                              : "glass-btn-gold text-black"
-                          }`}
-                        >
+                {/* Control de Carga Progresiva Fluida (UX Estándar de la Industria) */}
+                {visibleCount < filteredItems.length && (
+                  <div className="flex flex-col items-center justify-center pt-10 pb-4 space-y-3.5">
+                    <p className="text-xs text-zinc-400 font-medium">
+                      Mostrando <strong className="text-white font-bold">{Math.min(visibleCount, filteredItems.length)}</strong> de <strong className="text-[#F2CA50] font-bold">{filteredItems.length}</strong> productos
+                    </p>
+                    <div className="w-56 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#F2CA50] to-[#D4AF37] transition-all duration-300 rounded-full"
+                        style={{ width: `${(Math.min(visibleCount, filteredItems.length) / filteredItems.length) * 100}%` }}
+                      />
+                    </div>
+                    <button
+                      onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
+                      className="glass-btn-gold text-black px-8 py-3.5 rounded-full font-black text-xs tracking-widest uppercase shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2 group"
+                    >
+                      <span>Ver Más Productos ({filteredItems.length - visibleCount} restantes)</span>
+                      <span className="transform group-hover:translate-y-0.5 transition-transform font-bold">↓</span>
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
                           {isAdded ? (
                             <>
                               <Check size={14} /> {t('added')}
