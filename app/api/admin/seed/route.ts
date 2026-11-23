@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import { Product } from '@/lib/models/Product';
+import { Coupon } from '@/lib/models/Coupon';
 import { REAL_CURATED_PRODUCTS } from '@/data/curated-catalog';
 import { REAL_DIGITAL_PRODUCTS } from '@/data/digital-catalog';
 
@@ -48,6 +49,20 @@ export async function POST(req: Request) {
       );
       createdProducts.push(updatedDigital);
     }
+
+    // 4. Crear o actualizar cupón de bienvenida oficial ALDRI10 (10% OFF en toda la tienda)
+    await Coupon.findOneAndUpdate(
+      { code: 'ALDRI10' },
+      {
+        code: 'ALDRI10',
+        discountType: 'percentage',
+        discountValue: 10,
+        maxUses: 1000,
+        isActive: true,
+        minPurchase: 0,
+      },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
     const zdCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'zendrop').length;
     const cjCount = createdProducts.filter(p => p?.dropshipInfo?.provider === 'cjdropshipping').length;
