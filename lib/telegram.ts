@@ -118,3 +118,78 @@ export async function sendTelegramOrderNotification(order: TelegramOrderPayload)
     return { success: false, error: error.message };
   }
 }
+
+export interface TelegramAbandonedCartPayload {
+  customerName?: string;
+  customerPhone?: string;
+  customerEmail?: string;
+  items: Array<{ name: string; price: number; quantity?: number }>;
+  total: number;
+}
+
+/**
+ * Envía una alerta instantánea a Telegram cuando se detecta un carrito abandonado con datos de contacto.
+ * Permite al administrador contactar al cliente por WhatsApp en 1 toque con una oferta de rescate.
+ */
+export async function sendTelegramAbandonedCartAlert(payload: TelegramAbandonedCartPayload) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const rawChatId = process.env.TELEGRAM_CHAT_ID || process.env.TELEGRAM_ALLOWED_IDS;
+
+  if (!token || !rawChatId) {
+    return { success: false, reason: "Missing credentials" };
+  }
+
+  const chatId = rawChatId.split(",")[0].trim();
+  const cleanPhone = (payload.customerPhone || "").replace(/[^0-9]/g, "");
+
+  const itemsText = payload.items
+    .map((it) => `• *${it.name.replace(/[*_`\[\]]/g, "")}* ($${(it.price || 0).toFixed(2)} USD)`)
+    .join("\n");
+
+  const messageLines = [
+    `🛒 *¡ALERTA DE RESCATE: CARRITO ABANDONADO!* ⚠️`,
+    ``,
+    `👤 *Cliente:* ${payload.customerName || "Cliente en Checkout"}`,
+    payload.customerPhone ? `📱 *Teléfono:* ${payload.customerPhone}` : "",
+    payload.customerEmail ? `📧 *Email:* ${payload.customerEmail}` : "",
+    `💰 *Monto Estimado:* *$${(payload.total || 0).toFixed(2)} USD*`,
+    ``,
+    `🛍️ *Productos en el Carrito:*`,
+    itemsText || "• Artículos en checkout",
+    ``,
+    cleanPhone
+      ? `💬 *Acción de Cierre Inmediata:*\n[👉 Tocar aquí para abrir WhatsApp y cerrar la venta](https://wa.me/${cleanPhone}?text=${encodeURIComponent(
+          `¡Hola ${payload.customerName || ""}! Notamos que dejaste tu orden pendiente en Aldri Shop. Te regalamos un descuento especial con el cupón ALDRI10 para completarla hoy mismo. ¿Te ayudo a procesar tu pago?`
+        )})`
+      : `💡 *Nota:* El cliente no dejó teléfono completo aún.`,
+  ];
+
+  const messageText = messageLines.filter((l) => l !== "").join("\n");
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: messageText,
+        parse_mode: "Markdown",
+        disable_web_page_preview: true,
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+    if (!response.ok) {
+      return { success: false };
+    }
+    return { success: true };
+  } catch (err: any) {
+    console.error("[Telegram] Error en alerta de carrito:", err);
+    return { success: false, error: err.message };
+  }
+}
+

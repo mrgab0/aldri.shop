@@ -2,6 +2,7 @@
 
 import dbConnect from "@/lib/db";
 import { AnalyticsEvent } from "@/lib/models/AnalyticsEvent";
+import { sendTelegramAbandonedCartAlert } from "@/lib/telegram";
 import { revalidatePath } from "next/cache";
 
 export async function logAnalyticsEventAction(data: {
@@ -36,6 +37,20 @@ export async function logAnalyticsEventAction(data: {
       cartItems: data.cartItems || [],
       createdAt: new Date()
     });
+
+    if (data.type === "cart_abandon" && data.customerPhone) {
+      try {
+        await sendTelegramAbandonedCartAlert({
+          customerName: data.customerName,
+          customerPhone: data.customerPhone,
+          total: data.price || 0,
+          items: (data.cartItems || []).map((i) => ({ name: i.name, price: i.price }))
+        });
+      } catch (e) {
+        console.warn("Aviso: No se pudo enviar alerta de carrito a Telegram:", e);
+      }
+    }
+
     return { success: true };
   } catch (error) {
     console.error("Error al registrar evento de analítica:", error);
